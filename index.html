@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCAIO | South Carolina AI Observatory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #0f172a; }
+        /* LIGHT MODE GLASS EFFECT */
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(15, 23, 42, 0.05); }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #ffffff 100%); }
+        .accent-text { background: linear-gradient(90deg, #0ea5e9, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-50 glass py-4 px-8 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <img src="logo.jpg" alt="SCAIO Logo" class="h-10 w-auto"> 
+        </div>
+        <div class="space-x-8 text-sm font-medium uppercase tracking-widest text-slate-600">
+            <a href="#" class="hover:text-black transition">Research</a>
+            <a href="#" class="hover:text-black transition">Ecosystem Map</a>
+            <a href="#" class="hover:text-black transition">Policy Tracker</a>
+            <a href="#" class="hover:text-black transition">About</a>
+        </div>
+    </nav>
+
+    <section class="hero-gradient min-h-[80vh] flex flex-col items-center justify-center text-center px-4">
+        <div class="mb-6 px-4 py-1 border border-sky-500/20 rounded-full bg-sky-50 text-sky-700 text-xs font-bold tracking-widest uppercase">
+            Now Monitoring: 2026 Legislative Session
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 max-w-4xl leading-tight text-slate-950">
+            The Central Authority for AI in the <span class="accent-text">Palmetto State.</span>
+        </h1>
+        <p class="text-xl text-slate-700 max-w-2xl mb-10">
+            Bridging the gap between emerging technology and public interest through independent research, policy tracking, and technical audits.
+        </p>
+        <div class="flex flex-col md:flex-row gap-4">
+            <button class="bg-sky-600 hover:bg-sky-700 text-white px-8 py-4 rounded-lg font-semibold transition shadow-md">Download: 2026 Landscape Report</button>
+            <button class="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-slate-50 transition">View Policy Tracker</button>
+        </div>
+    </section>
+
+    <section class="py-24 px-8 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-slate-950">Putting a Stake in the Ground.</h2>
+                <p class="text-slate-700 leading-relaxed mb-6">
+                    The South Carolina AI Observatory (SCAIO) is an independent, non-partisan hub established to aggregate disparate resources and provide rigorous technical oversight. 
+                </p>
+                <p class="text-slate-700 leading-relaxed">
+                    Our mission is to monitor the evolution of AI within South Carolina, providing data-driven clarity to navigate the complexities of ethics, security, and economic impact.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass p-6 rounded-xl shadow-inner">
+                    <div class="text-sky-600 font-bold text-2xl mb-2">01.</div>
+                    <div class="text-sm font-semibold uppercase tracking-wider text-slate-900">Monitor</div>
+                    <div class="text-xs text-slate-600 mt-2">Real-time legislative tracking.</div>
+                </div>
+                <div class="glass p-6 rounded-xl shadow-inner">
+                    <div class="text-sky-600 font-bold text-2xl mb-2">02.</div>
+                    <div class="text-sm font-semibold uppercase tracking-wider text-slate-900">Map</div>
+                    <div class="text-xs text-slate-600 mt-2">SC’s AI Startup Backbone.</div>
+                </div>
+                <div class="glass p-6 rounded-xl col-span-2 shadow-inner">
+                    <div class="text-sky-600 font-bold text-2xl mb-2">03.</div>
+                    <div class="text-sm font-semibold uppercase tracking-wider text-slate-900">Audit</div>
+                    <div class="text-xs text-slate-600 mt-2">Independent security and bias assessments.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 px-8 border-t border-slate-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-center text-4xl font-bold mb-16 text-slate-950 underline decoration-sky-500 decoration-4 underline-offset-8">Founding Authority</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+                    <h3 class="text-2xl font-bold mb-2 text-slate-950">Jimmy Ardis</h3>
+                    <div class="text-sky-700 text-sm font-bold uppercase tracking-widest mb-4">Policy & Strategy</div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        Veteran policy journalist with roots in structured data at Ballotpedia and community development at the Riley Center. Leading the strategic vision for SC’s AI resiliency.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-sky-100 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-slate-950">Noah Schiffman</h3>
+                    <div class="text-sky-700 text-sm font-bold uppercase tracking-widest mb-4">Chief Technical Advisor</div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        Distinguished authority in IT security with 25+ years experience and multiple patents . Background includes DoD and FBI Top Secret clearances and leadership at KBR .
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white border-t border-slate-100 text-center px-8">
+        <div class="text-slate-600 text-sm">
+            © 2026 South Carolina AI Observatory. <br>
+            <span class="text-slate-500 mt-2 block italic">An independent initiative supported by the technical resources of Carolina Redesign.</span>
+        </div>
+    </footer>
+
+</body>
+</html>
