@@ -604,6 +604,17 @@
     /* ── Journal ── */
     .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 30px; }
     .article-tag  { font-size: 0.72rem; color: #8a96a7; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-bottom: 12px; }
+    .article-tag.live { color: var(--blue); }
+    .card.published {
+      border-color: #c6d7f0;
+      background: #fff;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      text-decoration: none;
+      display: block;
+    }
+    .card.published:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(10,42,84,0.12); border-color: var(--blue-2); }
+    .card.published h3 { color: var(--navy); }
+    .card.published .read-link { display: inline-block; margin-top: 14px; color: var(--blue); font-weight: 600; font-size: 0.9rem; }
 
     /* ── Footer ── */
     .footer {
@@ -666,7 +677,6 @@
         <a href="#journal">Blog</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
-        <a href="https://web-production-015441.up.railway.app/ask">Ask the Navigator</a>
       </nav>
     </div>
   </header>
@@ -1282,10 +1292,19 @@
     <div class="container">
       <div class="section-header">
         <div class="section-kicker">Journal</div>
-        <h2 class="section-title">Coming to the SCAIO Journal</h2>
-        <p class="section-copy">Original analysis, explainers, and commentary on AI's impact in South Carolina. First articles in development — check back soon.</p>
+        <h2 class="section-title">SCAIO Journal</h2>
+        <p class="section-copy">Original analysis, explainers, and commentary on AI's impact in South Carolina.</p>
       </div>
       <div class="article-grid">
+
+        <!-- ── Published article ── -->
+        <a class="card published" href="scaio-article-workforce-exposure.html">
+          <div class="article-tag live">Published · April 2026</div>
+          <h3>The Gap Between What AI Can Do and What It Is Doing — and What It Means for SC Workers</h3>
+          <p>A new Anthropic report mapped AI's theoretical reach vs. its real-world footprint. For South Carolina's 283,000 administrative workers, the picture is more urgent than most realize.</p>
+          <span class="read-link">Read the analysis →</span>
+        </a>
+
         <article class="card">
           <div class="article-tag">Coming soon</div>
           <h3>Why South Carolina needs an AI observatory</h3>
@@ -1305,11 +1324,6 @@
           <div class="article-tag">Coming soon</div>
           <h3>Who pays for South Carolina's AI infrastructure boom?</h3>
           <p>Data centers, energy rates, and the unresolved question of whether SC residents will subsidize the state's AI buildout.</p>
-        </article>
-        <article class="card">
-          <div class="article-tag">Coming soon</div>
-          <h3>The emerging AI ecosystem in South Carolina</h3>
-          <p>A tour of the institutions, companies, and initiatives already active in the state — and where the gaps remain.</p>
         </article>
         <article class="card">
           <div class="article-tag">Coming soon</div>
@@ -1511,6 +1525,5 @@
     })();
   </script>
 
-  <script src="https://web-production-015441.up.railway.app/frontend/embed.js"></script>
 </body>
 </html>
