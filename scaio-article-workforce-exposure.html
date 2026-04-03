@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gap Between What AI Can Do and What It Is Doing — SCAIO Journal</title>
+  <meta name="description" content="A new Anthropic report maps which jobs face real AI displacement risk right now — and what it means for South Carolina's workforce." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --red:      #c0392b;
+      --amber:    #b45309;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Site header bar ── */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    /* ── Article layout ── */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── Meta strip ── */
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* ── Body prose ── */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .prose h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 32px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+    }
+
+    /* ── Pull quote ── */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 24px 28px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.7);
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Stat callout boxes ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 36px 0;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .stat-box .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ── Figure container ── */
+    .figure-wrap {
+      margin: 44px -4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .figure-inner {
+      padding: 32px 28px 24px;
+    }
+    .figure-kicker {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .figure-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .figure-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+    .figure-note {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.6;
+    }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .legend-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ── Occupation bars ── */
+    .occ-table { margin: 28px 0; }
+    .occ-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 52px;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .occ-row:last-child { border-bottom: none; }
+    .occ-name {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .occ-bar-wrap {
+      background: #eef4fb;
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .occ-bar {
+      height: 100%;
+      border-radius: 4px;
+    }
+    .occ-pct {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: right;
+      font-weight: 600;
+    }
+
+    /* ── SC callout section ── */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+
+    .sc-stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .sc-stat {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .sc-stat .n {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.8rem;
+      color: #7ab8f5;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .sc-stat .l {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.78);
+      line-height: 1.45;
+    }
+
+    /* ── Two-track section ── */
+    .two-track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .track {
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+    .track.exposed {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+    .track.protected {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+    .track-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+    .track.exposed .track-label { color: #b91c1c; }
+    .track.protected .track-label { color: #15803d; }
+    .track h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .track ul {
+      padding-left: 16px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── Source note ── */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .stat-row .stat-box:last-child { grid-column: 1 / -1; }
+      .two-track { grid-template-columns: 1fr; }
+      .sc-stat-row { grid-template-columns: 1fr; }
+      .occ-row { grid-template-columns: 1fr 1fr; }
+      .occ-name { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">Workforce</span>
+      <span class="meta-tag">Analysis</span>
+      <span class="meta-date">April 2026 · SCAIO Journal</span>
+    </div>
+
+    <h1>The Gap Between What AI Can Do and What It Is Doing — and What It Means for South Carolina Workers</h1>
+
+    <p class="dek">A March 2026 Anthropic report introduced a striking chart that went viral for good reason: it shows the enormous distance between AI's theoretical reach and its real-world footprint today. For South Carolina, the picture is more complicated than either the optimists or the alarmists suggest.</p>
+
+    <div class="prose">
+
+      <p>When Anthropic released its Labor Market Impacts report on March 5, 2026, one image spread faster than any of its data tables: a spider chart showing two concentric shapes — a large blue area representing everything AI <em>could theoretically do</em>, and a much smaller red area representing what AI is <em>actually doing</em> in professional settings today. The gap between them is enormous.</p>
+
+      <p>That chart, Figure 2 of the report, is the clearest picture yet of where AI disruption stands and where it is headed. For South Carolina's workforce — one of the most manufacturing-heavy in the Southeast, with a large and vulnerable administrative employment base — it deserves a close read.</p>
+
+      <h2>Understanding the chart</h2>
+
+      <p>The report introduces a concept called <strong>observed exposure</strong>: a new metric that combines two things — what AI is theoretically capable of doing (based on prior academic research across ~800 occupations), and what AI is <em>actually being used for</em> in professional settings, based on real usage data from Claude. The key insight is that these two things are very different.</p>
+
+    </div>
+
+    <!-- ── THE CHART ── -->
+    <div class="figure-wrap">
+      <div class="figure-inner">
+        <div class="figure-kicker">Figure 1 · Anthropic, March 2026</div>
+        <div class="figure-title">Theoretical capability vs. observed actual AI use, by occupational category</div>
+        <div class="figure-sub">The large blue shape shows the share of job tasks that AI could theoretically perform in each occupational category. The small red shape shows what AI is actually being used for in professional settings today. The gap between them is the central finding of the report.</div>
+
+        <img
+          src="https://www-cdn.anthropic.com/images/4zrzovbb/website/c1952c81bca02a7c8cc05ef7801e67ca60831c55-4096x4096.png"
+          alt="Radar chart showing theoretical AI capability (blue) vs observed actual AI use (red) across 10 occupational categories. The blue shape is dramatically larger than the red in every category."
+          style="width:100%; border-radius:10px; display:block;"
+        />
+        <div class="figure-note">Source: Anthropic, "Labor Market Impacts of AI: A New Measure and Early Evidence," March 5, 2026. Blue = share of job tasks AI could theoretically perform. Red = share of tasks where AI use has actually been observed in professional settings. The gap between the two shapes is the core finding. Full report: <a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noreferrer">anthropic.com/research/labor-market-impacts</a></div>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>The first thing to notice: the blue shape is enormous. AI could theoretically handle 90% or more of tasks in Office &amp; Admin, Computer &amp; Math, Business &amp; Finance, Management, and Legal occupations. In practical terms, this means the <em>ceiling</em> for AI disruption is very high for the kinds of white-collar, knowledge-economy jobs that dominate urban South Carolina.</p>
+
+      <p>The second thing to notice: the red shape is much, much smaller. Despite those theoretical capabilities, AI is currently being used in professional settings for only a fraction of those tasks — 36% in Computer &amp; Math, 34% in Office &amp; Admin, 28% in Business &amp; Finance. The gap between the blue and red shapes represents what researchers call the "deployment gap" — and it is shrinking over time.</p>
+
+      <p>As Anthropic's researchers put it: as AI capabilities advance, adoption spreads, and deployment deepens, the red area will grow to cover the blue.</p>
+
+      <h2>Who is most exposed — and who isn't</h2>
+
+      <p>The report identifies the occupations with the highest <em>current</em> AI exposure using a new metric called "observed exposure" — weighting actual documented AI use in professional settings, with automated use counting more heavily than augmentative use.</p>
+
+    </div>
+
+    <!-- Most exposed occupations bar chart -->
+    <div class="figure-wrap">
+      <div class="figure-inner">
+        <div class="figure-kicker">Figure 2 · Anthropic, March 2026</div>
+        <div class="figure-title">Most exposed individual occupations — observed AI coverage</div>
+        <div class="figure-sub">Share of job tasks actively being performed or accelerated by AI in professional settings, based on real usage data.</div>
+
+        <div class="occ-table">
+          <div class="occ-row">
+            <span class="occ-name">Computer programmers</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:75%; background:#dc2626; opacity:0.75;"></div></div>
+            <span class="occ-pct">75%</span>
+          </div>
+          <div class="occ-row">
+            <span class="occ-name">Customer service reps</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:70%; background:#dc2626; opacity:0.72;"></div></div>
+            <span class="occ-pct">70%</span>
+          </div>
+          <div class="occ-row">
+            <span class="occ-name">Data entry keyers</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:67%; background:#dc2626; opacity:0.70;"></div></div>
+            <span class="occ-pct">67%</span>
+          </div>
+          <div class="occ-row">
+            <span class="occ-name">Medical record specialists</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:67%; background:#dc2626; opacity:0.70;"></div></div>
+            <span class="occ-pct">67%</span>
+          </div>
+          <div class="occ-row">
+            <span class="occ-name">Market research analysts</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:65%; background:#dc2626; opacity:0.68;"></div></div>
+            <span class="occ-pct">65%</span>
+          </div>
+          <div class="occ-row">
+            <span class="occ-name">Financial analysts</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:60%; background:#dc2626; opacity:0.65;"></div></div>
+            <span class="occ-pct">~60%</span>
+          </div>
+          <div class="occ-row" style="opacity:0.55;">
+            <span class="occ-name">Cooks / mechanics / bartenders</span>
+            <div class="occ-bar-wrap"><div class="occ-bar" style="width:0%; background:#3b82f6;"></div></div>
+            <span class="occ-pct">0%</span>
+          </div>
+        </div>
+
+        <div class="figure-note">30% of all US workers have zero observed AI exposure — their tasks appear too rarely in AI usage data to register. These are predominantly physical-presence jobs.</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The profile of the most exposed workers is counterintuitive. These are not low-wage, low-education workers. They are more likely to be female, older, more educated, and higher-paid than average. The report finds that workers with graduate degrees are nearly four times as prevalent in the most exposed group as in the least exposed group.</p>
+
+      <p>This is the paradox at the center of the report: the workers AI is most actively encroaching on are not the ones most people picture when they think of automation risk. The manufacturing floor worker, the plumber, the cook — jobs that require physical presence — currently face near-zero AI exposure. The administrative assistant, the customer service representative, the financial analyst — these are where actual displacement risk is concentrating.</p>
+
+      <h2>What South Carolina's workforce looks like through this lens</h2>
+
+    </div>
+
+    <!-- SC Data callout -->
+    <div class="sc-callout">
+      <div class="kicker">South Carolina · 2024 Workforce Snapshot</div>
+      <h2>A tale of two labor markets</h2>
+
+      <div class="sc-stat-row">
+        <div class="sc-stat">
+          <div class="n">283,500</div>
+          <div class="l">Office &amp; Administrative Support workers — SC's single largest occupational group, and the 2nd-most AI-exposed category nationally</div>
+        </div>
+        <div class="sc-stat">
+          <div class="n">263,800</div>
+          <div class="l">Manufacturing workers — SC's 3rd-largest employer, overwhelmingly in physical-presence roles with near-zero current AI exposure</div>
+        </div>
+        <div class="sc-stat">
+          <div class="n">316,700</div>
+          <div class="l">Healthcare &amp; Social Assistance workers — SC's largest sector, split between high-exposure roles (medical records, billing) and protected roles (nursing, direct care)</div>
+        </div>
+        <div class="sc-stat">
+          <div class="n">268,400</div>
+          <div class="l">Retail Trade workers — moderate AI exposure in sales and customer service roles, with many floor positions protected by physical presence requirements</div>
+        </div>
+      </div>
+
+      <p>South Carolina's labor market maps onto the Anthropic chart in a specific and revealing way. The state's largest occupational group — Office and Administrative Support — sits squarely in the second-most exposed category nationally, with 34% observed AI coverage and 90% theoretical capability. These are the workers most visibly in the deployment gap's path as the red area expands toward the blue.</p>
+
+      <p>At the same time, South Carolina's outsized manufacturing base — anchored by BMW, Boeing, Volvo, and hundreds of suppliers — currently sits at the outer edge of the chart, in the lowest-exposure zone. Those physical-presence jobs are largely protected from AI's current reach. But the administrative, logistics coordination, and quality management roles embedded in those same facilities are not.</p>
+    </div>
+
+    <div class="prose">
+
+      <h2>The two-track exposure problem</h2>
+
+      <p>South Carolina has an unusual exposure profile because its economy runs on two very different tracks:</p>
+
+    </div>
+
+    <div class="two-track">
+      <div class="track exposed">
+        <div class="track-label">Higher AI exposure</div>
+        <h4>White-collar &amp; administrative SC</h4>
+        <ul>
+          <li>Office &amp; admin support (283,500)</li>
+          <li>Customer service roles</li>
+          <li>Insurance claims processing</li>
+          <li>Medical billing &amp; coding</li>
+          <li>Financial &amp; accounting roles</li>
+          <li>Government administrative roles</li>
+          <li>Marketing &amp; sales support</li>
+        </ul>
+      </div>
+      <div class="track protected">
+        <div class="track-label">Lower current AI exposure</div>
+        <h4>Physical-presence SC</h4>
+        <ul>
+          <li>Manufacturing production (263,800)</li>
+          <li>Construction trades</li>
+          <li>Healthcare direct care</li>
+          <li>Food service &amp; hospitality</li>
+          <li>Agricultural workers</li>
+          <li>Transportation &amp; logistics drivers</li>
+          <li>Maintenance &amp; repair</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose">
+
+      <p>This split matters for policy. South Carolina's workforce development programs, technical colleges, and workforce boards have historically focused on the state's manufacturing base — for good reason, given its size and economic weight. But the more acute near-term exposure risk is concentrated in the administrative and service occupations that surround and support that manufacturing base, not on the production floor itself.</p>
+
+      <p>Notably, Columbia's concentration of office and administrative support workers — at 13.7% of the metro area's employment versus 11.8% nationally — puts the capital region at higher-than-average exposure. The report found Columbia-area workers in insurance claims processing and collections roles employed at twice the national rate.</p>
+
+      <h2>The good news — and the important caveat</h2>
+
+      <p>The report is careful to note what the data does and does not show. As of early 2026, there is no systematic increase in unemployment among highly exposed workers. The disruption that the chart implies is <em>coming</em> has not yet arrived in the unemployment statistics in a measurable way.</p>
+
+    </div>
+
+    <div class="pull-quote">
+      <p>"We find no systematic increase in unemployment for highly exposed workers since late 2022, though we find suggestive evidence that hiring of younger workers has slowed in exposed occupations."</p>
+      <cite>— Anthropic, Labor Market Impacts of AI, March 5, 2026</cite>
+    </div>
+
+    <div class="prose">
+
+      <p>The caveat is in that second clause. While unemployment has not risen, hiring of young workers in exposed occupations has slowed — with one study finding a 14% drop in the job-finding rate in exposed occupations post-ChatGPT. For South Carolina's college graduates entering the workforce, this is not abstract. The entry-level administrative, customer service, and clerical roles that have historically served as a first rung on the career ladder are precisely the ones with the highest AI exposure.</p>
+
+      <p>This is the scenario that warrants the most attention from South Carolina policymakers: not mass layoffs of existing workers, but a slow contraction in hiring for the entry-level positions where young workers build their early careers. Workers who are not hired may not appear in unemployment statistics — they may simply return to school, extend their time in lower-wage service jobs, or exit the formal labor force entirely.</p>
+
+      <h2>What this means for South Carolina</h2>
+
+      <p>The Anthropic chart should not be read as a prediction of catastrophe. The enormous gap between the blue and red shapes is, in one sense, reassuring — AI is far from replacing the majority of professional work even in the most exposed occupations. The theoretical ceiling is high, but the deployment gap is real and meaningful.</p>
+
+      <p>But that gap is narrowing. The red area will grow toward the blue. The question for South Carolina is not whether this happens, but how the state positions its workforce, its education and training systems, and its policy frameworks before the growth arrives rather than after.</p>
+
+      <p>Several things follow from this analysis:</p>
+
+      <p><strong>SC's workforce development investment is pointed at the wrong risk.</strong> The manufacturing sector — which receives the lion's share of workforce program attention — currently faces minimal direct AI exposure. The administrative and service sector, which faces the most immediate risk, receives comparatively little structured AI readiness programming.</p>
+
+      <p><strong>The education-to-work pipeline needs attention now.</strong> Young workers entering exposed occupations are already seeing slowed hiring. South Carolina's technical colleges and universities should be examining whether they are preparing graduates for roles that are currently contracting, and whether career pathways are being built toward roles that are expanding.</p>
+
+      <p><strong>Physical-presence protection is temporary.</strong> Manufacturing's current low exposure does not mean it is permanently protected. As AI capabilities extend into robotics, quality control, and supply chain optimization, the production floor will become more exposed over time. South Carolina's manufacturing base should be preparing for a second wave of AI impact even as it navigates the first.</p>
+
+      <p>SCAIO will continue tracking this data as it develops. The Anthropic research team plans to revisit these analyses periodically as both AI capabilities and adoption patterns evolve. We will update our analysis accordingly and report on how South Carolina's specific occupational mix is tracking against national exposure trends.</p>
+
+    </div>
+
+    <div class="source-note">
+      <strong>Sources:</strong> Anthropic, "Labor Market Impacts of AI: A New Measure and Early Evidence," March 5, 2026 (<a href="https://www.anthropic.com/research/labor-market-impacts" target="_blank" rel="noreferrer">anthropic.com/research/labor-market-impacts</a>). South Carolina Labor Market Information, <em>SC Data Trends</em>, August 2025 (<a href="https://lmi.sc.gov" target="_blank" rel="noreferrer">lmi.sc.gov</a>). U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, Columbia SC MSA, May 2024.
+      <br><br>
+      <em>The radar chart above is SCAIO's adaptation for legibility; the original appears in Figure 2 of the Anthropic report. Occupational exposure values are drawn directly from Anthropic's reported data. South Carolina employment figures are from the SC Department of Employment and Workforce via BLS, 2024.</em>
+    </div>
+
+  </div>
+
+</body>
+</html>
