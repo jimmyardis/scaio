@@ -1,0 +1,556 @@
+/* ════════════════════════════════════════════════════════════
+   SCAIO Flagship Report — shared stylesheet
+   The Artificial Intelligence Landscape of South Carolina
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  --navy:      #081a36;
+  --navy-2:    #0a2a54;
+  --blue:      #0b4ea2;
+  --blue-2:    #2f7ae5;
+  --blue-soft: #dbeafe;
+  --surface:   #ffffff;
+  --bg:        #f6f8fb;
+  --border:    #d9e4f2;
+  --text:      #142133;
+  --muted:     #4b5a6b;
+  --max:       760px;
+  --max-wide:  920px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── Site bar ── */
+.site-bar {
+  background: linear-gradient(90deg, #081a36, #0a2a54);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-bar .brand {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.15rem;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.site-bar .crumbs {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.site-bar .crumbs a,
+.site-bar .crumbs span {
+  font-size: 0.82rem;
+  color: rgba(185,214,255,0.78);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.site-bar .crumbs a:hover { color: #fff; }
+.site-bar .crumbs .sep { color: rgba(185,214,255,0.4); }
+.site-bar .crumbs .current { color: rgba(255,255,255,0.92); }
+
+/* ── Report cover (TOC page) ── */
+.cover {
+  background: linear-gradient(135deg, #081a36 0%, #0b2e5e 60%, #14597d 100%);
+  color: #fff;
+  padding: 80px 24px 90px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before, .cover::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.16;
+  pointer-events: none;
+}
+.cover::before { width: 360px; height: 360px; right: -100px; top: -40px; background: #1aa7ff; }
+.cover::after  { width: 280px; height: 280px; left: -80px; bottom: -60px; background: #2f7ae5; }
+.cover-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  position: relative;
+}
+.cover .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 26px;
+}
+.cover h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2.2rem, 5.6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+  font-weight: 700;
+  max-width: 14ch;
+}
+.cover .subhead {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: rgba(220,235,255,0.86);
+  max-width: 60ch;
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+.cover .meta {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: rgba(185,214,255,0.85);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── TOC ── */
+.toc-wrap {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+.toc-intro {
+  font-size: 1.08rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 64ch;
+  margin-bottom: 50px;
+  border-left: 3px solid var(--blue-2);
+  padding-left: 18px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+.toc-section-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 50px 0 18px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.toc-section-label:first-child { margin-top: 0; }
+.toc-list {
+  display: grid;
+  gap: 14px;
+}
+.toc-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.toc-item:hover {
+  transform: translateY(-1px);
+  border-color: #b8cbe6;
+}
+.toc-item .num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.01em;
+}
+.toc-item .title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.08rem;
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.toc-item .blurb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.toc-item .arrow {
+  color: var(--blue);
+  font-size: 1.1rem;
+}
+.toc-item.draft .num { color: #94a3b8; }
+.toc-item.draft .title { color: var(--muted); }
+.toc-item.draft .arrow { color: #94a3b8; }
+.toc-item .status-pill {
+  margin-left: 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: #fff7ed;
+  color: #b45309;
+  border: 1px solid #fed7aa;
+  padding: 2px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* ── Chapter page ── */
+.chapter-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.chapter-meta .num {
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #bdd4f8;
+}
+.chapter-meta .read-time {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.chapter-wrap h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(2rem, 4.8vw, 2.85rem);
+  line-height: 1.12;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.chapter-wrap .dek {
+  font-size: 1.12rem;
+  color: var(--muted);
+  line-height: 1.7;
+  border-left: 3px solid var(--blue-2);
+  padding-left: 18px;
+  margin-bottom: 40px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+
+/* ── Body prose ── */
+.prose p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+.prose h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.55rem;
+  color: var(--navy);
+  margin: 50px 0 18px;
+  letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.18rem;
+  color: var(--navy);
+  margin: 36px 0 12px;
+  font-weight: 700;
+}
+.prose h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 28px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.prose ul, .prose ol {
+  padding-left: 22px;
+  margin-bottom: 22px;
+}
+.prose li {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.prose blockquote {
+  margin: 28px 0;
+  padding: 18px 22px;
+  border-left: 4px solid var(--blue-2);
+  background: var(--surface);
+  border-radius: 0 12px 12px 0;
+  color: var(--muted);
+  font-style: italic;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.05rem;
+}
+.prose blockquote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--blue);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.prose a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.prose a:hover { color: var(--blue-2); }
+.prose strong { color: var(--navy); }
+
+/* ── Stat row ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 36px 0;
+}
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+}
+.stat-box .num {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-box .label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── Dark callout ── */
+.dark-callout {
+  background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+  border-radius: 20px;
+  padding: 36px 32px;
+  margin: 44px 0;
+  color: #fff;
+}
+.dark-callout .kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b9d6ff;
+  margin-bottom: 14px;
+}
+.dark-callout h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 18px;
+  letter-spacing: -0.01em;
+}
+.dark-callout p {
+  color: rgba(220,235,255,0.88);
+  font-size: 0.98rem;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.dark-callout p:last-child { margin-bottom: 0; }
+.dark-callout ul {
+  padding-left: 20px;
+  margin: 12px 0 18px;
+}
+.dark-callout li {
+  color: rgba(220,235,255,0.88);
+  font-size: 0.97rem;
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+
+/* ── Light card cluster (for industry sections, etc.) ── */
+.card-cluster {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 28px 0;
+}
+.cluster-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.cluster-card .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.cluster-card h4 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cluster-card p {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ── Recommendation card (Path Forward chapter) ── */
+.recommendation {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-left: 4px solid var(--blue-2);
+  border-radius: 0 14px 14px 0;
+  padding: 22px 24px;
+  margin: 22px 0;
+}
+.recommendation .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+.recommendation h4 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.08rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.recommendation p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.97rem;
+  line-height: 1.75;
+}
+
+/* ── Chapter navigation footer ── */
+.chapter-nav {
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.chapter-nav a {
+  display: block;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+.chapter-nav a:hover { border-color: #b8cbe6; }
+.chapter-nav .label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.chapter-nav .title {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.98rem;
+}
+.chapter-nav .next { text-align: right; }
+
+/* ── Source notes ── */
+.sources {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.sources h4 {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.sources ol {
+  padding-left: 24px;
+}
+.sources li {
+  margin-bottom: 6px;
+  font-size: 0.83rem;
+}
+.sources a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 700px) {
+  .stat-row { grid-template-columns: 1fr; }
+  .chapter-nav { grid-template-columns: 1fr; }
+  .toc-item { grid-template-columns: 44px 1fr; }
+  .toc-item .arrow { display: none; }
+}
+
+/* ── Print stylesheet ── */
+@media print {
+  body { background: #fff; color: #111; font-size: 11pt; line-height: 1.55; }
+  .site-bar, .chapter-nav { display: none; }
+  .chapter-wrap { max-width: 100%; padding: 24px 36px; }
+  .chapter-wrap h1 { font-size: 18pt; }
+  .prose h2 { font-size: 13pt; margin: 22pt 0 10pt; }
+  .prose h3 { font-size: 11.5pt; margin: 16pt 0 8pt; }
+  .stat-row { grid-template-columns: repeat(3, 1fr); }
+  .dark-callout { background: #f4f7fb; color: #111; border: 1px solid #ccc; }
+  .dark-callout p, .dark-callout li, .dark-callout h3 { color: #111; }
+  .dark-callout .kicker { color: #0b4ea2; }
+  a { color: #0b4ea2 !important; text-decoration: none; }
+  a::after { content: " [" attr(href) "]"; font-size: 8pt; color: #666; }
+  .chapter-wrap a::after { content: ""; } /* keep clean for internal */
+}
