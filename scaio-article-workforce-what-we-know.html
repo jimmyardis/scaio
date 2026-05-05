@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What We Know — and Don't — About AI's Effect on South Carolina Workers · SCAIO Journal</title>
+  <meta name="description" content="South Carolina has more genuine evidence about AI's effect on its workforce than is generally acknowledged — and more honest data gaps than the public conversation reflects. A taxonomy of confident claims, directional claims, and unknowns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --green:    #15803d;
+      --green-soft:#dcfce7;
+      --amber:    #b45309;
+      --amber-soft:#fef3c7;
+      --red:      #b91c1c;
+      --red-soft: #fee2e2;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Site bar */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.85rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 50px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin: 30px 0 10px;
+      font-weight: 700;
+    }
+    .prose strong { color: var(--navy); }
+    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .prose ul, .prose ol { padding-left: 22px; margin-bottom: 22px; }
+    .prose li { font-size: 1.02rem; line-height: 1.75; margin-bottom: 8px; }
+
+    /* Confidence-tier section headers */
+    .confidence-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin: 50px 0 16px;
+      font-weight: 600;
+    }
+    .confidence-banner .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .confidence-banner .level {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .confidence-banner .desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .conf-known {
+      background: var(--green-soft);
+      border: 1px solid #86efac;
+    }
+    .conf-known .dot { background: #15803d; }
+    .conf-known .level { color: #15803d; }
+    .conf-directional {
+      background: var(--amber-soft);
+      border: 1px solid #fde68a;
+    }
+    .conf-directional .dot { background: #b45309; }
+    .conf-directional .level { color: #b45309; }
+    .conf-unknown {
+      background: var(--red-soft);
+      border: 1px solid #fecaca;
+    }
+    .conf-unknown .dot { background: #b91c1c; }
+    .conf-unknown .level { color: #b91c1c; }
+
+    /* Claim card */
+    .claim {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin: 14px 0;
+    }
+    .claim h4 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin: 0 0 8px;
+      font-weight: 700;
+    }
+    .claim p {
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .claim p:last-child { margin-bottom: 0; }
+    .claim .evidence {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+    .claim .evidence strong { color: var(--navy); }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 26px 30px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: rgba(185,214,255,0.7);
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Recommendation card */
+    .rec-card {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 4px solid var(--blue-2);
+      border-radius: 0 14px 14px 0;
+      padding: 20px 22px;
+      margin: 18px 0;
+    }
+    .rec-card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .rec-card h4 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.02rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .rec-card p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    /* SC callout */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+
+    /* Source note */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .confidence-banner { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">Workforce</span>
+      <span class="meta-tag">Analysis</span>
+      <span class="meta-date">May 2026 · SCAIO Journal</span>
+    </div>
+
+    <h1>What We Know — and Don't — About AI's Effect on South Carolina Workers</h1>
+
+    <p class="dek">
+      A taxonomy of three kinds of claim: things South Carolina can say about AI and its workforce with reasonable confidence, things it can say only directionally, and things it genuinely does not yet know — plus what data would help close the gaps.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        There is no shortage of national commentary about AI and the future of work. Most of it is some combination of reasonable extrapolation, vendor marketing, and cyclical anxiety. For South Carolina specifically — for the legislator weighing a workforce-readiness bill, the school board member updating curriculum, the small-business owner deciding whether to invest in tooling, the journalist trying to write a story that will hold up in five years — the more useful question is not <em>what does the conversation say?</em> but <em>what do we actually know?</em>
+      </p>
+
+      <p>
+        The honest answer comes in three tiers. There are claims about AI and South Carolina's workforce that the available evidence supports with reasonable confidence. There are claims that the available evidence supports only directionally — the trend is visible but the magnitude is uncertain. And there are claims that get repeated often but that no one in or outside SC has the data to actually settle yet.
+      </p>
+
+      <p>
+        This piece walks through each tier, names the evidence (or the gap) honestly, and ends with the data investments that would help fill the most important holes. It is intentionally a working inventory, not a definitive answer. Subsequent SCAIO research will refine, expand, and correct it.
+      </p>
+
+      <div class="confidence-banner conf-known">
+        <span class="dot"></span>
+        <div>
+          <div class="level">Tier 1 · Reasonably confident</div>
+          <div class="desc">Multiple independent data sources agree; the magnitude is roughly settled.</div>
+        </div>
+      </div>
+
+      <div class="claim">
+        <h4>South Carolina has more workers in the most AI-exposed occupational categories than its national reputation suggests.</h4>
+        <p>
+          Office and administrative support is the single largest occupational category in South Carolina by employment count, with roughly 283,000 workers — and it is also the category that Anthropic's <em>Labor Market Impacts of AI</em> framework identifies as having both the highest theoretical AI exposure <em>and</em> the highest currently-observed AI use.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> SC Department of Employment and Workforce / U.S. Bureau of Labor Statistics OEWS data; Anthropic, <em>Labor Market Impacts of AI: A New Measure and Early Evidence</em>, March 2026; SCAIO's <a href="scaio-article-workforce-exposure.html">prior coverage</a>.</p>
+      </div>
+
+      <div class="claim">
+        <h4>Manufacturing AI deployment in South Carolina is materially ahead of the U.S. average.</h4>
+        <p>
+          BMW Plant Spartanburg has been running AI in body-shop operations since at least 2023 — placing roughly 500,000 studs daily across X-model production with AI-enabled vision and correction-laser systems — and is the U.S. flagship site for Figure AI's general-purpose humanoid-robot pilot. Boeing Charleston, Volvo Cars, Mercedes-Benz Vans, and Michelin operate at varying stages of AI integration in their SC facilities. The supplier ecosystem follows.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> <em>BMW Blog</em>, July 2023; <em>The Post and Courier</em> and <em>The State</em>, January 2024; <em>Greenville Business Magazine</em>, May 2024; <em>Columbia Business Monthly</em>, 2022.</p>
+      </div>
+
+      <div class="claim">
+        <h4>Healthcare AI deployment in South Carolina is following an augmentation pattern, not a replacement pattern — at least in the institutions where it is publicly visible.</h4>
+        <p>
+          MUSC's clinical-AI rollouts to date — the Hologic Genius Pap-smear system, the Microsoft DAX Copilot ambient-documentation pilot (a reported 20 percent reduction in after-hours charting time across 130 providers), the AI in Education Research Program — all operate as decision support and workflow acceleration rather than autonomous-decision substitutes. Pathologists still make final determinations. Clinicians still review and edit AI-drafted notes. The pattern is consistent across the public-facing deployments.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> MUSC press releases October-November 2025; MUSC ProgressNotes summer 2024; institutional materials from MUSC's Center for AI.</p>
+      </div>
+
+      <div class="claim">
+        <h4>The South Carolina Technical College System is the workforce-training infrastructure most likely to determine whether the state can keep up with AI-driven re-skilling.</h4>
+        <p>
+          The 16 technical colleges serve more than 130,000 students annually, have decades-long relationships with the state's manufacturing OEMs, and have the institutional flexibility to ship short stackable credentials in months rather than years. No other piece of South Carolina's workforce-development apparatus has that combination of reach and operational tempo.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> SC Technical College System public reporting; the historical record of BMW's apprenticeship program and Boeing's training partnerships, both of which depended on technical-college coordination.</p>
+      </div>
+
+      <div class="claim">
+        <h4>Generative AI adoption in U.S. workplaces is growing fast — and South Carolina is not exempt from that trend.</h4>
+        <p>
+          By late 2025, roughly four in ten U.S. workers reported using generative AI in some part of their work, with knowledge workers reporting substantially higher rates. Survey methodology variation produces meaningful range in the precise figures, but the directional finding — adoption is accelerating, not plateauing — is consistent across Pew, McKinsey, and Microsoft Work Trend Index data.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> Pew Research, McKinsey State of AI 2024 + 2025, Microsoft Work Trend Index 2024-25.</p>
+      </div>
+
+      <div class="confidence-banner conf-directional">
+        <span class="dot"></span>
+        <div>
+          <div class="level">Tier 2 · Directionally true, magnitude uncertain</div>
+          <div class="desc">The pattern is visible in early data but the size of the effect is not yet settled.</div>
+        </div>
+      </div>
+
+      <div class="claim">
+        <h4>Office and administrative support work in South Carolina is changing composition faster than headcount.</h4>
+        <p>
+          Aggregate employment counts in this category may stay roughly flat for the near term while the work itself changes substantially — fewer hours per task, more focus on judgment and exception handling, growing reliance on AI tools that did not exist three years ago. This is consistent with national patterns but is harder to capture in standard labor statistics, which tend to count jobs rather than measure their composition.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> directional inference from national patterns; SC-specific composition data is not currently collected systematically.</p>
+      </div>
+
+      <div class="claim">
+        <h4>Healthcare AI deployment will widen from MUSC-class institutions outward in the next 24 months.</h4>
+        <p>
+          Prisma Health, Roper St. Francis, McLeod Health, AnMed Health, and the regional hospital systems are all enterprise-AI buyers. Vendor offerings are maturing fast (ambient documentation, prior-authorization automation, imaging triage, clinical-decision support). The trend toward broader deployment is visible. The pace and depth at non-academic systems is harder to characterize because public disclosure is thinner.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> hospital-system trade reporting; vendor announcements; consistent national patterns. SC-specific deployment-depth data is not currently aggregated.</p>
+      </div>
+
+      <div class="claim">
+        <h4>Manufacturing-AI workforce demand is rising faster than supply, particularly for technicians who can operate, maintain, and supervise AI-assisted production lines.</h4>
+        <p>
+          Anecdotal evidence from OEM and tier-1 supplier hiring is consistent. The technical-college system has begun adding relevant programs. Whether the supply pipeline can keep pace with demand is unclear and will vary by region.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> OEM hiring posts; technical-college program announcements; ADAPT in SC convening output. Quantitative SC-specific labor-market indicators for manufacturing-AI roles do not currently exist as a standalone category.</p>
+      </div>
+
+      <div class="claim">
+        <h4>The rural-urban gap in South Carolina AI adoption is real and likely growing.</h4>
+        <p>
+          The state's rural small-business economy has measurably less access to the AI productivity tools that urban businesses are already adopting — partly a function of broadband, partly digital literacy, partly the absence of local technical-support ecosystems. The pattern is consistent with national rural-urban technology gaps. The magnitude of the SC-specific gap, and how fast it is widening or narrowing, is not currently tracked at granular geographic detail.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> directional inference from broadband-deployment data, SBA small-business technology surveys, and qualitative reporting. Quantitative SC-specific rural-urban AI-adoption tracking is not currently available.</p>
+      </div>
+
+      <div class="claim">
+        <h4>South Carolina small businesses underuse the free or low-cost AI tools available to them.</h4>
+        <p>
+          Generative AI tools have particular impact on small-business core functions — writing, marketing, customer service, scheduling, accounting, document generation — and many useful tools are free or low-cost. Adoption appears uneven, with owners and operators citing time and training constraints. The gap between potential and observed adoption is meaningful but not precisely measured.
+        </p>
+        <p class="evidence"><strong>Evidence:</strong> small-business support-network qualitative reporting; national surveys; SBA chapter-level observations. SC-specific small-business AI adoption surveys do not currently exist.</p>
+      </div>
+
+      <div class="confidence-banner conf-unknown">
+        <span class="dot"></span>
+        <div>
+          <div class="level">Tier 3 · Genuine unknowns</div>
+          <div class="desc">Frequently asserted, rarely measured. The data needed to settle these questions does not yet exist for South Carolina specifically.</div>
+        </div>
+      </div>
+
+      <div class="claim">
+        <h4>What is AI's actual net effect on South Carolina employment by sector?</h4>
+        <p>
+          National forecasts of "AI will create X million jobs" or "AI will eliminate Y million jobs" do not survive contact with sector-specific reality, and they certainly do not survive contact with state-specific reality. For South Carolina, no current data set tracks AI's net effect on employment by industry, region, or occupational category over time. The question is genuinely open. Anyone who claims to know the answer is, charitably, extrapolating.
+        </p>
+      </div>
+
+      <div class="claim">
+        <h4>Are South Carolina workers' wages being affected by AI use — positively, negatively, or unevenly?</h4>
+        <p>
+          Theoretically, AI use should affect wages through some combination of productivity gains (raising wages for workers using the tools), substitution effects (lowering wages for workers replaced by them), and bargaining-power shifts (effects in either direction depending on labor-market structure). Which of these dominates in South Carolina, in which sectors, and on what timeline is not currently measured.
+        </p>
+      </div>
+
+      <div class="claim">
+        <h4>Is South Carolina retaining the AI talent it trains?</h4>
+        <p>
+          USC, Clemson, MUSC, and the technical-college system produce graduates with AI-relevant skills. Whether those graduates stay in South Carolina or are recruited out by employers in larger metro areas — and on what terms — is not currently tracked at the level of granularity needed to inform state-level workforce policy.
+        </p>
+      </div>
+
+      <div class="claim">
+        <h4>How prepared is South Carolina's K-12 workforce — teachers, administrators, support staff — to operate in an AI-augmented learning environment?</h4>
+        <p>
+          The state's 80-plus school districts vary widely in AI readiness. There is no statewide central source for educator AI training, district-level AI tool inventories, or AI-literacy assessments. H.5253, if enacted, would force a level of disclosure that does not currently exist. Until then, the picture is impressionistic.
+        </p>
+      </div>
+
+      <div class="claim">
+        <h4>What is happening inside the SC mid-market employer population — large enough to have meaningful technology budgets, small enough not to have dedicated AI leadership?</h4>
+        <p>
+          This population — roughly 50 to 5,000 employees, across most sectors of the state's economy — is the population most likely to determine how broadly AI actually penetrates the SC economy. Their deployment patterns are largely undocumented.
+        </p>
+      </div>
+
+      <div class="claim">
+        <h4>What is the AI footprint inside South Carolina's rural and small hospitals?</h4>
+        <p>
+          The state's smaller and rural hospitals are structurally different from MUSC and Prisma Health in their AI deployment patterns. They rely more on vendor-managed tools, are more sensitive to cost, and are more prone to gaps in deployment governance. Specific deployments, vendor relationships, and outcomes are not centrally tracked. This matters because rural-hospital AI deployment touches the populations most exposed to consequential automated-decision outcomes.
+        </p>
+      </div>
+
+      <div class="pull-quote">
+        <p>
+          The most consequential thing the state could do for the AI workforce conversation is not to predict the future. It is to measure the present.
+        </p>
+        <cite>— SCAIO editorial observation</cite>
+      </div>
+
+      <h2>What would help fill the gaps</h2>
+
+      <p>
+        The unknowns above are not unknowable. They are unmeasured. Several specific, achievable data investments would substantially improve the conversation. Each is offered as a constructive recommendation, not as a critique of any specific actor — most of these are the kind of state-level monitoring infrastructure that simply has not yet been built anywhere, including in peer states.
+      </p>
+
+      <div class="rec-card">
+        <div class="label">Recommendation 1</div>
+        <h4>An annual SC-specific workforce-AI survey, run by the Department of Employment and Workforce.</h4>
+        <p>Tracking AI adoption rates, AI-related skill demand, and observed wage effects by sector, region, and demographic. DEW has the survey infrastructure; the marginal cost of adding AI-specific modules to existing surveys is modest. Other states are beginning to do this; SC could be among the first to ship a public dataset.</p>
+      </div>
+
+      <div class="rec-card">
+        <div class="label">Recommendation 2</div>
+        <h4>A small-business AI adoption tracker, run jointly by SC SBDC and the Department of Commerce.</h4>
+        <p>Tracking what tools small businesses are using, what they are not using, what training would help, and how rural-urban access patterns are evolving. This is one of the higher-leverage observations the state could fund — small-business AI adoption is both highly variable and structurally important.</p>
+      </div>
+
+      <div class="rec-card">
+        <div class="label">Recommendation 3</div>
+        <h4>A graduate-retention study for SC's AI-adjacent degree programs.</h4>
+        <p>Where do USC, Clemson, MUSC, and technical-college graduates with AI-relevant skills go after graduation, on what timeline, and what factors influence whether they stay in or return to South Carolina? The data is collectable; the analysis is straightforward.</p>
+      </div>
+
+      <div class="rec-card">
+        <div class="label">Recommendation 4</div>
+        <h4>An educator AI-readiness baseline survey, coordinated with the SC Department of Education.</h4>
+        <p>Even before H.5253 passes (or instead of it), a baseline of where SC educators are on AI literacy, what professional development would help, and what district-level support gaps exist would give the state a foundation for any subsequent policy choice.</p>
+      </div>
+
+      <div class="rec-card">
+        <div class="label">Recommendation 5</div>
+        <h4>A rural-hospital AI deployment study, supported by SC DHEC or the SC Hospital Association.</h4>
+        <p>What systems are in use, with what oversight, in the populations most exposed to consequential automated decisions. Done well, this is also one of the higher-leverage things any state could ship as a contribution to national conversation.</p>
+      </div>
+
+      <div class="sc-callout">
+        <div class="kicker">A note on epistemic humility</div>
+        <h2>The honest answer is "we know more than we sometimes say, and less than we sometimes pretend."</h2>
+        <p>
+          The temptation in any fast-moving policy conversation is to overclaim — either that the change will be devastating or that the change will be uniformly positive. The data above does not support either pole for South Carolina. It supports a more textured picture: real exposure in some categories, real opportunity in others, real uncertainty in many.
+        </p>
+        <p>
+          The most consequential thing the state could do for the AI workforce conversation, in the editor's view, is to measure the present rather than forecast the future. The forecasts will be wrong. The measurements, if collected consistently, will compound into something useful.
+        </p>
+        <p>
+          For the policy actors and institutions whose work makes any of this possible — the technical college system, ADAPT in SC, DEW, the universities, the OEMs, the AI Center of Excellence, the Department of Education — SCAIO's posture is straightforward. Champion the work. Surface the gaps. Recommend constructively. Update as evidence arrives.
+        </p>
+      </div>
+
+      <div class="source-note">
+        <strong>Sources:</strong> Anthropic, <em>Labor Market Impacts of AI: A New Measure and Early Evidence</em>, March 2026; Pew Research, McKinsey State of AI 2024–25, Microsoft Work Trend Index 2024–25; SC Department of Employment and Workforce / U.S. Bureau of Labor Statistics Occupational Employment and Wage Statistics; <em>BMW Blog</em>, July 2023; <em>The Post and Courier</em> and <em>The State</em>, January 2024; <em>Greenville Business Magazine</em>, May 2024; MUSC press releases (October-November 2025); MUSC ProgressNotes (summer 2024); SCAIO ecosystem-directory institutional source materials; ADAPT in SC, <a href="https://scepscor.org/adapt-in-sc-overview/">scepscor.org/adapt-in-sc-overview/</a>; SCAIO's prior coverage of <a href="scaio-article-workforce-exposure.html">the gap between what AI can do and what it is doing</a> (April 2026).
+        <br><br>
+        <em>This article is the analytical companion to <a href="scaio-article-workforce-exposure.html">SCAIO's April 2026 reporting</a> on the Anthropic Labor Market Impacts framework, and to <a href="report/chapter-04-the-workforce.html">Chapter 4</a> of SCAIO's flagship report. Where they overlap, this piece narrows; where they cover different ground, this piece focuses on the epistemic question — what's actually known about AI's effect on South Carolina workers, and what's not.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
