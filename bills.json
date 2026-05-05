@@ -16,5 +16,32 @@
     "summary": "Adds Section 38-59-23 to SC Code (Insurance) prohibiting healthcare coverage decisions made solely on the basis of AI or automated decision-making tools. Requires that a licensed healthcare professional supervise and meaningfully review any coverage decision derived from automated tools when those decisions modify or deny prior-authorization or concurrent-care requests. Defines AI broadly as any machine-based system that makes predictions, recommendations, or decisions, and \"automated decision-making tool\" as a system specifically developed or modified to drive consequential decisions. Sponsored by Sen. Sabb.",
     "explanation": "Targets one of the most contested AI use cases in healthcare: insurer use of automated tools to deny or modify prior authorizations. If passed, SC-regulated health insurers using AI-driven utilization management would need licensed clinicians actively in the review loop for any modification or denial — aligning the state with similar reforms underway in California (SB 1120) and other jurisdictions. Directly affects health plans operating in SC, their third-party administrators, and AI vendors serving the prior-authorization market. Patients, providers, and patient-advocacy organizations are likely to view the bill favorably.",
     "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm"
+  },
+  {
+    "title": "Consumer Protections in Interactions with AI Systems Act",
+    "bill_number": "S.963",
+    "status": "In Committee",
+    "impact_score": 9,
+    "summary": "Adds Chapter 31 to Title 37 of the SC Code, creating the Consumer Protections in Interactions with Artificial Intelligence Systems Act. Prohibits algorithmic discrimination arising from the use of \"high-risk\" AI systems. Establishes definitions and safeguards for consumer-facing AI deployments that produce consequential decisions about housing, employment, credit, insurance, and similar domains. Broadly tracks the framework Colorado adopted in its 2024 AI Act — the most comprehensive state-level consumer-protection AI law currently on the books anywhere in the United States. Sponsored by Sen. Leber.",
+    "explanation": "The broadest in scope of any AI bill currently in the SC General Assembly. Where H.5253 targets education and S.443 targets health insurance, S.963 targets the cross-sector category of consequential consumer-facing AI deployments. If enacted, SC would be among the first states beyond Colorado with a comprehensive consumer-protection AI statute. Affected entities include any business deploying AI systems that make or substantially influence consequential decisions about consumers — across employment, lending, insurance, housing, education, healthcare, and government services. Compliance would likely include impact assessments, transparency obligations, and rights of redress for affected consumers.",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/963.htm"
+  },
+  {
+    "title": "Chatbot Protection Act",
+    "bill_number": "H.5138",
+    "status": "In Committee",
+    "impact_score": 7,
+    "summary": "Adds Chapter 80 to Title 39 (Trade and Commerce), establishing requirements and civil-action mechanisms specific to chatbot deployments. Defines core terms including chatbot, chatbot provider, chat log, input data, model, dark pattern, deidentified data, personal data, advertisement, and affirmative consent. Establishes affirmative-consent requirements for certain chatbot practices, with detailed standards for clear stand-alone disclosure, plain-language drafting, accessibility for users with disabilities, and availability in commonly-used languages. Sponsored by Reps. Guffey, Sessions, Martin, and Brewer.",
+    "explanation": "Targets chatbot deployments broadly — including but not limited to AI chatbots — and is part of a national wave of chatbot-transparency legislation introduced across multiple states in 2025-2026. Affects any business that deploys consumer-facing chatbots in South Carolina, with new requirements for explicit disclosure of bot-vs-human interaction, restrictions on dark patterns, and standards for what counts as informed user consent. The private right of action provision means individual consumers harmed by non-compliant chatbot deployments can pursue civil remedies directly.",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5138.htm"
+  },
+  {
+    "title": "Protecting Children from Chatbots Act",
+    "bill_number": "S.1037",
+    "status": "In Committee",
+    "impact_score": 7,
+    "summary": "Adds Chapter 81 to Title 39, focused specifically on chatbot use by minors. Applies to \"covered entities\" with 500,000 or more monthly active users worldwide across all chatbots they offer, with explicit exemptions for internal tools, non-public tools, and customer-service-only deployments. Requires age verification and a limited-access mode for minors, defines covered harms and covered incidents, and establishes standards for parental notification and incident reporting. Sponsored by Sens. Kimbrell, Garrett, Rice, and Adams.",
+    "explanation": "One of the more aggressive minor-protection AI bills introduced in any state in 2025-2026, structurally comparable to California's SB 243 and similar bills elsewhere. The 500,000 worldwide monthly active users threshold is calibrated to capture major commercial AI chatbots without imposing requirements on smaller deployments. Affected entities would include the largest consumer chatbot platforms operating in SC, and would require new age-verification infrastructure, content controls, and incident-reporting capacity. Of particular interest to schools, parents, and child-safety organizations.",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/1037.htm"
   }
 ]
