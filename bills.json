@@ -1,0 +1,20 @@
+[
+  {
+    "title": "AI in Education",
+    "bill_number": "H.5253",
+    "status": "In Committee",
+    "impact_score": 8,
+    "summary": "Adds Section 59-28-195 to SC Code establishing limitations and safeguards for AI in K-12 public schools. Requires opt-in written parental consent before AI tools may be used in instruction or school activities, annual written disclosure of every AI tool, vendor, and data category in use, and explicit teacher review of any AI-generated instructional content. Prohibits AI from replacing licensed teachers in core instruction or final grading, bans systems that profile students by political or religious beliefs, and restricts collection of biometric or emotional data without case-specific parental consent. Sponsored by Reps. Guffey and Chapman.",
+    "explanation": "If enacted, every SC school district, public charter, and ed-tech vendor would need new opt-in consent workflows, annual AI-inventory disclosures, and human-review protocols for any AI-influenced decision affecting students. Vendors selling AI-enabled platforms — LMS plugins, grading assistants, behavioral analytics — face new compliance obligations including data minimization, prohibitions on commercial use of student data, and case-specific consent for biometric or emotional analysis. Enforcement includes administrative penalties, contractual remedies, and a private right of action for parents seeking injunctive relief or damages.",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5253.htm"
+  },
+  {
+    "title": "Health Claims & AI",
+    "bill_number": "S.443",
+    "status": "In Committee",
+    "impact_score": 7,
+    "summary": "Adds Section 38-59-23 to SC Code (Insurance) prohibiting healthcare coverage decisions made solely on the basis of AI or automated decision-making tools. Requires that a licensed healthcare professional supervise and meaningfully review any coverage decision derived from automated tools when those decisions modify or deny prior-authorization or concurrent-care requests. Defines AI broadly as any machine-based system that makes predictions, recommendations, or decisions, and \"automated decision-making tool\" as a system specifically developed or modified to drive consequential decisions. Sponsored by Sen. Sabb.",
+    "explanation": "Targets one of the most contested AI use cases in healthcare: insurer use of automated tools to deny or modify prior authorizations. If passed, SC-regulated health insurers using AI-driven utilization management would need licensed clinicians actively in the review loop for any modification or denial — aligning the state with similar reforms underway in California (SB 1120) and other jurisdictions. Directly affects health plans operating in SC, their third-party administrators, and AI vendors serving the prior-authorization market. Patients, providers, and patient-advocacy organizations are likely to view the bill favorably.",
+    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm"
+  }
+]
