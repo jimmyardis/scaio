@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>South Carolina's Data-Center Decade — SCAIO Journal</title>
+  <meta name="description" content="Meta's $800M Orangeburg facility, the $2.8B Moc-1 Upstate project, Santee Cooper's 50MW+ rate pilot, and the V.C. Summer question. The choices in front of South Carolina about who pays for the AI build-out are some of the most consequential infrastructure decisions of the decade." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --green:    #15803d;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Site bar */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    /* Article layout */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* Meta strip */
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* Body prose */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 32px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .prose strong { color: var(--navy); }
+    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Project cards */
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 36px 0;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .project-card .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .project-card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .project-card h4 {
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .project-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 26px 30px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: rgba(185,214,255,0.7);
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* SC callout */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul {
+      padding-left: 20px;
+      margin: 12px 0 18px;
+    }
+    .sc-callout li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    /* Stat row */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 32px 0;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .stat-box .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Source note */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .stat-row { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">Infrastructure</span>
+      <span class="meta-tag">Energy</span>
+      <span class="meta-date">May 2026 · SCAIO Journal</span>
+    </div>
+
+    <h1>South Carolina's Data-Center Decade</h1>
+
+    <p class="dek">
+      Meta's $800 million Orangeburg facility. The $2.8 billion Moc-1 project in the Upstate. Santee Cooper's experimental rate structure for large customers. The lingering question of V.C. Summer. The choices in front of South Carolina about how to host the AI build-out are among the most consequential infrastructure decisions the state will make this decade — and the most distinctive thing about the picture is that the state has chosen to ask the questions out loud.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        The most important AI story in South Carolina right now is not happening in a lab or a hospital or a courtroom. It is happening at substations.
+      </p>
+
+      <p>
+        Over the past 18 months, four developments have moved South Carolina from the margins of the national AI infrastructure conversation to one of its more closely watched seats. Together, they describe a state that is now hosting AI build-out at meaningful scale, has begun structuring how that hosting is paid for, and is actively considering whether to revive a piece of mothballed infrastructure that no other state has the option to revive. The decisions that flow from these developments will shape the state's economic trajectory through 2035 — and, depending on how they go, may help shape national norms for how the AI build-out is governed.
+      </p>
+
+      <h2>The four developments</h2>
+
+      <div class="project-row">
+
+        <div class="project-card">
+          <div class="num">$800M</div>
+          <div>
+            <div class="label">Orangeburg County · 2025</div>
+            <h4>Meta's AI data center, anchored to a 100 MW Silicon Ranch solar farm</h4>
+            <p>Reported in <em>Latitude Media</em> in August 2025: Meta is building an $800 million AI data center in Orangeburg County, paired with a new 100-megawatt solar farm developed by Silicon Ranch. The arrangement uses what Meta has been calling its "co-op" model — Silicon Ranch builds and operates the solar facility, Santee Cooper coordinates the local grid integration, Central Electric Power Cooperative sells power to its 19 member cooperatives, and Aiken Electric Cooperative directly serves Meta. Meta receives the renewable-energy credits associated with the solar generation.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">$2.8B</div>
+          <div>
+            <div class="label">Spartanburg County · 2025</div>
+            <h4>"Moc-1," a proposed Upstate computing center that would generate its own electricity</h4>
+            <p>Reported in <em>SC Daily Gazette</em> in March 2025: a $2.8 billion computing center proposed in Spartanburg County, codenamed "Moc-1," to be built by an aeronautics-and-engineering firm. The facility would generate its own electricity on-site rather than drawing from the regional grid, and is intended to serve the company's own internal operations — not function as a data-center-for-lease. The expected employment count is 27. Spartanburg County is offering substantial incentives, including a reduced 4 percent property tax rate for 40 years (versus the standard 6 percent) and tax credits totaling roughly $1.5 million annually for the first 20 years.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">50 MW+</div>
+          <div>
+            <div class="label">Statewide · April 2025</div>
+            <h4>Santee Cooper's experimental rate structure for large customers</h4>
+            <p>Reported in <em>SC Daily Gazette</em> in April 2025: Santee Cooper, the state-owned utility, voted to enact a new experimental electricity rate structure for customers drawing 50 megawatts or more from the grid. The rate is structured as a four-year pilot, designed to ensure that data centers and other large new loads contribute fairly to the cost of new generation capacity rather than have those costs flow through to existing residential and small-business customers. The threshold captures essentially all modern AI-focused data center campuses and several large EV-and-battery manufacturing facilities.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">2 reactors</div>
+          <div>
+            <div class="label">Fairfield County · TBD</div>
+            <h4>The V.C. Summer revival question</h4>
+            <p>Reported in <em>TechCrunch</em> in January 2025: Santee Cooper is actively seeking partners to potentially finance and complete the two unfinished reactor units at the Virgil C. Summer Nuclear Power Station near Jenkinsville. Construction was suspended in 2017 after costs grew from $9.8 billion to $25 billion; the project's collapse contributed to Westinghouse's bankruptcy and years of subsequent litigation. The current interest is framed explicitly as a response to AI-driven baseload demand. Whether the project can be revived is uncertain. That the question is being asked at all is meaningful.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <h2>The Santee Cooper bet, in plain language</h2>
+
+      <p>
+        The Santee Cooper rate-structure pilot is the single most distinctive piece of the picture, and it deserves a closer look. Most coverage has framed it as a "rate hike on data centers." That framing is technically accurate but misses what makes the pilot distinctive.
+      </p>
+
+      <p>
+        Every state with serious data-center growth is confronting the same fundamental question: <strong>who pays for the new generation, transmission, and grid investments that AI infrastructure requires?</strong> National analysts have estimated that AI data centers could account for as much as 44 percent of U.S. electricity load growth through 2028. Without an explicit price-signal mechanism, the cost of meeting that growth tends to flow through to ratepayers broadly — meaning the residential customer in a 1,200-square-foot home in Rock Hill helps subsidize the cost of grid expansion driven by a hyperscaler facility that uses more power in an hour than the home does in two years.
+      </p>
+
+      <p>
+        The Santee Cooper pilot is one of the more explicit attempts in the country to short-circuit that pattern. By creating a separate rate class for customers drawing 50 megawatts or more, the utility is structurally aligning the cost of new infrastructure with the customers driving the demand for it. The threshold is calibrated to capture exactly the customers — hyperscale data centers, large EV-and-battery manufacturers — whose demand is driving the new investment in the first place. The four-year pilot horizon allows the rate to be adjusted as evidence accumulates.
+      </p>
+
+      <p>
+        Reasonable people can disagree about whether this is the right policy posture. Some peer states have chosen the opposite approach, subsidizing rather than surcharging large loads to attract investment, on the theory that the long-run economic benefits exceed the short-run costs to ratepayers. Both arguments have merit, and the final answer probably depends on local conditions, including the cost structure of the utility, the existing residential rate base, and the state's broader economic-development posture.
+      </p>
+
+      <p>
+        What is harder to argue with is that South Carolina has chosen to <em>ask the question explicitly</em> — and to act on its answer in a way other utilities can study, copy, refine, or reject. That is the part of the picture worth flagging.
+      </p>
+
+      <div class="pull-quote">
+        <p>
+          The most distinctive thing about how South Carolina is hosting the AI build-out is not that it is hosting the AI build-out. It is that the state has chosen to ask out loud who is paying for it.
+        </p>
+        <cite>— SCAIO editorial observation</cite>
+      </div>
+
+      <h2>The Meta partnership and why it might travel</h2>
+
+      <p>
+        The Meta-Orangeburg arrangement is structurally interesting in its own right and deserves attention beyond its dollar figure.
+      </p>
+
+      <p>
+        Three things make it work. First, the developer (Silicon Ranch) builds and operates the solar generation as a permanent asset in the state. Second, the rural electric cooperative (Aiken Electric, through Central Electric Power Cooperative) serves a large industrial customer that the cooperative system would not normally have the standing to serve directly. Third, the utility (Santee Cooper) coordinates the grid integration without needing to own the generation asset. Each party contributes the thing it does well; none takes on roles outside its competence.
+      </p>
+
+      <p>
+        From a state perspective, the value of the model is that it demonstrates how rural cooperatives — which together serve much of South Carolina outside the major utility footprints — can host significant AI-infrastructure investment without needing to become hyperscaler-grade utilities themselves. If the Orangeburg arrangement scales, it suggests a path for siting future data-center investment in parts of the state that would otherwise lack the technical capacity to host it.
+      </p>
+
+      <p>
+        That outcome is not assured. The Orangeburg deal benefits from specific conditions — Silicon Ranch's existing Southeast portfolio, Meta's preference for solar-anchored renewable-attributed power, the cooperative ecosystem's willingness to engage. Replicating those conditions for a different developer or a different anchor tenant is a separate question. But the model is in production now and is one of the more interesting structural innovations in U.S. data-center development.
+      </p>
+
+      <h2>Moc-1 and the on-site-generation alternative</h2>
+
+      <p>
+        The proposed Moc-1 project in Spartanburg County represents a different model entirely. Rather than negotiate with a utility and a generation developer, the proposed facility would generate its own electricity on-site — a posture that bypasses several of the issues Santee Cooper's rate pilot is built to address.
+      </p>
+
+      <p>
+        On-site generation has obvious appeal for AI infrastructure: it eliminates exposure to grid-pricing changes, sidesteps the slow regulatory pace of utility expansion, and pairs the load and the generation in one capital decision. It also has obvious downsides: it concentrates risk in a single facility, requires substantial up-front capital, and leaves the operator responsible for fuel-supply, environmental, and resilience concerns that utilities normally absorb.
+      </p>
+
+      <p>
+        Whether Moc-1 becomes a template for other AI-infrastructure projects in South Carolina, or remains a one-off built around the proposing company's specific needs, is one of the things to watch over the next 24 months. The fact that Spartanburg County is willing to support the project with substantial tax incentives — a reduced 4 percent property tax rate for 40 years, plus annual tax credits in the seven figures — suggests that local economic-development bodies are already weighing the tradeoff between distinctive on-site projects and the more conventional grid-served data-center model.
+      </p>
+
+      <h2>The V.C. Summer question</h2>
+
+      <p>
+        The V.C. Summer story is the longest-running one in this picture. The two unfinished reactor units near Jenkinsville have been idle since 2017, when construction was suspended after cost overruns turned what had been a $9.8 billion project into a $25 billion one. The collapse was one of the largest infrastructure failures in the state's recent history and has left an enduring mark on South Carolina's posture toward large baseload investment.
+      </p>
+
+      <p>
+        AI changes the calculation. Modern AI data centers produce one of the most utility-friendly load profiles a generator can serve: large, stable, 24-hour, predictable, and growing. That profile is essentially a perfect match for nuclear baseload generation. As <em>TechCrunch</em>'s January 2025 reporting documented, Santee Cooper has begun seeking partners to potentially finance and complete the two unfinished V.C. Summer reactors specifically because of that match.
+      </p>
+
+      <p>
+        The question of whether V.C. Summer can be revived is genuinely open. The financial path forward is complicated; the regulatory environment for restarting partially-completed nuclear construction is unprecedented; the political memory of the 2017 collapse is still vivid. But the AI-infrastructure context creates a possibility that did not exist before — and the fact that the question is being explored at all is a meaningful signal about how seriously the AI infrastructure wave is being weighed in long-term energy-planning decisions.
+      </p>
+
+      <h2>The piece of the picture that is missing</h2>
+
+      <p>
+        One element of the picture remains structurally less developed than the others. <em>The Post and Courier</em> reported in September 2025 that South Carolina has emerged as a regional data-center hotspot — and noted that the state does not currently maintain a comprehensive public registry of data-center projects in development. Specific facilities are visible when they make individual public announcements; the cumulative picture is harder to assemble.
+      </p>
+
+      <p>
+        This is fixable. A public-facing registry of announced and proposed data-center projects in South Carolina — including project location, size, energy source, water-use disclosure, and economic-development incentives — would let the state's communities, journalists, regulators, and elected officials see the full picture as it develops. Other states have begun building such registries; South Carolina has the executive-branch infrastructure (the Department of Commerce, the Department of Administration, the Public Service Commission) to do so without significant new investment.
+      </p>
+
+      <p>
+        SCAIO views the absence of such a registry as the easiest constructive recommendation in the entire infrastructure conversation. It is not a critique of any specific actor; it is an invitation to surface work that is already being done.
+      </p>
+
+      <div class="sc-callout">
+        <div class="kicker">A specific watch list for the next 24 months</div>
+        <h2>Five decisions that will shape the state's data-center decade</h2>
+        <ul>
+          <li>The <strong>Santee Cooper rate-structure pilot's results</strong> — and whether other utilities (Dominion Energy SC, the cooperatives) adopt similar structures.</li>
+          <li>The <strong>V.C. Summer revival decision</strong> — whether Santee Cooper finds a finance-and-build partner, on what terms, and what the regulatory posture looks like.</li>
+          <li>Outcomes from the <strong>Moc-1 Spartanburg facility</strong> — whether the on-site-generation model attracts other comparable projects.</li>
+          <li><strong>Transparency standards for data-center siting</strong> — water use, land use, and community-benefit disclosures, which are minimal in SC today.</li>
+          <li><strong>Coordination across utility, regulatory, and economic-development bodies</strong> — whether Santee Cooper's posture, the Public Service Commission's, the cooperatives', and the Department of Commerce's economic-development conversations align.</li>
+        </ul>
+      </div>
+
+      <h2>Why this matters more than most policy questions</h2>
+
+      <p>
+        Most pieces of the AI conversation move on annual or multi-year timelines. Bills are introduced, debated, amended, and either passed or shelved. Curricula are updated and rolled out. Hospital systems pilot tools, evaluate them, and either scale them or discontinue them. The conversation on each of those topics will continue for the foreseeable future.
+      </p>
+
+      <p>
+        Infrastructure is different. The decisions made in the next 24 months about how to host, price, and permit AI data-center growth in South Carolina will harden into precedent within five years. Once a 100-megawatt facility is sited, financed, and operating, it is essentially permanent. Once a rate structure has been operating for four years, it has set expectations for the next round of utility planning. Once V.C. Summer is either revived or formally written off, that decision is not one that gets revisited a decade later.
+      </p>
+
+      <p>
+        That is why this story matters more, in the editor's view, than most of the others SCAIO will cover this year. South Carolina is making a small number of specific decisions whose effects will be measured in decades. The state has, so far, chosen to make those decisions visibly, deliberately, and with explicit attention to who pays. That is a posture worth recognizing — and one worth watching closely as the next decisions arrive.
+      </p>
+
+      <div class="source-note">
+        <strong>Sources:</strong> <em>SC Daily Gazette</em>, "SC's state-owned utility enacts higher rates for data centers, large users," April 25, 2025, and "A $2.8B computing center proposed in the Upstate would generate its own electricity," March 4, 2025. <em>Latitude Media</em>, "Meta is using a familiar energy strategy for its newest AI data center," August 19, 2025. <em>The Post and Courier</em>, "South Carolina is becoming a data center hotspot. But the state doesn't know how many are coming," September 28, 2025. <em>TechCrunch</em>, "Zombie nuclear reactors could be revived thanks to AI data center demand," January 22, 2025. <em>Spartanburg.com</em>, April 30, 2025. <em>SC Small Business Chamber of Commerce</em>, "AI boom sparks energy showdown in South Carolina," May 1, 2025. National AI data-center electricity load forecasts from Lawrence Berkeley National Laboratory and Goldman Sachs research.
+        <br><br>
+        <em>This article is a focused journal piece on the energy-and-infrastructure dimensions of South Carolina's AI build-out. A more comprehensive treatment, including the broader institutional ecosystem, workforce, and policy context, appears in <a href="report/chapter-05-the-infrastructure.html">Chapter 5</a> of SCAIO's flagship report, <em>The Artificial Intelligence Landscape of South Carolina</em>.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
