@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why South Carolina Needs an AI Observatory — SCAIO</title>
+  <meta name="description" content="A founding statement: AI is moving faster and reaching wider than any technology in modern memory. South Carolina has world-class work happening across its universities, agencies, and companies — but in scattered silos. SCAIO connects them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Site header bar ── */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    /* ── Article layout ── */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── Meta strip ── */
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* ── Body prose ── */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .prose ul {
+      padding-left: 22px;
+      margin-bottom: 22px;
+    }
+    .prose ul li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    /* ── Stat callout boxes ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 36px 0;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .stat-box .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.05rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── SC callout (dark) ── */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul {
+      padding-left: 20px;
+      margin: 12px 0 20px;
+    }
+    .sc-callout ul li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    /* ── Function grid (4 cards) ── */
+    .function-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 28px 0;
+    }
+    .function-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+    .function-card .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .function-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: -0.005em;
+    }
+    .function-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      margin: 50px 0 0;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      text-align: center;
+    }
+    .cta h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .cta p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border-bottom: 2px solid var(--blue-soft);
+      padding-bottom: 2px;
+      transition: border-color 0.18s ease;
+    }
+    .cta a:hover { border-bottom-color: var(--blue); }
+
+    /* ── Source note ── */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .stat-row { grid-template-columns: 1fr; }
+      .function-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">About SCAIO</span>
+      <span class="meta-tag">Founding Statement</span>
+      <span class="meta-date">May 2026 · SCAIO Journal</span>
+    </div>
+
+    <h1>Why South Carolina Needs an AI Observatory</h1>
+
+    <p class="dek">
+      Artificial intelligence is moving faster, reaching wider, and consequencing more decisively than any technology in modern memory. South Carolina has world-class work happening across its universities, agencies, and companies — but in scattered silos. SCAIO exists to connect them.
+    </p>
+
+    <div class="prose">
+
+      <h2>An unprecedented technology curve</h2>
+
+      <p>
+        The pace of AI's arrival in everyday work and life is the fastest of any technology in living memory. ChatGPT crossed 100 million users in two months — a curve that took TikTok nine months and Instagram two and a half years. Hundreds of billions of dollars in compute infrastructure are being built in 2025 alone, with multiple forecasters projecting trillions in cumulative investment by 2030. Roughly four in ten U.S. workers report using generative AI at work in some form. None of this looked plausible three years ago.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="num">2 months</div>
+          <div class="label">For ChatGPT to reach 100M users — fastest consumer tech in history</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">$200B+</div>
+          <div class="label">Global AI infrastructure investment in 2025 alone</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">~40%</div>
+          <div class="label">U.S. workers using generative AI at work, late 2025</div>
+        </div>
+      </div>
+
+      <p>
+        Each of these numbers compresses the same idea: a technology that until recently was a research curiosity is now embedded in commerce, education, healthcare, government, and creative work — and the deployment curve is steeper than anything in the history of computing.
+      </p>
+
+      <h2>What makes this different</h2>
+
+      <p>
+        It is not just speed. Earlier technology cycles were faster than the ones before them but tended to land hardest in one domain at a time — factories, then offices, then homes, then phones. AI's distinctive property is that it lands in <em>every</em> domain simultaneously, including parts of life that previous waves left untouched.
+      </p>
+
+      <p>
+        AI is already shaping how children learn and how teachers teach; how insurers approve claims and how clinicians diagnose; how small businesses market and how large ones forecast; how journalism is funded and how government services are delivered. Personal life is touched too — by tutors, companions, creative tools, and decision aids that did not exist a few years ago. There is no zone of work or daily life where the technology is not arguably present. That breadth, combined with the speed, is what makes the AI moment historically unusual.
+      </p>
+
+      <p>
+        That combination also means the questions being asked of states and communities are different. Not "how do we bring this industry to the Palmetto State?" — though that question still matters — but "how do we navigate a transition that touches every industry, every classroom, every clinic, and every household, on a timeline measured in years rather than decades?"
+      </p>
+
+      <div class="sc-callout">
+        <div class="kicker">South Carolina is not a bystander</div>
+        <h2>The work is here. It just isn't connected.</h2>
+        <p>
+          Across the Palmetto State, substantive AI work is underway in places that mostly do not know about each other:
+        </p>
+        <ul>
+          <li>The University of South Carolina runs an Artificial Intelligence Institute focused on applied research and student programs.</li>
+          <li>Clemson's School of Computing has been building AI capability for years.</li>
+          <li>The South Carolina Research Authority published a state-level AI strategy and convenes the AI Leadership Hub.</li>
+          <li>ADAPT in SC drives statewide workforce-readiness conversations.</li>
+          <li>The state government is standing up an AI Center of Excellence.</li>
+          <li>The 2025 SC AI Symposium drew industry, government, and academic leaders together for a full day of programming.</li>
+          <li>Companies in Charleston, Greenville, Columbia, and the Upstate are building AI products and embedding AI into existing operations.</li>
+        </ul>
+        <p>
+          Each of these is doing real work. None of them owns the picture of what is happening across the rest. There is no single place where a legislator, a school district administrator, a small-business owner, or a journalist can go to understand the state's AI landscape — what's being built, what's being legislated, what's being deployed in classrooms and clinics, and what to expect next. That gap is the reason SCAIO exists.
+        </p>
+      </div>
+
+      <h2>What SCAIO does</h2>
+
+      <p>
+        SCAIO is an independent, public-interest research initiative — neutral, statewide, and focused. We do four things:
+      </p>
+
+      <div class="function-grid">
+        <div class="function-card">
+          <div class="num">01</div>
+          <h4>Research &amp; white papers</h4>
+          <p>Original analysis of AI's impact on South Carolina's economy, workforce, institutions, and communities.</p>
+        </div>
+        <div class="function-card">
+          <div class="num">02</div>
+          <h4>Policy tracking</h4>
+          <p>State legislation, agency guidance, procurement standards, and federal developments that affect South Carolinians.</p>
+        </div>
+        <div class="function-card">
+          <div class="num">03</div>
+          <h4>Ecosystem mapping</h4>
+          <p>A public, searchable directory of universities, companies, public initiatives, and convening organizations doing AI work in the state.</p>
+        </div>
+        <div class="function-card">
+          <div class="num">04</div>
+          <h4>Public education</h4>
+          <p>Explainers, commentary, and accessible analysis for citizens, policymakers, and the press.</p>
+        </div>
+      </div>
+
+      <p>
+        Our role is connector and translator, not gatekeeper. The work is happening; SCAIO makes it visible — to the people building it, to the people governing it, and to the people whose lives it is going to change.
+      </p>
+
+      <div class="cta">
+        <h3>Get involved</h3>
+        <p>
+          We welcome partnerships with researchers, journalists, policymakers, institutions, and organizations doing AI work in South Carolina. If you're building something, we want to feature it. If you're trying to understand the work, we want to help.
+        </p>
+        <a href="index.html#contact">Reach out to the SCAIO team →</a>
+      </div>
+
+      <div class="source-note">
+        <strong>Notes on figures:</strong> ChatGPT user-growth curve from UBS / Reuters (Jan 2023). Global AI infrastructure investment estimates compiled from McKinsey, IDC, and Bloomberg coverage of 2024–25 capital expenditure announcements. Generative-AI workplace adoption from Pew Research, McKinsey State of AI, and Microsoft Work Trend Index. South Carolina institution descriptions are drawn from each organization's public-facing material; see the <a href="index.html#ecosystem">SCAIO ecosystem directory</a> for direct links.
+        <br><br>
+        <em>This is a founding statement, not a research report. The flagship report — <a href="index.html#research">The Artificial Intelligence Landscape of South Carolina</a> — is in development.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
