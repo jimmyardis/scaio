@@ -310,6 +310,9 @@
     .role { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--blue); margin-bottom: 10px; }
     .team-card h3 { margin: 0 0 14px; font-family: "Libre Baskerville", serif; font-size: 1.6rem; color: var(--navy); }
     .team-card p  { margin: 0; color: var(--muted); font-size: 0.97rem; line-height: 1.9; }
+    .team-card .team-contact { margin-top: 16px; font-size: 0.95rem; }
+    .team-card .team-contact a { color: var(--blue); font-weight: 600; }
+    .team-card .team-contact a:hover { text-decoration: underline; }
 
     /* ── Site structure ── */
     .site-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 34px; }
@@ -636,6 +639,51 @@
     }
     .footer-box ul { margin: 14px 0 0; padding-left: 18px; }
 
+    .footer-emails { margin-top: 26px; }
+    .footer-emails .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; color: #b9d6ff; margin-bottom: 10px; }
+    .footer-emails a { color: #fff; font-weight: 600; }
+    .footer-emails a:hover { color: #b9d6ff; text-decoration: underline; }
+    .footer-emails .email-row { margin: 6px 0; }
+    .footer-emails .email-row .role { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-right: 6px; }
+
+    .contact-form { margin-top: 22px; display: grid; gap: 12px; }
+    .contact-form label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: #b9d6ff; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      font-size: 0.95rem;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--blue-3);
+      background: rgba(255,255,255,0.09);
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.45); }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .contact-form button {
+      justify-self: start;
+      background: var(--blue-3);
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .contact-form button:hover { background: #4c92ff; }
+    .form-note { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
     /* ── Responsive ── */
     @media (max-width: 1100px) {
       .hero-inner, .two-col, .map-layout, .footer-inner { grid-template-columns: 1fr; }
@@ -657,6 +705,8 @@
       .hero h1 { font-size: clamp(2.3rem, 11vw, 3.5rem); }
     }
   </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
 
@@ -674,7 +724,7 @@
         <a href="#research">Research</a>
         <a href="#policy">Policy Tracker</a>
         <a href="#ecosystem">Ecosystem</a>
-        <a href="#journal">Blog</a>
+        <a href="#journal">Journal</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -882,6 +932,7 @@
             directs research, analysis, and institution-building efforts aimed at helping South Carolina
             understand, govern, and benefit from the rise of artificial intelligence.
           </p>
+          <p class="team-contact"><a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
         </article>
         <article class="team-card">
           <div class="role">Chief Technologist</div>
@@ -899,6 +950,7 @@
             acoustics, and medical instrumentation. At SCAIO, he brings deep technical judgment and a
             strong security lens to the study of AI systems, risk, infrastructure, and responsible adoption.
           </p>
+          <p class="team-contact"><a href="mailto:noah@scaio.org">noah@scaio.org</a></p>
         </article>
       </div>
     </div>
@@ -955,7 +1007,7 @@
           </ul>
         </article>
         <article class="card site-card">
-          <h3>Blog / Journal</h3>
+          <h3>Journal</h3>
           <ul>
             <li>Explainers</li>
             <li>Commentary</li>
@@ -1351,18 +1403,40 @@
         </p>
         <p style="margin-top:16px;">
           To contribute research, suggest an ecosystem listing, flag a policy development, or
-          explore a collaboration, reach out directly to the team.
+          explore a collaboration, reach out directly to the team or use the form.
         </p>
+
+        <div class="footer-emails">
+          <div class="label">Direct contact</div>
+          <div class="email-row"><span class="role">Director ·</span><a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></div>
+          <div class="email-row"><span class="role">Chief Technologist ·</span><a href="mailto:noah@scaio.org">noah@scaio.org</a></div>
+        </div>
       </div>
       <div class="footer-box">
-        <div class="section-kicker" style="color:#b9d6ff; margin-bottom:6px;">What's coming next</div>
-        <ul>
-          <li>Flagship report Edition 0.2 — chapters 7 &amp; 8 fleshed out, additional sectors</li>
-          <li>Additional Journal articles across manufacturing, infrastructure, cybersecurity</li>
-          <li>Expanded ecosystem directory with search and filters</li>
-          <li>Policy timeline and milestone tracker</li>
-          <li>Education hub for citizens and legislators</li>
-        </ul>
+        <div class="section-kicker" style="color:#b9d6ff; margin-bottom:6px;">Send a message</div>
+        <p style="margin:0 0 4px;">
+          A note, a tip, a correction, a request for collaboration — anything you would like the SCAIO team to see.
+        </p>
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div>
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="you@example.org" required />
+          </div>
+          <div>
+            <label for="cf-org">Organization (optional)</label>
+            <input type="text" id="cf-org" name="organization" placeholder="University, agency, company, publication…" />
+          </div>
+          <div>
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="Tell us what you're working on or what you'd like SCAIO to look at." required></textarea>
+          </div>
+          <button type="submit">Send to SCAIO</button>
+          <p class="form-note">Submissions are routed to the SCAIO team. We respond personally to messages we can act on.</p>
+        </form>
       </div>
     </div>
   </footer>
