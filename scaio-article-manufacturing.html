@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What AI Means for South Carolina Manufacturing — SCAIO Journal</title>
+  <meta name="description" content="BMW's Figure AI humanoid robotics pilot, Boeing's 787 quality systems, Michelin's predictive maintenance, and the deeper question for South Carolina's industrial base: how the state's manufacturers turn applied AI capability into a recognized national position." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --green:    #15803d;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date { color: var(--muted); font-size: 0.82rem; }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    .prose p { font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 22px; }
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 32px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .prose strong { color: var(--navy); }
+    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 38px 0;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+    }
+    .stat-box .number {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .project-row { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 36px 0; }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .project-card .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .project-card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .project-card h4 { font-size: 1rem; color: var(--navy); font-weight: 600; margin-bottom: 8px; }
+    .project-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; margin: 0; }
+
+    .pull-quote {
+      margin: 40px 0;
+      padding: 26px 30px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p, .sc-callout li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+    .sc-callout p { margin-bottom: 14px; }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul { margin: 0; padding-left: 22px; }
+    .sc-callout strong { color: #fff; }
+
+    .source-note {
+      margin-top: 56px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue-2);
+      border-radius: 0 14px 14px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .source-note strong { color: var(--navy); }
+    .source-note a { color: var(--blue); }
+
+    @media (max-width: 600px) {
+      .stat-row { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <a class="logo" href="index.html">SCAIO</a>
+    <a class="back" href="index.html#journal">← Back to Journal</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">SCAIO Journal · Sector Analysis</span>
+      <span class="meta-date">May 2026 · 12 min read</span>
+    </div>
+
+    <h1>What AI means for South Carolina manufacturing</h1>
+
+    <p class="dek">
+      South Carolina has assembled an unusual concentration of advanced manufacturing in a state its size — and a credible claim to becoming the Southeast's applied industrial-AI capital. The BMW–Figure AI humanoid-robotics pilot is the most visible signal of what is actually underway. The deeper question is how the state's manufacturers, universities, and workforce system convert a strong assembly of capabilities into a recognized national position.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        The most-watched manufacturing-AI development in South Carolina in the past year is also the easiest to underestimate. In early 2025, BMW announced that the Spartanburg plant would host a pilot deployment of Figure AI's humanoid robots — making BMW Spartanburg one of the first commercial sites in the world to install bipedal humanoids on a real production line. The pilot is small. The headlines were larger. The signal — that BMW chose its largest plant globally to test a new class of industrial automation — is what matters.
+      </p>
+
+      <p>
+        The Spartanburg pilot is one window into a broader story. South Carolina is not a state that talks about itself as a manufacturing-AI hub, but in the assets it has assembled, it has more credible material to make that claim than most other states. This article walks through what those assets are, what is actually happening on the plant floor today, and what would help South Carolina's manufacturers turn applied capability into a recognizable national position.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="number">$67B</div>
+          <div class="label">Annual manufacturing GDP (SC, 2024)</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">252,000</div>
+          <div class="label">Manufacturing jobs statewide</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">~16%</div>
+          <div class="label">Share of SC employment</div>
+        </div>
+      </div>
+
+      <h2>The manufacturing base SC has already built</h2>
+
+      <p>
+        Manufacturing is South Carolina's signature sector. The state ranks among the top in the country for manufacturing share of state GDP, foreign direct investment in manufacturing, and per-capita exports. The visible names anchor the picture, but the depth comes from the tier-one and tier-two supplier ecosystem that has grown up around them.
+      </p>
+
+      <div class="project-row">
+        <div class="project-card">
+          <div class="num">BMW</div>
+          <div>
+            <div class="label">Spartanburg County</div>
+            <h4>BMW's largest manufacturing plant by volume globally</h4>
+            <p>The Spartanburg plant produces X-series SUVs for global export and employs more than 11,000 South Carolinians directly, with multiples of that number in the supplier base. In 2025, BMW began piloting Figure AI's humanoid robotics on a real production line — among the earliest commercial deployments of bipedal humanoids anywhere.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="num">Boeing</div>
+          <div>
+            <div class="label">North Charleston</div>
+            <h4>Boeing South Carolina · 787 Dreamliner final assembly</h4>
+            <p>Boeing's 787 final-assembly operation is the only Boeing widebody assembly line outside the Pacific Northwest. The site employs roughly 6,500 workers and is among the more digitally instrumented aircraft-assembly operations in the world.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="num">Volvo</div>
+          <div>
+            <div class="label">Berkeley County</div>
+            <h4>Volvo Cars · sole US manufacturing facility</h4>
+            <p>Volvo's $1.1 billion Ridgeville plant is the company's only US manufacturing site, producing electric vehicles for the North American market. It has been a public-facing reference site for Volvo's Industry 4.0 initiatives.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="num">Mercedes</div>
+          <div>
+            <div class="label">North Charleston</div>
+            <h4>Mercedes-Benz Vans · US plant</h4>
+            <p>The Sprinter assembly plant produces the workhorse of America's commercial-van fleet. Its computer-vision quality-control systems are among the more visible examples of inline machine-learning applications in the state.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="num">Michelin</div>
+          <div>
+            <div class="label">Greenville · multiple sites</div>
+            <h4>Michelin · North American headquarters and multiple plants</h4>
+            <p>Michelin's North American headquarters and several manufacturing operations make the company one of the state's largest private employers. Predictive-maintenance and computer-vision quality-control work has been a recurring theme in Michelin's public communications about the SC operations.</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="num">Tier-one</div>
+          <div>
+            <div class="label">Statewide</div>
+            <h4>Bridgestone, Continental Tire, ZF, Magna, Adient, JCB, and a deep supplier base</h4>
+            <p>The tier-one and tier-two supplier ecosystem — anchored by tire and chemical producers, suppliers to BMW and Volvo, and a growing number of EV battery and component producers — is where much of the day-to-day applied-AI deployment in SC manufacturing happens.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>What applied AI actually looks like on SC plant floors</h2>
+
+      <p>
+        The conversation about AI in manufacturing tends to fixate on the dramatic — humanoid robots, "lights-out" factories, autonomous mobile robots. The day-to-day picture is less dramatic and, in productivity terms, more interesting. Most of the applied AI in SC manufacturing today is concentrated in four areas, each of which is generating measurable returns somewhere in the state.
+      </p>
+
+      <h3>Predictive maintenance</h3>
+      <p>
+        Sensor-rich production equipment is producing data that, fed into machine-learning models, can predict failures before they happen. Michelin has publicly discussed predictive-maintenance work; tire production is unusually well suited to it because individual machines are large, expensive, and continuously instrumented. Predictive maintenance is the most consistent productivity story across SC's heavy-manufacturing operations and is one of the clearer examples of AI's effect on the bottom line being routine rather than novel.
+      </p>
+
+      <h3>Computer vision in quality control</h3>
+      <p>
+        Inline computer vision for defect detection is now common at SC's automotive and aerospace operations. Mercedes-Benz Vans, Volvo, BMW, and Boeing have all publicly described computer-vision applications in body, paint, and assembly quality control. The pattern is consistent: traditional manual or fixed-fixture inspection is being supplemented (and in some cases replaced) by camera-and-model systems that catch defects earlier and more consistently. The result is fewer rework cycles and tighter feedback loops to upstream processes.
+      </p>
+
+      <h3>Robotics and autonomous mobile robots</h3>
+      <p>
+        Material handling, parts movement, and increasingly assembly itself are being supplemented by autonomous mobile robots and traditional industrial robots equipped with newer perception systems. The BMW–Figure AI pilot is the most visible example, but it is not the only one — most of SC's larger plants are running AMR pilots of some scale. The economic case is robust where labor markets are tight, which describes much of the SC manufacturing corridor.
+      </p>
+
+      <h3>Supply-chain optimization</h3>
+      <p>
+        Behind the scenes, machine learning is reshaping how SC manufacturers think about logistics, inventory, and supplier coordination. The Port of Charleston's continued digitization (covered in <a href="scaio-article-data-center-decade.html">a related Journal piece on infrastructure</a>) is one piece. Inbound-logistics optimization at BMW, Volvo, and Boeing is another. The Inland Port at Greer makes the Upstate's freight infrastructure unusual: AI-driven coordination between port operations and inland-port operations is one of the places SC's logistics edge could compound.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The thing the rest of the country misunderstands about South Carolina manufacturing is the depth. The headline names are real, but the supplier ecosystem around them is what makes this state different. That ecosystem is where most of the applied AI is happening — quietly, and faster than anyone outside the state realizes."</p>
+      </div>
+
+      <h2>The Figure AI pilot, in context</h2>
+
+      <p>
+        BMW's pilot deployment of Figure AI's humanoid robots at Spartanburg is the development that has drawn the most national attention. It is worth understanding what the pilot actually is and what it is not.
+      </p>
+
+      <p>
+        Figure AI is a Sunnyvale-based humanoid-robotics company building general-purpose bipedal robots — the kind of system science fiction has trained us to imagine, now real enough to deploy in production environments. The BMW pilot is small in scale: Figure's robots are being trained and evaluated on specific, well-defined tasks at the Spartanburg plant, not replacing assembly workers. The productivity case at this stage is not the point. The strategic significance is the choice to do this at Spartanburg.
+      </p>
+
+      <p>
+        BMW Group runs more than 30 manufacturing plants worldwide. The decision to pilot the most experimental class of factory automation at the company's largest plant by volume — and to do it in South Carolina rather than Munich, Leipzig, or Dingolfing — is a signal about how BMW thinks about the Spartanburg operation. It is also a signal about how Figure AI thinks about the kind of plant where its technology can be developed productively. That kind of multi-year industrial relationship between an OEM and a frontier-AI hardware company is a thing that other states will spend the next several years trying to recruit.
+      </p>
+
+      <h2>The research substrate</h2>
+
+      <p>
+        Applied industrial AI does not happen in a vacuum. It depends on a research substrate that turns out engineers, develops new techniques, and provides the credibility that makes industry-university research collaboration possible. South Carolina's substrate here is stronger than the manufacturing base alone suggests.
+      </p>
+
+      <p>
+        Clemson's International Center for Automotive Research (CU-ICAR) in Greenville is a flagship industry-academic facility — Clemson's automotive engineering graduate program is on-site, and the campus has long-standing relationships with BMW, Michelin, and the broader Upstate automotive supplier base. CU-ICAR's research portfolio covers autonomous systems, vehicle dynamics, advanced manufacturing, and increasingly applied AI in industrial contexts.
+      </p>
+
+      <p>
+        USC's McNair Aerospace Center serves the Boeing relationship and the broader Lowcountry aerospace ecosystem. The South Carolina Manufacturing Extension Partnership (SCMEP), part of the NIST-funded national MEP network, provides hands-on technical assistance to smaller manufacturers — and is one of the natural channels for AI adoption to reach the tier-two and tier-three supplier base that the OEMs depend on. The SC Department of Commerce's apprenticeship and workforce programs round out the picture.
+      </p>
+
+      <p>
+        The pieces — large OEMs, deep supplier base, two research universities with industry programs, a state-level workforce machine, and an established applied-research institution in CU-ICAR — are unusual in their density for a state of South Carolina's size.
+      </p>
+
+      <h2>The workforce question</h2>
+
+      <p>
+        The most common question about manufacturing AI is whether it will displace workers. The honest answer for South Carolina is: in net terms, probably not on the timeline that gets discussed most, but the composition of manufacturing employment will shift faster than most people expect. The harder question is whether the state's workforce-training infrastructure can keep up with the shift.
+      </p>
+
+      <p>
+        Applied AI in manufacturing creates new operational roles even as it shifts the contents of existing ones. Data labeling and quality-assurance roles, model-output review, MLOps support for the manufacturing IT stack, applied prompting for shop-floor decision support, and AI-aware project management are all jobs that exist on SC plant floors today but did not exist five years ago. None of them require four-year degrees. All of them require structured short-form training that the state's Technical College System is well-positioned to provide.
+      </p>
+
+      <p>
+        ReadySC, the SC Technical College System's employer-customized training program, has been one of the most consistent advantages in the state's manufacturing recruitment for decades. The opportunity for the next decade is to make ReadySC and the broader Technical College System the primary engine for AI-adjacent manufacturing credentials in the Southeast. The infrastructure exists; the specific credentials and curricula need to be developed and stacked into recognizable pathways.
+      </p>
+
+      <div class="sc-callout">
+        <div class="kicker">What would help</div>
+        <h2>Three concrete moves that would compound what SC already has</h2>
+        <p>
+          South Carolina does not need to invent industrial AI; the pieces are in place. The constructive question is how to convene and connect them.
+        </p>
+        <ul>
+          <li><strong>An applied industrial-AI consortium anchored at Clemson and USC,</strong> with an initial group of three to five anchor manufacturers, shared research priorities, shared workforce pipelines, and an annual public showcase. This appears as Recommendation 7 in <a href="report/chapter-08-a-path-forward.html">Chapter 8</a> of SCAIO's flagship report.</li>
+          <li><strong>Five to seven stackable, AI-adjacent credentials</strong> through the SC Technical College System, designed in partnership with the major OEMs and tier-one suppliers, delivered through ReadySC into the existing employer-customized training channel.</li>
+          <li><strong>A standing public showcase</strong> — a recurring event, a published catalog of SC applied-AI manufacturing case studies, or both — so that the work happening across the state becomes legible to potential employers, investors, and federal customers. The story is currently distributed across dozens of plant-floor pilots; making it legible nationally is largely a communication problem.</li>
+        </ul>
+      </div>
+
+      <h2>Five things to watch over the next 24 months</h2>
+
+      <p>
+        For readers tracking how SC's manufacturing-AI story develops, five specific signals will tell most of the story over the next two years.
+      </p>
+
+      <ul>
+        <li><strong>The expansion (or non-expansion) of the BMW–Figure AI pilot</strong> beyond initial training tasks. Whether the pilot moves from controlled-task evaluation to actual production deployment is the cleanest signal of whether humanoid robotics is moving into commercial reality at scale.</li>
+        <li><strong>Whether Clemson and USC stand up an applied industrial-AI consortium</strong> — or whether one of the OEMs takes the lead in convening one without them. The institutional structure will matter for what gets done.</li>
+        <li><strong>Movement on AI-adjacent technical-college credentials</strong>, particularly through ReadySC. Stackable certifications in data labeling, model-output review, and AI-aware operations would be a strong indicator of the workforce system catching up to the deployment curve.</li>
+        <li><strong>Tier-one and tier-two supplier AI adoption</strong>. The OEMs are visible; the supplier base is where most of SC's manufacturing employment actually sits. The SC Manufacturing Extension Partnership's reporting on supplier AI adoption is one of the cleanest indicators to watch.</li>
+        <li><strong>Federal investment in SC industrial-AI capacity</strong>. Department of Commerce Manufacturing USA institutes, Department of Defense industrial-AI investments, and any future federal funding aimed at advanced manufacturing capacity will be a measure of how seriously SC's positioning is taken outside the state.</li>
+      </ul>
+
+      <h2>The thread that runs through all of it</h2>
+
+      <p>
+        SCAIO's posture, on this question and others, is to describe what is and what would help, not what should happen. The work to make South Carolina the Southeast's applied industrial-AI capital is, in nearly every case, already underway in pieces somewhere in the state. The work that remains is the work of connection — between the universities and the manufacturers, between the OEMs and the supplier base, between the Technical College System and the deployment sites, between the in-state story and the national audience.
+      </p>
+
+      <p>
+        Manufacturing has been the cornerstone of South Carolina's economic identity for a generation. AI in manufacturing is on track to be one of the cleanest productivity stories of the next decade. The state is positioned well to lead, and the institutions doing the work deserve more national visibility than they currently have. SCAIO will continue to document the story as it develops.
+      </p>
+
+      <div class="source-note">
+        <strong>Sources:</strong> BMW Manufacturing public communications and <em>BMW Blog</em> coverage of the Figure AI Spartanburg pilot; Boeing South Carolina public materials; Volvo Cars Ridgeville plant public communications; Mercedes-Benz Vans North Charleston plant public communications; Michelin North America public materials; <em>The Post and Courier</em> reporting on BMW Figure AI; <em>Greenville Business Magazine</em> reporting on Upstate manufacturing-AI initiatives; SC Department of Commerce major employer profiles; SC Manufacturing Extension Partnership program documentation; Clemson University CU-ICAR research portfolio; USC McNair Aerospace Center program documentation; SC Technical College System and ReadySC program inventories. Workforce baselines from the US Bureau of Labor Statistics Occupational Employment and Wage Statistics for South Carolina.
+        <br><br>
+        <em>This article is a focused journal piece on AI in South Carolina manufacturing. A more comprehensive treatment of the manufacturing sector's place in the state's broader AI ecosystem appears in <a href="report/chapter-03-the-industries.html">Chapter 3</a> of SCAIO's flagship report. The applied industrial-AI consortium recommendation appears as Recommendation 7 in <a href="report/chapter-08-a-path-forward.html">Chapter 8</a>.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

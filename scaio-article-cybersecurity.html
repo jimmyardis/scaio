@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI, Cybersecurity, and Public Risk in the Palmetto State — SCAIO Journal</title>
+  <meta name="description" content="Generative AI lowers the cost of social engineering, expands the attack surface for South Carolina's public institutions, and creates new risks in election integrity, healthcare data, and supply-chain compromise. It also creates a clear opportunity for South Carolina to lead — given the depth of the state's existing cyber community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --max:      720px;
+      --amber:    #d97706;
+      --red:      #b91c1c;
+      --green:    #15803d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a { text-decoration: none; color: rgba(255,255,255,0.9); font-size: 0.85rem; letter-spacing: 0.06em; }
+    .site-bar .logo { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: #fff; letter-spacing: 0.04em; }
+    .site-bar .back { font-size: 0.8rem; color: rgba(185,214,255,0.8); }
+
+    .article-wrap { max-width: var(--max); margin: 0 auto; padding: 60px 24px 100px; }
+
+    .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .meta-tag {
+      background: var(--blue-soft); color: var(--blue);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 999px; border: 1px solid #bdd4f8;
+    }
+    .meta-date { color: var(--muted); font-size: 0.82rem; }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    .prose p { font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 22px; }
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 32px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .prose strong { color: var(--navy); }
+    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+
+    .threat-row { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 36px 0; }
+    .threat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .threat-card .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .threat-card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .threat-card h4 { font-size: 1rem; color: var(--navy); font-weight: 600; margin-bottom: 8px; }
+    .threat-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; margin: 0; }
+
+    .pull-quote {
+      margin: 40px 0;
+      padding: 26px 30px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: rgba(185,214,255,0.7);
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .confidence-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      margin: 30px 0;
+      border-left: 4px solid;
+    }
+    .confidence-banner .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .confidence-banner .label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+    .confidence-banner p { font-size: 0.95rem; line-height: 1.7; color: var(--text); margin: 0; flex: 1; }
+    .confidence-banner.amber {
+      background: #fffbeb;
+      border-color: var(--amber);
+    }
+    .confidence-banner.amber .dot { background: var(--amber); }
+    .confidence-banner.amber .label { color: var(--amber); }
+
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p, .sc-callout li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+    .sc-callout p { margin-bottom: 14px; }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul { margin: 0; padding-left: 22px; }
+    .sc-callout strong { color: #fff; }
+
+    .source-note {
+      margin-top: 56px;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue-2);
+      border-radius: 0 14px 14px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .source-note strong { color: var(--navy); }
+    .source-note a { color: var(--blue); }
+
+    @media (max-width: 600px) {
+      .threat-card { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <a class="logo" href="index.html">SCAIO</a>
+    <a class="back" href="index.html#journal">← Back to Journal</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">SCAIO Journal · Cybersecurity</span>
+      <span class="meta-date">May 2026 · 14 min read</span>
+    </div>
+
+    <h1>AI, cybersecurity, and public risk in the Palmetto State</h1>
+
+    <p class="dek">
+      Generative AI lowers the cost of social engineering, expands the attack surface for South Carolina's public institutions, and introduces new failure modes in election integrity, healthcare data, and supply-chain compromise. It also creates a clear opportunity for South Carolina to lead — given the depth of the state's existing cyber community. This piece is a first survey; a more technical follow-up will be co-authored with SCAIO's Chief Technologist.
+    </p>
+
+    <div class="prose">
+
+      <div class="confidence-banner amber">
+        <div class="dot"></div>
+        <div>
+          <span class="label">Note on this piece</span>
+          <p>This is a first draft on a fast-moving topic. Specific technical claims and SC-particular threat assessments are being reviewed by SCAIO's Chief Technologist, Noah Schiffman, ahead of a more detailed follow-up. Reader corrections are welcomed at <a href="mailto:noah@scaio.org">noah@scaio.org</a>.</p>
+        </div>
+      </div>
+
+      <p>
+        The honest version of the AI-cybersecurity conversation does two things at once. It names how generative AI changes what attackers can do — cheaper phishing at scale, convincing voice cloning, deepfake video, accelerated vulnerability discovery, autonomous reconnaissance. And it names how generative AI changes what defenders can do — faster triage in security operations centers, broader vulnerability detection, AI-assisted incident response, lower-cost monitoring for under-resourced institutions. Both stories are real. They are arriving in South Carolina at the same time.
+      </p>
+
+      <p>
+        This piece is not a complete map of either. It is a first orientation: what the threat picture looks like for SC's public institutions, what the state's existing cyber community brings to the response, where the specific concentrations of risk and capability sit, and what a constructive contribution from outside the agencies would look like. SCAIO will continue to develop this conversation, with technical co-authorship from Noah Schiffman, in subsequent pieces.
+      </p>
+
+      <h2>What's changed: the threat surface in plain language</h2>
+
+      <p>
+        For the people charged with defending South Carolina's public institutions — school district IT directors, hospital CISOs, municipal IT leads, the State Department of Education's information security team, the Division of Information Security inside the Department of Administration, the Office of the State Inspector General, and the cybersecurity professionals at NIWC Atlantic and SLED — the practical change generative AI introduces is that the marginal cost of well-crafted attacks has collapsed.
+      </p>
+
+      <p>
+        Three categories of attack are now meaningfully easier to run at scale than they were two years ago.
+      </p>
+
+      <div class="threat-row">
+        <div class="threat-card">
+          <div class="num">01</div>
+          <div>
+            <div class="label">Threat category</div>
+            <h4>Targeted phishing and business email compromise</h4>
+            <p>Generative AI makes it trivial to produce well-written, contextually appropriate phishing email at scale — in the recipient's writing style, referencing real internal projects, with no English-as-a-second-language tells. The defender's traditional warning signs (typos, awkward phrasing, generic salutations) no longer apply. The volume of this kind of mail aimed at public institutions has measurably risen.</p>
+          </div>
+        </div>
+        <div class="threat-card">
+          <div class="num">02</div>
+          <div>
+            <div class="label">Threat category</div>
+            <h4>Voice cloning and synthetic-media impersonation</h4>
+            <p>A short sample of public audio is now enough to clone a voice convincingly. The targets in SC are predictable: school superintendents, hospital executives, municipal CFOs, agency directors — anyone whose voice is in the public record and whose authority can be invoked to redirect a payment, change a beneficiary, or extract sensitive information. Voice-cloning wire fraud is a real and growing line item in public-sector loss reports nationally.</p>
+          </div>
+        </div>
+        <div class="threat-card">
+          <div class="num">03</div>
+          <div>
+            <div class="label">Threat category</div>
+            <h4>AI-accelerated vulnerability discovery</h4>
+            <p>Attackers are using large language models to assist in code review, vulnerability discovery, and exploit development. The pace at which newly disclosed vulnerabilities are weaponized has shortened. For SC's public institutions — many running long-tail software, mixed cloud deployments, and legacy on-premises systems — that compression of the patch-to-exploit window is the most underestimated risk in the current environment.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        None of these categories are unique to South Carolina; they are unfolding everywhere. What is specific to South Carolina is the institutional profile of the most exposed targets: 79 school districts, 64 acute-care hospitals (with a long tail of small rural facilities), 46 county governments, hundreds of municipal governments, the State Department of Education, the State Department of Insurance, the court system, the State Election Commission, the State Treasurer's Office, the Department of Revenue, and the Department of Health and Environmental Control. Every one of those institutions sits at the intersection of "high public trust" and "constrained security budget" — the exact profile attackers prioritize.
+      </p>
+
+      <div class="pull-quote">
+        <p>"The thing to understand about AI in cybersecurity is that the gap between what attackers can do and what defenders can do does not widen permanently — it oscillates. South Carolina has the right ingredients to be on the favorable side of that oscillation, but only if the institutions doing the work get connected to one another."</p>
+      </div>
+
+      <h2>What SC brings to the response</h2>
+
+      <p>
+        The state's cyber community is one of its underappreciated strategic assets. The institutional density is unusual for a state of South Carolina's size, and it concentrates in Charleston in ways that very few other states can match.
+      </p>
+
+      <h3>NIWC Atlantic</h3>
+      <p>
+        Naval Information Warfare Center Atlantic — formerly SPAWAR — is the federal anchor for the entire Charleston cyber community. NIWC Atlantic's mission centers on information warfare, cybersecurity engineering, and the technical capabilities that support fleet and joint operations. Around it has grown a deep network of cleared defense contractors, cyber firms, and engineering talent that runs from North Charleston up the I-26 corridor toward Summerville and Goose Creek.
+      </p>
+
+      <h3>SC Cyber Initiative and the academic community</h3>
+      <p>
+        The SC Cyber Initiative provides a statewide vehicle for cyber readiness work. It is paired with active cybersecurity research programs at the Citadel, USC, Clemson, the College of Charleston, and Coastal Carolina, several of which run the kinds of cyber-range exercises, capture-the-flag programs, and applied research projects that produce the next generation of practitioners. SC's cyber-degree programs collectively turn out a substantial workforce pipeline each year — most of which stays in-state because the demand is local.
+      </p>
+
+      <h3>State-government capacity</h3>
+      <p>
+        The state Division of Information Security, the Statewide Information Security Officer, and the Office of the State Inspector General all play active roles in coordinating cyber readiness across agencies. The State CIO's office has been a credible champion of statewide cyber posture. The State Law Enforcement Division (SLED) operates cyber capabilities for both investigation and incident response. Federal partnerships through CISA Region 4 and the FBI's Columbia field office round out the picture.
+      </p>
+
+      <h3>Industry presence</h3>
+      <p>
+        SCAIO's Chief Technologist Noah Schiffman's career — Chief Technology Advisor at KBR, CISO roles at Wave Sciences and Orbis, frequent speaker at DEFCON, BSides, IEEE, and ISACA, multiple patents in computing and acoustics — is one example of the depth of senior cybersecurity practitioners with SC ties. The state's cyber-consulting industry, defense contractors operating in the Charleston market, and a growing number of cybersecurity product companies (notably the team behind Secursion, the AI-cybersecurity platform Noah co-founded) round out the picture.
+      </p>
+
+      <p>
+        The pieces — federal anchor, state government coordination, academic research and pipeline, private industry depth — are unusual in their density. The constructive question is the same one that runs through every chapter of SCAIO's flagship report: how to make those pieces visible to one another, so that the institutions defending the front lines can draw on the capacity that already exists in the state.
+      </p>
+
+      <h2>The specific failure modes worth planning around</h2>
+
+      <p>
+        Three categories of risk feel underdiscussed in the SC public conversation and worth surfacing here.
+      </p>
+
+      <h3>Election integrity in the synthetic-media era</h3>
+      <p>
+        The State Election Commission already manages a complex, decentralized system across 46 counties. Synthetic media — deepfake video, AI-generated audio of candidates, AI-fabricated voting-process content — introduces a new category of operational risk that has not yet been tested in a major SC election cycle. The agency's existing voter-education infrastructure is well positioned to incorporate synthetic-media literacy. A constructive contribution from outside the agency would be plain-language, non-partisan public-education material on what synthetic political content looks like and how to report it — distributed through county libraries, civic associations, faith communities, and the SC Press Association well in advance of the next cycle.
+      </p>
+
+      <h3>Healthcare data and clinical-AI security</h3>
+      <p>
+        S.443 addresses one slice of clinical AI well (insurer prior authorization). The cybersecurity slice is largely unaddressed. AI deployments in SC hospitals — including ambient documentation tools, AI-assisted radiology and pathology, and predictive-risk models — introduce new data-flow patterns, new vendor dependencies, and new failure modes that the existing HIPAA security posture was not designed for. The risk is highest at the rural-hospital end, where security budgets are smallest. A statewide voluntary deployment standard for clinical AI (proposed in <a href="report/chapter-08-a-path-forward.html">Recommendation 8</a> of SCAIO's flagship report) should explicitly include cyber-posture requirements.
+      </p>
+
+      <h3>Supply-chain compromise via AI-assisted development</h3>
+      <p>
+        The category that worries cybersecurity practitioners most is also the hardest to discuss publicly: software supply-chain risk in a world where AI-assisted development means more code is being produced faster, including by developers using AI assistants to write code they themselves cannot fully audit. Public institutions that procure software from SC-based and out-of-state vendors face a meaningfully different supply-chain assurance question now than they did three years ago. The constructive response here is procurement and contracting language that names AI-development-tool use, requires a software bill of materials, and reserves the institution's right to audit. None of that is new in concept; what is new is the urgency.
+      </p>
+
+      <div class="sc-callout">
+        <div class="kicker">What would help</div>
+        <h2>Four constructive moves SC is well positioned to make</h2>
+        <p>
+          South Carolina has more cybersecurity capacity than most of its peer states. The constructive question is how to extend that capacity to the institutions that need it most.
+        </p>
+        <ul>
+          <li><strong>An AI-aware threat intelligence channel for SC public institutions</strong> — coordinated through NIWC Atlantic's existing relationships, the SC Cyber Initiative, and SLED, with a defined feed for school districts, hospitals, and county/municipal government. Threat-intelligence sharing has been studied and run successfully in other state contexts; the SC version would be lighter weight, focused on the AI-specific threats described above.</li>
+          <li><strong>Baseline tabletop exercises that include synthetic-media scenarios.</strong> The SC Cyber Initiative and the state's universities already run cyber-range exercises; adding synthetic-media injects — voice-cloning wire fraud, deepfake of a school superintendent, fabricated public-health announcement — would prepare institutions for the failure modes they are most likely to encounter first.</li>
+          <li><strong>Shared procurement of AI-aware email security and identity controls</strong> for under-resourced public institutions. School districts, rural hospitals, and small municipal governments are the targets least able to afford best-in-class controls individually. Statewide procurement at the SC State Treasurer's Office or the Materials Management Office level could meaningfully change the floor of public-institution security posture without raising agency budgets.</li>
+          <li><strong>A formal SC AI Red Team capability,</strong> hosted at one of the universities or stood up as a public-private hybrid, that public institutions could engage for AI-specific penetration testing and adversarial evaluation. This is a place where SC's defense and intelligence-community ties could meaningfully accelerate what the state can offer.</li>
+        </ul>
+      </div>
+
+      <h2>Where this work fits with what SCAIO is building</h2>
+
+      <p>
+        Cybersecurity sits at the intersection of nearly every chapter of SCAIO's flagship report. It is touched in the infrastructure discussion (data-center security), the workforce discussion (cybersecurity is one of SC's strongest existing labor pipelines), the policy discussion (S.443's data-flow implications, S.963 consumer protection), and most directly in <a href="report/chapter-07-risks-and-opportunities.html">Chapter 7's</a> first risk category and second opportunity category — defense and cyber AI as a leadership case the state is unusually positioned to make.
+      </p>
+
+      <p>
+        This Journal piece is a first orientation. A more technical follow-up — with Noah Schiffman as a co-author — will go deeper on the specific threat categories, the AI-defense tooling that public institutions can reasonably adopt today, and a richer treatment of supply-chain compromise via AI-assisted development. SCAIO will also continue to track AI-cybersecurity legislative developments (S.963 is the bill most likely to evolve quickly) and publish updates as the picture develops.
+      </p>
+
+      <p>
+        South Carolina enters this period with more cybersecurity infrastructure than most states — federal anchors, academic capacity, state-government coordination, private-industry depth. The question for the next several years is whether that infrastructure gets connected to the front-line institutions that need it most. The opportunity is real. The work is constructive. SCAIO will continue to document it.
+      </p>
+
+      <div class="source-note">
+        <strong>Sources:</strong> Naval Information Warfare Center Atlantic public materials; SC Cyber Initiative program documentation; SC State Election Commission voter-education materials; SC Department of Administration · Division of Information Security; SC State CIO's office; the Coalition for Health AI clinical-AI deployment framework; NIST AI Risk Management Framework; CISA Region 4 advisories. Industry references: practitioner experience and public commentary from SCAIO's Chief Technologist Noah Schiffman; Secursion (secursion.ai); coverage of voice-cloning wire fraud in public-sector contexts from <em>The Wall Street Journal</em>, <em>The New York Times</em>, and federal advisories.
+        <br><br>
+        <em>This is a first SCAIO Journal orientation on AI cybersecurity in South Carolina. A more technical follow-up will be co-authored with SCAIO Chief Technologist Noah Schiffman. The constructive recommendations in this piece are also reflected in <a href="report/chapter-07-risks-and-opportunities.html">Chapter 7</a> and <a href="report/chapter-08-a-path-forward.html">Chapter 8</a> of SCAIO's flagship report.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
