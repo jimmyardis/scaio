@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="report.css" />
   <!-- Plausible analytics -->
   <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+  <style>
+    .bib-section { margin-top: 28px; }
+    .bib-section h3 { margin-bottom: 10px; }
+    .bib-list { list-style: none; padding: 0; margin: 0; }
+    .bib-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+    .bib-list li:last-child { border-bottom: none; }
+    .bib-list li strong { color: var(--navy); }
+    .bib-list li .source-org { color: var(--muted); font-size: 0.88rem; display: block; margin-top: 3px; }
+    .bib-list li a { color: var(--blue); }
+    .bib-list li a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 
@@ -29,7 +45,7 @@
 
     <div class="chapter-meta">
       <span class="num">Chapter 09</span>
-      <span class="read-time">In progress</span>
+      <span class="read-time">~12 min read</span>
     </div>
 
     <h1>Methodology and sources</h1>
@@ -61,17 +77,145 @@
         <li><strong>Champion, don't critique.</strong> SCAIO's role is to make AI work in South Carolina more visible and connected. Other publications can and do critique specific actors; SCAIO's contribution is in the surfacing.</li>
         <li><strong>Label ideologically positioned sources.</strong> Where a source has a stated ideological lens (think tank, advocacy group, partisan publication), the report names that lens explicitly. The SCAIO ecosystem directory follows the same convention.</li>
         <li><strong>Cite the work, not the person.</strong> Specific individuals are named when their public role makes them part of the public record (e.g., bill sponsors, named institute directors). Otherwise the report describes the work and the institution.</li>
-        <li><strong>Welcome correction.</strong> This is a v0.1 working draft. Errors will be corrected, omissions filled, and chapters rewritten as the picture sharpens. <a href="../index.html#contact">Contact SCAIO</a> with corrections at any time.</li>
+        <li><strong>Honest about evidence.</strong> Claims are presented with the strength of their underlying evidence. Where SC-specific data exists, it leads. Where only national patterns exist, the analogical inference is named explicitly.</li>
+        <li><strong>Welcome correction.</strong> This is an evolving working report. Errors will be corrected, omissions filled, and chapters rewritten as the picture sharpens. <a href="../index.html#contact">Contact SCAIO</a> with corrections at any time.</li>
       </ul>
 
       <h2>Sources by chapter</h2>
+
       <p>
-        The full source bibliography is being compiled and will appear here in a subsequent edition. Each chapter currently includes inline source notes for the most material claims; a comprehensive references section will consolidate those into a single bibliography organized by chapter.
+        The sources below are the substantive primary and secondary documents underlying each chapter. Where a source informs multiple chapters, it is listed under the chapter that most depends on it; cross-references are noted. This bibliography will expand in subsequent editions as new material is added or surfaced.
       </p>
+
+      <div class="bib-section">
+        <h3>Chapter 1 — The setting</h3>
+        <ul class="bib-list">
+          <li><strong>South Carolina AI Strategy</strong> · 2024 publication of the SC Department of Administration. <a href="https://admin.sc.gov/sites/admin/files/Documents/OED/Final%20SC%20AI%20Strategy.pdf" target="_blank" rel="noopener noreferrer">admin.sc.gov</a><span class="source-org">SC Department of Administration · Office of Executive Director</span></li>
+          <li><strong>Report on Artificial Intelligence for the State of South Carolina</strong> · SCRA-released study summarizing the state's AI posture and opportunities. <a href="https://scra.org/scra-releases-report-on-ai-for-the-state-of-south-carolina/" target="_blank" rel="noopener noreferrer">scra.org</a><span class="source-org">South Carolina Research Authority</span></li>
+          <li><strong>2025 SC AI Symposium Report</strong> · Summary report of the inaugural multi-institution SC AI Symposium. <a href="https://rilabs.ai/wp-content/uploads/2025/06/SC-AI-Symposium-Report-May-2025.pdf" target="_blank" rel="noopener noreferrer">rilabs.ai</a><span class="source-org">RILabs and partner institutions</span></li>
+          <li><strong>US Census Bureau · QuickFacts: South Carolina</strong> · Population, demographic, and economic baselines used throughout.<span class="source-org">US Census Bureau</span></li>
+          <li><strong>SC Department of Commerce · Economic data and major employer profiles</strong> · Sectoral employment and industrial baselines.<span class="source-org">SC Department of Commerce</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 2 — The ecosystem</h3>
+        <ul class="bib-list">
+          <li><strong>USC Artificial Intelligence Institute</strong> · Mission, research focus, and program inventory. <a href="https://research.cec.sc.edu/aii/" target="_blank" rel="noopener noreferrer">research.cec.sc.edu/aii</a><span class="source-org">University of South Carolina · College of Engineering and Computing</span></li>
+          <li><strong>Clemson School of Computing</strong> · Faculty, research programs, and CU-ICAR connections. <a href="https://www.clemson.edu/cecas/departments/computing/" target="_blank" rel="noopener noreferrer">clemson.edu</a><span class="source-org">Clemson University · CECAS</span></li>
+          <li><strong>Joint Clemson–MUSC AI Hub for Healthcare and Life Sciences</strong> · Partnership scope and clinical-AI research portfolio. <a href="https://www.musc.edu/innovation/partnerships/clemson-musc-ai-hub" target="_blank" rel="noopener noreferrer">musc.edu</a><span class="source-org">Medical University of South Carolina · Clemson University</span></li>
+          <li><strong>MUSC Center for AI</strong> · Center charter, leadership, and clinical-AI deployment portfolio.<span class="source-org">Medical University of South Carolina</span></li>
+          <li><strong>SCRA AI Leadership Hub</strong> · Hub mission and member institution roster. <a href="https://scra.org/ai/" target="_blank" rel="noopener noreferrer">scra.org/ai</a><span class="source-org">South Carolina Research Authority</span></li>
+          <li><strong>ADAPT in SC overview</strong> · Description of the NSF-funded EPSCoR program. <a href="https://scepscor.org/adapt-in-sc-overview/" target="_blank" rel="noopener noreferrer">scepscor.org</a><span class="source-org">SC EPSCoR / IDeA</span></li>
+          <li><strong>Charleston Digital Corridor</strong> · Regional tech-ecosystem development organization. <a href="https://www.charlestondigital.com/" target="_blank" rel="noopener noreferrer">charlestondigital.com</a><span class="source-org">Charleston Digital Corridor</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 3 — The industries</h3>
+        <ul class="bib-list">
+          <li><strong>BMW Manufacturing · Plant Spartanburg</strong> · Plant operations, employment, and humanoid-robotics pilot. <span class="source-org">BMW Group · public communications</span></li>
+          <li><strong>BMW Blog · Figure AI deployment coverage</strong> · Trade-press reporting on the Figure AI / BMW Spartanburg pilot.<span class="source-org">BMW Blog</span></li>
+          <li><strong>Boeing South Carolina · 787 program profile</strong> · Public communications on the North Charleston final-assembly operation.<span class="source-org">Boeing Company</span></li>
+          <li><strong>Greenville Business Magazine · AI-deployment reporting</strong> · Coverage of BMW, Michelin, and Upstate manufacturing AI initiatives.<span class="source-org">Greenville Business Magazine</span></li>
+          <li><strong>The Post and Courier · BMW Figure AI coverage</strong> · SC-focused reporting on the humanoid-robotics pilot.<span class="source-org">The Post and Courier</span></li>
+          <li><strong>SC Department of Commerce · Major employer database</strong> · Manufacturing, aerospace, and automotive employer baselines.<span class="source-org">SC Department of Commerce</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 4 — The workforce</h3>
+        <ul class="bib-list">
+          <li><strong>Anthropic · Labor Market Impacts of AI</strong> (March 2026) · Foundational source for occupational exposure analysis throughout the chapter.<span class="source-org">Anthropic</span></li>
+          <li><strong>US Bureau of Labor Statistics · Occupational Employment and Wage Statistics: South Carolina</strong> · SC-specific employment baselines by occupation.<span class="source-org">US Department of Labor · BLS</span></li>
+          <li><strong>SC Department of Employment and Workforce · Labor market information</strong> · State-level workforce data and forecasts.<span class="source-org">SC Department of Employment and Workforce</span></li>
+          <li><strong>South Carolina Technical College System · Program inventory</strong> · System-level program data underlying the re-skilling analysis.<span class="source-org">SC Technical College System</span></li>
+          <li><strong>ReadySC · Employer-customized training program documentation</strong> · Workforce-training infrastructure description.<span class="source-org">SC Technical College System · ReadySC</span></li>
+          <li><strong>McKinsey Global Institute · The State of AI</strong> · National context for enterprise AI adoption.<span class="source-org">McKinsey &amp; Company</span></li>
+          <li><strong>Microsoft Work Trend Index</strong> · National context for AI use at work.<span class="source-org">Microsoft Corporation</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 5 — The infrastructure</h3>
+        <ul class="bib-list">
+          <li><strong>Santee Cooper · Large-Load Customer Rate Pilot</strong> · 50 MW+ customer rate-design documents and Public Service Commission filings.<span class="source-org">Santee Cooper · SC Public Service Commission</span></li>
+          <li><strong>SC Daily Gazette · Santee Cooper rate pilot and Moc-1 coverage</strong> · Investigative and explanatory reporting on the SC data-center build-out.<span class="source-org">SC Daily Gazette</span></li>
+          <li><strong>Latitude Media · Meta Orangeburg coverage</strong> · Reporting on the Meta data-center project in Orangeburg County.<span class="source-org">Latitude Media</span></li>
+          <li><strong>The Post and Courier · Data-center hotspot reporting</strong> · SC-focused reporting on data-center siting, energy use, and community impact.<span class="source-org">The Post and Courier</span></li>
+          <li><strong>TechCrunch · V.C. Summer revival coverage</strong> · Reporting on the proposed revival of the V.C. Summer nuclear project.<span class="source-org">TechCrunch</span></li>
+          <li><strong>Lawrence Berkeley National Laboratory · AI data-center electricity load forecasts</strong> · Foundational national forecast for AI-driven data-center power demand.<span class="source-org">US Department of Energy · LBNL</span></li>
+          <li><strong>SC Public Service Commission · Docket filings</strong> · Primary record for utility regulatory action.<span class="source-org">SC Public Service Commission</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 6 — The policy landscape</h3>
+        <ul class="bib-list">
+          <li><strong>H.5253 · AI in Education (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/5253.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>S.443 · Health Claims &amp; AI (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>S.963 · AI Consumer Protection (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/963.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>H.5138 · Chatbot Protection Act (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/5138.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>S.1037 · Protecting Children from Chatbots Act (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/1037.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>H.5085 · AI Week / AI literacy resolution (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/5085.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>S.225 · Open-source decentralized AI resolution (126th General Assembly)</strong> · <a href="https://www.scstatehouse.gov/sess126_2025-2026/bills/225.htm" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly</span></li>
+          <li><strong>SC House Regulations and Administrative Procedures Committee</strong> · Standing committee with substantive AI oversight role. <a href="https://www.scstatehouse.gov/CommitteeInfo/HouseRegulationsAndAdministrativeProceduresCommittee/" target="_blank" rel="noopener noreferrer">scstatehouse.gov</a><span class="source-org">SC General Assembly · House of Representatives</span></li>
+          <li><strong>NIST AI Risk Management Framework</strong> · National standard for AI risk identification and management.<span class="source-org">National Institute of Standards and Technology · US Department of Commerce</span></li>
+          <li><strong>OMB Memorandum M-24-10</strong> · Federal-agency AI use standards and inventory requirements.<span class="source-org">US Executive Office of the President · Office of Management and Budget</span></li>
+          <li><strong>NCSC AI Readiness for State Courts 2025</strong> · State-courts AI guidance referenced in policy discussion. <a href="https://www.ncsc.org/sites/default/files/media/document/AI_Readiness_for_the_State_Courts_2025.pdf" target="_blank" rel="noopener noreferrer">ncsc.org</a><span class="source-org">National Center for State Courts</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 7 — Risks and opportunities</h3>
+        <ul class="bib-list">
+          <li><strong>SC Cyber Initiative</strong> · State-level cyber readiness program.<span class="source-org">SC Cyber Initiative · partner institutions</span></li>
+          <li><strong>Naval Information Warfare Center Atlantic</strong> · Public-record materials on workforce, mission, and partnerships.<span class="source-org">US Navy · NIWC Atlantic</span></li>
+          <li><strong>MUSC News · CAIO appointment, Pap-smear AI, DAX Copilot</strong> · Coverage of MUSC's clinical-AI deployments and governance.<span class="source-org">MUSC News</span></li>
+          <li><strong>SC State Election Commission · Public materials</strong> · Election administration and voter-education infrastructure.<span class="source-org">SC State Election Commission</span></li>
+          <li><strong>SC Ports Authority · Annual report and digitization initiatives</strong> · Port operations and technology-deployment context.<span class="source-org">SC Ports Authority</span></li>
+          <li><strong>Clemson Precision Agriculture · Program materials</strong> · Applied-agriculture research and Extension delivery infrastructure.<span class="source-org">Clemson University · Cooperative Extension Service</span></li>
+        </ul>
+      </div>
+
+      <div class="bib-section">
+        <h3>Chapter 8 — A path forward</h3>
+        <ul class="bib-list">
+          <li><strong>Virginia Joint Commission on Technology and Science (JCOTS)</strong> · Long-running legislative-technical-academic convening model.<span class="source-org">Virginia General Assembly</span></li>
+          <li><strong>Pennsylvania Generative AI Governing Board</strong> · Executive-branch cross-sector AI governance model.<span class="source-org">Commonwealth of Pennsylvania</span></li>
+          <li><strong>California Generative AI Use-Case Inventory · EO N-12-23</strong> · State-government AI use-case inventory precedent.<span class="source-org">Office of the Governor of California · CDT</span></li>
+          <li><strong>New York City · Algorithmic Tools registry</strong> · Longest-running municipal AI-use registry.<span class="source-org">New York City Office of Technology and Innovation</span></li>
+          <li><strong>Virginia FastForward credential framework</strong> · Stackable-credential workforce model.<span class="source-org">Virginia Community College System</span></li>
+          <li><strong>Texas High Demand Job Training Program</strong> · Workforce-credential precedent.<span class="source-org">Texas Workforce Commission</span></li>
+          <li><strong>Coalition for Health AI (CHAI)</strong> · National reference framework for clinical-AI deployment standards.<span class="source-org">CHAI · multi-institution consortium</span></li>
+          <li><strong>California SB 1120 · Physicians Make Decisions Act</strong> · AI-in-health-coverage policy precedent.<span class="source-org">State of California Legislature</span></li>
+          <li><strong>Pew Research Center · AI surveys</strong> · National AI public-opinion instrument template.<span class="source-org">Pew Research Center</span></li>
+          <li><strong>AP-NORC · Recurring AI confidence polling</strong> · Methodology reference for ongoing public-opinion measurement.<span class="source-org">Associated Press / NORC at the University of Chicago</span></li>
+          <li><strong>Report for America</strong> · Beat-reporter placement model for local-news capacity-building.<span class="source-org">Report for America · The GroundTruth Project</span></li>
+        </ul>
+      </div>
+
+      <h2>Trade press and regional reporting</h2>
+      <p>
+        The following outlets are cited recurrently throughout the report. Their continued capacity to cover South Carolina's AI story matters to the integrity of public understanding in the state.
+      </p>
+      <ul>
+        <li><em>The Post and Courier</em> — Charleston-based daily; SC AI committee, data-center, BMW reporting</li>
+        <li><em>SC Daily Gazette</em> — statewide digital outlet; Santee Cooper rate pilot and Moc-1 reporting</li>
+        <li><em>SC Public Radio</em> — public broadcasting; statewide policy and explanatory coverage</li>
+        <li><em>Greenville Business Magazine</em> — Upstate business publication; BMW, Michelin, and manufacturing AI coverage</li>
+        <li><em>BMW Blog</em> — independent automotive trade press; BMW Spartanburg coverage</li>
+        <li><em>Latitude Media</em> — energy / climate trade press; Meta Orangeburg coverage</li>
+        <li><em>TechCrunch</em> — national technology trade press; V.C. Summer revival coverage</li>
+        <li><em>MUSC News</em> — institutional publication; MUSC clinical-AI and DAX Copilot coverage</li>
+      </ul>
 
       <h2>Acknowledgments</h2>
       <p>
         This edition was researched and drafted with input from public materials of the institutions named throughout the report. Specific contributors and reviewers will be acknowledged here as the report matures and as those individuals consent to public attribution.
+      </p>
+      <p>
+        SCAIO welcomes correction, addition, and refinement to any section of this report. The work is intended as a living document — a v0.x rather than a v1.0 — and will be revised in subsequent editions as the SC AI picture sharpens. <a href="../index.html#contact">Contact the SCAIO team</a> with anything you would like the next edition to consider.
       </p>
 
     </div>
