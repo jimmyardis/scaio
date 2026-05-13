@@ -599,10 +599,15 @@
 
     .grow-grid { margin-top: 18px; display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-    .grow-box { border: 1px solid var(--border); background: #f8fbff; border-radius: 18px; padding: 16px; }
+    .grow-box { border: 1px solid var(--border); background: #f8fbff; border-radius: 18px; padding: 16px 18px; }
     .grow-box h4    { margin: 0; font-size: 0.98rem; font-weight: 700; color: var(--navy); }
     .grow-box .count{ margin-top: 4px; color: #7d8b9a; font-size: 0.88rem; }
-    .grow-box ul    { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+    .grow-box ul    { margin: 12px 0 0; padding: 0; list-style: none; }
+    .grow-box li    { margin: 0 0 10px; padding: 0; font-size: 0.92rem; line-height: 1.5; }
+    .grow-box li:last-child { margin-bottom: 0; }
+    .grow-box li a  { color: var(--blue); font-weight: 600; text-decoration: none; }
+    .grow-box li a:hover { text-decoration: underline; }
+    .grow-box li .note { display: block; color: var(--muted); font-size: 0.84rem; font-weight: 400; margin-top: 2px; line-height: 1.45; }
 
     /* ── Journal ── */
     .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 30px; }
@@ -1298,38 +1303,77 @@
           </div>
 
           <div class="side-panel">
-            <div class="panel-title" style="margin:0 0 4px;">Growing database</div>
-            <p style="margin:0 0 16px;color:var(--muted);font-size:0.9rem;">Entries by region — expanding as new organizations are added.</p>
+            <div class="panel-title" style="margin:0 0 4px;">Directory at a glance — by region</div>
+            <p style="margin:0 0 16px;color:var(--muted);font-size:0.9rem;">
+              The same entries from the AI Organizations Directory above, grouped by where they sit on the map. Click any name to open the source. Region totals grow as SCAIO adds organizations, programs, and reports.
+            </p>
             <div class="grow-grid">
+
               <div class="grow-box">
-                <h4>Columbia</h4>
+                <h4>Columbia / Midlands</h4>
                 <div class="count">2 current items</div>
                 <ul>
-                  <li>USC Artificial Intelligence Institute</li>
-                  <li>SC AI Center of Excellence</li>
+                  <li>
+                    <a href="https://research.cec.sc.edu/aii/" target="_blank" rel="noreferrer">USC Artificial Intelligence Institute</a>
+                    <span class="note">University-wide AI research, workforce, and commercialization.</span>
+                  </li>
+                  <li>
+                    <a href="https://www.govtech.com/artificial-intelligence/south-carolina-prepares-to-launch-ai-center-of-excellence" target="_blank" rel="noreferrer">SC State Government AI Center of Excellence</a>
+                    <span class="note">State coordinating body under the 2024 SC AI Strategy.</span>
+                  </li>
                 </ul>
               </div>
+
               <div class="grow-box">
                 <h4>Statewide</h4>
                 <div class="count">4 current items</div>
                 <ul>
-                  <li>ADAPT in SC</li>
-                  <li>SCRA AI Leadership Hub</li>
-                  <li>SCRA AI Report</li>
-                  <li>SC AI Symposium Report 2025</li>
+                  <li>
+                    <a href="https://scepscor.org/adapt-in-sc-overview/" target="_blank" rel="noreferrer">ADAPT in SC</a>
+                    <span class="note">NSF-funded EPSCoR initiative building AI research capacity statewide.</span>
+                  </li>
+                  <li>
+                    <a href="https://scra.org/ai/" target="_blank" rel="noreferrer">SCRA AI Leadership Hub</a>
+                    <span class="note">SCRA's cross-sector AI convening — academia, industry, public sector.</span>
+                  </li>
+                  <li>
+                    <a href="https://scra.org/scra-releases-report-on-ai-for-the-state-of-south-carolina/" target="_blank" rel="noreferrer">SCRA AI Report for South Carolina</a>
+                    <span class="note">SCRA's statewide AI report covering policy, industry, and workforce.</span>
+                  </li>
+                  <li>
+                    <a href="https://rilabs.ai/wp-content/uploads/2025/06/SC-AI-Symposium-Report-May-2025.pdf" target="_blank" rel="noreferrer">SC AI Symposium Report — May 2025</a>
+                    <span class="note">Full proceedings from the inaugural multi-institution SC AI Symposium.</span>
+                  </li>
                 </ul>
               </div>
+
               <div class="grow-box">
-                <h4>Charleston</h4>
+                <h4>Charleston / Lowcountry</h4>
                 <div class="count">1 current item</div>
-                <ul><li>Charleston Digital Corridor</li></ul>
+                <ul>
+                  <li>
+                    <a href="https://www.charlestondigital.com/" target="_blank" rel="noreferrer">Charleston Digital Corridor</a>
+                    <span class="note">Long-running Lowcountry innovation organization and startup hub.</span>
+                  </li>
+                </ul>
               </div>
+
               <div class="grow-box">
                 <h4>Clemson / Upstate</h4>
                 <div class="count">1 current item</div>
-                <ul><li>Clemson School of Computing</li></ul>
+                <ul>
+                  <li>
+                    <a href="https://www.clemson.edu/cecas/departments/computing/" target="_blank" rel="noreferrer">Clemson School of Computing</a>
+                    <span class="note">Clemson's primary academic home for computing and AI research.</span>
+                  </li>
+                </ul>
               </div>
+
             </div>
+
+            <p style="margin:18px 0 0;color:var(--muted);font-size:0.84rem;font-style:italic;">
+              Have a South Carolina AI organization, university program, public initiative, or report we should add? <a href="#contact" style="color:var(--blue);font-weight:600;">Suggest an entry →</a>
+            </p>
           </div>
         </div>
       </div>
