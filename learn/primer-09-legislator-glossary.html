@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer 09 — A Legislator's AI Glossary · SCAIO Learn</title>
+  <meta name="description" content="A concise reference glossary of AI terms for South Carolina legislators and legislative staff — plain language, cross-referenced to SC legislation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer 09</div>
+      <h1 class="deck-title">A legislator's AI glossary.</h1>
+      <p class="subtitle">25 key AI terms in plain language, calibrated for South Carolina legislators and legislative staff. Cross-referenced to SC bills where each concept matters.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">How to use this glossary</div>
+      <h2 class="slide-title">A reference, not a reading.</h2>
+      <div class="slide-body">
+        <p>This is designed for quick reference. Each term is defined plainly, with a one-line note on why it matters for SC policymakers. Browse by section: <strong>Foundations</strong> (what these systems are), <strong>How they work</strong>, <strong>How they fail</strong>, <strong>Policy vocabulary</strong>, <strong>SC-specific context</strong>.</p>
+        <p>Where a term appears in current SC legislation, the relevant bill is named.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Foundations</div>
+      <h2 class="slide-title">What these systems are.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term">
+          <div class="term">Artificial Intelligence (AI)</div>
+          <div class="def">An umbrella term for software that performs tasks usually requiring human cognition. Most current discussion is really about generative AI specifically.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Generative AI</div>
+          <div class="def">AI systems that produce new content — text, images, audio, code. The category that drove the 2023+ public conversation.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Large Language Model (LLM)</div>
+          <div class="def">A type of generative AI specialized in text. ChatGPT, Claude, Gemini, and similar systems are LLMs. See Primer 01.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Foundation model</div>
+          <div class="def">A large, general-purpose AI model that other applications build on. GPT-4, Claude, Gemini are foundation models.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Multimodal AI</div>
+          <div class="def">A model that handles multiple types of input/output — text, image, audio, video — within a single system.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Agent / Agentic AI</div>
+          <div class="def">AI systems that take multi-step actions in the world (use tools, make purchases, send messages) rather than just generate text. Emerging category.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">How they work</div>
+      <h2 class="slide-title">Useful technical vocabulary.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term">
+          <div class="term">Training</div>
+          <div class="def">The process by which an AI model learns from data. Pre-training (on broad data) is followed by fine-tuning (on narrower task-specific data).</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Fine-tuning</div>
+          <div class="def">Additional training on a narrower dataset to improve performance on a specific task or domain. Common for industry-specific deployments.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Inference</div>
+          <div class="def">The process of using a trained model to produce output. "Running" the AI, as distinct from training it. Inference is what costs money per query.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Prompt</div>
+          <div class="def">The instruction or input given to an AI model. The same model produces very different output depending on how it is prompted.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">RAG (Retrieval-Augmented Generation)</div>
+          <div class="def">Letting the model look things up in a curated source before answering. Reduces hallucination on factual questions. Common in government deployments.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Tokens</div>
+          <div class="def">The units of text models read and produce. Pricing is typically per-token. Roughly 4 characters per token in English text.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">How they fail</div>
+      <h2 class="slide-title">Failure modes worth naming.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term">
+          <div class="term">Hallucination</div>
+          <div class="def">When a model produces confident-sounding output that is factually wrong. Made-up citations, invented case law, fabricated statistics.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Bias</div>
+          <div class="def">Systematic differences in model performance across demographic groups. Often a reflection of biases in the training data.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Drift</div>
+          <div class="def">When a model's behavior changes over time — either because the model was updated by the vendor, or because the world has changed.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Adversarial input / prompt injection</div>
+          <div class="def">An attack in which inputs are crafted to manipulate the model's output. Security-relevant for any public-facing AI deployment.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Deepfake / synthetic media</div>
+          <div class="def">AI-generated images, audio, or video depicting events that did not occur. Covered in Primer 04.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Catastrophic forgetting</div>
+          <div class="def">When a fine-tuned model loses capabilities it previously had. Relevant for evaluating long-term deployments.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Policy vocabulary</div>
+      <h2 class="slide-title">Terms that appear in legislation and guidance.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term">
+          <div class="term">Human in the loop</div>
+          <div class="def">A deployment pattern in which a human reviews and approves AI output before action. The core of S.443's approach to AI in coverage decisions.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Algorithmic accountability</div>
+          <div class="def">The idea that institutions deploying AI systems should be answerable for the outcomes those systems produce, including errors.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">AI use-case inventory</div>
+          <div class="def">A public catalog of where AI is being used inside a government. Federal model: OMB M-24-10. State examples: California, Pennsylvania.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Bias audit</div>
+          <div class="def">A formal evaluation of whether an AI system performs differently across demographic groups. Increasingly required in regulated deployments.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Parental consent</div>
+          <div class="def">A consent framework for AI tools used with minors. The core mechanism in SC's H.5253 (AI in Education).</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Disclosure</div>
+          <div class="def">Notification to affected parties that AI was used in a decision or interaction. Common in proposed and enacted state AI legislation.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">South Carolina context</div>
+      <h2 class="slide-title">SC-specific vocabulary worth knowing.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term">
+          <div class="term">SC AI Strategy</div>
+          <div class="def">The 2024 SC Department of Administration framework for state-government AI use. Established the AI Center of Excellence.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">AI Center of Excellence (CoE)</div>
+          <div class="def">SC's coordinating body for AI use across state agencies. Director: Rich Heimann.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">SCRA AI Leadership Hub</div>
+          <div class="def">SC Research Authority's cross-sector convening for AI in SC — academia, industry, and public sector.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">ADAPT in SC</div>
+          <div class="def">The NSF-funded EPSCoR program building distributed AI research capacity across SC institutions.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">House Reg/Admin/AI/Cyber Committee</div>
+          <div class="def">SC House standing committee with AI oversight. Chair: Rep. Jeff Bradley. Source of much SC AI-related legislation.</div>
+        </div>
+        <div class="glossary-term">
+          <div class="term">Bradley AI Assistant</div>
+          <div class="def">SC state-government internal AI assistant deployed under the AI Center of Excellence. Named for the committee chair who championed it.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">SCAIO Learn</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>This glossary will grow as the SC AI conversation develops. Suggest additions, corrections, or refinements at <a href="../index.html#contact">scaio.org/#contact</a>. The full SCAIO Journal, the policy tracker, and the flagship report are at <a href="../index.html">scaio.org</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 8</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>

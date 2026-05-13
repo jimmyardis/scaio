@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCAIO Learn — AI Literacy Primers for South Carolina</title>
+  <meta name="description" content="Plain-language, SC-specific AI primers for legislators, school boards, agency staff, small businesses, clinicians, manufacturers, and citizens. Ten 10-minute decks covering the core of the AI conversation in South Carolina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+  <style>
+    :root {
+      --navy: #081a36;
+      --navy-2: #0a2a54;
+      --blue: #0b4ea2;
+      --blue-2: #2f7ae5;
+      --blue-soft: #dbeafe;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #142133;
+      --muted: #4b5a6b;
+      --border: #d9e4f2;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    /* ── Site bar ── */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      color: #fff;
+      padding: 14px 0;
+      font-size: 0.86rem;
+    }
+    .site-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar .brand {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .site-bar .crumbs { color: rgba(255,255,255,0.75); }
+    .site-bar .crumbs a { color: rgba(255,255,255,0.85); }
+    .site-bar .crumbs a:hover { color: #fff; text-decoration: underline; }
+    .site-bar .crumbs .sep { margin: 0 8px; opacity: 0.5; }
+    .site-bar .crumbs .current { color: #fff; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 50%, #14597d 100%);
+      color: #fff;
+      padding: 96px 0 88px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(43,174,255,0.18), transparent 28%),
+        radial-gradient(circle at 10% 95%, rgba(64,124,255,0.2), transparent 26%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 760px; }
+    .hero .kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 26px;
+    }
+    .hero .dek {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      max-width: 56ch;
+    }
+
+    /* ── Intro section ── */
+    .intro {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 70px 0;
+    }
+    .intro-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .intro p:last-child { margin-bottom: 0; }
+    .intro strong { color: var(--navy); }
+    .intro em { color: var(--blue); font-style: normal; font-weight: 600; }
+
+    /* ── Primer grid ── */
+    .primers {
+      padding: 78px 0 90px;
+      background: var(--bg);
+    }
+    .section-header {
+      max-width: 760px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+    .section-header .kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      color: var(--navy);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .primer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .primer-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px 32px 28px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 0 rgba(10,42,84,0.04);
+    }
+    .primer-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(10,42,84,0.10);
+      border-color: var(--blue-2);
+    }
+    .primer-card .pnum {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .primer-card h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .primer-card .audience {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .primer-card .audience strong { color: var(--navy); font-weight: 600; }
+    .primer-card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+    .primer-card .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .primer-card .length {
+      font-size: 0.84rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .primer-card .open-link {
+      font-size: 0.92rem;
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .primer-card:hover .open-link { color: var(--blue-2); }
+
+    /* ── Coming-up section ── */
+    .coming-up {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      color: #fff;
+      padding: 70px 0;
+    }
+    .coming-up-inner { max-width: 760px; margin: 0 auto; }
+    .coming-up .kicker { color: #b9d6ff; }
+    .coming-up h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+    .coming-up p {
+      color: rgba(255,255,255,0.86);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .coming-up p:last-child { margin-bottom: 0; }
+    .coming-up a {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: var(--blue-2);
+      text-underline-offset: 4px;
+    }
+
+    /* ── Footer ── */
+    .footer-mini {
+      padding: 36px 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .footer-mini .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-mini a { color: var(--blue); font-weight: 600; }
+    .footer-mini a:hover { text-decoration: underline; }
+
+    /* ── Mobile ── */
+    @media (max-width: 860px) {
+      .primer-grid { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-bar">
+    <div class="container">
+      <a class="brand" href="../index.html">SCAIO</a>
+      <div class="crumbs">
+        <a href="../index.html">Home</a>
+        <span class="sep">·</span>
+        <span class="current">Learn</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="kicker">SCAIO Learn</div>
+      <h1>AI literacy primers for South Carolina.</h1>
+      <p class="dek">Ten short, plain-language slide decks on the core of the AI conversation — calibrated for legislators, school boards, agency staff, small businesses, clinicians, manufacturers, and citizens.</p>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container intro-inner">
+      <p>SCAIO Learn is the public-facing education layer of the South Carolina Artificial Intelligence Observatory. The primers below are designed to be opened in 10 minutes — read straight through, navigated with arrow keys, or referenced one slide at a time.</p>
+      <p>Each primer covers one audience and one set of questions: <strong>what AI is, what it does, what it does not do, what's already happening in South Carolina, and what would help</strong>. The writing is plainspoken, the examples are SC-specific, and the editorial posture matches the rest of SCAIO's work — <em>positive, constructive, neutral, and honest about what we know.</em></p>
+      <p>These primers are step one of a Phase 4 education effort. The same content will become avatar-narrated short videos as the work develops. Suggestions, corrections, and topic requests are welcome at <a href="../index.html#contact" style="color: var(--blue); font-weight: 600;">scaio.org/#contact</a>.</p>
+    </div>
+  </section>
+
+  <section class="primers">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="kicker">The Primers</div>
+        <h2>Ten 10-minute decks.</h2>
+        <p>Click any card to open the primer. Use the arrow keys to navigate, or press Escape to exit fullscreen.</p>
+      </div>
+
+      <div class="primer-grid">
+
+        <a class="primer-card" href="primer-01-llm.html">
+          <div class="pnum">Primer 01</div>
+          <h3>What is an LLM?</h3>
+          <div class="audience"><strong>For:</strong> Everyone · the foundational primer</div>
+          <p>A plainspoken primer on Large Language Models — what they are, what they can and cannot do, the vocabulary of the policy conversation, and where they already show up in South Carolina.</p>
+          <div class="meta">
+            <span class="length">12 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-02-schools.html">
+          <div class="pnum">Primer 02</div>
+          <h3>AI in SC schools</h3>
+          <div class="audience"><strong>For:</strong> School board members and district leaders</div>
+          <p>A school-board primer on H.5253 (AI in Education), classroom AI realities, equity considerations across SC's 79 districts, eight procurement questions, and a starter model board policy.</p>
+          <div class="meta">
+            <span class="length">12 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-03-procurement.html">
+          <div class="pnum">Primer 03</div>
+          <h3>AI procurement for SC government</h3>
+          <div class="audience"><strong>For:</strong> Legislators and agency staff</div>
+          <p>Procurement is policy. Five contract questions every SC contracting officer should ask, federal templates SC can borrow, peer-state precedents, and five concrete moves a legislator can make without new law.</p>
+          <div class="meta">
+            <span class="length">12 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-04-synthetic-media.html">
+          <div class="pnum">Primer 04</div>
+          <h3>Spotting synthetic media</h3>
+          <div class="audience"><strong>For:</strong> Voters, journalists, civic groups</div>
+          <p>Deepfakes, voice cloning, and AI-generated content — what to know, what habits work better than trying to spot fakes by eye, the SC-specific risks worth planning for, and who to contact when something circulates.</p>
+          <div class="meta">
+            <span class="length">11 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-05-small-business.html">
+          <div class="pnum">Primer 05</div>
+          <h3>AI for SC small businesses</h3>
+          <div class="audience"><strong>For:</strong> Small-business owners</div>
+          <p>Six use cases that work today, a realistic cost picture, three risks to plan around, five questions before adopting any AI tool, and where to start in priority order. Practical, not theoretical.</p>
+          <div class="meta">
+            <span class="length">11 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-06-healthcare.html">
+          <div class="pnum">Primer 06</div>
+          <h3>Healthcare AI in South Carolina</h3>
+          <div class="audience"><strong>For:</strong> Clinicians, hospital boards, patient advocates</div>
+          <p>What clinical AI deployment looks like in SC today — MUSC, the Clemson–MUSC AI Hub, S.443 (Health Claims and AI), the two-tiered risk between major systems and rural hospitals, and three questions for every clinical-AI deployment.</p>
+          <div class="meta">
+            <span class="length">11 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-07-manufacturing.html">
+          <div class="pnum">Primer 07</div>
+          <h3>AI in SC manufacturing</h3>
+          <div class="audience"><strong>For:</strong> Plant managers, workforce officials, suppliers</div>
+          <p>The SC manufacturing base, the Figure AI / BMW Spartanburg pilot in context, four categories of applied AI on plant floors today, the workforce question, and the applied industrial-AI consortium proposal.</p>
+          <div class="meta">
+            <span class="length">11 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-08-local-gov.html">
+          <div class="pnum">Primer 08</div>
+          <h3>AI for SC local government</h3>
+          <div class="audience"><strong>For:</strong> Municipal / county officials, IT directors</div>
+          <p>Where AI shows up in local government, the cybersecurity surface (phishing, voice cloning, ransomware), a five-point cyber-readiness checklist, procurement basics, and three shared-infrastructure moves SC is positioned to make.</p>
+          <div class="meta">
+            <span class="length">10 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-09-legislator-glossary.html">
+          <div class="pnum">Primer 09</div>
+          <h3>A legislator's AI glossary</h3>
+          <div class="audience"><strong>For:</strong> SC General Assembly members and legislative staff</div>
+          <p>25 key AI terms in plain language, calibrated for South Carolina legislators. Cross-referenced to SC legislation. Designed as a quick-reference card, not a sequential read.</p>
+          <div class="meta">
+            <span class="length">8 slides · ~6 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+        <a class="primer-card" href="primer-10-sc-landscape.html">
+          <div class="pnum">Primer 10</div>
+          <h3>The South Carolina AI landscape</h3>
+          <div class="audience"><strong>For:</strong> Anyone new to the conversation · orientation deck</div>
+          <p>A 10-minute orientation to SC's AI ecosystem — the five regions, the four institutional anchors, the policy picture, the major applied deployments, and where to go next inside SCAIO.</p>
+          <div class="meta">
+            <span class="length">10 slides · ~10 min</span>
+            <span class="open-link">Open primer →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="coming-up">
+    <div class="container coming-up-inner">
+      <div class="kicker">What's next</div>
+      <h2>Primers become videos.</h2>
+      <p>The same content will become avatar-narrated short videos as Phase 4 develops — first-person delivery, 5-10 minute runtime, designed for sharing in committee meetings, district trainings, and short-form social distribution.</p>
+      <p>SCAIO is also developing primers on additional audiences: county council members, AI in agriculture, AI for SC nonprofits, AI in the courts. If your audience would benefit from a primer not listed here, <a href="../index.html#contact">tell us</a>.</p>
+    </div>
+  </section>
+
+  <footer class="footer-mini">
+    <div class="container">
+      <div>SCAIO · The South Carolina Artificial Intelligence Observatory</div>
+      <div>
+        <a href="../index.html">Home</a> · <a href="../report/">Flagship Report</a> · <a href="../index.html#journal">Journal</a> · <a href="../index.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

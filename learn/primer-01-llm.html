@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer 01 — What is an LLM? · SCAIO Learn</title>
+  <meta name="description" content="A 10-minute, plainspoken primer on the technology behind the AI conversation in South Carolina." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer 01</div>
+      <h1 class="deck-title">What is an LLM?</h1>
+      <p class="subtitle">A 10-minute, plainspoken primer on the technology behind the AI conversation in South Carolina.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The simplest definition</div>
+      <h2 class="slide-title">A program that learned to predict the next word in a sentence — and got very good at it.</h2>
+      <div class="slide-body">
+        <p>An LLM — <strong>Large Language Model</strong> — is a statistical pattern-matcher trained on enormous amounts of text. Its core capability is deceptively narrow: given a sequence of words, predict what word comes next.</p>
+        <p>What makes modern LLMs remarkable is that doing this prediction well, at scale, turns out to require something that looks a lot like reasoning about language, facts, and tasks.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why this matters now</div>
+      <h2 class="slide-title">Three things changed at roughly the same time.</h2>
+      <ul class="bullet-list">
+        <li><strong>Scale.</strong> Models trained on trillions of words, run on tens of thousands of chips, produced qualitatively different behavior than smaller models.</li>
+        <li><strong>Cost collapse.</strong> The price of running a query against a capable model has fallen by 90 percent or more in two years — and continues to fall.</li>
+        <li><strong>Integration.</strong> Capable models are now embedded in the productivity tools nearly every white-collar worker already uses — email, search, document drafting, customer service.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What modern LLMs can actually do</div>
+      <h2 class="slide-title">Most of the value sits in four buckets.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Drafting</div>
+          <h3>First drafts of language</h3>
+          <p>Emails, memos, policy summaries, public communications, agency notices. The first draft, not the final one.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · Synthesis</div>
+          <h3>Summarizing complex material</h3>
+          <p>Long documents, multi-source briefings, regulatory text, public testimony. Compression with reasonable accuracy.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Translation</div>
+          <h3>Across languages and registers</h3>
+          <p>Spanish-English, plain language from technical, statute-to-summary, executive briefing from raw notes.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">04 · Code</div>
+          <h3>Software, queries, automation</h3>
+          <p>Increasingly capable at writing, reviewing, and debugging code in most programming languages.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What they cannot reliably do — yet</div>
+      <h2 class="slide-title">Honest limits matter as much as honest capabilities.</h2>
+      <ul class="bullet-list">
+        <li><strong>Cite their sources.</strong> Without specific tooling, LLMs will produce confident-sounding text without verifiable references — and sometimes invent them.</li>
+        <li><strong>Know what they don't know.</strong> Most models will answer in the same tone whether they are sure or guessing. Calibration is improving but imperfect.</li>
+        <li><strong>Operate without supervision on stakes-bearing decisions.</strong> Legal advice, medical diagnosis, eligibility determinations — all still require human judgment.</li>
+        <li><strong>Remain current.</strong> Models have a training cutoff; without web-search tools, they don't know what happened after that date.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Vocabulary for the policy conversation</div>
+      <h2 class="slide-title">Five terms worth knowing.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">Hallucination</div>
+          <h3>When a model invents</h3>
+          <p>A confidently stated fact that isn't true. Less common in newer models but never zero.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Prompt</div>
+          <h3>What you give the model</h3>
+          <p>The instruction or context the user provides. The same model produces very different output with different prompts.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Fine-tuning</div>
+          <h3>Specializing a model</h3>
+          <p>Additional training on a narrower dataset to improve performance on a specific task or domain.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">RAG</div>
+          <h3>Retrieval-Augmented Generation</h3>
+          <p>Letting the model look things up in a curated source before answering. Reduces hallucination on factual questions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Where this shows up in South Carolina</div>
+      <h2 class="slide-title">Concrete deployments already in production in SC.</h2>
+      <ul class="bullet-list">
+        <li><strong>MUSC's deployment of DAX Copilot</strong> for ambient clinical documentation across the health system.</li>
+        <li><strong>The state's "Bradley" AI assistant</strong> in the Department of Administration / Center of Excellence pilot.</li>
+        <li><strong>BMW Spartanburg's pilot with Figure AI</strong> — humanoid robotics that incorporate LLMs in their perception and planning stack.</li>
+        <li><strong>Mercedes-Benz Vans and Volvo</strong> use computer-vision quality systems alongside LLM-augmented engineering workflows.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="quote">An LLM is not a thinking machine. It is a pattern-matching machine that has gotten so good at the patterns of language that the boundary between pattern-matching and thinking matters less than it used to."</p>
+      <div class="kicker" style="color: var(--muted);">A working definition for the policy conversation</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What this means for SC policy</div>
+      <h2 class="slide-title">Three questions worth asking about any AI deployment.</h2>
+      <ul class="bullet-list">
+        <li><strong>What does the model do well?</strong> Drafting, synthesis, translation, code — yes. Final decisions on people's lives — not without supervision.</li>
+        <li><strong>How do we know it's working?</strong> Evaluation is most of the AI deployment job. Without it, deployment is just hoping.</li>
+        <li><strong>Who's accountable when it's wrong?</strong> The accountability question doesn't disappear because the decision was AI-assisted. It usually concentrates.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="big-stat">~90%</div>
+      <p class="big-stat-label">Drop in the cost of running a query against a capable LLM over the past 24 months. The economics of AI deployment are moving, not stable.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">A practical posture</div>
+      <h2 class="slide-title">For South Carolinians making decisions about AI:</h2>
+      <div class="slide-body">
+        <p><strong>Treat it as software, not magic.</strong> Same questions of procurement, evaluation, security, accountability, and oversight apply.</p>
+        <p><strong>Measure the present, don't predict the future.</strong> What does this tool actually do today, in your context, against your evaluation criteria? Forecasts of what AI will do in five years are mostly speculation.</p>
+        <p><strong>Pilot before you scale.</strong> Most deployments fail not because the technology doesn't work but because the integration with existing process and people wasn't designed for.</p>
+      </div>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">Where SCAIO comes in</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>SCAIO is an independent observatory tracking AI's impact on South Carolina — its economy, workforce, institutions, and citizens. Browse more primers, the flagship report, and the SCAIO Journal at <a href="../index.html">scaio.org</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 12</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>

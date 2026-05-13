@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer 08 — AI for SC Local Government · SCAIO Learn</title>
+  <meta name="description" content="A primer for South Carolina municipal and county officials, IT directors, and clerks on practical AI adoption and the cybersecurity surface." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer 08</div>
+      <h1 class="deck-title">AI for South Carolina local government.</h1>
+      <p class="subtitle">For municipal and county officials, IT directors, and clerks — a primer on practical AI adoption and the cybersecurity surface.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why this matters at the local level</div>
+      <h2 class="slide-title">Local governments touch AI in three places at once.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Internal use</div>
+          <h3>Staff productivity, drafting, scheduling</h3>
+          <p>Council agendas, public communications, permitting workflows, FOIA responses, scheduling. The first place AI shows up in any government workflow.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · Citizen-facing services</div>
+          <h3>Chatbots, FAQ, language access</h3>
+          <p>24/7 inquiry answering, multi-language access, automated form intake. Increasingly visible in city and county service portals.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Cybersecurity exposure</div>
+          <h3>The risk side of the same technology</h3>
+          <p>AI lowers the cost of phishing, voice cloning, and other social-engineering attacks aimed at exactly the kind of institution most local governments are.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Practical first steps</div>
+      <h2 class="slide-title">Three places to start that pay for themselves quickly.</h2>
+      <ul class="bullet-list">
+        <li><strong>Drafting and summarization.</strong> A $20/mo capable model can save staff hours per week on drafting council agendas, public-communications first drafts, and summaries of long materials. The single highest-ROI starting point.</li>
+        <li><strong>Translation and accessibility.</strong> Real-time and document translation has improved dramatically. For SC counties with growing Spanish-speaking populations, this is a meaningful civic-access improvement.</li>
+        <li><strong>FAQ automation.</strong> A focused AI chatbot trained on your published policies, permits, and FAQs can answer the long tail of citizen questions outside business hours, freeing staff to focus on the cases that need human judgment.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The cybersecurity surface</div>
+      <h2 class="slide-title">Three threat categories aimed at local government.</h2>
+      <div class="threat-row">
+        <div class="threat-card">
+          <div class="num">01</div>
+          <div>
+            <div class="label">Threat</div>
+            <h4>AI-augmented phishing</h4>
+            <p>Well-written, contextually appropriate phishing emails — in the recipient's writing style, referencing real internal projects. The traditional warning signs (typos, awkward phrasing) no longer apply.</p>
+          </div>
+        </div>
+        <div class="threat-card">
+          <div class="num">02</div>
+          <div>
+            <div class="label">Threat</div>
+            <h4>Voice cloning</h4>
+            <p>A cloned voice of a mayor, county administrator, or CFO requesting an urgent wire or beneficiary change. Public-sector loss reports have measurably risen.</p>
+          </div>
+        </div>
+        <div class="threat-card">
+          <div class="num">03</div>
+          <div>
+            <div class="label">Threat</div>
+            <h4>Ransomware via AI-discovered vulnerabilities</h4>
+            <p>Attackers use LLMs to assist with vulnerability discovery and exploit development. The patch-to-exploit window has compressed. Most exposed: legacy on-premises systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="quote">The institutions most exposed to AI-driven cyberattacks are the ones with the largest information footprints relative to their security budgets — and that is most municipal and county government in the United States."</p>
+      <div class="kicker" style="color: var(--muted);">From SCAIO's cybersecurity Journal article</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">A short cyber-readiness checklist</div>
+      <h2 class="slide-title">Five things every SC local government should check this year.</h2>
+      <ul class="checklist">
+        <li><strong>Multi-factor authentication</strong> for every staff and elected-official account, no exceptions.</li>
+        <li><strong>Wire/payment-change verification protocol</strong> that requires a known-channel callback for any payment or beneficiary change request, regardless of how convincing the sender sounds.</li>
+        <li><strong>Synthetic-media awareness training</strong> for staff and elected officials, covering voice cloning and impersonation specifically.</li>
+        <li><strong>Backup and recovery posture</strong> tested in the last 12 months — assume ransomware will eventually try you.</li>
+        <li><strong>Incident-response contact list</strong> including SLED Cyber, the FBI Columbia field office, CISA Region 4, and your county's mutual-aid IT partners.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Five questions before any AI vendor pitch</div>
+      <h2 class="slide-title">The procurement basics, abbreviated.</h2>
+      <ul class="bullet-list">
+        <li><strong>What data does the tool collect, and where does it go?</strong> Local-government data is a different category from commercial data.</li>
+        <li><strong>Do you use our data to train your models?</strong> The default should be no for any government deployment.</li>
+        <li><strong>What evidence shows this tool works for our use case?</strong> A pilot in a comparable local-government environment matters more than vendor case studies.</li>
+        <li><strong>What are the documented failure modes?</strong> Every AI system has them. Honest vendors will tell you.</li>
+        <li><strong>What are our exit terms?</strong> Data export, contract termination, transition support.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Where to go for help in South Carolina</div>
+      <h2 class="slide-title">SC-specific resources.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">Member organization</div>
+          <h3>Municipal Association of South Carolina</h3>
+          <p>The statewide member organization for SC cities and towns. Model policies, training, and peer-municipality connections.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Member organization</div>
+          <h3>SC Association of Counties</h3>
+          <p>The statewide member organization for SC counties. Model policies, group purchasing, and peer-county collaboration.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Cybersecurity</div>
+          <h3>SC Cyber Initiative · SLED Cyber · CISA Region 4</h3>
+          <p>Threat-intelligence sharing, training, and incident-response partnerships available to SC local governments.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">State coordination</div>
+          <h3>SC AI Center of Excellence</h3>
+          <p>State-level convening for AI governance. Useful reference for local governments developing AI procurement and use guidance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What would help, statewide</div>
+      <h2 class="slide-title">Three shared-infrastructure moves that would lift every SC local government.</h2>
+      <ul class="bullet-list">
+        <li><strong>Shared procurement of AI-aware email and identity controls</strong> for smaller municipalities and counties. Statewide buying power lowers the floor of cyber posture without raising local budgets.</li>
+        <li><strong>Model AI use and procurement policies</strong> produced by the Municipal Association and SC Association of Counties — adaptable rather than written from scratch in every jurisdiction.</li>
+        <li><strong>An AI-aware threat-intelligence channel</strong> coordinated through SC Cyber Initiative, SLED, and CISA Region 4, with a defined feed for local governments.</li>
+      </ul>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">SCAIO Learn</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>For more on AI in SC public institutions, read SCAIO's cybersecurity Journal article <a href="../scaio-article-cybersecurity.html">"AI, cybersecurity, and public risk in the Palmetto State"</a> and <a href="../report/chapter-07-risks-and-opportunities.html">Chapter 7</a> of the flagship report.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 10</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>

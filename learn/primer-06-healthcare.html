@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer 06 — Healthcare AI in South Carolina · SCAIO Learn</title>
+  <meta name="description" content="What clinical AI deployment looks like in South Carolina today — for clinicians, hospital boards, and patient advocates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer 06</div>
+      <h1 class="deck-title">Healthcare AI in South Carolina.</h1>
+      <p class="subtitle">What clinical AI deployment looks like in SC today — for clinicians, hospital boards, and patient advocates.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The picture in South Carolina</div>
+      <h2 class="slide-title">SC is among the most active states in the country for applied clinical AI.</h2>
+      <div class="slide-body">
+        <p>The combination of MUSC's Center for AI, the joint Clemson–MUSC AI Hub for Healthcare and Life Sciences, Hollings Cancer Center (an NCI-designated comprehensive cancer center), and the deployment capacity of Prisma Health and the broader hospital network makes South Carolina an unusually substantive applied-AI environment for healthcare.</p>
+        <p>The question for SC is not whether clinical AI will arrive. It already has. The question is how it gets deployed.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What's already in use in SC</div>
+      <h2 class="slide-title">Four categories of clinical AI currently deployed.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Ambient documentation</div>
+          <h3>DAX Copilot at MUSC</h3>
+          <p>Voice-driven AI that listens to a clinical encounter and produces draft notes for the EHR. Among the highest-volume clinical-AI deployments at MUSC.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · Diagnostic imaging</div>
+          <h3>AI-assisted radiology and pathology</h3>
+          <p>Image-analysis models that flag potential findings for clinician review. MUSC's Pap-smear AI work has drawn national attention.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Operational AI</div>
+          <h3>Scheduling, billing, prior-auth</h3>
+          <p>Back-office AI for appointment scheduling, claims processing, prior authorization, and revenue-cycle management. The most invisible category to patients.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">04 · Predictive risk</div>
+          <h3>Sepsis, readmission, deterioration</h3>
+          <p>Models trained on patient data that flag patients at elevated risk for specific events. Increasingly common in academic medical centers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What the state has legislated</div>
+      <h2 class="slide-title">S.443 — Health Claims and AI.</h2>
+      <div class="slide-body">
+        <p>South Carolina's <strong>S.443</strong> establishes guardrails around AI use in insurance prior-authorization decisions — specifically, the requirement that AI tools used to deny coverage be subject to physician review, and that determinations not rest on AI output alone.</p>
+        <p>The bill addresses one of the clinical-AI use cases that creates the clearest patient-impact risk. It does not address the broader landscape of clinical-AI deployment — that remains a question of institutional governance, vendor contracting, and clinical practice.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The two-tiered risk</div>
+      <h2 class="slide-title">A clinical-AI deployment gap that needs naming.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">High-resource end</div>
+          <h3>MUSC, Prisma, major systems</h3>
+          <p>Have the resources, governance structures, and clinical-AI expertise to deploy carefully. Active AI governance committees, evaluation infrastructure, and informed clinical leadership.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Rural-hospital end</div>
+          <h3>Smaller systems and critical-access</h3>
+          <p>Deployment decisions often made by vendors and consultants rather than clinicians and patients. Smaller security budgets, less governance bandwidth, more vendor dependency.</p>
+        </div>
+      </div>
+      <div class="slide-body" style="margin-top: 20px;">
+        <p>The gap between these two tiers is where a thoughtful statewide approach could be most valuable.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="quote">South Carolina has the institutional capacity to lead nationally on responsible clinical AI deployment. The question is whether the leadership at MUSC reaches the smaller hospitals fast enough to matter."</p>
+      <div class="kicker" style="color: var(--muted);">A working frame for the SC clinical-AI conversation</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Three questions for any clinical-AI deployment</div>
+      <h2 class="slide-title">Questions clinicians and hospital boards should ask.</h2>
+      <div class="question-card">
+        <div class="num">Q1</div>
+        <h3>What evidence shows this tool produces the outcomes the vendor claims, in patients like ours?</h3>
+        <p>Independent peer-reviewed evidence on a comparable population is the floor. Vendor-supplied "case studies" are not evidence.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q2</div>
+        <h3>How does the tool perform across demographic subgroups?</h3>
+        <p>AI tools trained on non-representative data can perform meaningfully worse on under-represented populations. The bias-audit question is now a standard part of clinical-AI evaluation.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q3</div>
+        <h3>What happens when the tool is wrong, and who is accountable?</h3>
+        <p>Every clinical-AI tool has failure modes. The institution that deploys it owns those failure modes — not the vendor. The governance question deserves explicit attention.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">What would help, statewide</div>
+      <h2 class="slide-title">A voluntary clinical-AI deployment standard for SC.</h2>
+      <div class="slide-body">
+        <p>SCAIO's flagship report (<a href="../report/chapter-08-a-path-forward.html">Chapter 8, Recommendation 8</a>) proposes a voluntary statewide standard for clinical-AI deployment, jointly developed by MUSC and the SC Hospital Association.</p>
+        <p>The standard would not be a mandate. It would be a published reference — covering evidence requirements, bias auditing, patient-disclosure practices, governance structures, and a deployment template smaller systems can adopt without rebuilding it themselves.</p>
+        <p>The work is supported by national reference frameworks (Coalition for Health AI / CHAI), peer-state precedents (Texas, California), and SC's existing institutional alignment.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Where to go for help in South Carolina</div>
+      <h2 class="slide-title">SC-specific resources for healthcare AI work.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">Academic</div>
+          <h3>MUSC Center for AI</h3>
+          <p>Clinical-AI research, deployment governance, and applied research portfolio at the state's largest academic medical center.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Academic</div>
+          <h3>Clemson–MUSC AI Hub for Healthcare and Life Sciences</h3>
+          <p>Joint hub combining Clemson's computational research with MUSC's clinical environment. Strong applied-research portfolio.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Member organization</div>
+          <h3>SC Hospital Association</h3>
+          <p>Statewide hospital member organization. Natural co-convener for a SC-specific clinical-AI deployment standard.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Policy</div>
+          <h3>SC Department of Insurance</h3>
+          <p>S.443 oversight authority. Where prior-authorization questions and disputes route.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">For patients</div>
+      <h2 class="slide-title">Three things worth knowing.</h2>
+      <ul class="bullet-list">
+        <li><strong>If you are receiving care at MUSC, your visit may be transcribed by AI.</strong> Ambient documentation tools (like DAX Copilot) listen to the encounter and produce draft notes. Your clinician reviews them; you can decline.</li>
+        <li><strong>If an insurance decision was AI-assisted, you have rights under S.443.</strong> AI-only denials are not allowed. Physician review is required. The Department of Insurance is the route for disputes.</li>
+        <li><strong>Patient data flowing through AI tools is a vendor-contract question.</strong> Your provider can tell you what tools they use and what their data-handling commitments are.</li>
+      </ul>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">SCAIO Learn</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>SCAIO tracks AI's impact on South Carolina healthcare and other public-interest sectors. Browse more primers and the flagship report at <a href="../index.html">scaio.org</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 11</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>

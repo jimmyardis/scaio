@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer 03 — AI Procurement for SC Government · SCAIO Learn</title>
+  <meta name="description" content="A primer for legislators and agency staff on the most powerful policy lever the state already has." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer 03</div>
+      <h1 class="deck-title">AI procurement for South Carolina government.</h1>
+      <p class="subtitle">A primer for legislators and agency staff on the most powerful policy lever the state already has.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The thesis</div>
+      <h2 class="slide-title">Procurement is policy.</h2>
+      <div class="slide-body">
+        <p>South Carolina's state agencies, technical-college system, and public-university system collectively spend significant amounts on enterprise software each year. That spending is the <em>most powerful AI policy lever the state already controls</em> — and it does not require new legislation to use.</p>
+        <p>What South Carolina chooses to buy, from whom, on what terms, will shape the AI vendor ecosystem more than any individual bill that passes this session.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The two layers of AI procurement</div>
+      <h2 class="slide-title">What's in the contract is half the work.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">Layer 1 · Contract</div>
+          <h3>What's in writing</h3>
+          <p>Data flows, training-data use, vendor disclosures, audit rights, exit terms, evaluation requirements, security commitments. Set at acquisition.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Layer 2 · Operations</div>
+          <h3>What happens in practice</h3>
+          <p>Day-to-day deployment, evaluation, human oversight, model-output review, security operations, retraining cycles. Set after acquisition.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Five questions every SC contracting officer should ask</div>
+      <h2 class="slide-title">Five contract terms that change everything.</h2>
+      <div class="question-card">
+        <div class="num">Q1</div>
+        <h3>What data does the vendor's tool collect, and where does it go?</h3>
+        <p>The single most important question. Government data flowing to vendors is a different category from commercial data.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q2</div>
+        <h3>Does the vendor use our data to train models? On what terms can we opt out?</h3>
+        <p>The default for most consumer AI services is yes. The default for government AI services should be no — and the contract should say so.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q3</div>
+        <h3>What evidence is there that this tool works for our use case?</h3>
+        <p>Vendor claims are not evidence. Independent evaluation, comparable deployments, or a piloted result in our environment is.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Five questions (continued)</div>
+      <h2 class="slide-title">Two more contract terms that matter.</h2>
+      <div class="question-card">
+        <div class="num">Q4</div>
+        <h3>What are the documented failure modes, and what happens when the tool is wrong?</h3>
+        <p>Every AI system has failure modes. The question is whether the vendor will document them honestly and what the operational response is when they occur.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q5</div>
+        <h3>What are our exit terms?</h3>
+        <p>If we stop using this tool, what happens to our data? Can we get it back? In what format? On what timeline? Lock-in is the silent cost of AI procurement.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="quote">If South Carolina's agencies all asked the same five questions of every AI vendor, the SC vendor market would change in 18 months. That is the lever."</p>
+      <div class="kicker" style="color: var(--muted);">The coordination dividend</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">A standard SC could publish</div>
+      <h2 class="slide-title">What a shared procurement guidance document would do.</h2>
+      <ul class="bullet-list">
+        <li><strong>Name the disclosures.</strong> What vendors must say about training data, model evaluation, deployment limits, and known failure modes.</li>
+        <li><strong>Define the preferences.</strong> Vendors that meet specific standards (transparent data practices, SC-based deployment partners, workforce commitments) get evaluation preference.</li>
+        <li><strong>Provide the contracting language.</strong> A model set of clauses any SC agency can borrow rather than draft from scratch.</li>
+        <li><strong>Set the evaluation criteria.</strong> What "working" means for the tool, how it gets measured, and who reviews the result.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Federal templates SC can borrow</div>
+      <h2 class="slide-title">SC does not need to write this from scratch.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">NIST AI RMF</div>
+          <h3>National risk-management framework</h3>
+          <p>The default reference for evaluating AI risk. SC can adopt or adapt; most peer states already have.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">OMB M-24-10</div>
+          <h3>Federal-agency AI standards</h3>
+          <p>The federal model for AI-use inventories, evaluation, and oversight. Provides consistency anchors SC agencies can borrow.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">GSA · GenAI guide</div>
+          <h3>Federal acquisition guidance</h3>
+          <p>The General Services Administration's AI acquisition guidance offers usable contract templates that SC can adapt locally.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Peer-state precedents</div>
+      <h2 class="slide-title">States doing this already.</h2>
+      <ul class="bullet-list">
+        <li><strong>California's GenAI procurement guidance</strong> (under EO N-12-23) — the most developed state-level template.</li>
+        <li><strong>New York City's Algorithmic Tools registry</strong> — the longest-running municipal AI-use registry.</li>
+        <li><strong>Pennsylvania's Generative AI Governing Board</strong> — executive-branch cross-sector coordination.</li>
+        <li><strong>Texas Workforce Commission · High Demand Job Training</strong> — workforce-aligned procurement preferences.</li>
+        <li><strong>Maryland AI Subcabinet</strong> — agency-level AI guidance with a procurement-preferences component.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The SC opportunity</div>
+      <h2 class="slide-title">Two institutions already positioned to lead this.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">Materials Management Office</div>
+          <h3>The SC procurement function</h3>
+          <p>Within the Department of Administration. Already manages statewide procurement standards, contracts, and vendor coordination across agencies. The institutional home for AI procurement guidance.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">AI Center of Excellence</div>
+          <h3>The SC AI policy function</h3>
+          <p>Established under the 2024 AI Strategy. Convenes agency staff, universities, and private companies. The natural counterpart to MMO on the AI-specific content of guidance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Five things a legislator can do</div>
+      <h2 class="slide-title">Concrete moves that do not require new law.</h2>
+      <ul class="bullet-list">
+        <li><strong>Request a public AI use-case inventory</strong> from your committee oversight. The data exists; consolidation is the work.</li>
+        <li><strong>Ask agency leadership about AI procurement standards</strong> at budget hearings. The question itself moves the conversation.</li>
+        <li><strong>Coordinate with the Center of Excellence and Materials Management Office</strong> on a shared procurement guidance document. Convening is the lever.</li>
+        <li><strong>Champion the workforce angle.</strong> Procurement preferences for SC-based deployment partners and workforce commitments turn AI spending into economic-development policy.</li>
+        <li><strong>Support sustained legislative-staff training</strong> on AI procurement specifically. The capacity to evaluate vendor claims is itself a public good.</li>
+      </ul>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">SCAIO Learn</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>SCAIO is an independent observatory tracking AI's impact on South Carolina. Browse more primers, the flagship report, and the SCAIO Journal at <a href="../index.html">scaio.org</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 12</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>
