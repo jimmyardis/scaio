@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>South Carolina AI Policy Database — SCAIO</title>
+  <meta name="description" content="A filterable database of South Carolina AI policy — enacted laws, legislation that moved through the General Assembly, and the agency, court, Attorney General, and federal developments shaping AI in the Palmetto State." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-2: #eef4fb;
+      --text: #142133;
+      --muted: #5b6a7b;
+      --border: #d9e4f2;
+      --navy: #081a36;
+      --navy-2: #0a2a54;
+      --blue: #0b4ea2;
+      --blue-2: #1f64cc;
+      --blue-soft: #d9e9ff;
+      --shadow: 0 14px 34px rgba(10, 42, 84, 0.08);
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 40;
+    }
+    .site-bar .logo { font-family: "Libre Baskerville", serif; font-size: 1.15rem; color: #fff; letter-spacing: 0.04em; }
+    .site-bar .back { font-size: 0.8rem; color: rgba(185,214,255,0.85); }
+
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .page-head { padding: 56px 0 28px; }
+    .kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .page-head h1 { font-family: "Libre Baskerville", serif; font-size: clamp(1.9rem, 4.5vw, 2.7rem); color: var(--navy); line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .page-head .dek { font-size: 1.05rem; color: var(--muted); max-width: 760px; line-height: 1.7; }
+    .updated { margin-top: 18px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+    .updated::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #1a6630; }
+
+    .toolbar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 8px 0 22px; border-bottom: 1px solid var(--border); }
+    .search { flex: 1; min-width: 220px; position: relative; }
+    .search input {
+      width: 100%; font-family: inherit; font-size: 0.95rem; color: var(--text);
+      padding: 12px 16px 12px 40px; border: 1px solid var(--border); border-radius: 12px;
+      background: var(--surface); outline: none;
+    }
+    .search input:focus { border-color: var(--blue-2); box-shadow: 0 0 0 3px var(--blue-soft); }
+    .search::before { content: "⌕"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1.1rem; }
+    .result-count { font-size: 0.85rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+    .layout { display: grid; grid-template-columns: 230px 1fr; gap: 28px; padding: 28px 0 90px; align-items: start; }
+
+    .rail { position: sticky; top: 84px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
+    .rail h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .rail h4:not(:first-child) { margin-top: 22px; }
+    .filter { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; border-radius: 9px; cursor: pointer; font-size: 0.9rem; color: var(--text); transition: background 0.12s ease; }
+    .filter:hover { background: var(--surface-2); }
+    .filter.on { background: var(--navy); color: #fff; font-weight: 600; }
+    .filter .ct { font-size: 0.76rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .filter.on .ct { color: rgba(255,255,255,0.75); }
+    .rail-reset { margin-top: 18px; font-size: 0.82rem; color: var(--blue); cursor: pointer; font-weight: 600; }
+    .rail-reset:hover { text-decoration: underline; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+    .item {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      padding: 22px 24px; display: flex; flex-direction: column; box-shadow: var(--shadow);
+    }
+    .item-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+    .item-num { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; color: var(--blue); text-transform: uppercase; }
+    .pill { display: inline-flex; align-items: center; min-height: 24px; padding: 0 11px; border-radius: 999px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+    .pill.law { background: #e6f4ea; color: #146c2e; border: 1px solid #9ed1a8; }
+    .pill.died { background: #f9ecec; color: #a02020; border: 1px solid #f0b8b8; }
+    .pill.passed { background: #fff7ed; color: #b45309; border: 1px solid #fbd7a9; }
+    .pill.active { background: #e8f0fe; color: #1a53c9; border: 1px solid #b3ccf5; }
+    .pill.dev { background: #eef4fb; color: #0b4ea2; border: 1px solid #cfe0f5; }
+    .item h3 { font-size: 1.06rem; color: var(--navy); font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .item p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; }
+    .item-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border); padding-top: 13px; margin-top: auto; }
+    .item-meta { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.03em; }
+    .item-link { font-size: 0.82rem; font-weight: 600; color: var(--blue); white-space: nowrap; }
+    .item-link:hover { text-decoration: underline; }
+
+    .empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--muted); }
+
+    .foot-note { border-top: 1px solid var(--border); padding: 26px 0 60px; font-size: 0.8rem; color: #8a96a7; line-height: 1.7; }
+    .foot-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .rail { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+      .rail h4 { grid-column: 1 / -1; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="../index.html#policy" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="wrap">
+    <div class="page-head">
+      <div class="kicker">Policy Tracker</div>
+      <h1>South Carolina AI Policy Database</h1>
+      <p class="dek">Every item SCAIO tracks in one searchable place — enacted laws, legislation that moved through the General Assembly, and the agency, court, Attorney General, and federal developments shaping AI in the Palmetto State. Filter by status or category, or search by keyword.</p>
+      <div class="updated" id="db-updated"></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search"><input type="text" id="search" placeholder="Search bills and developments…" autocomplete="off" /></div>
+      <div class="result-count" id="result-count"></div>
+    </div>
+
+    <div class="layout">
+      <aside class="rail">
+        <h4>Status</h4>
+        <div id="status-filters"></div>
+        <h4>Category</h4>
+        <div id="category-filters"></div>
+        <div class="rail-reset" id="reset">Reset filters</div>
+      </aside>
+
+      <main>
+        <div class="grid" id="grid"></div>
+      </main>
+    </div>
+
+    <div class="foot-note">
+      Legislation data from <a href="https://www.scstatehouse.gov" target="_blank" rel="noreferrer">scstatehouse.gov</a>; policy developments sourced from the agencies, courts, and outlets noted on each card. Session 126 (2025–2026) adjourned sine die in May 2026; South Carolina bills do not carry between two-year sessions. SCAIO welcomes corrections and additions via the <a href="../index.html#contact">contact form</a>.
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const state = { status: 'all', category: 'all', q: '' };
+      let items = [];
+
+      function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+      function fmtUpdated(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return 'Updated ' + d.toLocaleString('en-US', { month: 'long' }) + ' ' + d.getDate() + ', ' + d.getFullYear(); }
+        catch (e) { return 'Updated ' + dateStr; }
+      }
+
+      function billStatus(status) {
+        const s = (status || '').toLowerCase();
+        if (s.includes('signed') || s.includes('law') || s.includes('act no')) return { bucket: 'law', label: 'Now law', cls: 'law' };
+        if (s.includes('passed senate')) return { bucket: 'died', label: 'Passed Senate · died', cls: 'passed' };
+        if (s.includes('passed house')) return { bucket: 'died', label: 'Passed House · died', cls: 'passed' };
+        if (s.includes('died') || s.includes('dead') || s.includes('failed') || s.includes('vetoed')) return { bucket: 'died', label: 'Died', cls: 'died' };
+        if (s.includes('committee') || s.includes('active') || s.includes('introduced')) return { bucket: 'active', label: 'Active', cls: 'active' };
+        return { bucket: 'active', label: status || 'Unknown', cls: 'active' };
+      }
+
+      const DEV_CATEGORY = {
+        'executive': 'Executive', 'judicial': 'Judicial', 'attorney-general': 'Attorney General',
+        'legislative-oversight': 'Legislative', 'institutional': 'Institutional', 'federal': 'Federal', 'gap': 'Institutional'
+      };
+
+      function chamberOf(num) {
+        const n = (num || '').toUpperCase();
+        if (n.startsWith('H')) return 'House';
+        if (n.startsWith('S')) return 'Senate';
+        return '';
+      }
+
+      Promise.all([
+        fetch('../bills.json').then(r => r.json()).catch(() => null),
+        fetch('../policy-developments.json').then(r => r.json()).catch(() => null)
+      ]).then(([billData, devData]) => {
+        const bills = billData ? (Array.isArray(billData) ? billData : billData.bills || []) : [];
+        const devs = devData ? (devData.developments || []) : [];
+        const updated = (billData && billData.last_updated) || (devData && devData.last_updated);
+        document.getElementById('db-updated').textContent = fmtUpdated(updated) + ' · ' + (bills.length + devs.length) + ' items tracked';
+
+        bills.forEach(b => {
+          const st = billStatus(b.status);
+          const detail = [b.summary, b.explanation].filter(Boolean).join(' ');
+          items.push({
+            kind: 'bill', num: b.bill_number || '', title: b.title || 'Untitled',
+            statusBucket: st.bucket, statusLabel: st.label, statusCls: st.cls,
+            category: 'Legislation', chamber: chamberOf(b.bill_number),
+            dateLabel: b.last_action_date || '', dateSort: b.last_action_date || '0',
+            summary: b.summary || '', url: b.url || '', urlLabel: 'Read full bill text →',
+            search: (b.title + ' ' + b.bill_number + ' ' + detail + ' ' + (b.sponsors || []).join(' ')).toLowerCase()
+          });
+        });
+        devs.forEach(d => {
+          items.push({
+            kind: 'dev', num: (d.type_label || '').split(' · ')[0] || 'Policy', title: d.title || '',
+            statusBucket: 'policy', statusLabel: d.status || 'Policy action', statusCls: 'dev',
+            category: DEV_CATEGORY[d.type] || 'Institutional', chamber: '',
+            dateLabel: d.date_label || '', dateSort: (d.date || '0'),
+            summary: d.summary || '', url: d.url || '', urlLabel: 'Open source →',
+            search: (d.title + ' ' + d.summary + ' ' + (d.source || '') + ' ' + (d.type_label || '')).toLowerCase()
+          });
+        });
+
+        buildFilters();
+        render();
+      });
+
+      function buildFilters() {
+        const statusDefs = [
+          { key: 'all', label: 'All' },
+          { key: 'law', label: 'Now law', test: i => i.statusBucket === 'law' },
+          { key: 'died', label: 'Died in committee', test: i => i.statusBucket === 'died' },
+          { key: 'active', label: 'Active', test: i => i.statusBucket === 'active' },
+          { key: 'policy', label: 'Policy & developments', test: i => i.statusBucket === 'policy' }
+        ];
+        const cats = ['all'].concat(Array.from(new Set(items.map(i => i.category))).sort());
+        const statusEl = document.getElementById('status-filters');
+        const catEl = document.getElementById('category-filters');
+
+        statusEl.innerHTML = statusDefs.map(d => {
+          const n = d.key === 'all' ? items.length : items.filter(d.test).length;
+          return `<div class="filter${state.status === d.key ? ' on' : ''}" data-group="status" data-key="${d.key}"><span>${esc(d.label)}</span><span class="ct">${n}</span></div>`;
+        }).join('');
+
+        catEl.innerHTML = cats.map(c => {
+          const n = c === 'all' ? items.length : items.filter(i => i.category === c).length;
+          return `<div class="filter${state.category === c ? ' on' : ''}" data-group="category" data-key="${esc(c)}"><span>${c === 'all' ? 'All' : esc(c)}</span><span class="ct">${n}</span></div>`;
+        }).join('');
+
+        document.querySelectorAll('.filter').forEach(f => {
+          f.addEventListener('click', () => {
+            const g = f.getAttribute('data-group'), k = f.getAttribute('data-key');
+            state[g] = k;
+            buildFilters();
+            render();
+          });
+        });
+      }
+
+      function matches(i) {
+        if (state.status !== 'all') {
+          if (state.status === 'law' && i.statusBucket !== 'law') return false;
+          if (state.status === 'died' && i.statusBucket !== 'died') return false;
+          if (state.status === 'active' && i.statusBucket !== 'active') return false;
+          if (state.status === 'policy' && i.statusBucket !== 'policy') return false;
+        }
+        if (state.category !== 'all' && i.category !== state.category) return false;
+        if (state.q && i.search.indexOf(state.q) === -1) return false;
+        return true;
+      }
+
+      function render() {
+        const grid = document.getElementById('grid');
+        const list = items.filter(matches).sort((a, b) => (b.dateSort > a.dateSort ? 1 : b.dateSort < a.dateSort ? -1 : 0));
+        document.getElementById('result-count').textContent = list.length + (list.length === 1 ? ' result' : ' results');
+        if (!list.length) {
+          grid.innerHTML = '<div class="empty-state">No items match these filters. <span style="color:var(--blue);cursor:pointer" id="clear2">Clear filters</span></div>';
+          const c2 = document.getElementById('clear2'); if (c2) c2.addEventListener('click', resetAll);
+          return;
+        }
+        grid.innerHTML = list.map(i => `
+          <article class="item">
+            <div class="item-top">
+              <span class="item-num">${esc(i.num)}</span>
+              <span class="pill ${i.statusCls}">${esc(i.statusLabel)}</span>
+            </div>
+            <h3>${esc(i.title)}</h3>
+            <p>${esc(i.summary)}</p>
+            <div class="item-foot">
+              <span class="item-meta">${esc(i.category)}${i.chamber ? ' · ' + esc(i.chamber) : ''}${i.dateLabel ? ' · ' + esc(i.dateLabel) : ''}</span>
+              ${i.url ? `<a class="item-link" href="${esc(i.url)}" target="_blank" rel="noreferrer">${esc(i.urlLabel)}</a>` : ''}
+            </div>
+          </article>
+        `).join('');
+      }
+
+      function resetAll() {
+        state.status = 'all'; state.category = 'all'; state.q = '';
+        document.getElementById('search').value = '';
+        buildFilters(); render();
+      }
+
+      document.getElementById('search').addEventListener('input', e => {
+        state.q = e.target.value.trim().toLowerCase();
+        render();
+      });
+      document.getElementById('reset').addEventListener('click', resetAll);
+    })();
+  </script>
+
+</body>
+</html>

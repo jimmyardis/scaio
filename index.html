@@ -473,6 +473,56 @@
     }
     .legislation-updated:empty { display: none; }
 
+    /* ── Policy Tracker lanes (homepage) ── */
+    .policy-cta {
+      display: inline-block; background: var(--navy); color: #fff;
+      padding: 14px 32px; border-radius: 999px; font-weight: 600;
+      letter-spacing: 0.04em; font-size: 0.96rem; transition: background 0.15s ease;
+    }
+    .policy-cta:hover { background: var(--blue); }
+
+    .pt-lane { margin-bottom: 20px; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--surface); box-shadow: var(--shadow); }
+    .pt-lane-head { display: flex; align-items: center; justify-content: space-between; padding: 15px 24px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    .pt-lane-name { font-weight: 700; color: var(--navy); font-size: 1.02rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 11px; }
+    .pt-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .pt-dot.law { background: #1a6630; }
+    .pt-dot.active { background: #1a53c9; }
+    .pt-dot.died { background: #a02020; }
+    .pt-dot.dev { background: #b45309; }
+    .pt-lane-count { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    .pt-row { border-top: 1px solid var(--border); }
+    .pt-row:first-child { border-top: none; }
+    .pt-row-head { display: grid; grid-template-columns: 92px 1fr auto 24px; gap: 16px; align-items: center; padding: 15px 24px; cursor: pointer; transition: background 0.13s ease; }
+    .pt-row-head:hover { background: var(--surface-2); }
+    .pt-num { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; color: var(--blue); font-variant-numeric: tabular-nums; }
+    .pt-ti { font-size: 0.97rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
+    .pt-ti .pt-pill { margin-left: 8px; }
+    .pt-teaser { display: block; font-weight: 400; color: var(--muted); font-size: 0.85rem; margin-top: 3px; }
+    .pt-date { font-size: 0.73rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap; text-align: right; }
+    .pt-chev { color: var(--muted); transition: transform 0.18s ease; font-size: 0.85rem; text-align: center; }
+    .pt-row.open .pt-chev { transform: rotate(90deg); }
+
+    .pt-detail { display: none; padding: 0 24px 20px; }
+    .pt-row.open .pt-detail { display: block; }
+    .pt-detail-inner { background: var(--surface-2); border-radius: 12px; padding: 18px 20px; }
+    .pt-detail-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--blue); margin: 0 0 6px; }
+    .pt-detail-label:not(:first-child) { margin-top: 14px; }
+    .pt-detail p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.72; }
+    .pt-detail .pt-link { display: inline-block; margin-top: 14px; color: var(--blue); font-weight: 600; font-size: 0.88rem; }
+    .pt-pill { display: inline-flex; align-items: center; min-height: 22px; padding: 0 10px; border-radius: 999px; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; vertical-align: middle; }
+    .pt-pill.law { background: #e6f4ea; color: #146c2e; border: 1px solid #9ed1a8; }
+    .pt-pill.died { background: #f9ecec; color: #a02020; border: 1px solid #f0b8b8; }
+    .pt-pill.passed { background: #fff7ed; color: #b45309; border: 1px solid #fbd7a9; }
+    .pt-pill.active { background: #e8f0fe; color: #1a53c9; border: 1px solid #b3ccf5; }
+    .pt-pill.dev { background: #eef4fb; color: #0b4ea2; border: 1px solid #cfe0f5; }
+    .pt-empty { padding: 20px 24px; color: var(--muted); font-size: 0.9rem; font-style: italic; }
+
+    @media (max-width: 600px) {
+      .pt-row-head { grid-template-columns: 60px 1fr 20px; }
+      .pt-date { display: none; }
+    }
+
     .bill-impact {
       display: inline-flex;
       align-items: center;
@@ -1017,12 +1067,13 @@
           </ul>
         </article>
         <article class="card site-card">
-          <h3>Policy Tracker</h3>
+          <h3><a href="policy/">Policy Tracker →</a></h3>
           <ul>
-            <li>South Carolina legislation</li>
-            <li>Agency strategy and procurement</li>
+            <li>South Carolina AI legislation</li>
+            <li>Enacted laws and bills that died</li>
+            <li>Agency, court, and Attorney General actions</li>
             <li>Federal developments affecting SC</li>
-            <li>Timeline of AI policy milestones</li>
+            <li>Searchable policy database</li>
           </ul>
         </article>
         <article class="card site-card">
@@ -1071,177 +1122,120 @@
     <div class="container">
       <div class="section-header">
         <div class="section-kicker">Policy Tracker</div>
-        <h2 class="section-title">Policy and governance resources</h2>
+        <h2 class="section-title">South Carolina AI policy at a glance</h2>
         <p class="section-copy">
-          SCAIO tracks South Carolina's AI policy landscape as it develops — strategy documents,
-          committee activity, legislation, and analysis, in one place. The legislation tracker
-          below reflects current bill activity in the South Carolina General Assembly.
+          Enacted laws, bills that moved through the General Assembly, and the agency, court,
+          and federal developments shaping AI in the state — grouped by where they stand, current
+          to the date below. Click any item for detail, or open the full searchable database.
         </p>
+        <p id="policy-updated" class="legislation-updated"></p>
       </div>
 
-      <!-- ── Resource sub-header: Strategy & Governance ── -->
-      <div style="margin-top:0; margin-bottom:6px;">
-        <div class="section-kicker" style="margin-bottom:0;">Strategy &amp; Governance</div>
+      <div id="policy-lanes"></div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="policy/" class="policy-cta">Browse the full policy database →</a>
       </div>
-      <div class="resource-grid">
-
-        <a class="resource-card" href="https://admin.sc.gov/sites/admin/files/Documents/OED/Final%20SC%20AI%20Strategy.pdf" target="_blank" rel="noreferrer">
-          <div class="resource-type">State policy document · June 2024</div>
-          <h3>South Carolina State Agencies AI Strategy</h3>
-          <p>The official framework guiding how state agencies evaluate, adopt, and govern AI — built around the "Protect, Promote, Pursue" principles.</p>
-          <span class="resource-link">Open PDF →</span>
-        </a>
-
-        <a class="resource-card" href="https://abcnews4.com/news/local/state-chief-justice-issues-interim-policy-on-generative-ai-use-for-sc-judicial-branch-wciv-abc-news-4-charleston-sc-south-carolina-supreme-court-chief-justice-john-w-kittredge-artificial-intelligence-chapt-gpt-openai-grok-x-otter" target="_blank" rel="noreferrer">
-          <div class="resource-type">News coverage · SC Judicial Branch</div>
-          <h3>Chief Justice Issues Interim Policy on Generative AI</h3>
-          <p>Chief Justice John Kittredge's interim policy governing generative AI use across the South Carolina judicial branch — one of the first court-system AI policies in the state.</p>
-          <span class="resource-link">Read article →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.ncsc.org/sites/default/files/media/document/AI_Readiness_for_the_State_Courts_2025.pdf" target="_blank" rel="noreferrer">
-          <div class="resource-type">National resource · State courts · 2025</div>
-          <h3>AI Readiness for the State Courts</h3>
-          <p>The National Center for State Courts' 2025 guidance framework — the source document adopted by the SC Supreme Court as the basis for its interim AI policy.</p>
-          <span class="resource-link">Open PDF →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.hstoday.us/subject-matter-areas/ai-and-advanced-tech/south-carolina-unveils-groundbreaking-ai-strategy-to-revolutionize-state-services/" target="_blank" rel="noreferrer">
-          <div class="resource-type">News coverage · July 2024</div>
-          <h3>South Carolina Unveils AI Strategy to Revolutionize State Services</h3>
-          <p>Coverage of the strategy launch, including the establishment of a Center of Excellence and AI Advisory Group to guide agency-level implementation.</p>
-          <span class="resource-link">Read article →</span>
-        </a>
-
-      </div>
-
-      <!-- ── Resource sub-header: Legislative & Oversight ── -->
-      <div style="margin-top:34px; margin-bottom:6px;">
-        <div class="section-kicker" style="margin-bottom:0;">Legislative &amp; Oversight</div>
-      </div>
-      <div class="resource-grid">
-
-        <a class="resource-card" href="https://www.postandcourier.com/politics/artificial-intelligence-ai-sc-lawmakers-committee-cybercrime-legislature/article_f3eb438c-825b-11ee-8429-fb9717b09aea.html" target="_blank" rel="noreferrer">
-          <div class="resource-type">News coverage · November 2023</div>
-          <h3>South Carolina Forms Committee on AI</h3>
-          <p>The Post and Courier's reporting on the formation of the 19-member House AI and cybercrime committee — the first in the nation with power to propose AI legislation.</p>
-          <span class="resource-link">Read article →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.scstatehouse.gov/CommitteeInfo/HouseRegulationsAndAdministrativeProceduresCommittee/" target="_blank" rel="noreferrer">
-          <div class="resource-type">Legislative resource</div>
-          <h3>SC House AI &amp; Cybersecurity Committee</h3>
-          <p>The official committee page for the House Committee on Regulations, Administrative Procedures, AI, and Cybersecurity — chaired by Rep. Jeff Bradley.</p>
-          <span class="resource-link">Open committee page →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.govtech.com/artificial-intelligence/south-carolina-ai-cyber-initiatives-reshape-services" target="_blank" rel="noreferrer">
-          <div class="resource-type">News coverage · September 2025</div>
-          <h3>SC AI and Cyber Initiatives Reshape State Services</h3>
-          <p>GovTech's coverage of CIO Nathan Hogue's AI and cybersecurity agenda, including the "Bradley" AI assistant, the Center of Excellence, and the state's three-P framework in action.</p>
-          <span class="resource-link">Read article →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.scstatehouse.gov/sess126_2025-2026/bills/5253.htm" target="_blank" rel="noreferrer">
-          <div class="resource-type">Legislation</div>
-          <h3>AI in Education Bill (H.5253)</h3>
-          <p>A South Carolina bill focused on school use of AI tools and parental disclosure requirements — one of the first in a wave of AI-in-education legislation.</p>
-          <span class="resource-link">Read bill →</span>
-        </a>
-
-        <a class="resource-card" href="https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm" target="_blank" rel="noreferrer">
-          <div class="resource-type">Legislation</div>
-          <h3>Health Claims &amp; AI Bill (S.443)</h3>
-          <p>A South Carolina Senate bill (sponsored by Sen. Sabb) defining AI and automated decision-making tools in the health-insurance context — requiring licensed clinician oversight of any AI-driven coverage decisions. An early test of how the state regulates AI in high-stakes sectors.</p>
-          <span class="resource-link">Read bill →</span>
-        </a>
-
-        <a class="resource-card" href="https://palmettopromise.org/the-challenges-of-artificial-intelligence-a-south-carolina-response/" target="_blank" rel="noreferrer">
-          <div class="resource-type">Conservative think tank · August 2024</div>
-          <h3>The Challenges of AI: A South Carolina Response</h3>
-          <p>Palmetto Promise Institute's analysis of three key AI challenges facing the state — cybersecurity risk, AI literacy, and workforce disruption — evaluated against South Carolina's strategy.</p>
-          <span class="resource-link">Read analysis →</span>
-        </a>
-
-      </div>
-
-      <!-- ── Dynamic legislation tracker ── -->
-      <div class="legislation-header">
-        <div class="section-kicker">SC Legislation</div>
-        <h2 class="section-title">SC AI Legislation Tracker</h2>
-        <p class="section-copy">Detailed bill overviews, status, and business impact — updated as bills move through the South Carolina General Assembly.</p>
-        <p id="legislation-updated" class="legislation-updated"></p>
-      </div>
-
-      <div id="legislation-tracker"></div>
-
-      <script>
-        fetch('./bills.json')
-          .then(response => response.json())
-          .then(data => {
-            const container = document.getElementById('legislation-tracker');
-            // Support both legacy (array) and current (object-with-bills) schemas.
-            const bills = Array.isArray(data) ? data : (data && data.bills) || [];
-            const lastUpdated = (data && !Array.isArray(data) && data.last_updated) ? data.last_updated : null;
-            const sessionNote = (data && !Array.isArray(data) && data.session_note) ? data.session_note : null;
-
-            const stamp = document.getElementById('legislation-updated');
-            if (stamp && lastUpdated) {
-              try {
-                const d = new Date(lastUpdated + 'T00:00:00');
-                const month = d.toLocaleString('en-US', { month: 'long' });
-                stamp.textContent = `Updated ${month} ${d.getDate()}, ${d.getFullYear()}${sessionNote ? ' · ' + sessionNote : ''}`;
-              } catch (e) {
-                stamp.textContent = `Updated ${lastUpdated}${sessionNote ? ' · ' + sessionNote : ''}`;
-              }
-            }
-
-            if (!bills || bills.length === 0) {
-              container.innerHTML = '<div class="bill-card-empty">No legislation data available yet. Check back as bills are added to the database.</div>';
-              return;
-            }
-
-            bills.forEach(bill => {
-              // Determine status badge class. Check enacted/died BEFORE generic passed/committee
-              // matches so "Signed into law" maps to .law and "Died in Committee" maps to .dead.
-              const statusLower = (bill.status || '').toLowerCase();
-              let statusClass = 'default';
-              if (statusLower.includes('signed') || statusLower.includes('now law') || statusLower.includes('act no')) statusClass = 'law';
-              else if (statusLower.includes('died') || statusLower.includes('dead') || statusLower.includes('failed') || statusLower.includes('vetoed')) statusClass = 'dead';
-              else if (statusLower.includes('passed')) statusClass = 'passed';
-              else if (statusLower.includes('in committee') || statusLower.includes('active') || statusLower.includes('introduced')) statusClass = 'active';
-              else if (statusLower.includes('pending')) statusClass = 'pending';
-
-              const card = document.createElement('div');
-              card.className = 'bill-card';
-
-              card.innerHTML = `
-                <div class="bill-card-header">
-                  <h3 class="bill-card-title">${bill.title || 'Untitled Bill'}</h3>
-                  <div class="bill-meta">
-                    <span class="bill-number">${bill.bill_number || ''}</span>
-                    <span class="bill-status ${statusClass}">${bill.status || 'Unknown'}</span>
-                    ${bill.impact_score != null ? `<span class="bill-impact">Impact&nbsp;${bill.impact_score}/10</span>` : ''}
-                  </div>
-                </div>
-                <hr class="bill-divider">
-                <div class="bill-section-label">Executive Summary</div>
-                <p>${bill.summary || 'No summary available.'}</p>
-                <div class="bill-section-label">Business Impact</div>
-                <p>${bill.explanation || 'No impact analysis available.'}</p>
-                ${bill.url ? `<a class="bill-link" href="${bill.url}" target="_blank" rel="noreferrer">Read full bill text →</a>` : ''}
-              `;
-
-              container.appendChild(card);
-            });
-          })
-          .catch(() => {
-            const container = document.getElementById('legislation-tracker');
-            container.innerHTML = '<div class="bill-card-empty">Legislation data could not be loaded. Ensure <code>bills.json</code> is present in the same directory as this file.</div>';
-          });
-      </script>
-
     </div>
+
+    <script>
+      (function () {
+        const lanesEl = document.getElementById('policy-lanes');
+        const stamp = document.getElementById('policy-updated');
+
+        function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+        function fmtUpdated(dateStr, note) {
+          if (!dateStr) return '';
+          try { const d = new Date(dateStr + 'T00:00:00'); return 'Updated ' + d.toLocaleString('en-US', { month: 'long' }) + ' ' + d.getDate() + ', ' + d.getFullYear() + (note ? ' · ' + note : ''); }
+          catch (e) { return 'Updated ' + dateStr + (note ? ' · ' + note : ''); }
+        }
+        function teaser(s, n) {
+          s = (s || '').trim();
+          if (s.length <= n) return s;
+          let cut = s.slice(0, n); const sp = cut.lastIndexOf(' ');
+          if (sp > 40) cut = cut.slice(0, sp);
+          return cut + '…';
+        }
+        function billKind(status) {
+          const s = (status || '').toLowerCase();
+          if (s.includes('signed') || s.includes('law') || s.includes('act no')) return 'law';
+          if (s.includes('died') || s.includes('dead') || s.includes('failed') || s.includes('vetoed')) return 'died';
+          if (s.includes('passed')) return 'died';
+          if (s.includes('committee') || s.includes('active') || s.includes('introduced')) return 'active';
+          return 'active';
+        }
+        function shortStatus(status) {
+          const s = (status || '').toLowerCase();
+          if (s.includes('signed') || s.includes('law')) return { label: 'Now law', cls: 'law' };
+          if (s.includes('passed senate')) return { label: 'Passed Senate', cls: 'passed' };
+          if (s.includes('passed house')) return { label: 'Passed House', cls: 'passed' };
+          if (s.includes('died') || s.includes('dead')) return { label: 'Died', cls: 'died' };
+          if (s.includes('committee')) return { label: 'In committee', cls: 'active' };
+          return { label: status || '', cls: 'dev' };
+        }
+
+        Promise.all([
+          fetch('./bills.json').then(r => r.json()).catch(() => null),
+          fetch('./policy-developments.json').then(r => r.json()).catch(() => null)
+        ]).then(([billData, devData]) => {
+          const bills = billData ? (Array.isArray(billData) ? billData : billData.bills || []) : [];
+          const devs = devData ? (devData.developments || []) : [];
+          const updated = (billData && billData.last_updated) || (devData && devData.last_updated);
+          const note = billData && billData.session_note;
+          if (stamp) stamp.textContent = fmtUpdated(updated, note);
+
+          const lawBills = [], activeBills = [], diedBills = [];
+          bills.forEach(b => {
+            const k = billKind(b.status);
+            if (k === 'law') lawBills.push(b);
+            else if (k === 'active') activeBills.push(b);
+            else diedBills.push(b);
+          });
+
+          const lanes = [
+            { kind: 'law', name: 'Now in South Carolina law', rows: lawBills.map(billRow), count: lawBills.length, unit: 'enacted' },
+            { kind: 'active', name: 'Active in the General Assembly', rows: activeBills.map(billRow), count: activeBills.length, unit: 'active bills', empty: 'No active legislation. Session 126 adjourned sine die in May 2026 — pre-filed bills for the next session will appear here.' },
+            { kind: 'died', name: 'Died in Session 126 (2025–2026)', rows: diedBills.map(billRow), count: diedBills.length, unit: 'bills' },
+            { kind: 'dev', name: 'Policy & developments', rows: devs.map(devRow), count: devs.length, unit: 'items' }
+          ];
+          lanesEl.innerHTML = lanes.map(laneHtml).join('');
+          lanesEl.querySelectorAll('.pt-row-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+        });
+
+        function billRow(b) {
+          const st = shortStatus(b.status);
+          const detail =
+            '<div class="pt-detail-label">Summary</div><p>' + esc(b.summary) + '</p>' +
+            (b.explanation ? '<div class="pt-detail-label">Why it matters</div><p>' + esc(b.explanation) + '</p>' : '') +
+            (b.sponsors && b.sponsors.length ? '<div class="pt-detail-label">Sponsors</div><p>' + esc(b.sponsors.join(', ')) + '</p>' : '') +
+            (b.url ? '<a class="pt-link" href="' + esc(b.url) + '" target="_blank" rel="noreferrer">Read full bill text →</a>' : '');
+          return rowHtml(esc(b.bill_number || ''), esc(b.title || 'Untitled'), '<span class="pt-pill ' + st.cls + '">' + esc(st.label) + '</span>', esc(teaser(b.summary, 115)), esc(b.last_action_date || ''), detail);
+        }
+        function devRow(d) {
+          const detail =
+            '<div class="pt-detail-label">Summary</div><p>' + esc(d.summary) + '</p>' +
+            (d.source ? '<div class="pt-detail-label">Source</div><p>' + esc(d.source) + '</p>' : '') +
+            (d.url ? '<a class="pt-link" href="' + esc(d.url) + '" target="_blank" rel="noreferrer">Open source →</a>' : '');
+          const num = esc((d.type_label || 'Policy').split(' · ')[0]);
+          return rowHtml(num, esc(d.title || ''), d.status ? '<span class="pt-pill dev">' + esc(d.status) + '</span>' : '', esc(teaser(d.summary, 115)), esc(d.date_label || ''), detail);
+        }
+        function rowHtml(num, title, pill, teaserText, date, detail) {
+          return '<div class="pt-row"><div class="pt-row-head">' +
+            '<span class="pt-num">' + num + '</span>' +
+            '<span class="pt-ti">' + title + pill + '<span class="pt-teaser">' + teaserText + '</span></span>' +
+            '<span class="pt-date">' + date + '</span>' +
+            '<span class="pt-chev">▸</span>' +
+            '</div><div class="pt-detail"><div class="pt-detail-inner">' + detail + '</div></div></div>';
+        }
+        function laneHtml(l) {
+          const body = l.count === 0 ? '<div class="pt-empty">' + (l.empty || 'Nothing here yet.') + '</div>' : l.rows.join('');
+          return '<div class="pt-lane"><div class="pt-lane-head">' +
+            '<span class="pt-lane-name"><span class="pt-dot ' + l.kind + '"></span>' + l.name + '</span>' +
+            '<span class="pt-lane-count">' + l.count + ' ' + l.unit + '</span>' +
+            '</div><div class="pt-lane-body">' + body + '</div></div>';
+        }
+      })();
+    </script>
   </section>
 
   <!-- ══════════════════════════════════════════════
