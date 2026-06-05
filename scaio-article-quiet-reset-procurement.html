@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Quiet Reset in South Carolina's Consulting Bill — SCAIO Journal</title>
+  <meta name="description" content="Federal management-advisory contracts fell 19% in FY2025. The same dynamic is now arriving at South Carolina's procurement layer. The state is plausibly $130–270 million in annual professional-services spend; the mid-case substitution share, realized over five years, lands at $25–80 million in annual savings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --green:    #15803d;
+      --amber:    #b45309;
+      --amber-soft:#fff7ed;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Site bar */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    /* Article layout */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* Meta strip */
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* Body prose */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 32px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .prose strong { color: var(--navy); }
+    .prose a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+    .prose em { color: var(--text); }
+
+    /* Stat cards (top numbers) */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 32px 0 16px;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .stat-box .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Project cards — used for the contract examples */
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 36px 0;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .project-card .num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .project-card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .project-card h4 {
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .project-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 40px 0;
+      padding: 26px 30px;
+      background: var(--navy);
+      border-radius: 16px;
+      color: #fff;
+    }
+    .pull-quote p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: rgba(185,214,255,0.7);
+      font-style: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Range sensitivity panel */
+    .range-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin: 36px 0;
+    }
+    .range-panel .panel-kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .range-panel h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin: 0 0 18px;
+      text-transform: none;
+      letter-spacing: -0.005em;
+      font-weight: 700;
+    }
+    .range-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .range-cell {
+      padding: 16px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .range-cell.bear  { background: var(--amber-soft); border-color: #fde2c2; }
+    .range-cell.mid   { background: #f0f7ff; border-color: #c8ddf6; }
+    .range-cell.bull  { background: #f0fdf4; border-color: #bbf7d0; }
+    .range-cell .case {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .range-cell.bear .case { color: var(--amber); }
+    .range-cell.mid  .case { color: var(--blue); }
+    .range-cell.bull .case { color: var(--green); }
+    .range-cell .v {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--navy);
+      line-height: 1.05;
+      margin-bottom: 4px;
+    }
+    .range-cell .d {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Confidence banner — used to flag SCAIO interpretation */
+    .confidence {
+      background: var(--amber-soft);
+      border: 1px solid #fbd7a9;
+      border-left: 4px solid var(--amber);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 32px 0;
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .confidence strong {
+      color: var(--amber);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* SC callout */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul {
+      padding-left: 20px;
+      margin: 12px 0 18px;
+    }
+    .sc-callout li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.96rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .sc-callout strong { color: #fff; }
+
+    /* Source note */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .stat-row, .range-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">Procurement</span>
+      <span class="meta-tag">Workforce</span>
+      <span class="meta-tag">Economy</span>
+      <span class="meta-date">May 2026 · SCAIO Journal</span>
+    </div>
+
+    <h1>The Quiet Reset in South Carolina's Consulting Bill</h1>
+
+    <p class="dek">
+      Federal management-advisory contracts fell 19 percent in FY2025 to a five-year low, and the GSA put $65 billion in forward consulting value under formal review. The same dynamic is now arriving at South Carolina's procurement layer. The state-and-local consulting and professional-services bill is plausibly $130 to 270 million a year; the defensible mid-case AI substitution range, realized over five years, lands at $25 to 80 million in annual savings. The interesting question is not whether South Carolina sees the savings — it is how, and on what timeline, and what the state chooses to do with them.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        The most consequential change to how South Carolina spends on outsourced knowledge work has already begun. It has happened so quietly that most agency forecasts have not yet built the term into their budgets, and most reporting on it has stayed at the federal level. But the federal data is a leading indicator, and South Carolina is in the path of it.
+      </p>
+
+      <p>
+        Three numbers anchor the story.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="num">19%</div>
+          <div class="label">Drop in federal management-advisory contract awards, FY2025</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">$65B</div>
+          <div class="label">Forward consulting value under GSA review of ten top firms</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">$25–80M</div>
+          <div class="label">Mid-case annual savings range across SC state and local layers, five-year realization</div>
+        </div>
+      </div>
+
+      <p>
+        The federal picture, in one sentence: U.S. governments at all levels collectively pay roughly $75 to 120 billion a year for outsourced, document-based, hours-billed knowledge work — consulting reports, policy analysis, monitoring narratives, technical assistance, evaluations, financial analyses, compliance documentation. The defensible mid-case for how much of that bill is substitutable by AI within five years is 20 to 30 percent on suitable tasks, with the bear case at 10 to 15 and the bull case at 35 to 50. That implies $15 to 36 billion a year in procurement savings at the national mid-case — a number large enough to matter to OMB, and one that has already begun to show up: FY2025's 19 percent drop in management-advisory awards is the first hard data point in the curve.
+      </p>
+
+      <p>
+        The South Carolina layer is smaller and less visible. But the same arithmetic applies, and South Carolina's procurement structure makes the state an interesting place to watch the dynamic arrive.
+      </p>
+
+      <h2>What South Carolina's professional-services bill actually looks like</h2>
+
+      <p>
+        Two structural facts about South Carolina shape how AI substitution will land here. First, the state's procurement is unusually centralized. The South Carolina Materials Management Office sits inside the Department of Administration and reports through the State Fiscal Accountability Authority. Most contracts above modest dollar thresholds — including the ones for consulting, advisory services, and technical work that this story is about — flow through that office, with disclosure obligations that make the named-contract layer more visible than in most peer states. Second, South Carolina's local-government professional-services spending is not broken out as a single line in the largest counties' published financial reports, which means the local layer is partly an extrapolation rather than a clean count.
+      </p>
+
+      <p>
+        Within those constraints, the picture looks like this. South Carolina state government professional-services spending — the broader category that includes consulting, technical assistance, advisory work, ERP and software implementation services, and similar engagements — is plausibly $80 to 150 million a year, anchored by a relatively small number of named multi-year contracts visible through the SCEIS system. The local layer — counties, cities, and special-purpose districts — adds another $50 to 120 million a year, distributed across hundreds of smaller contracts that are individually small but cumulatively meaningful. The HUD-passthrough public-housing layer — SC State Housing Finance &amp; Development Authority and the major local public-housing authorities — sits on top of that at $3 to 8 million a year in consulting spend, modest in absolute terms but concentrated in the kinds of document-heavy work where AI substitution is most direct.
+      </p>
+
+      <p>
+        Four named state contracts illustrate the shape of the addressable pool.
+      </p>
+
+      <div class="project-row">
+
+        <div class="project-card">
+          <div class="num">3 active</div>
+          <div>
+            <div class="label">Deloitte · SC engagements</div>
+            <h4>Statewide Salesforce managed services, security and tech consulting, and the MUSC ERP implementation</h4>
+            <p>Confirmed in reviewed SCEIS data. The Salesforce managed-services line is the kind of engagement most directly exposed to AI substitution at the documentation, configuration, and ticket-handling layers. The MUSC ERP implementation work is more complex and likely substitutes more gradually, but the testing, training-materials, and documentation components of large ERP rollouts are among the highest-suitability tasks identified in the productivity literature.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">$7.45M</div>
+          <div>
+            <div class="label">KPMG · 9-year term, March 2023</div>
+            <h4>South Carolina eProcurement Solution</h4>
+            <p>A long-duration platform-and-services contract for the state's eProcurement modernization. Contracts of this shape — multi-year, mixed software-and-services, with substantial ongoing advisory components — concentrate the period-of-performance lag that compresses the realizable savings curve in the first three to four years. The 2032 expiration sets a natural re-pricing point for the next round of negotiation.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">$115–400/hr</div>
+          <div>
+            <div class="label">Gartner · SC Department of Social Services · June 2025</div>
+            <h4>Third-party consulting on a tiered hourly-rate structure</h4>
+            <p>The rate structure itself is the relevant detail. Tiered hourly billing for advisory work — junior analyst at the bottom, partner-level at the top — is the canonical pricing model that AI-assisted productivity gains compress the most directly. The same scope at 30 percent fewer billable hours, or the same hours at a substantially lower average mix, is the mechanical channel through which agency budgets see savings before any explicit "AI replaces consultants" headline is true.</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="num">disclosed</div>
+          <div>
+            <div class="label">Guidehouse · SC Office of Regulatory Staff · November 2024</div>
+            <h4>Administrative consulting at a state regulatory agency</h4>
+            <p>Regulatory-agency consulting is one of the cleanest examples of the kind of document-and-research-heavy work the productivity literature identifies as inside the "jagged frontier" — well-suited for AI acceleration of summarization, comparative research, and first-pass drafting, less suited for the inherently governmental judgment calls that follow. The visible-to-AI share of this engagement is plausibly high; the realized-substitution share depends on how the agency's review protocols evolve.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p>
+        These four are illustrative, not comprehensive. The state's consulting spend is meaningfully larger than these named engagements alone — the broader Deloitte footprint, the smaller named contracts under Booz Allen, PwC, and Accenture, and the long tail of $100,000–$500,000 contracts at individual agencies all sit underneath the headline-grade items. But the named contracts are useful as a frame because they reveal the substantive structure: most of South Carolina's professional-services spend is multi-year, hours-billed, and document-heavy. Those three properties are exactly what determines how AI substitution lands in a procurement budget.
+      </p>
+
+      <h2>The HUD passthroughs are where the substitution lands first</h2>
+
+      <p>
+        The fastest-substituting layer of South Carolina's professional-services bill is not the named state contracts. It is the HUD-funded passthrough layer — the consulting engagements paid for with federal grants that flow through South Carolina Housing, Charleston Housing Authority, Columbia Housing, Greenville Housing Authority, and the smaller county public-housing authorities.
+      </p>
+
+      <p>
+        The reason is structural rather than technological. HUD's program-monitoring, technical-assistance, fair-housing complaint, audit-support, and research engagements concentrate the document-and-analysis tasks the productivity literature identifies as the highest-substitution categories. Monitoring narratives for Community Development Block Grants. Technical-assistance memos for grantees. Compliance documentation under Section 3 reporting. Audit-finding writeups for the Office of the Chief Financial Officer. Fair-housing complaint intake summaries for the Office of Fair Housing and Equal Opportunity. All of these are tasks where the controlled productivity studies have reported 40 to 70 percent time reductions on first-pass drafting, and 50 to 80 percent on structured extraction from grantee submissions.
+      </p>
+
+      <p>
+        For South Carolina, that means the visible effect of AI substitution on this layer is more likely to show up as faster grant administration and quicker turnaround on HUD reporting requirements than as a line-item reduction in the state's professional-services budget. Charleston Housing Authority operates on roughly $5.6 million in annual revenue with consulting spend in the low six figures. A meaningful percentage productivity gain on that engagement is meaningful per-grantee but small on a state-budget basis. Aggregated across South Carolina Housing and the local PHAs, the realistic five-year annual savings on this layer is $1 to 3 million — small in absolute terms, large in shaping how quickly the affordable-housing administrative pipeline operates.
+      </p>
+
+      <h2>The defensible range, in three cases</h2>
+
+      <div class="range-panel">
+        <div class="panel-kicker">South Carolina annual savings, five-year realization</div>
+        <h3>What the substitution arithmetic implies for SC</h3>
+        <div class="range-grid">
+          <div class="range-cell bear">
+            <div class="case">Bear · 10–15%</div>
+            <div class="v">$13–40M</div>
+            <div class="d">Shallow adoption, conservative review protocols, judgment-heavy task mix dominates.</div>
+          </div>
+          <div class="range-cell mid">
+            <div class="case">Mid · 20–30%</div>
+            <div class="v">$25–80M</div>
+            <div class="d">Active deployment, mixed portfolio, AI used for first-pass drafting, structured extraction, summarization.</div>
+          </div>
+          <div class="range-cell bull">
+            <div class="case">Bull · 35–50%</div>
+            <div class="v">$45–130M</div>
+            <div class="d">On suitable tasks only — writing-heavy, extraction-heavy, monitoring-narrative-heavy work with high adoption.</div>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        The mid-case figure of $25 to 80 million in annual savings across the SC state and local layers is the number to plan around. It depends on three assumptions, all of which are individually defensible and collectively uncertain. First, that the addressable pool is in the $130 to 270 million annual range — anchored by the visible contracts, but with substantial extrapolation on the local layer. Second, that the AI-substitutable share within that pool is 40 to 70 percent — the share of work that sits inside what the productivity literature calls the "jagged frontier" of tasks AI does well. Third, that the realization rate over five years is 40 to 85 percent — the share of the substitutable opportunity that actually shows up in agency budgets, given period-of-performance lags, security and review constraints, and the pace of contract re-competes.
+      </p>
+
+      <p>
+        Of those three assumptions, the realization rate is the one most likely to move the headline number, and the one least driven by AI capability. South Carolina has a structural reason to expect its realization curve to trail the federal layer by two to four years: the state's contract periods are typically multi-year, the eProcurement contract specifically extends to 2032, and there is no analog at the state level to the GSA's $65 billion ten-firm review that is forcing federal re-pricing on an accelerated timeline. The savings will arrive in South Carolina; they will arrive later than they arrive at the federal layer.
+      </p>
+
+      <h2>The "jagged frontier" risk, in plain English</h2>
+
+      <p>
+        The most important caveat in the productivity literature is not an upper bound on the savings. It is a warning about how to capture them. A Harvard Business School and Boston Consulting Group study published in 2023 found that AI-assisted consultants outperformed their unassisted peers by 25 percent on speed and 40 percent on quality — on tasks inside the frontier of what current models do well. On tasks outside that frontier, the same AI-assisted consultants performed 19 percentage points <em>worse</em> than the unassisted ones. The authors called it the "jagged frontier" — a metaphor for the irregular boundary between what AI does well and what it does poorly, which does not map cleanly to any intuitive sense of "easy" or "hard" tasks.
+      </p>
+
+      <p>
+        For South Carolina, the jagged frontier has direct implications. First-pass drafting of a monitoring narrative for a CDBG grantee is inside the frontier; reviewing that narrative against a specific community's housing needs and recommending a corrective action is not. Summarization of a 200-page legislative staff report is inside the frontier; making a sworn audit determination based on the underlying records is not. The disciplined adoption pattern uses AI for the first task and a human professional for the second; the undisciplined pattern uses AI for both and produces worse outputs than either AI or human alone.
+      </p>
+
+      <p>
+        Two empirical anchors deserve attention here. A 2025 study from Stanford and Yale found hallucination rates of 17 to 33 percent on Lexis+ AI and Westlaw AI — the legal-grade tools — on factual queries about case law. A Microsoft RCT of roughly 7,000 workers with Microsoft 365 Copilot found document-level acceleration of about 12 percent and no detectable firm-level output shift, with only 40 percent of users actually using the tool regularly. These are not arguments against AI adoption. They are arguments against the assumption that adoption is automatic, that the productivity gains in published studies map cleanly to real organizations, or that any specific agency's quality controls are sufficient for AI-generated outputs in regulated contexts. The realized savings will be a function of how disciplined the adoption is.
+      </p>
+
+      <div class="pull-quote">
+        <p>
+          The disciplined adoption pattern uses AI for the first-pass draft and a human professional for the judgment call. The undisciplined pattern uses AI for both and produces worse outputs than either AI or human alone.
+        </p>
+        <cite>— SCAIO editorial observation</cite>
+      </div>
+
+      <h2>What South Carolina already has that helps</h2>
+
+      <p>
+        South Carolina is unusually well-positioned among states to capture this category of savings, for reasons that pre-date the AI substitution wave by several years.
+      </p>
+
+      <p>
+        First, the state's procurement is centralized in a way most states' are not. The Materials Management Office's visibility into named contracts above standard thresholds, combined with the State Fiscal Accountability Authority's role in approving large engagements, creates a coordination capacity that other states would have to build from scratch to do what South Carolina can do in its existing structure. The Pennsylvania Office of Administration's ChatGPT Enterprise pilot is one of the most-cited state-level AI procurement initiatives in the country; the equivalent in South Carolina has the easier institutional path because the central procurement role already exists.
+      </p>
+
+      <p>
+        Second, South Carolina already operates an AI Center of Excellence under the 2024 SC AI Strategy. The Center of Excellence's first meeting was held in February 2025; by mid-2025 it had a working portfolio of agency AI use cases under review and explicit risk-management, compliance, and procurement subgroups. The "Bradley" virtual assistant — South Carolina's citizen-facing state-government AI deployment, launched October 2025 in partnership with Tyler Technologies — is the most visible product of that infrastructure, but the underlying coordination capacity is the more durable asset. The Center of Excellence is well-suited to play a procurement-rate-guidance role on AI-augmented consulting work if the state chooses to direct it there.
+      </p>
+
+      <p>
+        Third, the state has Rich Heimann in the inaugural Director of Artificial Intelligence position, with a mandate that explicitly includes execution of the 2024 SC AI Strategy. The institutional capacity to translate "the federal layer's consulting bill is falling 19 percent and the same is coming here" into specific procurement guidance is therefore present in South Carolina at a level few states match. Whether the state chooses to use that capacity is a separate question from whether it has it.
+      </p>
+
+      <h2>The friction that compresses the curve</h2>
+
+      <p>
+        The same realization-rate constraints that compress federal savings apply at the state level, with state-specific modifications.
+      </p>
+
+      <p>
+        <strong>Period-of-performance lag.</strong> The KPMG eProcurement contract runs through 2032. The MUSC Deloitte ERP work runs on its own multi-year schedule. Multi-year SCEIS contracts at other large agencies operate on similar timelines. Even where AI substitution is technically possible mid-contract, modifying scope to reduce hours is contentious and typically waits for the next re-compete. The bulk of South Carolina's realizable savings will therefore arrive in the back half of the five-year window, not the first half.
+      </p>
+
+      <p>
+        <strong>Security and review constraints.</strong> South Carolina's state-level AI procurement guidance, when it materializes formally, will need to address the FedRAMP-equivalent question for state systems handling sensitive data — Medicaid records at SC DHHS, child-welfare records at SC DSS, tax records at SC DOR, and the financial-aid records at SC Department of Education. The leading AI tools are not all available in deployment configurations that meet those requirements today, and the auditability of AI-assisted outputs for regulated determinations is an open question the Center of Excellence is already engaging.
+      </p>
+
+      <p>
+        <strong>Statutory and inherently-governmental constraints.</strong> Some decisions a state agency makes are not delegable to a contractor, AI-assisted or otherwise. Final determinations of eligibility for benefits, final administrative-law findings, sworn audit opinions, and similar outputs require a state employee's signature. The output may be AI-assisted; the determination is still a state employee's responsibility under the underlying statute. That ceiling on substitution is independent of model capability and unlikely to move on the same timeline as the technology.
+      </p>
+
+      <p>
+        <strong>Political economy and the small-business layer.</strong> A meaningful share of South Carolina's professional-services spending flows to South Carolina-based firms, including small-business set-asides under state and federal preference programs. Aggressive consolidation onto national primes — even AI-augmented ones — creates winners and losers in the state's professional-services ecosystem. The political economy of that shift is identical at the state level to what is already visible at the federal level, and it argues for a measured pace rather than a maximalist one.
+      </p>
+
+      <p>
+        <strong>Change-management cost.</strong> Standing up the workflow redesign, tooling, training, governance, and audit infrastructure required to capture the mid-case savings is itself a multi-year program for any state agency. That cost has to be netted out of gross savings. The federal layer's experience suggests that the change-management cost runs in the low single-digit percentage of the gross savings opportunity, but the first few state agencies to attempt this will run higher.
+      </p>
+
+      <div class="confidence">
+        <strong>A note on confidence and method</strong>
+        The South Carolina state and local consulting figures in this article are extrapolations from the named contracts confirmed in publicly visible SCEIS data plus county and city operating-budget shares typical of comparable state professional-services categories. The federal layer figures are drawn from GAO, Bloomberg Government, Deltek GovWin, and USAspending.gov data and are well-anchored. The productivity literature figures are drawn from peer-reviewed and working-paper sources cited at the bottom of this article. The single largest source of uncertainty in the South Carolina headline range is the realization rate over five years, which is dominated by procurement-cycle structure and governance pace rather than AI capability. SCAIO welcomes corrections from agency procurement officers, county administrators, and consulting firms with named engagements in the state; methodology updates will be published as such.
+      </div>
+
+      <h2>What is worth watching in the next 24 months</h2>
+
+      <p>
+        Three signals will tell us how the substitution curve is actually arriving in South Carolina, rather than how it might in theory.
+      </p>
+
+      <p>
+        The first is the AI Center of Excellence's role. If the Center of Excellence begins to publish guidance on AI-augmented consulting work — what kinds of tasks are appropriate for AI acceleration, what audit standards apply, what disclosures the state expects from vendors — that is the cleanest signal that the state is choosing to manage the curve rather than absorb it passively. If the Center of Excellence remains focused on agency-internal AI use cases without extending into procurement guidance, the curve will still arrive but more slowly and less coherently.
+      </p>
+
+      <p>
+        The second is the FY2027 and FY2028 re-compete calendar. A meaningful share of South Carolina's larger professional-services contracts will be up for re-pricing or re-bid in those years. The bids the state receives in those re-competes will be the first hard data on whether vendors are pricing AI-assisted productivity into their proposals. If incumbent firms come in at flat or rising hourly rates on AI-augmentable scope, the substitution shows up in the state's net cost only when the state explicitly asks for it. If new entrants — including SC-based firms that have adopted AI tools more aggressively than the national primes — bid materially lower on the same scope, the dynamic enters the state's procurement environment without further state action.
+      </p>
+
+      <p>
+        The third is the HUD-passthrough layer. The fastest-moving substitution in this category nationally is in the HUD program-monitoring and technical-assistance space, and the state-level passthroughs are where that shows up first for South Carolina. Watching whether South Carolina Housing's next round of monitoring contracts comes in at materially lower scope or hours — and how Charleston Housing Authority, Columbia Housing, and Greenville Housing Authority describe their own administrative-pipeline turnaround over the next two grant cycles — gives the cleanest read on whether the curve is real at the operating level, not just at the headline.
+      </p>
+
+      <div class="sc-callout">
+        <div class="kicker">A specific watch list for South Carolina, FY2026–FY2028</div>
+        <h2>Five things that would tell us the curve is arriving</h2>
+        <ul>
+          <li>The <strong>AI Center of Excellence publishes guidance</strong> on AI-augmented professional-services procurement, including audit standards, vendor-disclosure expectations, and task-suitability criteria.</li>
+          <li>The state's <strong>FY2027 and FY2028 re-compete bids on existing advisory contracts</strong> show materially compressed pricing or scope relative to the FY2024 baseline.</li>
+          <li><strong>South Carolina Housing's next monitoring-contract round</strong> reflects a measurable scope or hours reduction; HUD-passthrough work at Charleston, Columbia, and Greenville housing authorities shows administrative-pipeline acceleration.</li>
+          <li>The state begins <strong>publishing a public AI-procurement disclosure register</strong> — what tools are in use, by which agency, on what categories of work, with what review protocols. The Center of Excellence's existing inventory is the natural foundation.</li>
+          <li>An <strong>SC-based professional-services firm</strong> credibly differentiates on AI-augmented delivery and wins meaningful state work against a national prime. This is the cleanest signal that the substitution is also creating in-state economic opportunity, not just relocating it.</li>
+        </ul>
+      </div>
+
+      <h2>Why this story matters</h2>
+
+      <p>
+        Most pieces of the AI conversation in South Carolina move on visible timelines. New laws are filed; agencies publish strategies; companies announce facilities; data-center sites get permitted; the legislative tracker gets longer. Each of those stories is on a clock the public can follow.
+      </p>
+
+      <p>
+        This one is not. The procurement substitution that is reshaping how state and federal governments buy outsourced knowledge work is happening in re-compete cycles measured in years, in contract amendments that do not make press releases, in vendor-proposal pricing that is rarely disclosed, and in changes to staffing mix at major firms that show up months or years after the underlying decisions. It is, in that sense, the least dramatic AI story South Carolina will face this decade. It is also, plausibly, the largest one in dollar terms, with the most direct line to the state budget.
+      </p>
+
+      <p>
+        South Carolina has institutional advantages that few peer states share: a centralized procurement structure, a working AI Center of Excellence, and a Director of Artificial Intelligence with a clear mandate. Whether the state chooses to use those advantages to manage the substitution curve deliberately — capturing the savings, redirecting them toward priorities the legislature names explicitly, and protecting the in-state professional-services ecosystem in the process — is the policy choice that will define how this story lands here.
+      </p>
+
+      <p>
+        That choice is being made now, in re-compete calendars and Center of Excellence work plans that the public does not see. The point of writing about it is to make sure the choice is at least visible. SCAIO will be watching, and will return to this story as the FY2027 and FY2028 cycles develop.
+      </p>
+
+      <div class="source-note">
+        <strong>Source report:</strong> <em>The Quiet Reset: AI and the Man-Hour Economy of Government Contracting</em> — a deep research synthesis (May 2026, ~6,500 words, 60+ sources) on the federal, state, local, and HUD-specific addressable knowledge-work pool and the empirical productivity literature behind the substitution estimates. This SCAIO Journal piece adapts the South Carolina lens of that report and adds SC-specific institutional context.
+        <br><br>
+        <strong>Underlying sources cited in the research synthesis:</strong> GAO-24-106932 (Consulting Services Report, September 2024); USAspending.gov federal contract data; Bloomberg Government federal contracting analytics; Deltek GovWin FY2024 Federal Services Market estimates; GSA Multiple Award Schedule and Professional Services Schedule data; FY2025 GSA 10-firm consulting review announcement (February 2025); Bloomberg Government Federal Management Advisory Services Outlook (January 2026); Minnesota Department of Management and Budget Annual Professional/Technical Services Report; U.S. Census Bureau Annual Survey of State and Local Government Finances; SC Materials Management Office and SC State Fiscal Accountability Authority procurement disclosures; SC Comptroller General Vendor Payments Reports; HUD Office of the Chief Procurement Officer awards and AI Compliance Plan (September 2025); HUD AI Use Case Inventory; Dell'Acqua et al. (2023), "Navigating the Jagged Technological Frontier" (Harvard Business School / Boston Consulting Group); Noy &amp; Zhang (2023), <em>Science</em>; Peng, Kalliamvakou et al. (2023), arXiv:2302.06590; Brynjolfsson, Li, Raymond (2023), NBER Working Paper 31161; Dillon et al. (2025), Microsoft 365 Copilot RCT, arXiv:2504.11443; Magesh et al. (2025), "Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools," JELS; OMB M-24-10 governance memo; GAO July 2025 Federal Generative AI Use Cases report; Pennsylvania Office of Administration ChatGPT Enterprise Pilot Results.
+        <br><br>
+        <em>This article is a focused Journal piece on the procurement and professional-services dimensions of South Carolina's AI exposure. A more comprehensive treatment of how AI is reshaping the state's workforce — both inside government and across the broader economy — appears in SCAIO's existing companion pieces <a href="scaio-article-workforce-exposure.html">South Carolina's AI Workforce Exposure</a> and <a href="scaio-article-workforce-what-we-know.html">What We Actually Know About AI and SC Jobs</a>.</em>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
