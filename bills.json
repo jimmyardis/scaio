@@ -1,47 +1,183 @@
-[
-  {
-    "title": "AI in Education",
-    "bill_number": "H.5253",
-    "status": "In Committee",
-    "impact_score": 8,
-    "summary": "Adds Section 59-28-195 to SC Code establishing limitations and safeguards for AI in K-12 public schools. Requires opt-in written parental consent before AI tools may be used in instruction or school activities, annual written disclosure of every AI tool, vendor, and data category in use, and explicit teacher review of any AI-generated instructional content. Prohibits AI from replacing licensed teachers in core instruction or final grading, bans systems that profile students by political or religious beliefs, and restricts collection of biometric or emotional data without case-specific parental consent. Sponsored by Reps. Guffey and Chapman.",
-    "explanation": "If enacted, every SC school district, public charter, and ed-tech vendor would need new opt-in consent workflows, annual AI-inventory disclosures, and human-review protocols for any AI-influenced decision affecting students. Vendors selling AI-enabled platforms — LMS plugins, grading assistants, behavioral analytics — face new compliance obligations including data minimization, prohibitions on commercial use of student data, and case-specific consent for biometric or emotional analysis. Enforcement includes administrative penalties, contractual remedies, and a private right of action for parents seeking injunctive relief or damages.",
-    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5253.htm"
-  },
-  {
-    "title": "Health Claims & AI",
-    "bill_number": "S.443",
-    "status": "In Committee",
-    "impact_score": 7,
-    "summary": "Adds Section 38-59-23 to SC Code (Insurance) prohibiting healthcare coverage decisions made solely on the basis of AI or automated decision-making tools. Requires that a licensed healthcare professional supervise and meaningfully review any coverage decision derived from automated tools when those decisions modify or deny prior-authorization or concurrent-care requests. Defines AI broadly as any machine-based system that makes predictions, recommendations, or decisions, and \"automated decision-making tool\" as a system specifically developed or modified to drive consequential decisions. Sponsored by Sen. Sabb.",
-    "explanation": "Targets one of the most contested AI use cases in healthcare: insurer use of automated tools to deny or modify prior authorizations. If passed, SC-regulated health insurers using AI-driven utilization management would need licensed clinicians actively in the review loop for any modification or denial — aligning the state with similar reforms underway in California (SB 1120) and other jurisdictions. Directly affects health plans operating in SC, their third-party administrators, and AI vendors serving the prior-authorization market. Patients, providers, and patient-advocacy organizations are likely to view the bill favorably.",
-    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm"
-  },
-  {
-    "title": "Consumer Protections in Interactions with AI Systems Act",
-    "bill_number": "S.963",
-    "status": "In Committee",
-    "impact_score": 9,
-    "summary": "Adds Chapter 31 to Title 37 of the SC Code, creating the Consumer Protections in Interactions with Artificial Intelligence Systems Act. Prohibits algorithmic discrimination arising from the use of \"high-risk\" AI systems. Establishes definitions and safeguards for consumer-facing AI deployments that produce consequential decisions about housing, employment, credit, insurance, and similar domains. Broadly tracks the framework Colorado adopted in its 2024 AI Act — the most comprehensive state-level consumer-protection AI law currently on the books anywhere in the United States. Sponsored by Sen. Leber.",
-    "explanation": "The broadest in scope of any AI bill currently in the SC General Assembly. Where H.5253 targets education and S.443 targets health insurance, S.963 targets the cross-sector category of consequential consumer-facing AI deployments. If enacted, SC would be among the first states beyond Colorado with a comprehensive consumer-protection AI statute. Affected entities include any business deploying AI systems that make or substantially influence consequential decisions about consumers — across employment, lending, insurance, housing, education, healthcare, and government services. Compliance would likely include impact assessments, transparency obligations, and rights of redress for affected consumers.",
-    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/963.htm"
-  },
-  {
-    "title": "Chatbot Protection Act",
-    "bill_number": "H.5138",
-    "status": "In Committee",
-    "impact_score": 7,
-    "summary": "Adds Chapter 80 to Title 39 (Trade and Commerce), establishing requirements and civil-action mechanisms specific to chatbot deployments. Defines core terms including chatbot, chatbot provider, chat log, input data, model, dark pattern, deidentified data, personal data, advertisement, and affirmative consent. Establishes affirmative-consent requirements for certain chatbot practices, with detailed standards for clear stand-alone disclosure, plain-language drafting, accessibility for users with disabilities, and availability in commonly-used languages. Sponsored by Reps. Guffey, Sessions, Martin, and Brewer.",
-    "explanation": "Targets chatbot deployments broadly — including but not limited to AI chatbots — and is part of a national wave of chatbot-transparency legislation introduced across multiple states in 2025-2026. Affects any business that deploys consumer-facing chatbots in South Carolina, with new requirements for explicit disclosure of bot-vs-human interaction, restrictions on dark patterns, and standards for what counts as informed user consent. The private right of action provision means individual consumers harmed by non-compliant chatbot deployments can pursue civil remedies directly.",
-    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5138.htm"
-  },
-  {
-    "title": "Protecting Children from Chatbots Act",
-    "bill_number": "S.1037",
-    "status": "In Committee",
-    "impact_score": 7,
-    "summary": "Adds Chapter 81 to Title 39, focused specifically on chatbot use by minors. Applies to \"covered entities\" with 500,000 or more monthly active users worldwide across all chatbots they offer, with explicit exemptions for internal tools, non-public tools, and customer-service-only deployments. Requires age verification and a limited-access mode for minors, defines covered harms and covered incidents, and establishes standards for parental notification and incident reporting. Sponsored by Sens. Kimbrell, Garrett, Rice, and Adams.",
-    "explanation": "One of the more aggressive minor-protection AI bills introduced in any state in 2025-2026, structurally comparable to California's SB 243 and similar bills elsewhere. The 500,000 worldwide monthly active users threshold is calibrated to capture major commercial AI chatbots without imposing requirements on smaller deployments. Affected entities would include the largest consumer chatbot platforms operating in SC, and would require new age-verification infrastructure, content controls, and incident-reporting capacity. Of particular interest to schools, parents, and child-safety organizations.",
-    "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/1037.htm"
-  }
-]
+{
+  "last_updated": "2026-05-21",
+  "session": "126th General Assembly (2025-2026)",
+  "session_note": "Adjourned sine die May 14, 2026. Bills do not carry between two-year sessions; pre-filing for the 127th General Assembly opens December 2026.",
+  "bills": [
+    {
+      "title": "AI Child Abuse Act",
+      "bill_number": "S.28",
+      "status": "Signed into law",
+      "last_action_date": "2025-05-22",
+      "sponsors": ["Sen. Hutto", "Sen. Reichenbach", "Sen. Goldfinch", "+ 21 co-sponsors"],
+      "impact_score": 9,
+      "summary": "Now SC law (Act No. 57). Criminalizes the creation, possession, and distribution of AI-generated and computer-morphed child sexual abuse material — including imagery in which no real child is depicted. Adds the offense to the Sex Offender Registry. Directs SLED, the Department of Education, and the Attorney General to develop and deliver student-facing education about AI-generated harm. Passed both chambers unanimously. Signed by Gov. McMaster on May 22, 2025.",
+      "explanation": "The first SC AI-specific criminal statute. Closes a gap that prosecutors had flagged for years: existing CSAM law required the depicted child to be a real, identifiable individual, which left a loophole for synthetic imagery created from generative AI. SC now joins a growing minority of states explicitly criminalizing AI-generated CSAM regardless of whether a real victim exists. Direct implications for AG investigations, SLED forensics, and any platform or model provider whose tools are used to generate the imagery.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/28.htm"
+    },
+    {
+      "title": "Unauthorized Disclosure of Intimate Images Act",
+      "bill_number": "H.3058",
+      "status": "Signed into law",
+      "last_action_date": "2025-05-12",
+      "sponsors": ["Rep. Wooten", "+ co-sponsors"],
+      "impact_score": 8,
+      "summary": "Now SC law. Creates a felony offense for distributing real or AI-generated intimate images of another person without consent. Explicitly defines \"digitally forged intimate images\" to include machine-learning-generated content. First offense is a felony when intent to harm is shown. Passed both chambers unanimously. Signed by Gov. McMaster on May 12, 2025.",
+      "explanation": "SC's first dedicated revenge-porn-and-deepfake statute. The explicit inclusion of AI-generated intimate imagery puts SC ahead of the majority of states whose existing laws apply only to images of real conduct. Practical impact: prosecutors can now charge non-consensual deepfake distribution as a felony, victims have a clear path to civil remedy, and platforms hosting such content in SC face new takedown obligations. A pending follow-on bill (H.5598) would extend liability to the developers of tools designed primarily for non-consensual generation.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/72.htm"
+    },
+    {
+      "title": "AI in Therapy or Psychotherapy",
+      "bill_number": "S.788",
+      "status": "Passed Senate, died in House",
+      "last_action_date": "2026-04-30",
+      "sponsors": ["Sen. Blackmon", "Sen. Stubbs", "Sen. Leber"],
+      "impact_score": 8,
+      "summary": "Would have barred licensed therapists from using AI for supplemental support in recorded sessions without explicit patient consent, prohibited internet-based AI systems from offering therapy unless a licensed professional conducts the session, and barred AI from making independent therapeutic decisions. Passed the SC Senate unanimously (44-0) on April 29, 2026. Referred to the House Medical, Military, Public and Municipal Affairs Committee on April 30; died there at sine die two weeks later.",
+      "explanation": "The strongest 2027 re-introduction candidate of any bill in this session. A unanimous Senate vote signals consensus on the underlying policy; the only obstacle was timing. Directly targets the rapidly-growing market of consumer mental-health chatbots (Character.ai, Woebot, etc.) and would clarify what counts as the unlicensed practice of psychotherapy in SC. Affected parties: licensed therapists, AI mental-health platforms operating in SC, the SC Board of Examiners in Psychology, and any platform whose tools are marketed for emotional support.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/788.htm"
+    },
+    {
+      "title": "Consumer Protections in Interactions with AI Systems Act",
+      "bill_number": "S.963",
+      "status": "Died in Committee",
+      "last_action_date": "2025-03-25",
+      "sponsors": ["Sen. Leber"],
+      "impact_score": 9,
+      "summary": "Would have added Chapter 31 to Title 37 of the SC Code, creating the Consumer Protections in Interactions with Artificial Intelligence Systems Act. Prohibited algorithmic discrimination arising from the use of \"high-risk\" AI systems. Established definitions and safeguards for consumer-facing AI deployments that produce consequential decisions about housing, employment, credit, insurance, and similar domains. Broadly tracked the framework Colorado adopted in its 2024 AI Act — the most comprehensive state-level consumer-protection AI law on the books at the time. Died in the Senate Judiciary Committee at sine die.",
+      "explanation": "The broadest in scope of any AI bill in this session. Where the other bills targeted single sectors (education, health insurance, chatbots), S.963 was the cross-sector statute that would have established baseline AI consumer protections across employment, lending, insurance, housing, education, healthcare, and government services. The Colorado framing made it the version most closely watched by national AI policy organizations. Likely returns in 2027 with refinements based on Colorado's enforcement experience.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/963.htm"
+    },
+    {
+      "title": "AI in Education",
+      "bill_number": "H.5253",
+      "status": "Died in Committee",
+      "last_action_date": "2026-02-04",
+      "sponsors": ["Rep. Guffey", "Rep. Chapman"],
+      "impact_score": 8,
+      "summary": "Would have added Section 59-28-195 to the SC Code, establishing limitations and safeguards for AI in K-12 public schools. Required opt-in written parental consent before AI tools could be used in instruction or school activities, annual written disclosure of every AI tool, vendor, and data category in use, and explicit teacher review of any AI-generated instructional content. Prohibited AI from replacing licensed teachers in core instruction or final grading, banned systems that profile students by political or religious beliefs, and restricted collection of biometric or emotional data without case-specific parental consent. Died in House Education and Public Works Committee.",
+      "explanation": "If passed, every SC school district, public charter, and ed-tech vendor would have needed new opt-in consent workflows, annual AI-inventory disclosures, and human-review protocols for any AI-influenced decision affecting students. Vendors selling AI-enabled platforms — LMS plugins, grading assistants, behavioral analytics — would have faced new compliance obligations including data minimization, prohibitions on commercial use of student data, and case-specific consent for biometric or emotional analysis. Enforcement would have included administrative penalties, contractual remedies, and a private right of action for parents seeking injunctive relief or damages.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5253.htm"
+    },
+    {
+      "title": "Health Claims and AI",
+      "bill_number": "S.443",
+      "status": "Died in Committee",
+      "last_action_date": "2025-03-04",
+      "sponsors": ["Sen. Sabb"],
+      "impact_score": 7,
+      "summary": "Would have added Section 38-59-23 to the SC Code (Insurance), prohibiting healthcare coverage decisions made solely on the basis of AI or automated decision-making tools. Required that a licensed healthcare professional supervise and meaningfully review any coverage decision derived from automated tools when those decisions modify or deny prior-authorization or concurrent-care requests. Defined AI broadly as any machine-based system that makes predictions, recommendations, or decisions, and \"automated decision-making tool\" as a system specifically developed or modified to drive consequential decisions. Sat in the Senate Banking and Insurance Committee without action for the full session.",
+      "explanation": "Targeted one of the most contested AI use cases in healthcare: insurer use of automated tools to deny or modify prior authorizations. A successor framing was filed in 2026 as H.5206 / S.920, which extended the framework with explicit accuracy-certification requirements to SCDOI and physician-review mandates. The underlying issue — automated denial of care — is unlikely to recede; this category will almost certainly return in 2027.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/443.htm"
+    },
+    {
+      "title": "Health Insurance Prior Authorization with AI",
+      "bill_number": "H.5206",
+      "status": "Died in Committee",
+      "last_action_date": "2026-02-11",
+      "sponsors": ["Rep. Pedalino", "Rep. B. Newton", "Rep. Sessions", "Rep. Davis", "+ others"],
+      "impact_score": 8,
+      "summary": "Would have required SC-regulated health insurers using AI for prior authorization decisions to (1) base any denial on individual clinical circumstances rather than algorithmic averages, (2) have a licensed physician review every AI-generated denial, (3) annually certify AI tool accuracy to the SC Department of Insurance, (4) disclose AI use to enrollees, and (5) limit patient data use to stated HIPAA-consistent purposes. Companion bill S.920 carried the same provisions in the Senate. Both died in committee.",
+      "explanation": "Successor and more developed version of S.443. The accuracy-certification requirement and the explicit physician-review mandate align SC with reform efforts in California (SB 1120) and other states responding to the UnitedHealthcare automated-denial controversy. Strong candidate to return as a refined version in 2027, possibly with the Senate companion taking the lead now that the framework has been published in two consecutive sessions.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5206.htm"
+    },
+    {
+      "title": "Protecting Children from Chatbots Act",
+      "bill_number": "S.1037",
+      "status": "Died in Committee",
+      "last_action_date": "2026-04-10",
+      "sponsors": ["Sen. Kimbrell", "Sen. Garrett", "Sen. Rice", "Sen. Adams"],
+      "impact_score": 7,
+      "summary": "Would have added Chapter 81 to Title 39 of the SC Code, focused specifically on chatbot use by minors. Applied to \"covered entities\" with 500,000 or more monthly active users worldwide across all chatbots they offer, with explicit exemptions for internal tools, non-public tools, and customer-service-only deployments. Required age verification and a limited-access mode for minors, defined covered harms and covered incidents, and established standards for parental notification and incident reporting. A House companion (H.5476) carried identical text. Both died in their respective committees.",
+      "explanation": "One of the more aggressive minor-protection AI bills introduced in any state in 2025-2026, structurally comparable to California's SB 243. The 500,000-MAU threshold is calibrated to capture major commercial AI chatbots without imposing requirements on smaller deployments. If re-introduced in 2027, the most likely path is via the combined House-Senate package the LCI Committee was assembling in late April before sine die.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/1037.htm"
+    },
+    {
+      "title": "Chatbot Protection Act",
+      "bill_number": "H.5138",
+      "status": "Died in Committee",
+      "last_action_date": "2026-02-04",
+      "sponsors": ["Rep. Guffey", "Rep. Sessions", "Rep. Martin", "Rep. Brewer"],
+      "impact_score": 7,
+      "summary": "Would have added Chapter 80 to Title 39 (Trade and Commerce), establishing requirements and civil-action mechanisms specific to chatbot deployments. Defined core terms including chatbot, chatbot provider, chat log, input data, model, dark pattern, deidentified data, personal data, advertisement, and affirmative consent. Established affirmative-consent requirements for certain chatbot practices, with detailed standards for clear stand-alone disclosure, plain-language drafting, accessibility for users with disabilities, and availability in commonly-used languages. A Senate companion (S.896) carried the same framework and was amended in the LCI Committee toward the S.1037 minor-protection language before dying.",
+      "explanation": "Part of a national wave of chatbot-transparency legislation introduced across multiple states in 2025-2026. Would have affected any business deploying consumer-facing chatbots in SC, with new requirements for explicit disclosure of bot-vs-human interaction, restrictions on dark patterns, and standards for what counts as informed user consent. The private right of action means individual consumers harmed by non-compliant chatbot deployments could have pursued civil remedies directly. Likely returns in 2027, possibly merged with S.1037's minor-protection provisions.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5138.htm"
+    },
+    {
+      "title": "Deceptive and Fraudulent Deepfake Media in Elections",
+      "bill_number": "H.3517",
+      "status": "Died in Committee",
+      "last_action_date": "2025-01-14",
+      "sponsors": ["Rep. J.L. Johnson"],
+      "impact_score": 8,
+      "summary": "Would have prohibited the distribution of synthetic-media deepfakes of candidates within 90 days of an election unless the content carried a clear disclosure label reading \"This [image/video/audio] has been manipulated or generated by artificial intelligence.\" Established civil and criminal remedies for candidates harmed by unlabeled deepfakes. Referred to House Judiciary on January 14, 2025; no further action.",
+      "explanation": "Election-integrity deepfake legislation is the single most-introduced category of AI legislation in the US in 2025-2026 — at least 35 states considered comparable bills, with roughly half enacting some version. SC remained on the unenacted side. Returns in 2027 are likely; the political incentive structure makes this category bipartisan in most states.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3517.htm"
+    },
+    {
+      "title": "Voyeurism Statute Deepfake Update",
+      "bill_number": "H.3042",
+      "status": "Died in Committee",
+      "last_action_date": "2025-01-14",
+      "sponsors": ["Rep. Guffey", "Rep. Lawson", "Rep. Wooten", "Rep. Pope", "+ 5 others"],
+      "impact_score": 6,
+      "summary": "Would have updated SC's voyeurism statute (Section 16-17-470) to explicitly cover AI-generated deepfakes produced using generative adversarial network techniques. Established escalating penalties: up to 5 years for creation, up to 15 years for selling or distributing. Required law enforcement to destroy evidentiary copies after prosecution and to notify additional victims discovered during investigation. Referred to House Judiciary on January 14, 2025; no further action.",
+      "explanation": "Closes a gap left open by the enacted H.3058: H.3058 covers intimate images, but voyeurism extends to non-intimate situations where a deepfake places an identifiable individual into a recorded or photographed setting they were never in. The criminal-penalty escalation between creation and distribution reflects the same approach SC takes in CSAM and trafficking statutes. Likely returns in 2027.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3042.htm"
+    },
+    {
+      "title": "ELVIS Act (Ensuring Likeness, Voice, and Image Security)",
+      "bill_number": "H.3404",
+      "status": "Died in Committee",
+      "last_action_date": "2025-01-14",
+      "sponsors": ["Rep. Guffey"],
+      "impact_score": 7,
+      "summary": "Would have established a property right in an individual's name, photograph, voice, or likeness in any medium — explicitly including AI-generated voice simulations. Created civil liability against anyone who distributed tools \"the primary purpose of which is the production of an individual's voice or likeness without authorization.\" Modeled directly on Tennessee's 2024 ELVIS Act. Referred to House Judiciary on January 14, 2025; no further action.",
+      "explanation": "Voice-cloning legislation became a national policy category after Tennessee's ELVIS Act was signed in March 2024. SC's version would have aligned the state with the property-rights framework rather than the narrower defamation or impersonation approach taken in some other states. Affected parties would include consumer voice-cloning services, audio post-production tools, and any platform hosting AI-generated voice content. Likely returns in 2027.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/3404.htm"
+    },
+    {
+      "title": "Community Data Protection and Responsible Surveillance Act",
+      "bill_number": "H.4675",
+      "status": "Died in Committee",
+      "last_action_date": "2026-01-13",
+      "sponsors": ["Rep. Kilmartin", "Rep. Chumley", "Rep. Edgerton", "Rep. Magnuson"],
+      "impact_score": 7,
+      "summary": "Would have banned state and local law enforcement from using AI or automated systems to track vehicles by appearance beyond license plates, directly targeting Flock Safety-type automated license plate reader (ALPR) and computer-vision surveillance networks. Banned surveillance data storage on third-party servers. Required warrants for data access, capped retention at 21 days, mandated quarterly independent audits and annual transparency reports. Referred to House Judiciary on January 13, 2026; no further action.",
+      "explanation": "One of the few SC AI bills with a civil-liberties framing rather than a consumer-protection or criminal-law framing. Directly responds to the rapid expansion of Flock Safety camera networks across SC municipalities. The 21-day retention cap and warrant requirement are among the strictest proposed in any state. The bill's sponsors are notably conservative — this is not a partisan civil-liberties bill, which improves its prospects for 2027 re-introduction.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4675.htm"
+    },
+    {
+      "title": "Right to Compute Act",
+      "bill_number": "H.4657",
+      "status": "Died in Committee",
+      "last_action_date": "2026-01-13",
+      "sponsors": ["Rep. Guffey", "Rep. Pope", "Rep. Oremus"],
+      "impact_score": 5,
+      "summary": "Would have added Chapter 35 to Title 1 of the SC Code, the \"Right to Compute Act.\" Required deployers of AI controlling critical infrastructure to develop a risk management policy aligned with the NIST AI Risk Management Framework, ISO/IEC 42001, or another nationally recognized framework — with existing federal compliance counting as sufficient. Separately established a constitutional argument that government restrictions on the private ownership or use of \"computational resources\" must be narrowly tailored to a compelling interest. Pre-filed December 2025; referred to House LCI Committee January 13, 2026; no further action.",
+      "explanation": "An unusual hybrid bill. The NIST-alignment requirement is conventional AI-governance policy. The compelling-interest standard for restrictions on computational resources is novel — it imports constitutional strict-scrutiny analysis into AI law, asserting that government attempts to restrict private compute capacity must meet the same standard as restrictions on speech or property. Likely returns; the framework anticipates federal AI moratorium fights and stakes out a state-level position on compute regulation.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4657.htm"
+    },
+    {
+      "title": "Developer Liability for AI-Generated Intimate Images",
+      "bill_number": "H.5598",
+      "status": "Died in Committee",
+      "last_action_date": "2026-04-28",
+      "sponsors": ["Rep. Guffey", "Rep. T. Moore", "Rep. Pope"],
+      "impact_score": 7,
+      "summary": "Would have amended the enacted H.3058 (Unauthorized Disclosure of Intimate Images Act) to extend liability to developers and providers of AI tools that facilitate, market, train, or configure systems to generate non-consensual intimate images of identifiable individuals. Carved out \"neutral, general purpose tools\" with substantial lawful uses. Introduced on April 28, 2026; referred to House Judiciary; died at sine die.",
+      "explanation": "Tests the limits of Section 230-style platform immunity for AI tool makers. The carve-out language (\"neutral, general purpose tools with substantial lawful uses\") is a deliberate effort to draw a line between general-purpose image models and dedicated nudification or deepfake-targeted tools. If re-introduced and passed, SC would be among the first states to impose direct civil and criminal liability on the developers of such tools. Likely returns given how late in the session it was filed.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/5598.htm"
+    },
+    {
+      "title": "Stop Harm from Addictive Social Media (SHASM) Act",
+      "bill_number": "S.1103",
+      "status": "Died in Committee",
+      "last_action_date": "2026-04-01",
+      "sponsors": ["Senate sponsors — bill text"],
+      "impact_score": 6,
+      "summary": "Would have required social media platforms to use \"reasonable means\" to estimate and verify the age of account holders. Notably tied AI use to compliance obligations: platforms would have been required to re-estimate user age every time they used AI or data analytics to update any demographic characteristic of a user. Introduced in the Senate on April 1, 2026; referred to Senate LCI; died at sine die.",
+      "explanation": "Novel mechanism: rather than imposing a single up-front age-verification requirement, the bill creates a continuous obligation triggered by any AI-driven demographic update. If a platform's recommender system infers that a user appears to be a different age than originally claimed, age verification must be re-run. This compliance pattern is being watched in other states as a possible template for ongoing AI-driven user-classification accountability.",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/1103.htm"
+    }
+  ]
+}

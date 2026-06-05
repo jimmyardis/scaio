@@ -449,7 +449,29 @@
     .bill-status.passed   { background: #e8f0fe; color: #1a53c9; border: 1px solid #b3ccf5; }
     .bill-status.pending  { background: #fef9e6; color: #8a6800; border: 1px solid #f0d980; }
     .bill-status.dead     { background: #f9ecec; color: #a02020; border: 1px solid #f0b8b8; }
+    .bill-status.law      { background: #e6f4ea; color: #146c2e; border: 1px solid #9ed1a8; font-weight: 700; }
     .bill-status.default  { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+
+    .legislation-updated {
+      margin: 12px 0 0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legislation-updated::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1a6630;
+    }
+    .legislation-updated:empty { display: none; }
 
     .bill-impact {
       display: inline-flex;
@@ -1148,6 +1170,7 @@
         <div class="section-kicker">SC Legislation</div>
         <h2 class="section-title">SC AI Legislation Tracker</h2>
         <p class="section-copy">Detailed bill overviews, status, and business impact — updated as bills move through the South Carolina General Assembly.</p>
+        <p id="legislation-updated" class="legislation-updated"></p>
       </div>
 
       <div id="legislation-tracker"></div>
@@ -1155,8 +1178,23 @@
       <script>
         fetch('./bills.json')
           .then(response => response.json())
-          .then(bills => {
+          .then(data => {
             const container = document.getElementById('legislation-tracker');
+            // Support both legacy (array) and current (object-with-bills) schemas.
+            const bills = Array.isArray(data) ? data : (data && data.bills) || [];
+            const lastUpdated = (data && !Array.isArray(data) && data.last_updated) ? data.last_updated : null;
+            const sessionNote = (data && !Array.isArray(data) && data.session_note) ? data.session_note : null;
+
+            const stamp = document.getElementById('legislation-updated');
+            if (stamp && lastUpdated) {
+              try {
+                const d = new Date(lastUpdated + 'T00:00:00');
+                const month = d.toLocaleString('en-US', { month: 'long' });
+                stamp.textContent = `Updated ${month} ${d.getDate()}, ${d.getFullYear()}${sessionNote ? ' · ' + sessionNote : ''}`;
+              } catch (e) {
+                stamp.textContent = `Updated ${lastUpdated}${sessionNote ? ' · ' + sessionNote : ''}`;
+              }
+            }
 
             if (!bills || bills.length === 0) {
               container.innerHTML = '<div class="bill-card-empty">No legislation data available yet. Check back as bills are added to the database.</div>';
@@ -1164,13 +1202,15 @@
             }
 
             bills.forEach(bill => {
-              // Determine status badge class
+              // Determine status badge class. Check enacted/died BEFORE generic passed/committee
+              // matches so "Signed into law" maps to .law and "Died in Committee" maps to .dead.
               const statusLower = (bill.status || '').toLowerCase();
               let statusClass = 'default';
-              if (statusLower.includes('active') || statusLower.includes('in committee') || statusLower.includes('introduced')) statusClass = 'active';
-              else if (statusLower.includes('passed') || statusLower.includes('signed')) statusClass = 'passed';
+              if (statusLower.includes('signed') || statusLower.includes('now law') || statusLower.includes('act no')) statusClass = 'law';
+              else if (statusLower.includes('died') || statusLower.includes('dead') || statusLower.includes('failed') || statusLower.includes('vetoed')) statusClass = 'dead';
+              else if (statusLower.includes('passed')) statusClass = 'passed';
+              else if (statusLower.includes('in committee') || statusLower.includes('active') || statusLower.includes('introduced')) statusClass = 'active';
               else if (statusLower.includes('pending')) statusClass = 'pending';
-              else if (statusLower.includes('dead') || statusLower.includes('failed') || statusLower.includes('vetoed')) statusClass = 'dead';
 
               const card = document.createElement('div');
               card.className = 'bill-card';
@@ -1189,7 +1229,7 @@
                 <p>${bill.summary || 'No summary available.'}</p>
                 <div class="bill-section-label">Business Impact</div>
                 <p>${bill.explanation || 'No impact analysis available.'}</p>
-                ${bill.url ? `<a class="bill-link" href="${bill.url}" target="_blank" rel="noreferrer">Read full bill on LegiScan →</a>` : ''}
+                ${bill.url ? `<a class="bill-link" href="${bill.url}" target="_blank" rel="noreferrer">Read full bill text →</a>` : ''}
               `;
 
               container.appendChild(card);
