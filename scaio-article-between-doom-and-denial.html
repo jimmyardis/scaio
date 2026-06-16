@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Between Doom and Denial — How SCAIO Thinks About AI Risk — SCAIO</title>
+  <meta name="description" content="SCAIO's editorial approach to AI safety, governance, and risk: it is possible to champion AI's benefits and take its risks seriously at the same time. The outcome depends on intentional choices, not on optimism or fear." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:#081a36; --navy-2:#0a2a54; --blue:#0b4ea2; --blue-2:#2f7ae5; --blue-soft:#dbeafe;
+      --surface:#ffffff; --bg:#f6f8fb; --border:#d9e4f2; --text:#142133; --muted:#4b5a6b;
+      --green:#15803d; --amber:#b45309; --amber-soft:#fff7ed; --red:#a02020; --red-soft:#f9ecec;
+      --max:720px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+    .site-bar { background:linear-gradient(90deg,#081a36,#0a2a54); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .site-bar a { text-decoration:none; color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:0.06em; }
+    .site-bar .logo { font-family:'Libre Baskerville',serif; font-size:1.15rem; color:#fff; letter-spacing:0.04em; }
+    .site-bar .back { font-size:0.8rem; color:rgba(185,214,255,0.8); }
+
+    .article-wrap { max-width:var(--max); margin:0 auto; padding:60px 24px 100px; }
+
+    .meta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+    .meta-tag { background:var(--blue-soft); color:var(--blue); font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:4px 12px; border-radius:999px; border:1px solid #bdd4f8; }
+    .meta-date { color:var(--muted); font-size:0.82rem; }
+
+    h1 { font-family:'Libre Baskerville',serif; font-size:clamp(2rem,5vw,2.9rem); line-height:1.15; color:var(--navy); letter-spacing:-0.02em; margin-bottom:20px; }
+    .dek { font-size:1.15rem; color:var(--muted); line-height:1.75; border-left:3px solid var(--blue-2); padding-left:18px; margin-bottom:40px; font-family:'Libre Baskerville',serif; font-style:italic; }
+
+    .prose p { font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:22px; }
+    .prose h2 { font-family:'Libre Baskerville',serif; font-size:1.5rem; color:var(--navy); margin:48px 0 16px; letter-spacing:-0.01em; }
+    .prose strong { color:var(--navy); }
+    .prose em { color:var(--text); }
+    .prose a { color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+
+    /* Two failure modes */
+    .poles { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:30px 0; }
+    .pole { border:1px solid var(--border); border-radius:14px; padding:22px; background:var(--surface); }
+    .pole.doom { border-top:3px solid var(--red); }
+    .pole.denial { border-top:3px solid var(--amber); }
+    .pole .ptag { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8px; }
+    .pole.doom .ptag { color:var(--red); }
+    .pole.denial .ptag { color:var(--amber); }
+    .pole h4 { font-family:'Libre Baskerville',serif; font-size:1.05rem; color:var(--navy); margin-bottom:8px; font-weight:700; }
+    .pole p { font-size:0.9rem; color:var(--muted); line-height:1.65; margin:0; }
+    .synthesis { background:#f0f7ff; border:1px solid #c8ddf6; border-radius:14px; padding:22px 24px; margin:14px 0 0; }
+    .synthesis .ptag { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+    .synthesis p { font-size:0.98rem; color:var(--text); line-height:1.7; margin:0; }
+    .synthesis strong { color:var(--navy); }
+
+    .pull-quote { margin:40px 0; padding:28px 32px; background:var(--navy); border-radius:16px; color:#fff; }
+    .pull-quote p { font-family:'Libre Baskerville',serif; font-size:1.22rem; line-height:1.6; color:rgba(255,255,255,0.96); margin:0; }
+    .pull-quote cite { display:block; margin-top:12px; font-size:0.78rem; color:rgba(185,214,255,0.7); font-style:normal; letter-spacing:0.08em; text-transform:uppercase; }
+
+    /* Method box */
+    .method { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:30px 32px; margin:36px 0; box-shadow:0 10px 30px rgba(10,42,84,0.07); }
+    .method .mk { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--blue); margin-bottom:18px; }
+    .method ol { list-style:none; counter-reset:m; margin:0; padding:0; }
+    .method li { counter-increment:m; position:relative; padding:0 0 18px 44px; }
+    .method li:last-child { padding-bottom:0; }
+    .method li::before { content:counter(m); position:absolute; left:0; top:0; width:28px; height:28px; border-radius:50%; background:var(--navy); color:#fff; font-size:0.85rem; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:'Libre Baskerville',serif; }
+    .method li .mt { font-weight:700; color:var(--navy); }
+    .method li p { font-size:0.92rem; color:var(--muted); line-height:1.6; margin:3px 0 0; }
+
+    .source-note { margin-top:52px; padding-top:24px; border-top:1px solid var(--border); font-size:0.78rem; color:#8a96a7; line-height:1.7; }
+    .source-note strong { color:var(--muted); }
+    .source-note a { color:var(--blue); text-decoration:underline; }
+
+    @media (max-width:600px){ .poles { grid-template-columns:1fr; } }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="safety/" class="back">← AI Safety &amp; Governance</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">AI Safety</span>
+      <span class="meta-tag">Governance</span>
+      <span class="meta-tag">Editorial</span>
+      <span class="meta-date">June 2026 · SCAIO</span>
+    </div>
+
+    <h1>Between Doom and Denial</h1>
+
+    <p class="dek">
+      How SCAIO thinks about AI risk. It is possible to champion artificial intelligence's benefits and take its risks seriously at the same time — and doing both is not fence-sitting. It is the only honest position, and the only one that produces good policy.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        Most public writing about artificial intelligence asks you to pick a team. One side says the technology is an oncoming catastrophe — that we are building something we cannot control, and that the responsible response is alarm. The other says the worry is overblown — that AI is a powerful tool like any other, that the doom talk is science fiction, and that the market and good intentions will sort out whatever problems arise.
+      </p>
+
+      <p>
+        SCAIO does not believe either of those stories is true, and this piece explains the position we take instead — because everything else we publish on safety, governance, regulation, and alignment will be built on it.
+      </p>
+
+      <p>
+        Start with where each camp goes wrong. Not at its weakest — at its strongest.
+      </p>
+
+      <div class="poles">
+        <div class="pole doom">
+          <div class="ptag">Failure mode one</div>
+          <h4>The dread merchants</h4>
+          <p>Collapse every risk into existential terms, treat catastrophe as inevitable, and frame all caution as too little, too late. The cost: when everything is an emergency, nothing gets the patient, specific governance that actually reduces harm. Fear is loud, but it is not a plan.</p>
+        </div>
+        <div class="pole denial">
+          <div class="ptag">Failure mode two</div>
+          <h4>The hand-wavers</h4>
+          <p>Wave away every concern as hype, assume problems will resolve themselves, and treat any proposed guardrail as an attack on progress. The cost: real, documented risks go unaddressed until they are expensive and entrenched. Optimism is pleasant, but it is not a safeguard.</p>
+        </div>
+      </div>
+      <div class="synthesis">
+        <div class="ptag">The position in between</div>
+        <p><strong>Both the benefits and the risks are real, and which risks materialize is not fixed — it depends on choices we make now.</strong> In how systems are designed, what they are allowed to decide, how they are bought and deployed, and how they are governed. That is the entire game, and it is the thing both extremes talk past.</p>
+      </div>
+
+      <h2>The benefits are real — take the optimists seriously</h2>
+
+      <p>
+        It is easy, in a publication devoted partly to risk, to treat AI's upside as a throat-clearing formality. We won't. The strongest version of the optimistic case is genuinely strong, and a serious safety conversation has to start by conceding it.
+      </p>
+
+      <p>
+        AI systems are already doing useful, sometimes remarkable work: accelerating drug discovery and protein modeling, expanding access to expertise for people who could never afford a specialist, catching diseases earlier in imaging, translating across languages in real time, making government services answerable in plain language rather than bureaucratic code. In South Carolina specifically, the same technology is reshaping manufacturing, infrastructure, and how the state delivers services to residents. These are not hypotheticals. They are shipping, and they are improving lives.
+      </p>
+
+      <p>
+        The optimists are also right about something subtler: that <em>excessive</em> caution has costs too. A guardrail that blocks a beneficial use of AI in a hospital or a classroom is not free — it has a body count and an opportunity cost of its own. Regulation written in a panic tends to be bad regulation, and it tends to entrench the largest incumbents who can afford to comply while shutting out the smaller builders who can't. Anyone who treats "do something" as automatically safer than "wait" has not thought hard enough about what the something is.
+      </p>
+
+      <h2>The risks are real — take the safety-concerned seriously</h2>
+
+      <p>
+        The mirror-image discipline is just as important. The strongest version of the safety case is not science fiction, and dismissing it as such is its own kind of laziness.
+      </p>
+
+      <p>
+        Some risks are here now and well documented: AI-generated fraud and non-consensual deepfakes, the kind South Carolina has already legislated against; bias in systems that make or shape consequential decisions about credit, housing, employment, and benefits; reliability failures in high-stakes settings, where leading AI research tools have shown hallucination rates between 17 and 33 percent on factual questions; and the quiet concentration of enormous capability in a handful of firms. None of these require any speculation about the future. They are operational problems today.
+      </p>
+
+      <p>
+        Other risks are genuinely uncertain and longer in horizon — questions about increasingly autonomous systems, about whether our ability to verify that a system is doing what we intend keeps pace with its capability, about failure modes we have not yet seen because the systems that would produce them do not yet exist. The honest thing to say about these is not "ignore them" and not "panic about them," but: <em>we do not yet know, the stakes if some of them are real are high enough to warrant serious attention, and the work of reducing them is tractable and underway.</em> Treating uncertainty as a reason to look away is exactly the mistake the hand-wavers make.
+      </p>
+
+      <h2>Why the middle is not mush</h2>
+
+      <p>
+        The reflexive objection to a both-sides framing is that it is cowardice dressed as balance — a refusal to commit. It would be, if the position were "the truth is somewhere in the middle, who can say." That is not the position.
+      </p>
+
+      <p>
+        The position is that the outcome is <em>not determined by how the technology feels</em> — thrilling or terrifying — but by specific, identifiable decisions, most of which are being made right now by people who can be informed or left uninformed. Does a state require a human in the loop before an algorithm denies someone's medical claim? Does a school district know what data its AI vendor collects on children? Does a procurement officer ask whether a system was evaluated for the use it's being bought for? Does a developer build the ability to audit a model before, or after, it is deployed at scale?
+      </p>
+
+      <p>
+        Those are not doom-or-bloom questions. They are design questions, and they have better and worse answers. A publication that helps people see the questions clearly — and the evidence bearing on each one — does more good than a thousand op-eds telling them how to feel.
+      </p>
+
+      <div class="pull-quote">
+        <p>Neither fear nor optimism is a strategy. Intentional implementation is. The risks that materialize are the ones we declined to design against.</p>
+        <cite>— The SCAIO editorial position</cite>
+      </div>
+
+      <h2>How we will cover this</h2>
+
+      <p>
+        A claim to neutrality is worthless unless you can check it. So here is the method this series holds to — stated plainly, so you can hold us to it.
+      </p>
+
+      <div class="method">
+        <div class="mk">The SCAIO method — six standards</div>
+        <ol>
+          <li><span class="mt">Steelman before critiquing.</span><p>Represent each view at its strongest, in terms its holders would accept, before weighing it.</p></li>
+          <li><span class="mt">Label the confidence of every claim.</span><p>We mark what is established (broad evidence), contested (serious people disagree), and speculative (plausible but unproven) — and never let one masquerade as another.</p></li>
+          <li><span class="mt">Source everything; prefer primaries.</span><p>We link the order, the paper, the statute, the evaluation — not the hot take about it — and we transparency-label advocacy sources.</p></li>
+          <li><span class="mt">Name uncertainty out loud.</span><p>Where the honest answer is "we don't know yet," we say so, and we say what evidence would change it.</p></li>
+          <li><span class="mt">Separate timelines and severities.</span><p>Near-term concrete harms and long-horizon frontier risks are different conversations; we don't let one borrow the other's urgency or dismissiveness.</p></li>
+          <li><span class="mt">Update visibly.</span><p>When the evidence shifts, we revise and note the revision. The same discipline we apply to a legislative tracker, applied to ideas.</p></li>
+        </ol>
+      </div>
+
+      <p>
+        That is the whole posture: warm toward the technology's promise, unflinching about its risks, and relentlessly concrete about the choices that decide between them. We think most people are not actually doomers or deniers — they are reasonable people who have been offered only those two scripts and found both unconvincing. This series is for them.
+      </p>
+
+      <p>
+        South Carolina is making real decisions about AI right now — in its agencies, its courts, its legislature, its schools, and its companies. The point of writing clearly about safety and governance is not to slow that down or cheer it on. It is to help the people making those decisions make them <em>intentionally</em> — with the benefits in full view and the risks in full view, which is the only way anyone has ever built anything well.
+      </p>
+
+      <div class="source-note">
+        <strong>About this series:</strong> This is the founding editorial statement of SCAIO's work on AI safety, governance, regulation, and alignment — a growing set of primers, policy briefs, and essays gathered in the <a href="safety/">AI Safety &amp; Governance</a> section. It pairs with SCAIO's <a href="index.html#policy">Policy Tracker</a> (what's actually being legislated) and <a href="learn/">Learn</a> primers (the working vocabulary). Risk and reliability figures referenced here are drawn from the peer-reviewed and primary sources cited in the individual pieces. We welcome correction; the method above is the standard we ask to be held to.
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
