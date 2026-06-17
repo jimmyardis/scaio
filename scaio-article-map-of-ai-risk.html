@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Plain-Language Map of AI Risk — SCAIO</title>
+  <meta name="description" content="A simple framework for locating any AI risk: where does it come from (misuse, malfunction, or systemic), and is it here now or over the horizon? Separating the two is how the AI risk conversation stops talking past itself." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:#081a36; --navy-2:#0a2a54; --blue:#0b4ea2; --blue-2:#2f7ae5; --blue-soft:#dbeafe;
+      --surface:#ffffff; --bg:#f6f8fb; --border:#d9e4f2; --text:#142133; --muted:#4b5a6b;
+      --green:#15803d; --amber:#b45309; --amber-soft:#fff7ed; --red:#a02020; --red-soft:#f9ecec;
+      --max:720px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+    .site-bar { background:linear-gradient(90deg,#081a36,#0a2a54); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .site-bar a { text-decoration:none; color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:0.06em; }
+    .site-bar .logo { font-family:'Libre Baskerville',serif; font-size:1.15rem; color:#fff; letter-spacing:0.04em; }
+    .site-bar .back { font-size:0.8rem; color:rgba(185,214,255,0.8); }
+
+    .article-wrap { max-width:var(--max); margin:0 auto; padding:60px 24px 100px; }
+
+    .meta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+    .meta-tag { background:var(--blue-soft); color:var(--blue); font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; padding:4px 12px; border-radius:999px; border:1px solid #bdd4f8; }
+    .meta-date { color:var(--muted); font-size:0.82rem; }
+
+    h1 { font-family:'Libre Baskerville',serif; font-size:clamp(2rem,5vw,2.9rem); line-height:1.15; color:var(--navy); letter-spacing:-0.02em; margin-bottom:20px; }
+    .dek { font-size:1.15rem; color:var(--muted); line-height:1.75; border-left:3px solid var(--blue-2); padding-left:18px; margin-bottom:40px; font-family:'Libre Baskerville',serif; font-style:italic; }
+
+    .prose p { font-size:1.05rem; line-height:1.85; color:var(--text); margin-bottom:22px; }
+    .prose h2 { font-family:'Libre Baskerville',serif; font-size:1.5rem; color:var(--navy); margin:46px 0 16px; letter-spacing:-0.01em; }
+    .prose strong { color:var(--navy); }
+    .prose em { color:var(--text); }
+    .prose a { color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+
+    /* Two-questions box */
+    .qbox { background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--blue-2); border-radius:14px; padding:24px 28px; margin:32px 0; box-shadow:0 10px 30px rgba(10,42,84,0.07); }
+    .qbox .q { margin-bottom:16px; }
+    .qbox .q:last-child { margin-bottom:0; }
+    .qbox .qn { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin-bottom:4px; }
+    .qbox .qt { font-family:'Libre Baskerville',serif; font-size:1.08rem; color:var(--navy); font-weight:700; }
+
+    /* Source cards */
+    .sources { display:grid; grid-template-columns:1fr; gap:14px; margin:24px 0 28px; }
+    .src { border:1px solid var(--border); border-radius:14px; padding:22px 24px; background:var(--surface); }
+    .src .stag { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8px; }
+    .src.a { border-top:3px solid var(--red); } .src.a .stag { color:var(--red); }
+    .src.b { border-top:3px solid var(--amber); } .src.b .stag { color:var(--amber); }
+    .src.c { border-top:3px solid var(--blue); } .src.c .stag { color:var(--blue); }
+    .src h3 { font-family:'Libre Baskerville',serif; font-size:1.15rem; color:var(--navy); margin-bottom:8px; }
+    .src p { font-size:0.92rem; color:var(--muted); line-height:1.65; margin:0 0 10px; }
+    .src .ex { font-size:0.85rem; color:var(--text); }
+    .src .ex b { color:var(--navy); }
+
+    /* Timeline strip */
+    .tl { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0 28px; }
+    .tlc { border:1px solid var(--border); border-radius:12px; padding:18px; background:var(--surface); }
+    .tlc .h { font-weight:700; color:var(--navy); font-size:0.95rem; margin-bottom:6px; }
+    .tlc .lvl { font-size:0.66rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px; }
+    .tlc.now .lvl { color:var(--green); } .tlc.near .lvl { color:var(--amber); } .tlc.far .lvl { color:var(--muted); }
+    .tlc p { font-size:0.84rem; color:var(--muted); line-height:1.55; margin:0; }
+
+    .pull-quote { margin:38px 0; padding:26px 30px; background:var(--navy); border-radius:16px; color:#fff; }
+    .pull-quote p { font-family:'Libre Baskerville',serif; font-size:1.2rem; line-height:1.6; color:rgba(255,255,255,0.96); margin:0; }
+    .pull-quote cite { display:block; margin-top:12px; font-size:0.78rem; color:rgba(185,214,255,0.7); font-style:normal; letter-spacing:0.08em; text-transform:uppercase; }
+
+    .source-note { margin-top:52px; padding-top:24px; border-top:1px solid var(--border); font-size:0.78rem; color:#8a96a7; line-height:1.7; }
+    .source-note strong { color:var(--muted); }
+    .source-note a { color:var(--blue); text-decoration:underline; }
+
+    @media (max-width:600px){ .tl { grid-template-columns:1fr; } }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="safety/" class="back">← AI Safety &amp; Governance</a>
+  </div>
+
+  <div class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">AI Safety</span>
+      <span class="meta-tag">Explainer</span>
+      <span class="meta-date">June 2026 · SCAIO</span>
+    </div>
+
+    <h1>A Plain-Language Map of AI Risk</h1>
+
+    <p class="dek">
+      Almost every unproductive argument about AI risk is really two people pointing at different risks and assuming they're discussing the same one. A simple map fixes most of it — locate any risk by where it comes from, and how far off it is.
+    </p>
+
+    <div class="prose">
+
+      <p>
+        "Is AI dangerous?" is a question with no useful answer, because "AI risk" isn't one thing. It's a category containing harms as different as a scammer cloning your grandmother's voice, a hiring tool quietly screening out qualified applicants, and a hypothesized future system no one can switch off. Treating those as a single topic is why the conversation so often collapses into the doom-versus-denial shouting match this series exists to avoid.
+      </p>
+
+      <p>
+        The fix is a map. You can locate almost any AI risk by asking two questions — and once a risk is located, the right response usually becomes obvious, and the wrong arguments fall away.
+      </p>
+
+      <div class="qbox">
+        <div class="q">
+          <div class="qn">Question one</div>
+          <div class="qt">Where does the harm come from — a person, a malfunction, or the system as a whole?</div>
+        </div>
+        <div class="q">
+          <div class="qn">Question two</div>
+          <div class="qt">Is it here now, emerging, or over the horizon?</div>
+        </div>
+      </div>
+
+      <h2>Question one: three sources of harm</h2>
+
+      <p>
+        Almost every AI risk traces back to one of three sources. They call for genuinely different responses, which is why lumping them together is so costly.
+      </p>
+
+      <div class="sources">
+        <div class="src a">
+          <div class="stag">Source one · deliberate</div>
+          <h3>Misuse — people using AI to do harm</h3>
+          <p>The system works exactly as designed; the problem is the human pointing it. The response is mostly law enforcement, deterrence, and access controls — not changes to the model.</p>
+          <div class="ex"><b>Examples:</b> deepfake fraud and non-consensual imagery, AI-generated disinformation, scaled phishing and cyberattacks, surveillance overreach.</div>
+        </div>
+        <div class="src b">
+          <div class="stag">Source two · unintended</div>
+          <h3>Malfunction — the system does something we didn't intend</h3>
+          <p>No bad actor required; the system itself behaves badly. The response is engineering: evaluation, testing, human oversight, and reliability standards before deployment.</p>
+          <div class="ex"><b>Examples:</b> biased decisions in hiring or lending, hallucinated facts in high-stakes settings, unsafe behavior from autonomous systems, brittle failures on unfamiliar inputs.</div>
+        </div>
+        <div class="src c">
+          <div class="stag">Source three · emergent</div>
+          <h3>Systemic — harms from widespread adoption itself</h3>
+          <p>No single system or actor is at fault; the harm emerges from millions of individually reasonable uses. The response is policy and institutional design, not a bug fix.</p>
+          <div class="ex"><b>Examples:</b> labor disruption, concentration of power in a few firms, dependence and deskilling, erosion of a shared factual baseline.</div>
+        </div>
+      </div>
+
+      <p>
+        Notice how different the responses are. You don't "regulate the model" to stop a scammer (that's misuse — a law-enforcement problem). You don't pass a content-moderation law to fix a biased lending model (that's malfunction — an evaluation-and-oversight problem). And you can't engineer your way out of labor disruption (that's systemic — a policy problem). Matching the response to the source is most of the work.
+      </p>
+
+      <h2>Question two: how far off is it?</h2>
+
+      <p>
+        The second axis is time — and it's where the doom-and-denial camps do the most damage, by borrowing each other's clocks. Doomers attach the certainty of present harms to speculative future ones; deniers attach the uncertainty of future risks to harms already happening. Keeping the horizons separate keeps everyone honest.
+      </p>
+
+      <div class="tl">
+        <div class="tlc now">
+          <div class="lvl">● Here now</div>
+          <div class="h">Documented, measurable</div>
+          <p>Happening today, with evidence. Deepfakes, bias, fraud, reliability failures. The response is execution, not debate.</p>
+        </div>
+        <div class="tlc near">
+          <div class="lvl">● Emerging</div>
+          <div class="h">Visible on the trend line</div>
+          <p>Early signs, scaling fast. Increasingly autonomous agents, AI-driven labor shifts. The response is preparation and monitoring.</p>
+        </div>
+        <div class="tlc far">
+          <div class="lvl">● Over the horizon</div>
+          <div class="h">Uncertain, high-stakes</div>
+          <p>Plausible but unproven, longer-term. Loss of meaningful human control over very capable systems. The response is research and option-preserving.</p>
+        </div>
+      </div>
+
+      <p>
+        None of these three columns should be dismissed, and none should be inflated. A here-now harm deserves action <em>now</em> and doesn't need a theory of the future to justify it. An over-the-horizon risk deserves serious research and humility — and treating it as a certainty is as much an error as waving it away. The honest posture holds all three at once, at their proper sizes.
+      </p>
+
+      <div class="pull-quote">
+        <p>Doomers borrow the certainty of today's harms for tomorrow's hypotheticals. Deniers borrow the uncertainty of tomorrow for the harms already here. The map's whole job is to stop both moves.</p>
+        <cite>— SCAIO editorial observation</cite>
+      </div>
+
+      <h2>What the map is good for</h2>
+
+      <p>
+        Next time you read an AI-risk claim, place it: which source, which horizon? A claim that "AI is biased" is a malfunction risk, here now — so the question is what evaluation and oversight applies. A claim that "AI will take all the jobs" is a systemic risk on an emerging horizon — so the question is what workforce and economic policy prepares for it. A claim that "AI could become uncontrollable" is a malfunction-and-systemic risk over the horizon — so the question is what research and governance keeps options open.
+      </p>
+
+      <p>
+        Three different claims, three different responses, three different levels of confidence. Stated together as "AI risk," they're a fog. Placed on the map, they're a to-do list.
+      </p>
+
+      <h2>What this means for South Carolina</h2>
+
+      <p>
+        The map also clarifies what a state can actually do. South Carolina has real leverage over <strong>misuse</strong> (it has already criminalized AI-generated CSAM and non-consensual deepfakes) and over <strong>malfunction</strong> in the systems its own agencies buy and deploy (through procurement, evaluation, and human-review requirements). Its leverage over <strong>systemic</strong> risk is partial — workforce policy, education, economic development — and its influence over <strong>over-the-horizon</strong> frontier risk is mostly indirect, exercised through how it joins national conversations.
+      </p>
+
+      <p>
+        That's not a counsel of helplessness — it's a focusing device. The most useful thing a state can do is act decisively on the risks it can actually reach, prepare seriously for the ones it can see coming, and resist the temptation to either panic about or dismiss the ones it can't yet measure. That is the whole of SCAIO's posture, applied to risk specifically: <em>benefits in full view, risks in full view, and the right tool aimed at the right problem.</em>
+      </p>
+
+      <div class="source-note">
+        <strong>About this piece:</strong> Part of SCAIO's <a href="safety/">AI Safety &amp; Governance</a> series. The source/malfunction/systemic framing and the time-horizon axis are syntheses of standard taxonomies in the AI-safety and governance literature, adapted for plain-language use; they are a working map, not the only possible one. Pairs with the founding editorial, <a href="scaio-article-between-doom-and-denial.html">Between Doom and Denial</a>, and the vocabulary primer in <a href="learn/primer-safety-vocabulary.html">Learn</a>. SCAIO welcomes correction.
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

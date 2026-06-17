@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Policy Brief — Intentional by Design — SCAIO</title>
+  <meta name="description" content="Five AI guardrails worth building before you need them — concrete, low-cost moves for South Carolina legislators, agencies, and boards that work whether or not new legislation passes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:#081a36; --navy-2:#0a2a54; --blue:#0b4ea2; --blue-2:#2f7ae5; --blue-soft:#dbeafe;
+      --surface:#ffffff; --bg:#f6f8fb; --border:#d9e4f2; --text:#142133; --muted:#4b5a6b;
+      --green:#15803d; --green-soft:#e8f6ec; --max:760px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+    .site-bar { background:linear-gradient(90deg,#081a36,#0a2a54); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .site-bar a { text-decoration:none; color:rgba(255,255,255,0.9); font-size:0.85rem; letter-spacing:0.06em; }
+    .site-bar .logo { font-family:'Libre Baskerville',serif; font-size:1.15rem; color:#fff; letter-spacing:0.04em; }
+    .site-bar .back { font-size:0.8rem; color:rgba(185,214,255,0.8); }
+
+    .wrap { max-width:var(--max); margin:0 auto; padding:56px 24px 100px; }
+
+    .brief-head { border-bottom:2px solid var(--navy); padding-bottom:22px; margin-bottom:28px; }
+    .brief-label { display:inline-block; background:var(--navy); color:#fff; font-size:0.7rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; padding:5px 12px; border-radius:6px; margin-bottom:16px; }
+    h1 { font-family:'Libre Baskerville',serif; font-size:clamp(1.8rem,4.5vw,2.5rem); line-height:1.15; color:var(--navy); letter-spacing:-0.02em; margin-bottom:12px; }
+    .brief-sub { font-size:1.05rem; color:var(--muted); line-height:1.6; }
+    .brief-meta { margin-top:14px; font-size:0.78rem; color:var(--muted); letter-spacing:0.04em; text-transform:uppercase; font-weight:600; }
+
+    .bluf { background:var(--navy); color:#fff; border-radius:14px; padding:26px 30px; margin:28px 0; }
+    .bluf .bk { font-size:0.7rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#9ec3ff; margin-bottom:10px; }
+    .bluf p { font-size:1.02rem; line-height:1.7; color:rgba(230,240,252,0.95); margin:0; }
+    .bluf strong { color:#fff; }
+
+    .prose p { font-size:1.04rem; line-height:1.8; margin-bottom:20px; }
+    .prose h2 { font-family:'Libre Baskerville',serif; font-size:1.4rem; color:var(--navy); margin:40px 0 8px; }
+    .prose strong { color:var(--navy); }
+    .prose a { color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+    .section-intro { color:var(--muted); margin-bottom:8px; }
+
+    /* Guardrails */
+    .guardrail { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:24px 26px; margin:16px 0; box-shadow:0 6px 18px rgba(10,42,84,0.05); }
+    .guardrail .gnum { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:8px; background:var(--blue); color:#fff; font-family:'Libre Baskerville',serif; font-weight:700; font-size:0.95rem; margin-bottom:12px; }
+    .guardrail h3 { font-family:'Libre Baskerville',serif; font-size:1.2rem; color:var(--navy); margin-bottom:10px; line-height:1.3; }
+    .guardrail .why { font-size:0.95rem; color:var(--text); margin-bottom:12px; }
+    .guardrail .why b { color:var(--navy); }
+    .guardrail .practice { font-size:0.9rem; color:var(--muted); line-height:1.6; border-left:3px solid var(--blue-soft); padding-left:14px; }
+    .guardrail .practice b { color:var(--navy); font-weight:600; }
+
+    /* Checklist */
+    .checklist { background:var(--green-soft); border:1px solid #bfe3c9; border-radius:14px; padding:24px 28px; margin:28px 0; }
+    .checklist .ck { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); margin-bottom:14px; }
+    .checklist ul { list-style:none; margin:0; padding:0; }
+    .checklist li { position:relative; padding:0 0 12px 30px; font-size:0.95rem; line-height:1.55; color:var(--text); }
+    .checklist li:last-child { padding-bottom:0; }
+    .checklist li::before { content:"✓"; position:absolute; left:0; top:0; color:var(--green); font-weight:700; }
+    .checklist li b { color:var(--navy); }
+
+    .source-note { margin-top:48px; padding-top:22px; border-top:1px solid var(--border); font-size:0.78rem; color:#8a96a7; line-height:1.7; }
+    .source-note strong { color:var(--muted); }
+    .source-note a { color:var(--blue); text-decoration:underline; }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="../safety/" class="back">← AI Safety &amp; Governance</a>
+  </div>
+
+  <div class="wrap">
+
+    <div class="brief-head">
+      <span class="brief-label">SCAIO Policy Brief</span>
+      <h1>Intentional by Design</h1>
+      <p class="brief-sub">Five AI guardrails worth building before you need them — for South Carolina legislators, agencies, and boards.</p>
+      <div class="brief-meta">June 2026 · AI Safety &amp; Governance series</div>
+    </div>
+
+    <div class="bluf">
+      <div class="bk">Bottom line up front</div>
+      <p>The most effective AI guardrails are <strong>cheap, boring, and installed before they're needed</strong> — and almost none of them require new legislation. The five below are governance moves any agency or board can adopt now, using authority it already has. They reduce the risks that are actually reachable at the state and local level, and they cost far less to build in advance than to retrofit after a public failure.</p>
+    </div>
+
+    <div class="prose">
+
+      <p>
+        South Carolina is adopting AI across its agencies, schools, courts, and companies. The question is not whether to use it — that's settled — but whether the use is <strong>intentional</strong>: designed, with the predictable failure points addressed up front, or improvised, with the failures discovered in production.</p>
+
+      <p>
+        This brief is deliberately modest. It doesn't propose a sweeping AI law or a new regulatory body. It lists five guardrails that work at the level a state or local decision-maker actually controls — procurement, process, and accountability — and that hold up whether or not the General Assembly passes anything. (For where legislation stands, see SCAIO's <a href="../policy/">Policy Tracker</a>.)</p>
+
+      <h2>The five guardrails</h2>
+      <p class="section-intro">In rough order of leverage per dollar.</p>
+
+      <div class="guardrail">
+        <div class="gnum">1</div>
+        <h3>A human signs off on consequential decisions</h3>
+        <p class="why"><b>Why:</b> The single highest-stakes failure mode is an automated system denying someone a benefit, a job, a placement, or a claim with no human in the loop. AI is a capable assistant and an unaccountable decider.</p>
+        <p class="practice"><b>In practice:</b> Require that any decision materially affecting a person's rights, benefits, or money be reviewed and owned by a named human before it takes effect — and that the human has the information and time to actually review, not rubber-stamp.</p>
+      </div>
+
+      <div class="guardrail">
+        <div class="gnum">2</div>
+        <h3>Keep an AI inventory — and disclose use</h3>
+        <p class="why"><b>Why:</b> You cannot govern what you cannot see. Most organizations don't know how many AI tools are already in use, on what data, by whom. Disclosure to affected people is the cheapest trust-builder there is.</p>
+        <p class="practice"><b>In practice:</b> Maintain a living list of every AI system in use — tool, vendor, purpose, data touched. Tell the public when an AI system is materially involved in a decision or interaction affecting them. SC's Center of Excellence already models the intake side of this.</p>
+      </div>
+
+      <div class="guardrail">
+        <div class="gnum">3</div>
+        <h3>Evaluate for the actual use — before you switch it on</h3>
+        <p class="why"><b>Why:</b> A model that performs well in a demo can fail badly on your specific population and task. Evaluation is most of the deployment job; skipping it is just hoping. Leading AI research tools have shown hallucination rates of 17–33% on factual questions — the binding constraint is testing, not vendor promises.</p>
+        <p class="practice"><b>In practice:</b> Before deployment, test the system against realistic cases from your own context, including edge cases and the populations most at risk of error. Document the result. Re-test after major model updates.</p>
+      </div>
+
+      <div class="guardrail">
+        <div class="gnum">4</div>
+        <h3>Put the requirements in the contract</h3>
+        <p class="why"><b>Why:</b> Procurement is the most underused safety lever government has. What you forget to require at contract time, you cannot demand later. The leverage is highest before you sign.</p>
+        <p class="practice"><b>In practice:</b> Bake into vendor contracts: accuracy/performance certification for your use, audit and documentation rights, data-use limits (no training on your data without consent), incident notification, and an exit path. See the checklist below.</p>
+      </div>
+
+      <div class="guardrail">
+        <div class="gnum">5</div>
+        <h3>Name an owner and give people an appeal path</h3>
+        <p class="why"><b>Why:</b> Accountability doesn't disappear because a decision was AI-assisted — it tends to evaporate unless someone is explicitly assigned it. And a person on the wrong end of an automated error needs a real way to contest it.</p>
+        <p class="practice"><b>In practice:</b> For each significant AI deployment, designate an accountable official, and publish a plain, usable channel for people to flag and appeal an AI-influenced decision. Track what comes in — appeals are your cheapest early-warning system.</p>
+      </div>
+
+      <div class="checklist">
+        <div class="ck">Five questions to ask any AI vendor — before signing</div>
+        <ul>
+          <li><b>What exactly was this evaluated on,</b> and how does that match how we'll use it?</li>
+          <li><b>What are its known failure modes,</b> and how does it fail — loudly, or silently?</li>
+          <li><b>What happens to our data?</b> Is it used to train your models? Can we turn that off?</li>
+          <li><b>What audit and documentation rights do we get</b> if we need to investigate a bad output?</li>
+          <li><b>If we leave,</b> what do we keep, and how hard is it to switch?</li>
+        </ul>
+      </div>
+
+      <h2>Why "before you need them"</h2>
+
+      <p>
+        Every one of these is cheaper to install in advance than to retrofit after something goes wrong. A human-review requirement written into a workflow at design time costs a line in a procedure document; added after a wrongful-denial story breaks, it costs a crisis, a clean-up, and the public trust that's hardest to rebuild. Intentional implementation isn't caution for its own sake — it's the lower-cost path, and it's the one that lets a state capture AI's benefits without absorbing the avoidable harms.</p>
+
+      <div class="source-note">
+        <strong>About this brief:</strong> Part of SCAIO's <a href="../safety/">AI Safety &amp; Governance</a> series, which champions AI's benefits while taking its risks seriously. The guardrails reflect widely-recommended governance practice (NIST AI Risk Management Framework; OMB M-24-10; state procurement guidance) adapted for South Carolina's state and local context. Reliability figures from Magesh et al. (2025, JELS). Pairs with the founding editorial, <a href="../scaio-article-between-doom-and-denial.html">Between Doom and Denial</a>, and SCAIO's <a href="../policy/">Policy Tracker</a>. SCAIO welcomes correction and adaptation for specific agencies or boards.
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

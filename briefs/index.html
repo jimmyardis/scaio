@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Policy Briefs — SCAIO</title>
+  <meta name="description" content="SCAIO policy briefs: short, concrete AI governance guidance for South Carolina legislators, agencies, and boards." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy:#081a36; --navy-2:#0a2a54; --blue:#0b4ea2; --blue-soft:#dbeafe; --surface:#ffffff; --bg:#f6f8fb; --border:#d9e4f2; --text:#142133; --muted:#4b5a6b; --green:#15803d; --max:900px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+    a { color:inherit; text-decoration:none; }
+    .site-bar { background:linear-gradient(90deg,#081a36,#0a2a54); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .site-bar .logo { font-family:'Libre Baskerville',serif; font-size:1.15rem; color:#fff; letter-spacing:0.04em; }
+    .site-bar .back { font-size:0.8rem; color:rgba(185,214,255,0.85); }
+    .wrap { width:min(var(--max),calc(100% - 40px)); margin:0 auto; }
+    .head { padding:60px 0 30px; }
+    .kicker { font-size:0.72rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+    h1 { font-family:'Libre Baskerville',serif; font-size:clamp(2rem,5vw,2.7rem); color:var(--navy); letter-spacing:-0.02em; margin-bottom:16px; }
+    .lede { font-size:1.08rem; color:var(--muted); max-width:62ch; line-height:1.7; }
+    .list { padding:10px 0 70px; display:grid; gap:16px; }
+    .brief { display:block; border:1px solid var(--border); border-radius:16px; padding:24px 26px; background:var(--surface); transition:transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease; }
+    a.brief:hover { transform:translateY(-2px); border-color:#bcd3f0; box-shadow:0 12px 28px rgba(10,42,84,0.09); }
+    .brief .tag { font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+    .tag.live { color:var(--green); } .tag.soon { color:var(--muted); }
+    .brief h2 { font-family:'Libre Baskerville',serif; font-size:1.3rem; color:var(--navy); margin-bottom:8px; }
+    .brief p { font-size:0.95rem; color:var(--muted); line-height:1.65; margin:0 0 12px; }
+    .brief .go { font-size:0.85rem; font-weight:600; color:var(--blue); }
+    .brief.soon { opacity:0.7; } .brief.soon .go { color:var(--muted); }
+    .foot { text-align:center; padding:30px 0 70px; color:#8a96a7; font-size:0.82rem; }
+    .foot a { color:var(--blue); text-decoration:underline; }
+  </style>
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="../safety/" class="back">← AI Safety &amp; Governance</a>
+  </div>
+  <div class="wrap">
+    <div class="head">
+      <div class="kicker">SCAIO Policy Briefs</div>
+      <h1>Concrete guidance for decision-makers</h1>
+      <p class="lede">Short, actionable briefs that turn AI-governance principles into specific moves — what to require, what to ask, and what to build — for South Carolina legislators, agencies, and boards. Part of the <a href="../safety/" style="color:var(--blue);text-decoration:underline;">AI Safety &amp; Governance</a> series.</p>
+    </div>
+    <div class="list">
+      <a class="brief" href="intentional-by-design.html">
+        <div class="tag live">● Live · June 2026</div>
+        <h2>Intentional by Design</h2>
+        <p>Five AI guardrails worth building before you need them — cheap, mostly require no new legislation, and reduce the risks a state or local body can actually reach. Includes a five-question vendor checklist.</p>
+        <span class="go">Read the brief →</span>
+      </a>
+      <div class="brief soon">
+        <div class="tag soon">In development</div>
+        <h2>Procurement as a Safety Lever</h2>
+        <p>The most underrated tool government has for shaping the AI it buys — contract terms, evaluation requirements, and audit rights, in depth.</p>
+        <span class="go">Coming soon</span>
+      </div>
+    </div>
+    <div class="foot">
+      SCAIO — South Carolina Artificial Intelligence Observatory · <a href="../index.html">scaio.org</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer — Safety, Alignment, Governance, Regulation · SCAIO</title>
+  <meta name="description" content="Four words people constantly mix up in the AI conversation — safety, alignment, governance, and regulation — untangled in plain language in about ten minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO · AI Safety &amp; Governance</div>
+      <h1 class="deck-title">Safety, Alignment, Governance, Regulation</h1>
+      <p class="subtitle">Four words people constantly mix up — untangled in about ten minutes. The vocabulary the rest of the conversation depends on.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why this primer exists</div>
+      <h2 class="slide-title">These four words get used as if they mean the same thing. They don't.</h2>
+      <div class="slide-body">
+        <p>Read a week of AI coverage and you'll see "safety," "alignment," "governance," and "regulation" swapped in and out almost at random. The blur is not harmless: it makes debates circular, lets people argue past each other, and produces policy that aims at the wrong target.</p>
+        <p>They are four distinct things, operating at four different levels — from a property of the model itself all the way out to the law of the land. Here is a clean map.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The one-line map</div>
+      <h2 class="slide-title">Four levels, from the model outward.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Alignment</div>
+          <h3>Does it try to do what we intend?</h3>
+          <p>A technical property of the system itself.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · Safety</div>
+          <h3>Will it avoid causing harm?</h3>
+          <p>The broader engineering goal. Includes alignment.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Governance</div>
+          <h3>Who decides, and how?</h3>
+          <p>The rules, processes, and accountability around it.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">04 · Regulation</div>
+          <h3>What does the law require?</h3>
+          <p>Government rules with legal force. A subset of governance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Level one · the narrowest</div>
+      <h2 class="slide-title">Alignment: getting a system to actually pursue what we intend.</h2>
+      <div class="slide-body">
+        <p><strong>Alignment</strong> is a technical property of an AI system: does it reliably try to do what its designers and users actually want — including the things they didn't think to spell out?</p>
+        <p>The problem is harder than it sounds. We train systems on proxies (approval, scores, examples), not on our true intentions, and a capable system can satisfy the proxy while missing the point — optimizing the letter of the instruction against its spirit. Alignment research is the work of closing that gap.</p>
+        <p class="def" style="margin-top:6px;"><strong>Plain version:</strong> alignment is about the system's <em>goals</em> — whether it's trying to do the right thing at all.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Level two · broader</div>
+      <h2 class="slide-title">Safety: making sure the system doesn't cause harm.</h2>
+      <div class="slide-body">
+        <p><strong>Safety</strong> is the larger engineering goal that <em>contains</em> alignment. A system can be well-aligned and still be unsafe — if it's unreliable, insecure, or misused. Safety covers all of it:</p>
+      </div>
+      <ul class="bullet-list">
+        <li><strong>Alignment</strong> — does it pursue the intended goal?</li>
+        <li><strong>Robustness &amp; reliability</strong> — does it behave well on inputs it wasn't trained for, and does it fail gracefully?</li>
+        <li><strong>Security</strong> — can it be manipulated, jailbroken, or hijacked?</li>
+        <li><strong>Misuse prevention</strong> — can a bad actor turn it to harmful ends?</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Level three · the institutional layer</div>
+      <h2 class="slide-title">Governance: who gets to decide, and how they're held to account.</h2>
+      <div class="slide-body">
+        <p><strong>Governance</strong> steps out of the technology entirely and into people and institutions. It's the set of rules, processes, roles, and accountability structures that determine how AI gets built, bought, deployed, and overseen — inside a company, an agency, a university, or a state.</p>
+        <p>Governance is where most of the practical action is, because it's the layer ordinary organizations actually control. An impact assessment before deployment, a human-review requirement, a procurement checklist, a disclosure rule, a named accountable official — all governance.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Level four · the legal layer</div>
+      <h2 class="slide-title">Regulation: the part of governance that carries the force of law.</h2>
+      <div class="slide-body">
+        <p><strong>Regulation</strong> is a <em>subset</em> of governance — the rules set by government that you must follow, with penalties if you don't. The EU AI Act, a state law on AI in hiring, an agency procurement standard: all regulation.</p>
+        <p>The key insight: regulation is one tool of governance, not the whole of it. Plenty of good AI governance is voluntary, contractual, or professional — and plenty happens long before, or entirely without, a statute. Conflating "governance" with "regulation" is how people end up believing nothing can be done until a law passes. Not true.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">How they nest</div>
+      <h2 class="slide-title">Two of these live in the machine; two live in the institution.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">In the system</div>
+          <h3>Alignment ⊂ Safety</h3>
+          <p>Alignment is one ingredient of safety. Safety is the whole recipe for a system that doesn't cause harm — alignment plus robustness, security, and misuse resistance.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">In the institution</div>
+          <h3>Regulation ⊂ Governance</h3>
+          <p>Regulation is the legally-binding slice of governance. Governance is the whole set of choices about who decides and how — most of which don't require a law.</p>
+        </div>
+      </div>
+      <p class="def" style="margin-top:18px; text-align:center;">The boundaries are debated at the edges — but as a working map, this keeps a conversation honest.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">One example, all four lenses</div>
+      <h2 class="slide-title">An AI tool that flags benefits claims for denial.</h2>
+      <ul class="bullet-list">
+        <li><strong>Alignment:</strong> Is the model actually trying to identify improper claims — or has it learned to flag whatever pattern is cheapest to flag, like claims from a particular ZIP code?</li>
+        <li><strong>Safety:</strong> Is it reliable on unusual cases? Can it be gamed? What happens when it's wrong — does it fail toward caution or toward harm?</li>
+        <li><strong>Governance:</strong> Does a human review every denial? Who is accountable? Was it evaluated for this use before being switched on?</li>
+        <li><strong>Regulation:</strong> Does the law require human review, disclosure, or an appeal right for an AI-influenced denial?</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">A few more terms you'll hear</div>
+      <h2 class="slide-title">The working vocabulary, defined.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term"><span class="term">Evals</span><span class="def">Structured tests measuring what a model can and can't do. The backbone of knowing whether a system is safe for a given use.</span></div>
+        <div class="glossary-term"><span class="term">Red-teaming</span><span class="def">Deliberately attacking a system to find failures and harmful outputs before deployment.</span></div>
+        <div class="glossary-term"><span class="term">Interpretability</span><span class="def">Research into seeing <em>why</em> a model produced an output — opening the black box.</span></div>
+        <div class="glossary-term"><span class="term">RLHF</span><span class="def">Reinforcement Learning from Human Feedback — training a model toward responses people prefer. An alignment technique.</span></div>
+        <div class="glossary-term"><span class="term">Guardrails</span><span class="def">Constraints placed around a deployed system to limit what it will do. A safety/governance tool.</span></div>
+        <div class="glossary-term"><span class="term">Frontier model</span><span class="def">The most capable current generation of general-purpose models — where the hardest safety questions concentrate.</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="quote">Most unproductive AI arguments are really vocabulary problems. "Is AI safe?" and "Should AI be regulated?" are different questions with different answers — and you can't reach either one if the words keep sliding around."</p>
+      <div class="kicker" style="color: var(--muted);">Why this primer comes first</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why it matters for South Carolina</div>
+      <h2 class="slide-title">Different problems live at different levels.</h2>
+      <div class="slide-body">
+        <p>A legislator worried about AI mostly has <strong>governance and regulation</strong> levers — what to require, disclose, and review. Those work whether or not the underlying model is perfectly aligned.</p>
+        <p>The deepest <strong>alignment and safety</strong> questions are largely solved (or not) by the handful of labs building frontier models — not in Columbia. Knowing which problems a state can actually act on, and which it can only prepare for, is the difference between effective policy and theater.</p>
+      </div>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">Part of the series</div>
+      <h2 class="slide-title">AI Safety &amp; Governance at SCAIO.</h2>
+      <div class="slide-body">
+        <p>This primer is part of SCAIO's neutral, sourced series on AI safety, governance, regulation, and alignment. Start with the editorial — <em>Between Doom and Denial</em> — and browse the rest at <a href="../safety/">scaio.org/safety</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 13</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="../safety/">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+</body>
+</html>
