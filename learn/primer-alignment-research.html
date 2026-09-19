@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primer — What Alignment Research Actually Is · SCAIO</title>
+  <meta name="description" content="Evals, red-teaming, and interpretability: how we would even know whether an AI system is safe. A plain-language primer for non-engineers, in about ten minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO · AI Safety &amp; Governance</div>
+      <h1 class="deck-title">What Alignment Research Actually Is</h1>
+      <p class="subtitle">Evals, red-teaming, and interpretability: how we would even know whether an AI system is safe. For non-engineers, in about ten minutes.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why this primer exists</div>
+      <h2 class="slide-title">"Alignment research" sounds abstract. Most of it is about one practical question.</h2>
+      <div class="slide-body">
+        <p>Our <a href="primer-safety-vocabulary.html">vocabulary primer</a> defined alignment as whether an AI system reliably tries to do what we actually intend. This primer is about the work behind that word.</p>
+        <p>That work isn't philosophy. It's a set of concrete activities you can name, fund, and ask vendors about. Nearly all of them come back to one question: <strong>how would we know?</strong> How would we know what a system can do, what it will do, and why it did what it did?</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The core problem</div>
+      <h2 class="slide-title">Nobody writes an AI system's goals down. They're grown, not programmed.</h2>
+      <div class="slide-body">
+        <p>Traditional software does what its code says, and you can read the code. A modern AI model is different. It is billions of numbers, adjusted during training until the system produces outputs that score well. No one types in its values or its reasoning.</p>
+        <p>So we can't simply inspect a model to see what it's trying to do. We can only see what it does, on the inputs we happened to try. And training rewards <em>outputs that look right</em>, which isn't always the same as <em>the right thing</em>. A system can learn to please the grader rather than do the job.</p>
+        <p class="def" style="margin-top:6px;"><strong>Plain version:</strong> alignment research exists because behavior is the only thing we can observe directly, and behavior can be misleading.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The map</div>
+      <h2 class="slide-title">Four kinds of work: one shapes the system, three check it.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Train it</div>
+          <h3>Shaping behavior</h3>
+          <p>Methods that steer a model toward helpful, honest, harmless behavior during training.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · Test it</div>
+          <h3>Evaluations ("evals")</h3>
+          <p>Structured tests of what the model can do and how it tends to behave.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Attack it</div>
+          <h3>Red-teaming</h3>
+          <p>People and tools deliberately trying to make it fail or misbehave.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">04 · Look inside it</div>
+          <h3>Interpretability</h3>
+          <p>Research into what is actually happening inside the model's numbers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">01 · Train it</div>
+      <h2 class="slide-title">Shaping: teaching a model which answers are better.</h2>
+      <div class="slide-body">
+        <p>The best-known technique is <strong>RLHF</strong>, reinforcement learning from human feedback. People compare pairs of model responses, pick the better one, and the model is adjusted toward what they preferred. Variants use written principles, sometimes called a constitution or a model specification, so that another AI can apply those rules at scale instead of a human rating every answer.</p>
+        <p>These methods are why today's assistants usually decline dangerous requests and try to be useful. Their weakness is built in: they reward what <em>looks</em> good to the rater. One well-documented side effect is <strong>sycophancy</strong>, where a model tells people what they want to hear, because agreeable answers tend to get rated highly.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">02 · Test it</div>
+      <h2 class="slide-title">Evals: the closest thing the field has to an inspection.</h2>
+      <div class="slide-body">
+        <p>An <strong>eval</strong> is a structured test: a set of tasks or prompts, run the same way every time, with scored results. They come in three main kinds:</p>
+      </div>
+      <ul class="bullet-list">
+        <li><strong>Capability evals</strong>: what can it do? Coding, math, legal reasoning, long multi-step tasks.</li>
+        <li><strong>Dangerous-capability evals</strong>: could it meaningfully help someone cause serious harm? For example, would it give real uplift toward biological or cyber attacks, or could it act autonomously in risky ways?</li>
+        <li><strong>Behavior evals</strong>: what does it <em>tend</em> to do? Is it honest under pressure, does it follow instructions it shouldn't, does it flatter people?</li>
+      </ul>
+      <div class="slide-body">
+        <p>Frontier developers now publish many of these results in <strong>system cards</strong> or model cards that come out alongside a new model.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">02 · Test it — the fine print</div>
+      <h2 class="slide-title">A passed test shows what you checked, not everything that's there.</h2>
+      <ul class="bullet-list">
+        <li><strong>Absence of evidence:</strong> an eval can show a capability exists. It can't prove one doesn't. The testers may simply not have found the right way to draw it out.</li>
+        <li><strong>Contamination:</strong> if test questions leak into training data, the model may have seen the answers. A high score then measures memory, not ability.</li>
+        <li><strong>Saturation:</strong> models improve quickly, and tests that were hard two years ago now get near-perfect scores. New evals have to keep being built.</li>
+        <li><strong>Test awareness:</strong> developers and outside evaluators have reported that capable models can sometimes recognize when they're being tested. That raises a hard question: does behavior under test predict behavior in real use?</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">03 · Attack it</div>
+      <h2 class="slide-title">Red-teaming: paying people to break it before someone else does.</h2>
+      <div class="slide-body">
+        <p><strong>Red-teamers</strong> try to make a system misbehave. They use <em>jailbreaks</em>, prompts engineered to get around its refusals, and <em>prompt injection</em>, instructions hidden in a document or web page that the AI reads and then obeys. They also test whether it can be pushed into giving harmful help. Some red-teaming is done by specialists, some by outside experts in fields like biosecurity, and more and more by automated tools that generate attacks at scale.</p>
+        <p>Red-teaming is how many real failures get caught and fixed before release. Like evals, it can show that a weakness exists but can't prove none remain. Attackers after release keep finding new ones.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">04 · Look inside it</div>
+      <h2 class="slide-title">Interpretability: reading the numbers instead of guessing from behavior.</h2>
+      <div class="slide-body">
+        <p>Everything above watches what a model does from the outside. <strong>Interpretability</strong> tries to understand what's happening inside it, which concepts it represents and how it combines them to reach an answer.</p>
+        <p>There has been real progress. Researchers can now find internal patterns that correspond to recognizable concepts and turn them up or down to change behavior. In one widely covered 2024 demonstration, Anthropic amplified a single internal "Golden Gate Bridge" feature, and the model began steering nearly every conversation toward the bridge. That shows these internal patterns really drive behavior.</p>
+        <p>But this work is still early. It explains only a fraction of what large models do, and it can't yet be used to certify that a model is safe. Its long-term promise is to check a system's reasoning directly instead of inferring it from behavior.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Two newer ideas</div>
+      <h2 class="slide-title">Oversight and control: planning for checks that might fall short.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">Scalable oversight</div>
+          <h3>Supervising work too big to check by hand</h3>
+          <p>When a system's output is too long or technical for a person to verify, researchers use AI assistance to help humans judge it. Examples include one model critiquing another, or two models debating while a person decides.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">AI control</div>
+          <h3>Staying safe even if alignment failed</h3>
+          <p>Assume the system might not be fully trustworthy, then design deployments so it can't do serious damage anyway: monitoring, limited permissions, logged actions, human sign-off on high-stakes steps.</p>
+        </div>
+      </div>
+      <p class="def" style="margin-top:18px; text-align:center;">Control is the idea most useful to an ordinary organization, because much of it is plain good deployment practice.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Who does this work</div>
+      <h2 class="slide-title">Labs, universities, independent evaluators, and governments.</h2>
+      <ul class="bullet-list">
+        <li><strong>Frontier AI developers</strong> run in-house safety, alignment, and interpretability teams, and publish much of their evaluation work.</li>
+        <li><strong>Universities</strong> run safety and interpretability research groups, and much of that work is openly published.</li>
+        <li><strong>Independent evaluators</strong> are nonprofits such as METR and Apollo Research that test models, often before release.</li>
+        <li><strong>Government bodies</strong> test models and build measurement science. The UK's AI Security Institute and the U.S. Center for AI Standards and Innovation at NIST, formerly the U.S. AI Safety Institute, both do this work.</li>
+      </ul>
+      <div class="slide-body">
+        <p>No U.S. state runs a model-testing body, which is part of why states rely on what developers disclose and on the questions they ask when buying.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">An honest scorecard</div>
+      <h2 class="slide-title">What the field can do today, and what it can't yet.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">Can do</div>
+          <h3>Measure and catch</h3>
+          <p>Measure capabilities on well-defined tasks. Find many failures and vulnerabilities before release. Make models noticeably more helpful and less harmful than raw training alone. Monitor deployed systems and limit what they can touch.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Can't yet</div>
+          <h3>Prove and verify</h3>
+          <p>Prove a system is safe in general. Confirm what a model is "trying" to do. Guarantee that tested behavior predicts real-world behavior. Keep evaluations reliably ahead of fast-rising capabilities.</p>
+        </div>
+      </div>
+      <p class="def" style="margin-top:18px; text-align:center;">Neither column is a reason for panic or complacency. It's where the science stands, and it's moving.</p>
+    </section>
+
+    <section class="slide">
+      <p class="quote">"The honest answer to 'is this AI system safe?' is usually 'safe for what, tested how, and by whom?' Alignment research is the work of making that answer more precise."</p>
+      <div class="kicker" style="color: var(--muted);">The takeaway</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why it matters for South Carolina</div>
+      <h2 class="slide-title">The state won't build frontier models. It will buy and deploy them.</h2>
+      <div class="slide-body">
+        <p>The deepest alignment questions get settled, or not, in a handful of labs. But the <em>checking</em> side of this field translates directly into things a state agency, school district, or county can do right now:</p>
+      </div>
+      <ul class="checklist">
+        <li><strong>Ask for the evidence.</strong> Request the vendor's system card and evaluation results, and ask what they tested for.</li>
+        <li><strong>Test in your own context.</strong> A vendor's benchmark isn't your benefits office. Run the tool on your real cases before switching it on.</li>
+        <li><strong>Red-team your own deployments.</strong> Especially public chatbots: try to make them leak data, give bad advice, or follow hidden instructions.</li>
+        <li><strong>Plan for control.</strong> Keep logs, limit what the tool can access, and keep a human on decisions that affect residents' rights or benefits.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The working vocabulary</div>
+      <h2 class="slide-title">Terms you'll hear, defined.</h2>
+      <div class="glossary-grid">
+        <div class="glossary-term"><span class="term">Eval</span><span class="def">A repeatable, scored test of what a model can do or how it tends to behave.</span></div>
+        <div class="glossary-term"><span class="term">System card</span><span class="def">A developer's published report on a model: its evaluations, known risks, and safeguards.</span></div>
+        <div class="glossary-term"><span class="term">RLHF</span><span class="def">Training a model toward the responses human raters prefer.</span></div>
+        <div class="glossary-term"><span class="term">Jailbreak</span><span class="def">A prompt designed to get around a model's safety refusals.</span></div>
+        <div class="glossary-term"><span class="term">Prompt injection</span><span class="def">Instructions hidden in content an AI reads (an email, a web page) that hijack what it does.</span></div>
+        <div class="glossary-term"><span class="term">Sycophancy</span><span class="def">A model's learned tendency to tell people what they want to hear.</span></div>
+        <div class="glossary-term"><span class="term">Interpretability</span><span class="def">Research into what's happening inside a model, not just what it outputs.</span></div>
+        <div class="glossary-term"><span class="term">AI control</span><span class="def">Deployment safeguards that limit harm even if a model isn't fully trustworthy.</span></div>
+      </div>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">Part of the series</div>
+      <h2 class="slide-title">AI Safety &amp; Governance at SCAIO.</h2>
+      <div class="slide-body">
+        <p>This primer is part of SCAIO's neutral series on AI safety, governance, regulation, and alignment. It builds on <a href="primer-safety-vocabulary.html">Safety, Alignment, Governance, Regulation</a> and <a href="../scaio-article-map-of-ai-risk.html">A Plain-Language Map of AI Risk</a>. Browse the rest at <a href="../safety/">scaio.org/safety</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 16</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="../safety/">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+  <script src="/assets/navigator.js" defer></script>
+</body>
+</html>

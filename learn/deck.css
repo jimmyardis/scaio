@@ -334,4 +334,9 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); font-family:
   .threat-card { grid-template-columns: 1fr; gap: 8px; }
   .glossary-grid { grid-template-columns: 1fr; }
   .region-row { grid-template-columns: 1fr; }
+  /* Tall slides scroll instead of clipping; the auto margins keep short
+     slides vertically centered (justify-content:center clips both ends). */
+  .slide { justify-content: flex-start; overflow-y: auto; padding-bottom: 90px; }
+  .slide > :first-child { margin-top: auto; }
+  .slide > :last-child { margin-bottom: auto; }
 }
