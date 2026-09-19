@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everywhere at Once: What South Carolina's AI Committee Is Really Up Against — SCAIO</title>
+  <meta name="description" content="South Carolina's new Senate Special Committee on Artificial Intelligence held its first meeting on September 16, 2026. Why AI is so hard for institutions to govern, and what a continuously learning approach looks like." />
+  <meta name="author" content="Jimmy Ardis" />
+  <meta property="og:title" content="Everywhere at Once: What South Carolina's AI Committee Is Really Up Against" />
+  <meta property="og:description" content="AI isn't hard to govern because it's mysterious. It's hard because it's everywhere at once and never holds still." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.scaio.org/scaio-article-everywhere-at-once.html" />
+  <meta property="article:published_time" content="2026-09-18" />
+  <link rel="canonical" href="https://www.scaio.org/scaio-article-everywhere-at-once.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:     #081a36;
+      --navy-2:   #0a2a54;
+      --blue:     #0b4ea2;
+      --blue-2:   #2f7ae5;
+      --blue-soft:#dbeafe;
+      --surface:  #ffffff;
+      --bg:       #f6f8fb;
+      --border:   #d9e4f2;
+      --text:     #142133;
+      --muted:    #4b5a6b;
+      --max:      720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Site header bar ── */
+    .site-bar {
+      background: linear-gradient(90deg, #081a36, #0a2a54);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-bar a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+    }
+    .site-bar .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .site-bar .back {
+      font-size: 0.8rem;
+      color: rgba(185,214,255,0.8);
+    }
+
+    /* ── Article layout ── */
+    .article-wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── Meta strip ── */
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .meta-tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #bdd4f8;
+    }
+    .meta-date {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      line-height: 1.15;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .dek {
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--blue-2);
+      padding-left: 18px;
+      margin-bottom: 40px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+    }
+
+    /* ── Body prose ── */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .prose h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .prose ul {
+      padding-left: 22px;
+      margin-bottom: 22px;
+    }
+    .prose ul li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    /* ── SC callout (dark) ── */
+    .sc-callout {
+      background: linear-gradient(135deg, #081a36 0%, #0b2e5e 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      margin: 44px 0;
+      color: #fff;
+    }
+    .sc-callout .kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b9d6ff;
+      margin-bottom: 14px;
+    }
+    .sc-callout h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: #fff;
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
+    }
+    .sc-callout p {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .sc-callout p:last-child { margin-bottom: 0; }
+    .sc-callout ul {
+      padding-left: 20px;
+      margin: 12px 0 20px;
+    }
+    .sc-callout ul li {
+      color: rgba(220,235,255,0.88);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    /* ── Source note ── */
+    .source-note {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #8a96a7;
+      line-height: 1.7;
+    }
+    .source-note a { color: var(--blue); text-decoration: underline; }
+
+    
+    .meta-byline { color: var(--muted); font-size: 0.82rem; }
+    .prose strong { color: var(--navy); }
+    .prose sup { line-height: 0; }
+    .prose sup a {
+      color: var(--blue);
+      font-size: 0.72em;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0 0.12em;
+    }
+    .prose sup a:hover { text-decoration: underline; }
+    .sc-callout a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+    .sc-callout sup a { color: #b9d6ff; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 2px; }
+    [id^="src-"] { scroll-margin-top: 24px; }
+
+    /* ── Sources list ── */
+    .source-note ol { padding-left: 20px; margin-top: 10px; }
+    .source-note li { margin-bottom: 8px; }
+    .source-note li:target { background: var(--blue-soft); border-radius: 4px; }
+    .source-note .back-ref { text-decoration: none; margin-left: 4px; }
+  </style>
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="site-bar">
+    <span class="logo">SCAIO</span>
+    <a href="index.html" class="back">← Back to SCAIO</a>
+  </div>
+
+  <article class="article-wrap">
+
+    <div class="meta">
+      <span class="meta-tag">Policy</span>
+      <span class="meta-tag">SC Legislature</span>
+      <span class="meta-date"><time datetime="2026-09-18">September 18, 2026</time> · SCAIO Journal</span>
+      <span class="meta-byline">By Jimmy Ardis</span>
+    </div>
+
+    <h1>Everywhere at Once: What South Carolina's AI Committee Is Really Up Against</h1>
+
+    <p class="dek">
+      AI isn't hard to govern because it's mysterious. It's hard because it's everywhere at once and never holds still.
+    </p>
+
+    <div class="prose">
+
+      <p>On September 16, South Carolina's new Senate Special Committee on Artificial Intelligence held its first meeting. The nine-member panel is chaired by Sen. Tom Young, with Sens. Mike Gambrell, Richard J. Cash, Josh Kimbrell, Tameika Isaac Devine, Jason Elliott, Jeffrey Graham, Matt Leber, and Ed Sutton serving alongside him.<sup><a href="#src-2" id="ref-2-a">2</a></sup> Its charge is broad: build a working understanding of AI, then recommend whether South Carolina should regulate it, expand its use in state government, or both.<sup><a href="#src-1" id="ref-1-a">1</a></sup></p>
+
+  <p>The first session was, fittingly, an education. University of South Carolina professors Bryant Walker Smith and Homayoun Valafar testified,<sup><a href="#src-2" id="ref-2-b">2</a></sup> and senators spent the morning on foundational questions, starting with the most basic one: what counts as AI? South Carolina currently has no legal definition, while 33 states have adopted one,<sup><a href="#src-4" id="ref-4-a">4</a></sup> leaving the Palmetto State among the 17 without AI statutes.<sup><a href="#src-3" id="ref-3-a">3</a></sup> The committee aims to deliver a full set of recommendations by September 2028.<sup><a href="#src-3" id="ref-3-b">3</a></sup></p>
+
+  <p>Starting with learning is the right instinct. But it's worth being clear about why this subject is so hard, because the difficulty isn't a failure of the people in the room. It's a feature of the technology itself.</p>
+
+  <h2>Breadth times velocity</h2>
+
+  <p>Most things governments regulate have edges: a product, an industry, a professional practice. AI has no such edges. It behaves less like a product and more like electricity or the internet, a general-purpose capability that seeps into nearly every domain at once: schools, hospitals, courts, insurance, hiring, elections, agriculture, and the internal workings of state agencies themselves.</p>
+
+  <p>That is why defining AI is so difficult. The word refers at once to an underlying technology, to the products built on it, and to the countless ways those products are used. Pin down one and the others slip away.</p>
+
+  <p>Breadth alone would be manageable. Electricity transformed everything too, but it did so over decades, and institutions learned alongside it. AI capabilities shift meaningfully within a single legislative cycle. The real challenge is breadth multiplied by velocity: a subject that is everywhere at once and never holds still.</p>
+
+  <h2>Nobody is an expert in "AI"</h2>
+
+  <p>It is tempting to say no one really understands AI. That's not quite right. There are plenty of experts, but their expertise is split in two ways.</p>
+
+  <p>First, it is split <strong>by domain</strong>. The engineers who build these systems rarely understand medical billing, school discipline, or insurance underwriting. The professionals who understand those fields rarely understand the systems. The most valuable knowledge lives at the intersection, and relatively few people hold it.</p>
+
+  <p>Second, it is split <strong>by time</strong>. In most fields, expertise accumulates. In AI, it decays. What a well-informed person knew eighteen months ago is partly wrong today. Even the companies building frontier models cannot fully explain why their systems behave as they do. That is an unusual position for any regulator: even the maker can't fully explain the product.</p>
+
+  <h2>The institutional squeeze</h2>
+
+  <p>Now place that problem inside a part-time citizen legislature.</p>
+
+  <p>Legislative calendars run on sessions and multi-year studies; the technology does not wait for either. Committee jurisdiction is divided by subject (education, banking, judiciary), while AI cuts across all of them. Lean staffing means heavy reliance on testimony, and testimony often comes from those with the most at stake, frequently the vendors selling the technology. The state also plays two roles at once: it is a potential regulator of AI and, increasingly, a buyer and user of it. And every state decision is made under uncertainty about what federal action may follow.</p>
+
+  <p>None of this is unique to South Carolina. It is the situation every state legislature is in.</p>
+
+  <h2>Hard is not a reason to wait</h2>
+
+  <p>Here is the danger in everything above: "too big, too fast, no real experts" can easily become an argument for waiting. But waiting is also a decision. It leaves the field to vendors and to whatever happens by default. A better conclusion is that AI requires institutions that learn continuously. In practice, that means four things.</p>
+
+  <p><strong>Act in order to understand.</strong> Institutions build expertise by governing things they can see. The most natural starting point is the state's own use of AI: knowing which tools agencies are adopting, setting procurement standards, and requiring disclosure when AI shapes decisions about residents. This is entirely within the legislature's control, requires no sweeping definition, and builds the practical knowledge the harder questions will need.</p>
+
+  <p><strong>Govern harms, not the abstraction.</strong> A discriminatory lending decision is illegal whether a person or a model makes it. Much of what people fear about AI can be handled through laws already on the books, with targeted updates where AI creates something genuinely new, such as synthetic media in political campaigns, a topic the committee's chair has said it is likely to take up.<sup><a href="#src-5" id="ref-5-a">5</a></sup> Regulating uses and outcomes sidesteps much of the definitional problem.</p>
+
+  <p><strong>Build standing capacity, not snapshots.</strong> If expertise decays, a single report, however good, will age quickly. What lasts is ongoing monitoring, periodic review, and sunset clauses that force rules to be revisited as the technology changes.</p>
+
+  <p><strong>Learn from the states that went first.</strong> Thirty-three states have already done some version of this work.<sup><a href="#src-3" id="ref-3-c">3</a></sup> Their definitions, successes, and mistakes are available to South Carolina for free.</p>
+
+  <h2>Where SCAIO fits</h2>
+
+  <p>The South Carolina Artificial Intelligence Observatory exists for exactly this problem: to provide continuous, nonpartisan tracking of how AI is developing, how it's being used in South Carolina, and how other states are responding, so decision-makers start from current facts rather than stale ones. We'll be following the committee's work throughout its study and publishing updates here.</p>
+
+      <div class="sc-callout">
+        <div class="kicker">Public comment is open</div>
+        <h2>Weigh in.</h2>
+        <p>The committee is accepting public comment at <a href="mailto:AIcommittee@scsenate.gov">AIcommittee@scsenate.gov</a>.<sup><a href="#src-3" id="ref-3-d">3</a></sup> If you work where AI meets a specific field, whether education, healthcare, agriculture, law, or local government, your perspective is exactly the kind of intersection expertise this process needs.</p>
+      </div>
+
+      <section class="source-note" aria-labelledby="sources-heading">
+        <strong id="sources-heading">Sources</strong>
+        <ol>
+      <li id="src-1">Live 5 News (WCSC), "South Carolina Senate Committee begins studying artificial intelligence," September 16, 2026. <a href="https://www.live5news.com/2026/09/16/south-carolina-senate-committee-begins-studying-artificial-intelligence/">live5news.com</a> <a class="back-ref" href="#ref-1-a" aria-label="Back to reference 1">&#8617;</a></li>
+      <li id="src-2">HERE Rock Hill, "SC Senate opens two-year AI regulation study," September 18, 2026. <a href="https://www.hererockhill.com/2026/09/18/sc-senate-ai-regulation-study/">hererockhill.com</a> <a class="back-ref" href="#ref-2-a" aria-label="Back to reference 2">&#8617;</a></li>
+      <li id="src-3">ABC Columbia (WOLO), "Senate committee holds 1st of many meetings on artificial intelligence," September 16, 2026. <a href="https://www.abccolumbia.com/2026/09/16/senate-committee-holds-1st-of-many-meetings-on-artificial-intelligence/">abccolumbia.com</a> <a class="back-ref" href="#ref-3-a" aria-label="Back to reference 3">&#8617;</a></li>
+      <li id="src-4">WRDW/WAGT, "S.C. lawmakers weigh AI rules as new panel starts work," September 16, 2026. <a href="https://www.wrdw.com/2026/09/16/sc-lawmakers-weigh-ai-rules-new-panel-starts-work/">wrdw.com</a> <a class="back-ref" href="#ref-4-a" aria-label="Back to reference 4">&#8617;</a></li>
+      <li id="src-5">Live 5 News (WCSC), "AI reshaping political campaigns as SC weighs whether new rules are needed," September 17, 2026. <a href="https://www.live5news.com/2026/09/17/ai-reshaping-political-campaigns-sc-weighs-whether-new-rules-are-needed/">live5news.com</a> <a class="back-ref" href="#ref-5-a" aria-label="Back to reference 5">&#8617;</a></li>
+    </ol>
+      </section>
+
+    </div>
+
+  </article>
+
+  <script src="/assets/navigator.js" defer></script>
+</body>
+</html>
