@@ -1,0 +1,148 @@
+# Sources for the SCAIO content agent (read by execution/scaio_monitor_sources.py).
+#
+# type:
+#   rss         - RSS/Atom feed, filtered by AI keywords
+#   html_links  - HTML listing page; links whose href matches link_pattern are items
+#   federal_register - Federal Register JSON API
+#   sc_meetings - scstatehouse.gov meeting schedule; AI-related meetings become event items
+#   sc_bills    - tracked bill status pages (from bills.json + extra_bills); new actions become event items
+#
+# pillar: default pillar (1 legislature, 2 state gov use, 3 other states & federal,
+#         4 explainers, 5 intersection voices). Keyword classification can add more.
+# primary: official/government source (cited first, scores higher)
+# sc_local: every item is South Carolina news, so it doesn't need an SC keyword to count
+#
+# Endpoint status is recorded in the Learnings section of scaio_content_agent.md.
+
+sources:
+  # ── SC Legislature (primary) ─────────────────────────────────────────
+  - id: sc-senate-meetings
+    name: SC Senate meeting schedule
+    type: sc_meetings
+    url: https://www.scstatehouse.gov/meetings.php?chamber=S
+    pillar: 1
+    primary: true
+  - id: sc-house-meetings
+    name: SC House meeting schedule
+    type: sc_meetings
+    url: https://www.scstatehouse.gov/meetings.php?chamber=H
+    pillar: 1
+    primary: true
+  - id: sc-joint-meetings
+    name: SC joint committee meeting schedule
+    type: sc_meetings
+    url: https://www.scstatehouse.gov/meetings.php
+    pillar: 1
+    primary: true
+  - id: sc-tracked-bills
+    name: SC Legislature bill status (tracked AI bills)
+    type: sc_bills
+    bills_json: bills.json
+    extra_bills: []      # add scstatehouse.gov bill URLs here as new AI bills are filed
+    pillar: 1
+    primary: true
+
+  # ── SC executive branch (primary) ────────────────────────────────────
+  - id: sc-governor-news
+    name: Office of the Governor news
+    type: html_links
+    url: https://governor.sc.gov/news
+    link_pattern: '^/news/\d{4}-\d{2}/'
+    base_url: https://governor.sc.gov
+    pillar: 2
+    primary: true
+    sc_local: true
+  - id: sc-admin-news
+    name: SC Department of Administration news
+    type: html_links
+    url: https://admin.sc.gov/news-events/news
+    link_pattern: '^/news-events/news/.+'
+    base_url: https://admin.sc.gov
+    pillar: 2
+    primary: true
+    sc_local: true
+
+  # ── SC news (RSS) ────────────────────────────────────────────────────
+  - id: sc-daily-gazette
+    name: SC Daily Gazette
+    type: rss
+    url: https://scdailygazette.com/feed/
+    sc_local: true
+  - id: post-and-courier
+    name: The Post and Courier
+    type: rss
+    url: https://www.postandcourier.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc
+    sc_local: true
+  - id: live5
+    name: Live 5 News (WCSC)
+    type: rss
+    url: https://www.live5news.com/arc/outboundfeeds/rss/?outputType=xml
+    sc_local: true
+  - id: wis
+    name: WIS News 10
+    type: rss
+    url: https://www.wistv.com/arc/outboundfeeds/rss/?outputType=xml
+    sc_local: true
+  - id: abc-columbia
+    name: ABC Columbia (WOLO)
+    type: rss
+    url: https://www.abccolumbia.com/feed/
+    sc_local: true
+  - id: wspa
+    name: WSPA 7News
+    type: rss
+    url: https://www.wspa.com/feed/
+    sc_local: true
+  - id: wrdw
+    name: WRDW/WAGT
+    type: rss
+    url: https://www.wrdw.com/arc/outboundfeeds/rss/?outputType=xml
+    # Augusta station: covers GA too, so SC relevance must come from keywords
+  - id: google-news-sc-ai
+    name: Google News search (SC + AI)
+    type: rss
+    url: https://news.google.com/rss/search?q=%22South+Carolina%22+%22artificial+intelligence%22+when:7d&hl=en-US&gl=US&ceid=US:en
+    discovery_only: true   # links are encrypted Google redirects...
+    resolve: google_news   # ...decoded to the publisher URL; unresolvable ones stay uncited leads
+
+  # ── Federal ──────────────────────────────────────────────────────────
+  - id: federal-register-ai
+    name: Federal Register
+    type: federal_register
+    url: https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=%22artificial+intelligence%22&order=newest&per_page=40
+    pillar: 3
+    primary: true
+    require: '(?i)\bstates?\b|preempt|state law'
+  - id: white-house-actions
+    name: White House presidential actions
+    type: rss
+    url: https://www.whitehouse.gov/presidential-actions/feed/
+    pillar: 3
+    primary: true
+  - id: white-house-news
+    name: White House news
+    type: rss
+    url: https://www.whitehouse.gov/news/feed/
+    pillar: 3
+    primary: true
+    require: '(?i)\bstates?\b|preempt|state law'
+
+# Recorded as unreachable 2026-09-19 (kept here so nobody re-adds them blind):
+#   The State (thestate.com)       - connection times out for non-browser clients; no public RSS found
+#   NCSL AI legislation database   - HTTP 500 to non-browser clients (bot protection)
+#   whitehouse.gov/feed/           - 404; use the section feeds above
+
+# ── Agent settings ─────────────────────────────────────────────────────
+agent:
+  model: claude-opus-5
+  byline: SCAIO Staff          # Jimmy can edit the byline in the PR before merging
+  reviewer: jimmyardis         # requested on every PR so the GitHub app notifies him
+  platforms: [linkedin, facebook]
+  windows:                     # how far back each mode looks for unused items (days)
+    weekly: 8
+    event: 3
+    evergreen: 35
+  min_score:
+    weekly: 4
+    event: 8
+  max_sources: 12              # cap on source documents sent to the drafter

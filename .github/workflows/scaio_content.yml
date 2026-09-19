@@ -1,0 +1,86 @@
+# SCAIO content agent — monitor sources, draft, and open a PR for Jimmy to review.
+# Merging the PR is the only way anything gets published (see scaio_publish.yml).
+name: SCAIO content agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Which run
+        type: choice
+        options: [weekly, event, evergreen]
+        default: weekly
+      test:
+        description: Open as a draft [TEST] PR (items not marked used)
+        type: boolean
+        default: false
+  # Enable once social posting (step 4) has been tested — build order step 4.
+  # Times are UTC: 11:00 = 7am EDT / 6am EST.
+  # schedule:
+  #   - cron: "0 11 * * 1"   # weekly roundup, Mondays
+  #   - cron: "0 13 * * *"   # event check, daily
+  #   - cron: "0 14 * * 3"   # evergreen, Wednesdays (script acts on the first Wednesday only)
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: scaio-content
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: execution/requirements.txt
+
+      - run: pip install -r execution/requirements.txt
+
+      - name: Unit tests
+        run: python -m pytest -q execution/tests
+
+      # .tmp/scaio_seen.json is the agent's memory of items already seen/used.
+      - name: Restore agent state
+        uses: actions/cache/restore@v4
+        with:
+          path: .tmp/scaio_seen.json
+          key: scaio-seen-${{ github.run_id }}
+          restore-keys: scaio-seen-
+
+      - name: Pick mode
+        id: mode
+        run: |
+          case "${{ github.event.schedule }}" in
+            "0 11 * * 1") echo "mode=weekly" >> "$GITHUB_OUTPUT" ;;
+            "0 13 * * *") echo "mode=event" >> "$GITHUB_OUTPUT" ;;
+            "0 14 * * 3") echo "mode=evergreen" >> "$GITHUB_OUTPUT" ;;
+            *) echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Run agent
+        working-directory: execution
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python scaio_run.py --mode "${{ steps.mode.outputs.mode }}" \
+            ${{ inputs.test && '--test' || '' }} ${{ inputs.mode == 'evergreen' && '--force' || '' }}
+
+      - name: Save agent state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .tmp/scaio_seen.json
+          key: scaio-seen-${{ github.run_id }}

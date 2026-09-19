@@ -1,0 +1,8 @@
+# GitHub Pages (Jekyll) settings. The site itself is plain HTML; this file only
+# keeps the content agent's code, directives and social queue off www.scaio.org.
+exclude:
+  - execution/
+  - directives/
+  - social/
+  - .tmp/
+  - .github/
