@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for SC County Council Members · SCAIO Learn</title>
+  <meta name="description" content="A primer for South Carolina county council members on the AI decisions that reach a county governing body — data-center siting and incentives, who pays for the power, and oversight of the county's own AI use." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="deck.css" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <div class="deck">
+
+    <section class="slide title-slide active">
+      <div class="kicker">SCAIO Learn · Primer</div>
+      <h1 class="deck-title">AI for South Carolina county council members.</h1>
+      <p class="subtitle">For elected members of county councils — the AI decisions that actually reach a county governing body, and the questions worth asking before the vote.</p>
+      <div class="scaio-mark">SCAIO · scaio.org</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Why a separate primer</div>
+      <h2 class="slide-title">Most AI advice is written for the people who run systems. You vote on them.</h2>
+      <div class="slide-body">
+        <p>South Carolina already has a SCAIO primer on <a href="primer-08-local-gov.html">AI for local government</a>. It is written for administrators, IT directors, and clerks — the people who select tools, configure them, and defend the network.</p>
+        <p>A county council member's job is different. You rarely choose the software. You approve the budget that buys it, the rezoning that hosts it, the incentive agreement that finances it, and the policies that govern it. You are accountable to residents for all four, usually in public, often with incomplete information, and frequently on a timeline set by someone else.</p>
+        <p>This primer covers the AI decisions that arrive on a county council agenda — and what to ask when they do.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Where AI reaches the agenda</div>
+      <h2 class="slide-title">Three ways AI shows up in front of a county council.</h2>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="label">01 · Land, power, and incentives</div>
+          <h3>Hosting the build-out</h3>
+          <p>Rezonings, siting, infrastructure commitments, and fee-in-lieu-of-tax agreements for data centers. The largest dollar figures a council will see, and the decisions hardest to reverse.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">02 · The county's own use</div>
+          <h3>Budget and procurement approval</h3>
+          <p>AI tools bought for county departments — drafting, permitting, call handling, assessment. You approve the spending and, in practice, set the policy floor for how it is used.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">03 · Oversight and the record</div>
+          <h3>Transparency and accountability</h3>
+          <p>Public records, open-meeting materials, and what residents are entitled to know about how decisions affecting them were made.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The decision most likely to reach you</div>
+      <h2 class="slide-title">South Carolina is hosting the AI build-out at real scale.</h2>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="number">$800M</div>
+          <div class="label">Meta AI data center, Orangeburg County, anchored to a 100 MW solar farm</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">$2.8B</div>
+          <div class="label">Proposed "Moc-1" computing center, Spartanburg County, with on-site generation</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">1,000 MW</div>
+          <div class="label">Total data-center load Santee Cooper anticipates serving by 2030</div>
+        </div>
+      </div>
+      <div class="kicker" style="color: var(--muted); margin-top: 18px;">Sources: Latitude Media, SC Daily Gazette, SCAIO flagship report ch. 5</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">A worked example</div>
+      <h2 class="slide-title">The Spartanburg package, and why the numbers deserve a hard look.</h2>
+      <div class="slide-body">
+        <p>SC Daily Gazette reported in March 2025 on "Moc-1," a proposed <strong>$2.8 billion</strong> computing center in Spartanburg County. According to that reporting, the facility would generate its own electricity on site, would serve the company's own internal operations rather than lease capacity, and is expected to employ <strong>27 full-time staff</strong>.</p>
+        <p>The county's offer, as reported: a reduced <strong>4% property tax rate for 40 years</strong> against the standard 6%, plus tax credits of roughly <strong>$1.5 million annually for the first 20 years</strong>.</p>
+        <p>None of that makes the deal wrong. On-site generation genuinely avoids the grid-impact questions other projects raise, and a large capital investment can carry a county's tax base for decades. But a 40-year commitment at 27 jobs is a different proposition from a 40-year commitment at 700 jobs, and it should be evaluated as the proposition it actually is.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="quote">Without an explicit price-signal mechanism, the cost of meeting that growth tends to flow through to ratepayers broadly — meaning the residential customer in a 1,200-square-foot home in Rock Hill helps subsidize the cost of grid expansion driven by a hyperscaler facility that uses more power in an hour than the home does in two years."</p>
+      <div class="kicker" style="color: var(--muted);">From SCAIO's Journal article, "South Carolina's Data-Center Decade"</div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Who pays for the power</div>
+      <h2 class="slide-title">South Carolina has started answering that question out loud.</h2>
+      <div class="slide-body">
+        <p>In April 2025, SC Daily Gazette reported that Santee Cooper voted to enact an experimental electricity rate structure for customers drawing <strong>50 megawatts or more</strong> — a four-year pilot designed so that very large new loads contribute to the cost of new generating capacity rather than having those costs spread across existing residential and small-business customers.</p>
+        <p>The 50 MW threshold captures essentially every modern AI-focused data center campus, and several large EV-and-battery plants besides.</p>
+        <p>This is genuinely contested ground, and reasonable people land in different places. Some peer states subsidize large loads rather than surcharging them, betting that long-run economic benefit exceeds short-run ratepayer cost. Both arguments have merit. What matters for a council is knowing which bet your county is making, and on whose behalf.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Before you vote on a siting or incentive package</div>
+      <h2 class="slide-title">Six questions worth asking on the record.</h2>
+      <div class="question-card">
+        <div class="num">Q1</div>
+        <h3>What is the jobs-per-dollar-of-incentive figure, and how does it compare to our other agreements?</h3>
+        <p>Ask for it in writing. It is the single clearest way to compare an AI-infrastructure package against the industrial deals a county already knows how to evaluate.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q2</div>
+        <h3>Where does the electricity come from, and who pays for any new capacity?</h3>
+        <p>On-site generation, a dedicated renewable facility, and ordinary grid draw are three very different answers with three very different bills attached.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q3</div>
+        <h3>How much water does it use, from where, and what happens in a drought year?</h3>
+        <p>Cooling water is the least-discussed input in most siting conversations and among the most locally consequential.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Before you vote, continued</div>
+      <h2 class="slide-title">The three that are easiest to forget.</h2>
+      <div class="question-card">
+        <div class="num">Q4</div>
+        <h3>What are the clawback terms if the jobs or investment do not materialize?</h3>
+        <p>Every incentive agreement should answer this. If the draft in front of you does not, that is the amendment to ask for.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q5</div>
+        <h3>What does this commit the county to in years 20 through 40?</h3>
+        <p>Most council members voting on a 40-year agreement will not be in office for the back half of it. Someone should still be able to describe what it obligates.</p>
+      </div>
+      <div class="question-card">
+        <div class="num">Q6</div>
+        <h3>What did we agree to keep confidential, and for how long?</h3>
+        <p>Non-disclosure is normal in economic development. It is still a decision, and residents are entitled to know its shape even when they cannot know its contents.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Inside the county</div>
+      <h2 class="slide-title">Your own departments are already using AI.</h2>
+      <div class="slide-body">
+        <p>Whether or not a county has an AI policy, staff are using AI tools — drafting correspondence, summarizing long documents, preparing meeting materials. This is mostly good, and the productivity gains are real. It is also happening whether or not anyone has written down the rules.</p>
+        <p>Councils do not need to become technologists to govern this well. Two decisions cover most of it: what categories of county data may be put into an outside AI service, and which decisions affecting residents require a named human being accountable for the outcome.</p>
+        <p>For the procurement side of this, see SCAIO's primer on <a href="primer-03-procurement.html">AI procurement for SC government</a>.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">The public record</div>
+      <h2 class="slide-title">Three transparency questions specific to AI.</h2>
+      <ul class="checklist">
+        <li><strong>Is AI-assisted work product subject to FOIA in the same way other work product is?</strong> Assume yes, and make sure staff assume it too.</li>
+        <li><strong>If an AI system helps make a determination affecting a resident</strong> — an assessment, a permit, an eligibility decision — can the county explain that determination to the person it affected?</li>
+        <li><strong>Does anything in the county's AI use create a record residents cannot see but the vendor can?</strong> Prompts, uploaded documents, and query logs may live on a vendor's systems under vendor terms.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <div class="kicker">Where to get help</div>
+      <h2 class="slide-title">South Carolina resources for county councils.</h2>
+      <div class="point-grid two">
+        <div class="point-card">
+          <div class="label">Member organization</div>
+          <h3>South Carolina Association of Counties</h3>
+          <p>The statewide member organization for SC's 46 counties. Model policies, training for newly elected officials, group purchasing, and peer-county comparison on incentive practice.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">State coordination</div>
+          <h3>SC AI Center of Excellence</h3>
+          <p>State-level convening on AI governance. A useful reference point when a county is drafting its own AI use and procurement guidance.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Cybersecurity</div>
+          <h3>SC Cyber Initiative · SLED Cyber · CISA Region 4</h3>
+          <p>Threat intelligence, training, and incident response available to SC local governments — including the voice-cloning and impersonation risks aimed at elected officials specifically.</p>
+        </div>
+        <div class="point-card">
+          <div class="label">Research</div>
+          <h3>SCAIO</h3>
+          <p>Independent, public-interest AI research for South Carolina. The flagship report, the policy tracker, and these primers are free to use and cite.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide closing-slide">
+      <div class="kicker">SCAIO Learn</div>
+      <h2 class="slide-title">Public-interest AI research for South Carolina.</h2>
+      <div class="slide-body">
+        <p>For the full infrastructure picture, read <a href="../report/chapter-05-the-infrastructure.html">Chapter 5</a> of the flagship report and the Journal article <a href="../scaio-article-data-center-decade.html">"South Carolina's Data-Center Decade."</a> For the operational side of county AI use, see the primer on <a href="primer-08-local-gov.html">AI for SC local government</a>.</p>
+        <p style="margin-top: 22px;"><strong>scaio.org</strong> · <a href="mailto:jimmy@scaio.org">jimmy@scaio.org</a></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="counter" id="counter">1 / 13</span>
+    <button id="next" aria-label="Next slide">›</button>
+    <a class="exit" href="index.html">Exit</a>
+  </div>
+
+  <script src="deck.js"></script>
+
+  <script src="/assets/navigator.js" defer></script>
+</body>
+</html>
