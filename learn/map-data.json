@@ -1,0 +1,1459 @@
+{
+  "title": "The AI Learning Map",
+  "source": "directives/inputs/education/learning_map_source.md",
+  "levels": [
+    {
+      "id": "curious",
+      "name": "Curious",
+      "blurb": "You want to understand what people are talking about. No math, no code. Plain-language explainers, short videos, SCAIO primers."
+    },
+    {
+      "id": "practitioner",
+      "name": "Practitioner",
+      "blurb": "You use AI at work or make decisions about it. You want to know how things work, where they fail, and what questions to ask."
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "blurb": "You want to build, evaluate, or govern AI systems directly. Courses, technical documentation, papers."
+    }
+  ],
+  "branches": [
+    {
+      "id": "foundations",
+      "n": 1,
+      "title": "Foundations",
+      "tagline": "what machine learning is and the ideas underneath it",
+      "summary": "Foundations covers what machine learning is and the ideas every other branch builds on.",
+      "subtopics": [
+        {
+          "title": "What AI is (and isn't)",
+          "items": [
+            "AI vs. machine learning vs. deep learning vs. generative AI",
+            "Narrow vs. general AI",
+            "A short history: symbolic AI, AI winters, the deep learning era"
+          ]
+        },
+        {
+          "title": "How machines learn",
+          "items": [
+            "Training data, features, and labels",
+            "Supervised, unsupervised, and reinforcement learning",
+            "Overfitting, generalization, and test sets"
+          ]
+        },
+        {
+          "title": "Neural networks",
+          "items": [
+            "Neurons, layers, and weights",
+            "Gradient descent and backpropagation",
+            "Convolutional and recurrent networks"
+          ]
+        },
+        {
+          "title": "The math underneath",
+          "items": [
+            "Linear algebra: vectors and matrices",
+            "Calculus: derivatives and gradients",
+            "Probability and statistics"
+          ]
+        },
+        {
+          "title": "Reinforcement learning",
+          "items": [
+            "Agents, rewards, and policies",
+            "Game-playing systems (AlphaGo) to robotics"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "Elements of AI (University of Helsinki)",
+            "url": "https://www.elementsofai.com/",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "3Blue1Brown: Neural Networks",
+            "url": "https://www.3blue1brown.com/topics/neural-networks",
+            "type": "video",
+            "cost": "free"
+          },
+          {
+            "title": "StatQuest",
+            "url": "https://www.youtube.com/@statquest",
+            "type": "video",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "Google Machine Learning Crash Course",
+            "url": "https://developers.google.com/machine-learning/crash-course",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Machine Learning Specialization (Andrew Ng, Coursera)",
+            "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+            "type": "course",
+            "cost": "paid",
+            "note": "Free to audit",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Kaggle Learn",
+            "url": "https://www.kaggle.com/learn",
+            "type": "course",
+            "cost": "free",
+            "note": "Short hands-on lessons",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Practical Deep Learning for Coders (fast.ai)",
+            "url": "https://course.fast.ai/",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Dive into Deep Learning",
+            "url": "https://d2l.ai/",
+            "type": "book",
+            "cost": "free",
+            "note": "Free textbook with code",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Mathematics for Machine Learning",
+            "url": "https://mml-book.github.io/",
+            "type": "book",
+            "cost": "free",
+            "note": "Free textbook",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Khan Academy: Linear Algebra",
+            "url": "https://www.khanacademy.org/math/linear-algebra",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Deep Learning (Goodfellow, Bengio, Courville)",
+            "url": "https://www.deeplearningbook.org/",
+            "type": "book",
+            "cost": "free",
+            "note": "Free to read online",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Reinforcement Learning: An Introduction (Sutton and Barto)",
+            "url": "http://incompleteideas.net/book/the-book-2nd.html",
+            "type": "book",
+            "cost": "free",
+            "note": "Free PDF from the authors",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "llms",
+      "n": 2,
+      "title": "How LLMs work",
+      "tagline": "the models behind ChatGPT, Claude, and Gemini",
+      "summary": "This branch explains the large language models behind today's chatbots: how they are built, trained, and why they behave the way they do.",
+      "subtopics": [
+        {
+          "title": "The basics",
+          "items": [
+            "Tokens, context windows, and next-token prediction",
+            "Parameters and model size",
+            "Embeddings: meaning as numbers"
+          ]
+        },
+        {
+          "title": "The transformer",
+          "items": [
+            "Attention and self-attention",
+            "Why transformers replaced earlier architectures"
+          ]
+        },
+        {
+          "title": "Training",
+          "items": [
+            "Pretraining on large text corpora",
+            "Fine-tuning and instruction tuning",
+            "Reinforcement learning from human feedback (RLHF) and constitutional methods",
+            "Scaling laws: data, compute, and parameters"
+          ]
+        },
+        {
+          "title": "Capabilities and limits",
+          "items": [
+            "Reasoning models and test-time compute",
+            "Hallucination and why it happens",
+            "Knowledge cutoffs and grounding"
+          ]
+        },
+        {
+          "title": "Beyond text",
+          "items": [
+            "Multimodal models: images, audio, video",
+            "Diffusion models for image and video generation"
+          ]
+        },
+        {
+          "title": "Open vs. closed models",
+          "items": [
+            "Open-weight models and what \"open\" means",
+            "Model cards and system cards"
+          ]
+        },
+        {
+          "title": "Interpretability",
+          "items": [
+            "Looking inside models: features and circuits"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO primer: What is an LLM?",
+            "url": "learn/primer-01-llm.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Intro to Large Language Models (Andrej Karpathy)",
+            "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+            "type": "video",
+            "cost": "free",
+            "note": "1-hour talk",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "3Blue1Brown: Neural Networks",
+            "url": "https://www.3blue1brown.com/topics/neural-networks",
+            "type": "video",
+            "cost": "free",
+            "note": "Later chapters cover transformers and attention"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "The Illustrated Transformer (Jay Alammar)",
+            "url": "https://jalammar.github.io/illustrated-transformer/",
+            "type": "article",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Hugging Face LLM Course",
+            "url": "https://huggingface.co/learn/llm-course",
+            "type": "course",
+            "cost": "free"
+          },
+          {
+            "title": "Lil'Log (Lilian Weng)",
+            "url": "https://lilianweng.github.io/",
+            "type": "article",
+            "cost": "free",
+            "note": "Technical explainers",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Neural Networks: Zero to Hero (Karpathy)",
+            "url": "https://karpathy.ai/zero-to-hero.html",
+            "type": "course",
+            "cost": "free",
+            "note": "Build a GPT from scratch",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Stanford CS224N: NLP with Deep Learning",
+            "url": "https://web.stanford.edu/class/cs224n/",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Attention Is All You Need (2017)",
+            "url": "https://arxiv.org/abs/1706.03762",
+            "type": "paper",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Scaling Laws for Neural Language Models (2020)",
+            "url": "https://arxiv.org/abs/2001.08361",
+            "type": "paper",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Training Compute-Optimal Large Language Models (Chinchilla, 2022)",
+            "url": "https://arxiv.org/abs/2203.15556",
+            "type": "paper",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Training language models to follow instructions (InstructGPT, 2022)",
+            "url": "https://arxiv.org/abs/2203.02155",
+            "type": "paper",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Constitutional AI (2022)",
+            "url": "https://arxiv.org/abs/2212.08073",
+            "type": "paper",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Transformer Circuits (Anthropic interpretability research)",
+            "url": "https://transformer-circuits.pub/",
+            "type": "article",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "using-ai",
+      "n": 3,
+      "title": "Using AI",
+      "tagline": "getting real value from AI tools and judging their output",
+      "summary": "Using AI is about getting real value from the tools and knowing when not to trust them. It is the most useful starting branch for most readers.",
+      "subtopics": [
+        {
+          "title": "The tool landscape",
+          "items": [
+            "General assistants: ChatGPT, Claude, Gemini, Copilot",
+            "Search and research tools",
+            "Image, voice, and video generators",
+            "AI inside existing software (Office, Google Workspace, CRMs)"
+          ]
+        },
+        {
+          "title": "Prompting",
+          "items": [
+            "Giving context, examples, and constraints",
+            "Breaking big tasks into steps",
+            "Reusable instructions, projects, and custom assistants"
+          ]
+        },
+        {
+          "title": "Judging output",
+          "items": [
+            "Fact-checking and citations",
+            "Spotting hallucinations and overconfidence",
+            "Knowing which tasks AI handles well and which it doesn't"
+          ]
+        },
+        {
+          "title": "Using AI at work",
+          "items": [
+            "Writing, summarizing, and analysis",
+            "Data and spreadsheets",
+            "Workflow automation"
+          ]
+        },
+        {
+          "title": "Responsible use",
+          "items": [
+            "What not to paste in: privacy and confidential data",
+            "Disclosure and attribution",
+            "Organizational AI-use policies"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO primer: AI for SC small businesses",
+            "url": "learn/primer-05-small-business.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "One Useful Thing (Ethan Mollick)",
+            "url": "https://www.oneusefulthing.org/",
+            "type": "newsletter",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Co-Intelligence (Ethan Mollick, 2024)",
+            "url": null,
+            "type": "book",
+            "cost": "paid"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "Anthropic Academy",
+            "url": "https://academy.claude.com/",
+            "type": "course",
+            "cost": "free",
+            "note": "Includes the AI Fluency course",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Learn Prompting",
+            "url": "https://learnprompting.org/",
+            "type": "course",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Simon Willison's Weblog",
+            "url": "https://simonwillison.net/",
+            "type": "newsletter",
+            "cost": "free",
+            "note": "Practical, skeptical, current",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Claude prompt engineering guide",
+            "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+            "type": "guide",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "OpenAI prompt engineering guide",
+            "url": "https://developers.openai.com/api/docs/guides/prompt-engineering",
+            "type": "guide",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "building",
+      "n": 4,
+      "title": "Building with AI",
+      "tagline": "APIs, retrieval, agents, and evaluation",
+      "summary": "Building covers how working AI applications are put together, from a single API call to multi-step agents. The SCAIO Policy Navigator, a retrieval tool over SC policy documents, is a local worked example.",
+      "subtopics": [
+        {
+          "title": "APIs and models",
+          "items": [
+            "Calling a model through an API",
+            "Choosing a model: cost, speed, quality",
+            "Running open models locally"
+          ]
+        },
+        {
+          "title": "Retrieval (RAG)",
+          "items": [
+            "Embeddings and vector databases",
+            "Chunking and indexing documents",
+            "Grounding answers in sources"
+          ]
+        },
+        {
+          "title": "Tools and agents",
+          "items": [
+            "Tool use and function calling",
+            "Agent loops and workflows",
+            "Model Context Protocol (MCP) and connectors",
+            "Coding agents"
+          ]
+        },
+        {
+          "title": "Fine-tuning",
+          "items": [
+            "When to fine-tune vs. prompt vs. retrieve",
+            "Small models and distillation"
+          ]
+        },
+        {
+          "title": "Evaluation and operations",
+          "items": [
+            "Writing evals and test sets",
+            "Monitoring, logging, and cost control",
+            "Deployment and reliability"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "Building Effective Agents (Anthropic)",
+            "url": "https://www.anthropic.com/engineering/building-effective-agents",
+            "type": "article",
+            "cost": "free",
+            "note": "Plain-language overview of agent patterns",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Pinecone Learn",
+            "url": "https://www.pinecone.io/learn/",
+            "type": "article",
+            "cost": "free",
+            "note": "Explainers on embeddings and retrieval",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "DeepLearning.AI short courses",
+            "url": "https://www.deeplearning.ai/courses",
+            "type": "course",
+            "cost": "free",
+            "note": "One- to two-hour courses on RAG, agents, evals",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Hugging Face Agents Course",
+            "url": "https://huggingface.co/learn/agents-course",
+            "type": "course",
+            "cost": "free"
+          },
+          {
+            "title": "Model Context Protocol",
+            "url": "https://modelcontextprotocol.io/",
+            "type": "guide",
+            "cost": "free",
+            "note": "Spec and tutorials"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Claude developer docs",
+            "url": "https://platform.claude.com/docs/en/home",
+            "type": "guide",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "AI Engineering (Chip Huyen, 2025) and her blog",
+            "url": "https://huyenchip.com/",
+            "type": "book",
+            "cost": "paid",
+            "note": "The blog is free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Hamel Husain on evals",
+            "url": "https://hamel.dev/",
+            "type": "article",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Retrieval-Augmented Generation (Lewis et al., 2020)",
+            "url": "https://arxiv.org/abs/2005.11401",
+            "type": "paper",
+            "cost": "free",
+            "note": "The original RAG paper",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Ollama",
+            "url": "https://ollama.com/",
+            "type": "tool",
+            "cost": "free",
+            "note": "Run open models locally",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "infrastructure",
+      "n": 5,
+      "title": "Infrastructure",
+      "tagline": "chips, data centers, energy, and the supply chain",
+      "summary": "Infrastructure is the physical side of AI: chips, data centers, power, and water. It is the branch where South Carolina is most directly involved, through data-center investment and utility planning.",
+      "subtopics": [
+        {
+          "title": "Compute",
+          "items": [
+            "GPUs and AI accelerators",
+            "Why training and inference need different hardware",
+            "Compute as a measure of AI progress"
+          ]
+        },
+        {
+          "title": "The chip supply chain",
+          "items": [
+            "Design (Nvidia, AMD), fabrication (TSMC), and lithography tools (ASML)",
+            "Export controls and geopolitics",
+            "Domestic manufacturing efforts"
+          ]
+        },
+        {
+          "title": "Data centers",
+          "items": [
+            "Hyperscale vs. colocation facilities",
+            "Siting decisions and local incentives",
+            "Cloud providers and capacity"
+          ]
+        },
+        {
+          "title": "Energy and water",
+          "items": [
+            "Electricity demand and grid planning",
+            "Generation sources: gas, nuclear, renewables",
+            "Cooling and water use",
+            "Who pays: rate design and large-load tariffs"
+          ]
+        },
+        {
+          "title": "SC layer",
+          "items": [
+            "Data-center investment across the state",
+            "Utility planning and rate pilots"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO Journal: South Carolina's Data-Center Decade",
+            "url": "scaio-article-data-center-decade.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: AI for SC county council members",
+            "url": "learn/primer-county-council.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Chip War (Chris Miller, 2022)",
+            "url": null,
+            "type": "book",
+            "cost": "paid"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "Energy and AI (International Energy Agency)",
+            "url": "https://www.iea.org/reports/energy-and-ai",
+            "type": "report",
+            "cost": "free"
+          },
+          {
+            "title": "Epoch AI",
+            "url": "https://epoch.ai/",
+            "type": "data",
+            "cost": "free",
+            "note": "Data on compute, training runs, and trends",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Asianometry",
+            "url": "https://www.youtube.com/@Asianometry",
+            "type": "video",
+            "cost": "free",
+            "note": "Semiconductor industry",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Acquired",
+            "url": "https://www.acquired.fm/",
+            "type": "podcast",
+            "cost": "free",
+            "note": "Episodes on Nvidia and TSMC",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "SemiAnalysis",
+            "url": "https://semianalysis.com/",
+            "type": "newsletter",
+            "cost": "paid",
+            "note": "Deep industry analysis, partly paywalled"
+          },
+          {
+            "title": "2024 United States Data Center Energy Usage Report (Lawrence Berkeley National Laboratory)",
+            "url": "https://eta.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report",
+            "type": "report",
+            "cost": "free"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "policy",
+      "n": 6,
+      "title": "Policy and governance",
+      "tagline": "how governments and institutions are responding",
+      "summary": "This branch tracks how governments, standards bodies, and institutions are responding to AI, from federal frameworks down to a county procurement contract.",
+      "subtopics": [
+        {
+          "title": "Core vocabulary",
+          "items": [
+            "Safety vs. alignment vs. governance vs. regulation",
+            "Risk-based approaches to regulation"
+          ]
+        },
+        {
+          "title": "Federal (U.S.)",
+          "items": [
+            "Executive actions and national AI plans",
+            "NIST standards and the AI Risk Management Framework",
+            "Federal preemption and the state-law debate"
+          ]
+        },
+        {
+          "title": "States",
+          "items": [
+            "State AI legislation trends: deepfakes, education, health, government use",
+            "Comparing state approaches"
+          ]
+        },
+        {
+          "title": "International",
+          "items": [
+            "EU AI Act",
+            "OECD principles and global coordination",
+            "China's and the UK's approaches"
+          ]
+        },
+        {
+          "title": "Government use of AI",
+          "items": [
+            "Procurement standards and contract terms",
+            "Agency use-case inventories and review processes"
+          ]
+        },
+        {
+          "title": "Specific policy areas",
+          "items": [
+            "Copyright and training data",
+            "Privacy and data protection",
+            "Liability and accountability"
+          ]
+        },
+        {
+          "title": "SC layer",
+          "items": [
+            "SC AI Strategy and the State AI Center of Excellence",
+            "SC General Assembly AI legislation and the Senate Special Committee on AI"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO primer: Safety, alignment, governance, regulation",
+            "url": "learn/primer-safety-vocabulary.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: A legislator's AI glossary",
+            "url": "learn/primer-09-legislator-glossary.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO Journal: Everywhere at Once",
+            "url": "scaio-article-everywhere-at-once.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "SCAIO Policy Tracker",
+            "url": "policy/",
+            "type": "data",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: AI procurement for SC government",
+            "url": "learn/primer-03-procurement.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "NIST AI Risk Management Framework",
+            "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "AI Index (Stanford HAI)",
+            "url": "https://hai.stanford.edu/ai-index",
+            "type": "report",
+            "cost": "free",
+            "note": "Annual report with a policy chapter",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "NCSL AI legislation tracker",
+            "url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation",
+            "type": "data",
+            "cost": "free",
+            "note": "2025 session; NCSL had not posted a 2026 page as of Oct 2026",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "EU AI Act explorer",
+            "url": "https://artificialintelligenceact.eu/",
+            "type": "guide",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "OECD.AI Policy Observatory",
+            "url": "https://oecd.ai/",
+            "type": "data",
+            "cost": "free"
+          },
+          {
+            "title": "Center for Security and Emerging Technology (Georgetown)",
+            "url": "https://cset.georgetown.edu/",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Centre for the Governance of AI",
+            "url": "https://www.governance.ai/",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "U.S. Copyright Office: Copyright and AI",
+            "url": "https://www.copyright.gov/ai/",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "safety",
+      "n": 7,
+      "title": "Safety and security",
+      "tagline": "risks, attacks, alignment, and defenses",
+      "summary": "Safety and security covers what can go wrong with AI and the work to prevent it. The branch follows SCAIO's map of risk by source: misuse, malfunction, and systemic effects.",
+      "subtopics": [
+        {
+          "title": "Mapping risk",
+          "items": [
+            "Misuse, malfunction, and systemic risk",
+            "Near-term vs. long-term concerns",
+            "Incident tracking"
+          ]
+        },
+        {
+          "title": "Security of AI systems",
+          "items": [
+            "Prompt injection and jailbreaks",
+            "Data poisoning and model theft",
+            "Securing agents and connected tools"
+          ]
+        },
+        {
+          "title": "AI as a security threat",
+          "items": [
+            "AI-assisted phishing and voice cloning",
+            "Ransomware and attacks on public institutions"
+          ]
+        },
+        {
+          "title": "Alignment",
+          "items": [
+            "What alignment research measures",
+            "Evaluations, red-teaming, and model testing",
+            "Interpretability as a safety tool"
+          ]
+        },
+        {
+          "title": "Frontier safety",
+          "items": [
+            "Lab safety frameworks and scaling policies",
+            "Government AI safety and standards institutes",
+            "International safety assessments"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO Journal: A Plain-Language Map of AI Risk",
+            "url": "scaio-article-map-of-ai-risk.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO Journal: Between Doom and Denial",
+            "url": "scaio-article-between-doom-and-denial.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: What alignment research actually is",
+            "url": "learn/primer-alignment-research.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Robert Miles AI Safety",
+            "url": "https://www.youtube.com/@RobertMilesAI",
+            "type": "video",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "SCAIO Journal: AI, cybersecurity, and public risk in the Palmetto State",
+            "url": "scaio-article-cybersecurity.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: AI for SC local government",
+            "url": "learn/primer-08-local-gov.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "AI Incident Database",
+            "url": "https://incidentdatabase.ai/",
+            "type": "data",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "MIT AI Risk Repository",
+            "url": "https://airisk.mit.edu/",
+            "type": "data",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "International AI Safety Report",
+            "url": "https://internationalaisafetyreport.org/",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "OWASP Gen AI Security Project",
+            "url": "https://genai.owasp.org/",
+            "type": "guide",
+            "cost": "free",
+            "note": "Top 10 for LLM applications",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "MITRE ATLAS",
+            "url": "https://atlas.mitre.org/",
+            "type": "guide",
+            "cost": "free",
+            "note": "Adversarial threat framework for AI",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Introduction to AI Safety, Ethics, and Society (Center for AI Safety)",
+            "url": "https://www.aisafetybook.com/",
+            "type": "book",
+            "cost": "free",
+            "note": "Free textbook",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "BlueDot Impact",
+            "url": "https://bluedot.org/",
+            "type": "course",
+            "cost": "free",
+            "note": "Free cohort courses on AI safety and governance",
+            "last_verified": "2026-10-15"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "society",
+      "n": 8,
+      "title": "AI and society",
+      "tagline": "work, education, health, media, and fairness",
+      "summary": "This branch covers how AI is changing specific parts of life and the economy. Most existing SCAIO primers live here, since each one addresses a sector.",
+      "subtopics": [
+        {
+          "title": "Work and the economy",
+          "items": [
+            "Task exposure vs. actual adoption",
+            "Productivity effects",
+            "Retraining and workforce programs"
+          ]
+        },
+        {
+          "title": "Education",
+          "items": [
+            "AI in classrooms and homework",
+            "District policies and procurement",
+            "AI literacy as a subject"
+          ]
+        },
+        {
+          "title": "Health care",
+          "items": [
+            "Clinical AI and diagnostics",
+            "Insurance claims and prior authorization",
+            "Rural vs. large-system access"
+          ]
+        },
+        {
+          "title": "Manufacturing and industry",
+          "items": [
+            "Predictive maintenance and quality control",
+            "Robotics and humanoid pilots"
+          ]
+        },
+        {
+          "title": "Media and information",
+          "items": [
+            "Deepfakes and voice cloning",
+            "Content provenance and labeling",
+            "Elections and misinformation"
+          ]
+        },
+        {
+          "title": "Fairness and rights",
+          "items": [
+            "Bias in automated decisions",
+            "Transparency and the right to explanation"
+          ]
+        },
+        {
+          "title": "Creative work",
+          "items": [
+            "Copyright and artists",
+            "AI-assisted creative tools"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO primer: AI in SC schools",
+            "url": "learn/primer-02-schools.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: Healthcare AI in SC",
+            "url": "learn/primer-06-healthcare.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: AI in SC manufacturing",
+            "url": "learn/primer-07-manufacturing.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO primer: Spotting synthetic media",
+            "url": "learn/primer-04-synthetic-media.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "AI Snake Oil (Arvind Narayanan and Sayash Kapoor, 2024)",
+            "url": null,
+            "type": "book",
+            "cost": "paid"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "SCAIO Journal: What We Know and Don't About AI's Effect on SC Workers",
+            "url": "scaio-article-workforce-what-we-know.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO Journal: What AI means for SC manufacturing",
+            "url": "scaio-article-manufacturing.html",
+            "type": "article",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Anthropic Economic Index",
+            "url": "https://www.anthropic.com/economic-index",
+            "type": "data",
+            "cost": "free",
+            "note": "How AI is used at work",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "TeachAI",
+            "url": "https://www.teachai.org/",
+            "type": "guide",
+            "cost": "free",
+            "note": "AI guidance for schools",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "C2PA",
+            "url": "https://c2pa.org/",
+            "type": "guide",
+            "cost": "free",
+            "note": "Content provenance standard",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Brookings: Artificial Intelligence",
+            "url": "https://www.brookings.edu/topics/artificial-intelligence/",
+            "type": "report",
+            "cost": "free",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Weapons of Math Destruction (Cathy O'Neil, 2016)",
+            "url": null,
+            "type": "book",
+            "cost": "paid"
+          }
+        ]
+      },
+      "quiz": []
+    },
+    {
+      "id": "players",
+      "n": 9,
+      "title": "The players",
+      "tagline": "the companies, labs, and institutions that shape the field",
+      "summary": "The players branch maps who builds and shapes AI, grouped by where each sits in the stack. It doubles as the outline for the SCAIO Who's Who.",
+      "subtopics": [
+        {
+          "title": "Frontier labs",
+          "items": [
+            "OpenAI, Anthropic, Google DeepMind, Meta, xAI",
+            "Mistral (France), DeepSeek and Alibaba Qwen (China)"
+          ]
+        },
+        {
+          "title": "Chips and hardware",
+          "items": [
+            "Nvidia, AMD, Intel, Broadcom",
+            "TSMC (fabrication), ASML (lithography)"
+          ]
+        },
+        {
+          "title": "Cloud and compute",
+          "items": [
+            "Amazon Web Services, Microsoft Azure, Google Cloud, Oracle",
+            "Specialized AI clouds such as CoreWeave"
+          ]
+        },
+        {
+          "title": "Platforms and open source",
+          "items": [
+            "Hugging Face (model and dataset hub)",
+            "GitHub, Ollama, open-weight model communities"
+          ]
+        },
+        {
+          "title": "Applications",
+          "items": [
+            "AI search, coding tools, and creative tools",
+            "AI features inside existing software"
+          ]
+        },
+        {
+          "title": "Research and nonprofits",
+          "items": [
+            "Allen Institute for AI (Ai2), EleutherAI",
+            "University institutes such as Stanford HAI"
+          ]
+        },
+        {
+          "title": "Government bodies",
+          "items": [
+            "NIST and the Center for AI Standards and Innovation",
+            "UK AI Security Institute",
+            "EU AI Office"
+          ]
+        },
+        {
+          "title": "SC layer",
+          "items": [
+            "USC AI Institute, Clemson School of Computing, SCRA, ADAPT in SC, SC State Government AI Center of Excellence, Charleston Digital Corridor"
+          ]
+        }
+      ],
+      "resources": {
+        "curious": [
+          {
+            "title": "SCAIO primer: The South Carolina AI landscape",
+            "url": "learn/primer-10-sc-landscape.html",
+            "type": "primer",
+            "cost": "free",
+            "scaio": true,
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "SCAIO Who's Who in AI (planned)",
+            "url": null,
+            "type": "guide",
+            "cost": "free"
+          }
+        ],
+        "practitioner": [
+          {
+            "title": "AI Index (Stanford HAI)",
+            "url": "https://hai.stanford.edu/ai-index",
+            "type": "report",
+            "cost": "free",
+            "note": "Who produces notable models",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Epoch AI",
+            "url": "https://epoch.ai/",
+            "type": "data",
+            "cost": "free",
+            "note": "Database of notable models and their developers",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "LMArena",
+            "url": "https://lmarena.ai/",
+            "type": "data",
+            "cost": "free",
+            "note": "Crowd-sourced model rankings"
+          },
+          {
+            "title": "Artificial Analysis",
+            "url": "https://artificialanalysis.ai/",
+            "type": "data",
+            "cost": "free",
+            "note": "Model and provider benchmarks",
+            "last_verified": "2026-10-15"
+          }
+        ],
+        "builder": [
+          {
+            "title": "Hugging Face Hub",
+            "url": "https://huggingface.co/models",
+            "type": "data",
+            "cost": "free",
+            "note": "Browse open models and their makers",
+            "last_verified": "2026-10-15"
+          },
+          {
+            "title": "Company model cards and system cards",
+            "url": null,
+            "type": "guide",
+            "cost": "free",
+            "note": "One for each major release"
+          }
+        ]
+      },
+      "quiz": []
+    }
+  ],
+  "staying_current": [
+    {
+      "title": "Newsletters",
+      "items": [
+        {
+          "title": "The Batch (DeepLearning.AI)",
+          "url": "https://www.deeplearning.ai/the-batch/",
+          "type": "newsletter",
+          "cost": "free",
+          "note": "Weekly, general audience",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "Import AI (Jack Clark)",
+          "url": "https://jack-clark.net/",
+          "type": "newsletter",
+          "cost": "free",
+          "note": "Weekly, research and policy",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "One Useful Thing (Ethan Mollick)",
+          "url": "https://www.oneusefulthing.org/",
+          "type": "newsletter",
+          "cost": "free",
+          "note": "Practical use",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "Interconnects (Nathan Lambert)",
+          "url": "https://www.interconnects.ai/",
+          "type": "newsletter",
+          "cost": "free",
+          "note": "Models and training",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "Simon Willison's Weblog",
+          "url": "https://simonwillison.net/",
+          "type": "newsletter",
+          "cost": "free",
+          "note": "Tools and security",
+          "last_verified": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "title": "Podcasts",
+      "items": [
+        {
+          "title": "Hard Fork (New York Times)",
+          "url": "https://www.nytimes.com/column/hard-fork",
+          "type": "podcast",
+          "cost": "free",
+          "note": "General audience"
+        },
+        {
+          "title": "Latent Space",
+          "url": "https://www.latent.space/",
+          "type": "podcast",
+          "cost": "free",
+          "note": "AI engineering",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "Dwarkesh Podcast",
+          "url": "https://www.dwarkesh.com/",
+          "type": "podcast",
+          "cost": "free",
+          "note": "Long interviews with researchers",
+          "last_verified": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "title": "YouTube",
+      "items": [
+        {
+          "title": "Two Minute Papers",
+          "url": "https://www.youtube.com/@TwoMinutePapers",
+          "type": "video",
+          "cost": "free",
+          "note": "Research highlights",
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "AI Explained",
+          "url": "https://www.youtube.com/@aiexplained-official",
+          "type": "video",
+          "cost": "free",
+          "note": "Model releases and benchmarks",
+          "last_verified": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "title": "South Carolina",
+      "items": [
+        {
+          "title": "SCAIO Journal",
+          "url": "index.html#journal",
+          "type": "article",
+          "cost": "free",
+          "scaio": true,
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "SCAIO Policy Tracker",
+          "url": "policy/",
+          "type": "data",
+          "cost": "free",
+          "scaio": true,
+          "last_verified": "2026-10-15"
+        },
+        {
+          "title": "The Artificial Intelligence Landscape of South Carolina",
+          "url": "report/index.html",
+          "type": "report",
+          "cost": "free",
+          "note": "SCAIO flagship report",
+          "scaio": true,
+          "last_verified": "2026-10-15"
+        }
+      ]
+    }
+  ]
+}
