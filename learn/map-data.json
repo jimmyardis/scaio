@@ -341,7 +341,7 @@
       "n": 3,
       "title": "Using AI",
       "tagline": "getting real value from AI tools and judging their output",
-      "summary": "Using AI is about getting real value from the tools and knowing when not to trust them. It is the most useful starting branch for most readers.",
+      "summary": "Using AI is about getting real value from the tools and knowing when not to trust them. It is the most useful starting branch for most readers. For South Carolina's small businesses, the same assistants large companies use now cost about $20 a month, so the practical question is where they fit, not whether they are affordable.",
       "subtopics": [
         {
           "title": "The tool landscape",
@@ -451,7 +451,56 @@
           }
         ]
       },
-      "quiz": []
+      "quiz": [
+        {
+          "q": "A small business wants to paste customer records into an AI assistant. What does SCAIO's small-business primer recommend?",
+          "options": [
+            "Use any free tool, since inputs are deleted after each chat",
+            "Use a business-tier subscription with data-use controls turned off",
+            "Strip out the names and use the free tier",
+            "Avoid AI for anything involving customers"
+          ],
+          "answer": 1,
+          "explain": "Free consumer tools may use inputs to train future models. For sensitive data, the primer points to a business tier with data-use controls turned off.",
+          "source": "learn/primer-05-small-business.html"
+        },
+        {
+          "q": "Why keep a human review step on legal language, tax positions, or regulatory claims?",
+          "options": [
+            "AI tools can't read legal documents",
+            "AI tools sometimes invent names, dates, statistics, and citations, and state them confidently",
+            "Regulators prohibit AI-drafted text",
+            "Human review makes the tool learn faster"
+          ],
+          "answer": 1,
+          "explain": "Confident-sounding errors (hallucinations) are the risk. The higher the stakes, the more the human checkpoint matters.",
+          "source": "learn/primer-05-small-business.html"
+        },
+        {
+          "q": "According to the primer, where should most small businesses start with AI?",
+          "options": [
+            "Customer-facing chatbots",
+            "Trying several tools at once to compare them",
+            "First drafts of emails, proposals, and customer replies",
+            "A multi-year contract with one vendor"
+          ],
+          "answer": 2,
+          "explain": "Communication comes first. Then one workflow tool on a two-week pilot, and customer-facing automation last.",
+          "source": "learn/primer-05-small-business.html"
+        },
+        {
+          "q": "What's the primer's advice before committing to an AI tool?",
+          "options": [
+            "Run a two-week pilot first",
+            "Wait until prices drop",
+            "Pick whichever tool has the most features",
+            "Buy the enterprise tier so you're covered"
+          ],
+          "answer": 0,
+          "explain": "\"A two-week pilot beats a multi-year contract every time.\"",
+          "source": "learn/primer-05-small-business.html"
+        }
+      ]
     },
     {
       "id": "building",
@@ -591,7 +640,7 @@
       "n": 5,
       "title": "Infrastructure",
       "tagline": "chips, data centers, energy, and the supply chain",
-      "summary": "Infrastructure is the physical side of AI: chips, data centers, power, and water. It is the branch where South Carolina is most directly involved, through data-center investment and utility planning.",
+      "summary": "Infrastructure is the physical side of AI: chips, data centers, power, and water. It is the branch where South Carolina is most directly involved. Meta's $800 million data center in Orangeburg County, the proposed $2.8 billion Moc-1 project in Spartanburg County, and Santee Cooper's rate pilot for very large customers all put the state's choices about who pays for the build-out on the record.",
       "subtopics": [
         {
           "title": "Compute",
@@ -707,7 +756,56 @@
           }
         ]
       },
-      "quiz": []
+      "quiz": [
+        {
+          "q": "Santee Cooper's experimental rate structure applies to customers drawing how much power?",
+          "options": [
+            "5 megawatts or more",
+            "50 megawatts or more",
+            "500 megawatts or more",
+            "Any commercial customer"
+          ],
+          "answer": 1,
+          "explain": "The four-year pilot covers customers drawing 50 MW or more, which captures essentially every modern AI-focused data-center campus.",
+          "source": "scaio-article-data-center-decade.html"
+        },
+        {
+          "q": "What is the pilot designed to do?",
+          "options": [
+            "Give data centers a discount to attract them",
+            "Make very large new loads contribute to the cost of new generating capacity, instead of spreading it across existing customers",
+            "Cap how much power any one customer can use",
+            "Require data centers to build their own power plants"
+          ],
+          "answer": 1,
+          "explain": "The pilot ties the cost of new capacity to the customers driving the demand for it.",
+          "source": "scaio-article-data-center-decade.html"
+        },
+        {
+          "q": "Meta's $800 million Orangeburg County data center is paired with what?",
+          "options": [
+            "A new natural-gas plant",
+            "The unfinished V.C. Summer reactors",
+            "A 100-megawatt solar farm built and operated by Silicon Ranch",
+            "Its own on-site diesel generators"
+          ],
+          "answer": 2,
+          "explain": "Silicon Ranch builds and runs the 100 MW solar farm. Santee Cooper coordinates the grid, and the electric cooperatives serve the facility.",
+          "source": "scaio-article-data-center-decade.html"
+        },
+        {
+          "q": "Which siting input does SCAIO's county council primer call the least-discussed, and among the most locally consequential?",
+          "options": [
+            "Broadband",
+            "Cooling water",
+            "Road access",
+            "Noise"
+          ],
+          "answer": 1,
+          "explain": "The primer suggests asking how much water a facility uses, where it comes from, and what happens in a drought year.",
+          "source": "learn/primer-county-council.html"
+        }
+      ]
     },
     {
       "id": "policy",
