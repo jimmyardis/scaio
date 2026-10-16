@@ -10,7 +10,9 @@ Turn SCAIO Learn from a shelf of 13 audience primers into a guided education hub
 1. **The AI Learning Map:** an interactive "start here" page that lays out the whole field as nine branches. Each branch has subtopics, a three-level reading path (Curious → Practitioner → Builder), the SCAIO primers and articles that belong to it, and a short self-check quiz.
 2. **Who's Who in AI:** a plain-language reference to the organizations that shape AI (Nvidia, Hugging Face, Anthropic, TSMC, NIST, and so on). It ships as a searchable directory page plus one 10-minute primer deck.
 3. **A reorganized Learn page:** three tiers, Map (start here) → Primers (by audience) → Reference shelf (term glossary + Who's Who).
-4. **A social stream:** one bite-sized post per organization and per branch, queued through the existing content-agent pipeline.
+4. **A resource library:** every resource on the map in one filterable page (branch, type, level, free/paid).
+5. **New primer decks rebuilt from the Gemini Notebook material**, starting with "How an LLM is built."
+6. **A social stream:** one bite-sized post per organization and per branch, queued through the existing content-agent pipeline.
 
 Everything ships through **pull requests**. Nothing merges or posts without Jimmy.
 
@@ -47,6 +49,7 @@ An interactive report in SCAIO's design, built from the same pattern as Gemini's
   - **"From SCAIO":** the relevant primers rendered as cards. Clicking a card opens the existing deck in an inline modal (`<iframe>` of the primer page, keyboard navigation intact) with an "Open full screen" link. Do not duplicate deck content.
   - A **3–5 question self-check** (multiple choice, plain JS, no storage, instant feedback with a one-line explanation). Questions must be answerable from SCAIO content or the cited sources.
 - A "Staying current" section at the end. Keep it short.
+- **Figures:** where a branch benefits from a diagram (for example, the chip-to-power infographic in Infrastructure), draw it as inline SVG in SCAIO's design. Don't use Gemini's images. No company logos; use plain labels instead.
 - Data lives in `learn/map-data.json` (branches, subtopics, resources, quiz items), and the page renders from it. Future updates are then data edits, not HTML surgery.
 - Must work on phones (16px gutters, no horizontal scroll), with keyboard and screen readers (mind map has a text-list fallback), and with no build step.
 
@@ -71,7 +74,21 @@ An interactive report in SCAIO's design, built from the same pattern as Gemini's
 - Update the homepage Learn section and its primer count to match.
 - **This is a design change.** Open it as its own PR, titled `[DESIGN] Learn reorganization`, with screenshots (desktop and phone) in the description.
 
-### 4. Social stream
+### 4. Resource library: `learn/library.html`
+
+- One page listing every resource in `map-data.json` (branch reading paths plus Staying current), rendered from that file. No second copy of the data.
+- Filters: branch, level (Curious / Practitioner / Builder), type (course, video, book, podcast, newsletter, report, paper, data, guide), and free/paid. Plus a text search.
+- Each row shows: title, type, level, branch, free/paid, note. SCAIO items get the same "From SCAIO" mark the map uses.
+- Each map branch section links to the library pre-filtered to that branch (`library.html#branch=infrastructure`).
+
+### 5. New primer decks from the Gemini Notebook material
+
+- The Gemini deck "Decoding the Glass Engine" (`directives/inputs/education/gemini/media/`) becomes **`learn/primer-llm-built.html`, "How an LLM is built"**, on `deck.css`/`deck.js`. Keep the storyline: next token → embeddings → layers → gradient descent → RNN vs. transformer → attention → pretraining → fine-tuning → RLHF/Constitutional AI → scaling.
+- Redraw every diagram as inline SVG. Fix the source's errors before shipping: attention does not give "infinite" context or "perfect" memory; transformers do not "scale infinitely"; scaling laws are empirical trends, not "mathematically proven"; the RLHF loop has four distinct steps.
+- It sits in the "How LLMs work" branch next to primer 01 and goes deeper than it. Primer 01 stays as is.
+- Gemini audio and video overviews stay off the site.
+
+### 6. Social stream
 
 - After the Who's Who PR merges, generate queue files in `social/queue/` using the existing content-agent format and `scaio_social_post.py`. Do not build a second poster.
 - Posts: one per organization, plus one per map branch. 40–120 words, plain data-describing voice, one link back to the entry or branch anchor.
@@ -93,6 +110,8 @@ An interactive report in SCAIO's design, built from the same pattern as Gemini's
 4. **Learning Map page** (mind map, sections, primer modals, quizzes).
 5. **`[DESIGN]` Learn reorganization + homepage update.**
 6. **Social queue** for Who's Who and map branches.
+7. **Resource library page** (after the map page; reads the same data).
+8. **"How an LLM is built" primer deck.**
 
 Before step 4, open a **prototype PR** with only two branches built out (Using AI, and Infrastructure) so Jimmy can approve the look before the other seven get built.
 
@@ -118,3 +137,11 @@ Before step 4, open a **prototype PR** with only two branches built out (Using A
 ## Learnings
 
 _(Append dated entries.)_
+
+### 2026-10-15
+- **Gemini Notebook material arrived.** The report text is in `inputs/education/gemini/report.md`. The deck PDF, mind-map PNG, infographic, audio (1:47) and video (7:52) are in `gemini/media/`, which is gitignored (53 MB of video). The NotebookLM share link can't be fetched (Google sign-in), so copy-paste and downloads are the only route.
+- **Jimmy decided: rebuild, don't host.** No Gemini images, audio, or video go on the site. The deck is rebuilt as a SCAIO primer and the infographic as an SVG figure. Added the resource library page (deliverable 4) at Jimmy's request.
+- **Gemini's mind map matches `learning_map_source.md` node for node**, so the canonical structure needs no changes.
+- **The Gemini report text needs an editorial pass before reuse.** Hype words ("revolutionary," "seminal," "giants"), an unsourced water figure, and prompt injection filed under "Malfunction." Check that last one against `scaio-article-map-of-ai-risk.html`.
+- **The prototype PR was opened right after step 1,** ahead of Who's Who, so the look gets approved early. It is still the gate for the full map page.
+
