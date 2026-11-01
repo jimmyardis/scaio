@@ -190,6 +190,11 @@
     .gd .stat { background: var(--bg); border-radius: 12px; padding: 10px 14px; font-size: 0.86rem; color: var(--muted); }
     .gd .stat .readout { display: block; font-size: 1.35rem; }
     .gd .msg { font-size: 0.92rem; min-height: 3em; }
+    .gd .coach { background: var(--blue-soft); border-radius: 12px; padding: 12px 14px; font-size: 0.93rem; line-height: 1.6; min-height: 8.5em; }
+    .gd .coach b { color: var(--navy); }
+    .gd .coach.done { background: var(--good-soft); }
+    .gd .coach.bad { background: var(--bad-soft); }
+    ol.steps3 li::marker { font-weight: 700; color: var(--blue); }
 
     /* ── Next token ── */
     .prompt-line { font-family: 'Libre Baskerville', serif; font-size: clamp(1.15rem, 2.6vw, 1.5rem); color: var(--navy); background: var(--bg); border-radius: 14px; padding: 14px 18px; margin-bottom: 16px; }
@@ -473,12 +478,57 @@
         <h2>How machines learn from examples</h2>
         <p class="lede">Traditional software follows rules a person wrote. Machine learning works the other way around: you show a program many examples and let it find the rule.</p>
         <p><strong>Artificial intelligence</strong> is the broad goal of getting computers to do things that seem to need intelligence. <strong>Machine learning</strong> is the approach that has worked best: learning patterns from data instead of following hand-written rules. <strong>Deep learning</strong> is machine learning done with large neural networks, and <strong>generative AI</strong> is deep learning that produces new text, images, or sound.</p>
-        <p>"Learning," for a machine, means adjusting numbers. A model starts with numbers set at random and makes a guess. It measures how wrong the guess was, then nudges every number slightly in the direction that would have made it less wrong. Then it does that again, millions of times. That nudging process is called <strong>gradient descent</strong>. You can watch it work below.</p>
+        <p>"Learning," for a machine, means adjusting numbers. A model starts with numbers set at random and makes a guess. It measures how wrong the guess was, then nudges every number slightly in the direction that would have made it less wrong. Then it does that again, millions of times. That nudging process is called <strong>gradient descent</strong>. The name sounds technical, but the idea is something you already do.</p>
+      </div>
+
+      <div class="prose">
+        <h3>You already know how this works</h3>
+        <p>Think about getting into a shower with an unfamiliar knob. You turn it on, and the water is too hot. You don't do any math. You just do three things:</p>
+        <ol class="steps3">
+          <li><strong>Notice how wrong it is.</strong> Scalding means way off. Slightly warm means almost there.</li>
+          <li><strong>Notice which way to go.</strong> Too hot means turn toward cold.</li>
+          <li><strong>Turn the knob by an amount that fits.</strong> A big turn when you're way off, a small one when you're close.</li>
+        </ol>
+        <p>Then you feel the water again and repeat until it's right. That loop is gradient descent. A model does the same thing: it measures how wrong it was, works out which direction would be less wrong, and adjusts its settings a little. The only difference is that it has billions of knobs instead of one.</p>
+        <p>Try it below. The curve is a "discomfort valley": the farther the water is from comfortable, the higher up the slope you are. The goal is to get to the bottom.</p>
       </div>
 
       <div class="wide fig">
-        <div class="fig-head"><span class="kicker">Interactive · Gradient descent</span><span class="pill">Illustrative data</span><h4>Teach a line to fit hot days and power demand</h4></div>
-        <p class="how">Each dot is a summer day: how hot it got, and how much electricity a utility needed. The model is just a line with two numbers, a slope and a starting height. Press <b>Take one step</b> to watch it nudge them, or <b>Train</b> to run many steps. Then try a step size that's too big.</p>
+        <div class="fig-head"><span class="kicker">Interactive · Gradient descent, one knob</span><h4>Get the shower to the right temperature</h4></div>
+        <p class="how">The water starts at 128°F, and 100°F is comfortable. Press <b>Take one step</b> and read what happens on each turn. Once you get to the bottom, press <b>Start over</b> and try <b>Impatient</b>.</p>
+        <div class="gd">
+          <svg id="shSvg" viewBox="0 0 400 270" role="img" aria-label="A U-shaped curve of discomfort against water temperature, with a ball showing the current temperature"></svg>
+          <div class="stats">
+            <div class="stat">Water temperature<span class="readout" id="shTemp">128°F</span></div>
+            <div>
+              <div style="font-size:.84rem;color:var(--muted);margin-bottom:6px">How big are your turns?</div>
+              <div class="seg" id="shLr">
+                <button type="button" data-lr="0.3" aria-pressed="false">Cautious</button>
+                <button type="button" data-lr="0.6" aria-pressed="true">Sensible</button>
+                <button type="button" data-lr="2.15" aria-pressed="false">Impatient</button>
+              </div>
+            </div>
+            <div class="row">
+              <button type="button" class="btn" id="shStep">Take one step</button>
+              <button type="button" class="btn ghost" id="shReset">Start over</button>
+            </div>
+            <div class="coach" id="shMsg" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="caption">The size of the turn is called the <strong>learning rate</strong>. Too small and training takes forever. Too big and the model overshoots and never settles. Picking it well is one of the first things AI engineers tune.</p>
+      </div>
+
+      <div class="prose">
+        <h3>From one knob to billions</h3>
+        <p>A real model has a huge number of knobs, called <strong>parameters</strong>, and no single "temperature" to feel. It checks its guesses against thousands of examples at once. "Error" means how far off those guesses were, on average. "Downhill" means the combination of tiny knob turns that would shrink that error fastest. Training a large language model repeats this measure, turn, repeat loop trillions of times on enormous amounts of text.</p>
+      </div>
+
+      <div class="prose" data-min="practitioner">
+        <p><strong>One step closer to a real model.</strong> The next demo learns from data instead of from a feeling. Each dot is a summer day: how hot it got, and how much electricity a utility needed. The model is a straight line, and it has two knobs: how steep the line is, and how high it starts. The pink lines show how far the line misses each day. The error is the average size of those misses. Every step turns both knobs a little so the misses shrink.</p>
+      </div>
+      <div class="wide fig" data-min="practitioner">
+        <div class="fig-head"><span class="kicker">Interactive · Gradient descent, two knobs</span><span class="pill" style="background:var(--blue-soft);color:var(--blue)">Practitioner</span><span class="pill">Illustrative data</span><h4>Teach a line to fit hot days and power demand</h4></div>
+        <p class="how">Press <b>Take one step</b> a few times and watch the pink misses get shorter, then press <b>Train</b> to run many steps. Then pick <b>Too big</b> and see what overshooting looks like with real data.</p>
         <div class="gd">
           <svg id="gdSvg" viewBox="0 0 400 280" role="img" aria-label="Scatter plot of temperature against electricity demand, with a line the model is fitting"></svg>
           <div class="stats">
@@ -1104,6 +1154,87 @@
     });
     $('#gdReset').addEventListener('click', reset);
     $$('#gdLr button').forEach(function (bt) { bt.addEventListener('click', function () { press($('#gdLr'), bt); lr = parseFloat(bt.getAttribute('data-lr')); reset(); }); });
+    reset();
+  })();
+
+  /* ── 2a. Shower (one-knob gradient descent) ── */
+  (function () {
+    var svg = $('#shSvg'), msg = $('#shMsg');
+    var GOAL = 100, START = 128, LO = 50, HI = 150;
+    var t, lr = 0.6, hist, done;
+    var X0 = 30, X1 = 380, YB = 220, YT = 34;
+    function sx(v) { return X0 + (v - LO) / (HI - LO) * (X1 - X0); }
+    function sy(v) { var d = (v - GOAL) * (v - GOAL) / 2500; return YB - Math.min(d, 1.05) * (YB - YT); }
+    function word(e) {
+      var a = Math.abs(e);
+      if (a < 0.5) return 'just right';
+      if (a < 6) return e > 0 ? 'a little warm' : 'a little cool';
+      if (a < 20) return e > 0 ? 'too hot' : 'too cold';
+      return e > 0 ? 'scalding' : 'freezing';
+    }
+    function draw() {
+      var s = '', d = '';
+      for (var v = LO; v <= HI; v += 1) d += (v === LO ? 'M' : 'L') + sx(v).toFixed(1) + ' ' + sy(v).toFixed(1);
+      s += '<rect x="' + sx(LO) + '" y="' + YT + '" width="' + (sx(GOAL) - sx(LO)) + '" height="' + (YB - YT) + '" fill="#2f7ae5" opacity="0.06"/>';
+      s += '<rect x="' + sx(GOAL) + '" y="' + YT + '" width="' + (sx(HI) - sx(GOAL)) + '" height="' + (YB - YT) + '" fill="#d9534f" opacity="0.06"/>';
+      s += '<path d="' + d + '" fill="none" stroke="#9fb3cc" stroke-width="3"/>';
+      s += '<line x1="' + X0 + '" y1="' + YB + '" x2="' + X1 + '" y2="' + YB + '" stroke="#9fb3cc"/>';
+      [60, 80, 120, 140].forEach(function (v) { s += '<text x="' + sx(v) + '" y="' + (YB + 16) + '" text-anchor="middle" font-size="11" fill="#4b5a6b" font-family="Inter">' + v + '°</text>'; });
+      s += '<text x="' + ((X0 + X1) / 2) + '" y="' + (YB + 36) + '" text-anchor="middle" font-size="12" fill="#4b5a6b" font-family="Inter">Water temperature →</text>';
+      s += '<text x="' + (sx(LO) + 8) + '" y="' + (YT + 14) + '" font-size="11" fill="#0b4ea2" font-family="Inter" font-weight="600">too cold</text>';
+      s += '<text x="' + (sx(HI) - 8) + '" y="' + (YT + 14) + '" text-anchor="end" font-size="11" fill="#a32b2b" font-family="Inter" font-weight="600">too hot</text>';
+      s += '<text x="' + sx(GOAL) + '" y="' + (YB + 16) + '" text-anchor="middle" font-size="11" fill="#12715b" font-family="Inter" font-weight="700">100° ✓</text>';
+      // past positions and hops
+      for (var i = 0; i < hist.length - 1; i++) {
+        var a = hist[i], b = hist[i + 1], ax = sx(a), bx = sx(b), ay = sy(a), by = sy(b), my = Math.max(4, Math.min(ay, by) - 26);
+        s += '<path d="M' + ax + ' ' + ay + ' Q' + ((ax + bx) / 2) + ' ' + my + ' ' + bx + ' ' + by + '" fill="none" stroke="#2f7ae5" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.7"/>';
+        s += '<circle cx="' + ax + '" cy="' + ay + '" r="5" fill="#c9d8ee"/>';
+      }
+      // slope hint at the ball
+      var x = sx(t), y = sy(t), e = t - GOAL;
+      if (Math.abs(e) >= 0.5 && t > LO && t < HI) {
+        var k = (sy(t + 0.5) - sy(t - 0.5)) / (sx(t + 0.5) - sx(t - 0.5)), dx = 26 / Math.sqrt(1 + k * k);
+        s += '<line x1="' + (x - dx) + '" y1="' + (y - k * dx) + '" x2="' + (x + dx) + '" y2="' + (y + k * dx) + '" stroke="#081a36" stroke-width="2" opacity="0.45"/>';
+        var dir = e > 0 ? -1 : 1;
+        s += '<path d="M' + (x + dir * 14) + ' ' + (y - 20) + ' l' + (dir * 18) + ' 0 m' + (-dir * 6) + ' -5 l' + (dir * 6) + ' 5 l' + (-dir * 6) + ' 5" fill="none" stroke="#12715b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
+      }
+      s += '<circle cx="' + x + '" cy="' + y + '" r="9" fill="' + (Math.abs(e) < 0.5 ? '#12715b' : '#0b4ea2') + '" stroke="#fff" stroke-width="2.5"/>';
+      svg.innerHTML = s;
+      $('#shTemp').textContent = Math.round(t) + '°F · ' + word(e);
+    }
+    function say(html, cls) { msg.className = 'coach' + (cls ? ' ' + cls : ''); msg.innerHTML = html; }
+    function reset() {
+      t = START; hist = [t]; done = false; $('#shStep').disabled = false; draw();
+      say('<b>Start:</b> the water is 128°F, which is 28° too hot. The ball sits high on the right side of the valley. The little green arrow points downhill: toward colder. Press <b>Take one step</b>.');
+    }
+    function step() {
+      if (done) return;
+      var e = t - GOAL, turn = -lr * e, n = hist.length;
+      t = t + turn; hist.push(t); var e2 = t - GOAL;
+      var r = function (v) { return Math.abs(v) < 10 && Math.abs(v - Math.round(v)) > 0.05 ? v.toFixed(1) : String(Math.round(v)); }, dirWord = turn < 0 ? 'colder' : 'hotter';
+      var head = '<b>Step ' + n + ':</b> ';
+      var how = 'It was ' + r(Math.abs(e)) + '° ' + (e > 0 ? 'too hot' : 'too cold') + ', so you turned ' + dirWord + ' by ' + r(Math.abs(turn)) + '°. ';
+      if (t < LO || t > HI) {
+        done = true; $('#shStep').disabled = true;
+        t = Math.max(LO, Math.min(HI, t)); draw();
+        say(head + how + 'Now it\'s ' + (e2 > 0 ? 'scalding' : 'ice cold') + ', and worse than where you started. <b>Each turn overshoots by more than the last.</b> A model trained with steps this big never settles, and its error grows until training fails. Press <b>Start over</b> and pick <b>Sensible</b>.', 'bad');
+        return;
+      }
+      draw();
+      if (Math.abs(e2) < 0.5) {
+        done = true; $('#shStep').disabled = true;
+        say(head + how + '<b>Comfortable, in ' + n + ' step' + (n > 1 ? 's' : '') + '.</b> Notice that the turns got smaller as you got closer, even though the turn size setting never changed. That happens on its own, because the valley gets flatter near the bottom. Engineers call this point "converged." ' + (lr < 0.5 ? 'Cautious works, but slowly. Try <b>Sensible</b> to compare.' : 'Now press <b>Start over</b> and try <b>Impatient</b>.'), 'done');
+      } else if (Math.abs(e2) > Math.abs(e)) {
+        say(head + how + 'That overshot: the water is now ' + r(t) + '°F, ' + word(e2) + ', and <b>farther from comfortable than before</b>. The ball jumped clear across the valley. Keep stepping and watch what happens.', 'bad');
+      } else if ((e2 > 0) !== (e > 0)) {
+        say(head + how + 'You overshot a little, to ' + r(t) + '°F, but you\'re closer than before. The next turn will go back the other way.');
+      } else {
+        say(head + how + 'Now it\'s ' + r(t) + '°F, ' + word(e2) + '. The ball moved downhill. ' + (n === 1 ? 'Notice that the size of the turn depended on how far off you were. The next turn will be smaller, because you\'re closer.' : 'Still ' + r(Math.abs(e2)) + '° to go. Keep going.'));
+      }
+    }
+    $('#shStep').addEventListener('click', step);
+    $('#shReset').addEventListener('click', reset);
+    $$('#shLr button').forEach(function (bt) { bt.addEventListener('click', function () { press($('#shLr'), bt); lr = parseFloat(bt.getAttribute('data-lr')); reset(); }); });
     reset();
   })();
 
