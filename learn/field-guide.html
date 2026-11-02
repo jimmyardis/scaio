@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The SCAIO Field Guide to AI · SCAIO Learn</title>
+  <meta name="description" content="An interactive report on how AI works, how it is used and built, the chips and power lines behind it, how it is governed, and where South Carolina fits. Narrated explainers, working models, and links into SCAIO's primers and Journal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Plausible analytics -->
+  <script defer data-domain="scaio.org" src="https://plausible.io/js/script.js"></script>
+  <style>
+    :root {
+      --navy: #081a36;
+      --navy-2: #0a2a54;
+      --blue: #0b4ea2;
+      --blue-2: #2f7ae5;
+      --blue-soft: #dbeafe;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #142133;
+      --muted: #4b5a6b;
+      --border: #d9e4f2;
+      --good: #12715b;
+      --good-soft: #dcf3ea;
+      --warn: #9a5b00;
+      --warn-soft: #fdf0d8;
+      --bad: #a32b2b;
+      --bad-soft: #fbe3e3;
+      --max: 1180px;
+      --prose: 720px;
+      --wide: 980px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--blue); }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--blue-2); outline-offset: 2px; border-radius: 6px; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    /* ── Site bar (matches Learn) ── */
+    .site-bar { background: linear-gradient(90deg, #081a36, #0a2a54); color: #fff; padding: 14px 0; font-size: 0.86rem; }
+    .site-bar .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .site-bar a { color: rgba(255,255,255,0.85); text-decoration: none; }
+    .site-bar .brand { font-family: 'Libre Baskerville', serif; font-size: 1.15rem; letter-spacing: 0.04em; color: #fff; }
+    .site-bar .crumbs { color: rgba(255,255,255,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .site-bar .crumbs a:hover { color: #fff; text-decoration: underline; }
+    .site-bar .sep { margin: 0 8px; opacity: 0.5; }
+    .site-bar .current { color: #fff; }
+
+    /* ── Hero ── */
+    .hero { background: linear-gradient(135deg, #081a36 0%, #0b2e5e 50%, #14597d 100%); color: #fff; padding: 84px 0 76px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 78% 18%, rgba(43,174,255,0.18), transparent 28%), radial-gradient(circle at 10% 95%, rgba(64,124,255,0.2), transparent 26%); }
+    .hero-inner { position: relative; max-width: 800px; }
+    .kicker { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); }
+    .hero .kicker { color: #b9d6ff; margin-bottom: 22px; font-size: 0.85rem; }
+    .hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.3rem, 5.6vw, 4rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .hero .dek { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.4rem); color: rgba(255,255,255,0.88); line-height: 1.6; max-width: 58ch; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 30px; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+    .hero-stats b { color: #fff; font-weight: 700; }
+
+    /* ── Sticky toolbar: progress + lens + contents ── */
+    .toolbar { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .toolbar .container { display: flex; align-items: center; gap: 14px; min-height: 58px; padding: 8px 0; }
+    .toolbar .label { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap; }
+    .lens { display: inline-flex; background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 3px; }
+    .lens button { border: 0; background: transparent; padding: 6px 14px; border-radius: 999px; font-size: 0.86rem; font-weight: 600; color: var(--muted); }
+    .lens button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+    .toc-btn { margin-left: auto; border: 1px solid var(--border); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-size: 0.86rem; font-weight: 600; color: var(--navy); white-space: nowrap; }
+    .progress { position: absolute; left: 0; bottom: -1px; height: 3px; background: var(--blue-2); width: 0; transition: width 0.1s linear; }
+    .toc-panel { display: none; border-top: 1px solid var(--border); background: var(--surface); }
+    .toc-panel.open { display: block; }
+    .toc-panel ol { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 18px; padding: 14px 0 18px; counter-reset: ch; }
+    .toc-panel li a { display: block; padding: 6px 8px; border-radius: 8px; text-decoration: none; color: var(--text); font-size: 0.92rem; }
+    .toc-panel li a:hover { background: var(--blue-soft); }
+    .toc-panel li a span { color: var(--blue); font-weight: 700; margin-right: 8px; }
+    .toc-panel li a.here { background: var(--blue-soft); font-weight: 600; }
+
+    /* ── Lens visibility ── */
+    body.lens-curious [data-min="practitioner"],
+    body.lens-curious [data-min="builder"],
+    body.lens-practitioner [data-min="builder"] { display: none !important; }
+    .depth { border-left: 4px solid var(--blue-2); background: var(--surface); border-radius: 0 14px 14px 0; padding: 16px 20px; margin: 22px 0; }
+    .depth[data-min="builder"] { border-left-color: var(--navy); }
+    .depth .tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+    .depth[data-min="builder"] .tag { color: var(--navy); }
+    .depth p:last-child, .depth ul:last-child { margin-bottom: 0; }
+
+    /* ── Chapters & prose ── */
+    main { padding-bottom: 40px; }
+    .chapter { padding: 72px 0 24px; }
+    .chapter + .chapter { border-top: 1px solid var(--border); }
+    .prose { width: min(var(--prose), calc(100% - 32px)); margin: 0 auto; }
+    .wide { width: min(var(--wide), calc(100% - 32px)); margin: 34px auto; }
+    .chapter-head .kicker { margin-bottom: 12px; }
+    .chapter-head h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(1.8rem, 3.6vw, 2.5rem); color: var(--navy); letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 18px; }
+    .prose h3 { font-family: 'Libre Baskerville', serif; font-size: 1.35rem; color: var(--navy); margin: 34px 0 12px; line-height: 1.3; }
+    .prose p { font-size: 1.06rem; line-height: 1.85; margin-bottom: 18px; }
+    .prose ul, .prose ol { margin: 0 0 18px 1.3em; font-size: 1.04rem; line-height: 1.8; }
+    .prose li { margin-bottom: 6px; }
+    .prose strong { color: var(--navy); }
+    .lede { font-size: 1.2rem !important; color: var(--text); }
+    .src { font-size: 0.86rem; color: var(--muted); }
+
+    /* ── Generic card / interactive frame ── */
+    .fig { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px 28px 22px; box-shadow: 0 1px 0 rgba(10,42,84,0.04); }
+    .fig-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 6px; }
+    .fig-head .kicker { font-size: 0.7rem; }
+    .fig h4 { font-family: 'Libre Baskerville', serif; font-size: 1.25rem; color: var(--navy); line-height: 1.3; width: 100%; }
+    .fig .how { font-size: 0.92rem; color: var(--muted); margin-bottom: 18px; }
+    .fig .caption { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 18px; padding-top: 12px; }
+    .pill { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+    .btn { border: 1px solid var(--blue); background: var(--blue); color: #fff; border-radius: 999px; padding: 8px 18px; font-size: 0.9rem; font-weight: 600; }
+    .btn:hover { background: var(--navy-2); border-color: var(--navy-2); }
+    .btn.ghost { background: var(--surface); color: var(--blue); }
+    .btn.ghost:hover { background: var(--blue-soft); }
+    .btn:disabled { opacity: 0.45; cursor: default; }
+    .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+    .seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+    .seg button { border: 1px solid var(--border); background: var(--bg); border-radius: 999px; padding: 6px 13px; font-size: 0.86rem; font-weight: 600; color: var(--muted); }
+    .seg button[aria-pressed="true"] { background: var(--blue-soft); border-color: var(--blue-2); color: var(--navy); }
+    input[type=range] { accent-color: var(--blue); width: 100%; }
+    .readout { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+
+    /* ── Audio card ── */
+    .audio { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; align-items: center; background: linear-gradient(135deg, #081a36, #0b2e5e); color: #fff; border-radius: 20px; padding: 20px 22px; margin: 30px 0; }
+    .audio .play { width: 56px; height: 56px; border-radius: 50%; border: 0; background: #fff; color: var(--navy); display: grid; place-items: center; grid-row: span 2; flex: none; }
+    .audio .play svg { width: 22px; height: 22px; }
+    .audio .a-title { font-weight: 700; font-size: 1rem; line-height: 1.35; }
+    .audio .a-title small { display: block; font-weight: 500; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: #b9d6ff; margin-bottom: 2px; }
+    .audio .a-bar { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.8); font-variant-numeric: tabular-nums; }
+    .audio .track { flex: 1; height: 6px; background: rgba(255,255,255,0.22); border-radius: 3px; position: relative; cursor: pointer; }
+    .audio .track i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #8ec5ff; border-radius: 3px; }
+    .audio .speed { border: 1px solid rgba(255,255,255,0.35); background: transparent; color: #fff; border-radius: 999px; padding: 1px 9px; font-size: 0.76rem; font-weight: 600; }
+    .audio details { grid-column: 1 / -1; margin-top: 10px; font-size: 0.92rem; }
+    .audio summary { cursor: pointer; color: #b9d6ff; font-weight: 600; font-size: 0.84rem; }
+    .audio details p { margin-top: 10px; color: rgba(255,255,255,0.88); line-height: 1.75; }
+
+    /* ── Video card (click-to-load) ── */
+    .video { border-radius: 20px; overflow: hidden; background: var(--navy); margin: 30px 0; }
+    .video .poster { width: 100%; aspect-ratio: 16 / 9; border: 0; display: grid; place-items: center; text-align: center; color: #fff; padding: 22px;
+      background: radial-gradient(circle at 70% 30%, rgba(47,122,229,0.45), transparent 50%), linear-gradient(135deg, #081a36, #14597d); }
+    .video .poster .pbtn { width: 74px; height: 74px; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; margin: 0 auto 16px; transition: transform 0.15s; }
+    .video .poster:hover .pbtn { transform: scale(1.07); }
+    .video .poster b { display: block; font-family: 'Libre Baskerville', serif; font-size: clamp(1.05rem, 2.4vw, 1.4rem); line-height: 1.3; max-width: 34ch; margin: 0 auto 6px; }
+    .video .poster span { font-size: 0.86rem; color: rgba(255,255,255,0.78); }
+    .video iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
+    .video .vnote { background: var(--surface); border: 1px solid var(--border); border-top: 0; border-radius: 0 0 20px 20px; padding: 10px 18px; font-size: 0.82rem; color: var(--muted); }
+
+    /* ── From SCAIO links ── */
+    .from { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 26px 0; }
+    .from a { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; text-decoration: none; color: var(--text); transition: border-color 0.15s, transform 0.15s; }
+    .from a:hover { border-color: var(--blue-2); transform: translateY(-2px); }
+    .from a small { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; }
+    .from a b { display: block; font-family: 'Libre Baskerville', serif; color: var(--navy); font-size: 1rem; line-height: 1.35; }
+
+    /* ── Callouts ── */
+    .callout { border-radius: 16px; padding: 18px 20px; margin: 26px 0; background: var(--warn-soft); border: 1px solid #f1d9a8; }
+    .callout h5 { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
+    .callout ul { margin-bottom: 0; }
+    .pull { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1.3rem; line-height: 1.55; color: var(--navy); border-left: 4px solid var(--blue-2); padding: 4px 0 4px 22px; margin: 30px 0; }
+
+    /* ── Levels + branches (ch 1) ── */
+    .levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .level { text-align: left; background: var(--bg); border: 2px solid var(--border); border-radius: 18px; padding: 18px; }
+    .level[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); }
+    .level b { display: block; font-family: 'Libre Baskerville', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 6px; }
+    .level span { font-size: 0.9rem; color: var(--muted); line-height: 1.55; display: block; }
+    .branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 4px; }
+    .branch { text-align: left; border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: 12px 14px; font-weight: 600; color: var(--navy); font-size: 0.95rem; display: flex; gap: 10px; align-items: center; }
+    .branch em { font-style: normal; color: var(--blue); font-weight: 700; font-size: 0.8rem; min-width: 1.3em; }
+    .branch[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .branch[aria-pressed="true"] em { color: #8ec5ff; }
+    .branch-panel { margin-top: 14px; background: var(--bg); border-radius: 14px; padding: 16px 18px; min-height: 92px; font-size: 0.97rem; }
+    .branch-panel b { color: var(--navy); }
+
+    /* ── Gradient descent ── */
+    .gd { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 22px; }
+    .gd svg { width: 100%; height: auto; background: var(--bg); border-radius: 14px; }
+    .gd .stats { display: grid; gap: 12px; align-content: start; }
+    .gd .stat { background: var(--bg); border-radius: 12px; padding: 10px 14px; font-size: 0.86rem; color: var(--muted); }
+    .gd .stat .readout { display: block; font-size: 1.35rem; }
+    .gd .msg { font-size: 0.92rem; min-height: 3em; }
+    .gd .coach { background: var(--blue-soft); border-radius: 12px; padding: 12px 14px; font-size: 0.93rem; line-height: 1.6; min-height: 8.5em; }
+    .gd .coach b { color: var(--navy); }
+    .gd .coach.done { background: var(--good-soft); }
+    .gd .coach.bad { background: var(--bad-soft); }
+    ol.steps3 li::marker { font-weight: 700; color: var(--blue); }
+
+    /* ── Next token ── */
+    .prompt-line { font-family: 'Libre Baskerville', serif; font-size: clamp(1.15rem, 2.6vw, 1.5rem); color: var(--navy); background: var(--bg); border-radius: 14px; padding: 14px 18px; margin-bottom: 16px; }
+    .prompt-line .added { background: var(--blue-soft); border-radius: 6px; padding: 0 5px; color: var(--blue); }
+    .prompt-line .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--blue); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; margin-left: 3px; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .bars { display: grid; gap: 7px; margin: 6px 0 16px; }
+    .bar { display: grid; grid-template-columns: 7.5em minmax(0, 1fr) 3.6em; align-items: center; gap: 10px; font-size: 0.92rem; }
+    .bar .w { font-weight: 600; color: var(--navy); text-align: right; }
+    .bar .t { height: 18px; background: var(--bg); border-radius: 5px; overflow: hidden; }
+    .bar .t i { display: block; height: 100%; background: var(--blue-2); border-radius: 5px; transition: width 0.25s ease; }
+    .bar.picked .t i { background: var(--navy); }
+    .bar .p { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.86rem; }
+
+    /* ── Embeddings ── */
+    .emb svg { width: 100%; height: auto; background: var(--bg); border-radius: 14px; touch-action: manipulation; }
+    .emb .word { cursor: pointer; }
+    .emb .word circle { transition: r 0.15s; }
+    .emb .word text { font: 600 13px Inter, sans-serif; fill: var(--navy); }
+    .emb .word .hit { fill: transparent; }
+    .emb .word.dim { opacity: 0.32; }
+    .emb .word.sel circle { fill: var(--navy); }
+    .emb-out { margin-top: 12px; font-size: 0.95rem; min-height: 3.2em; }
+
+    /* ── Attention ── */
+    .att-sent { display: flex; flex-wrap: wrap; gap: 8px 6px; margin: 8px 0 18px; line-height: 1; }
+    .tok { border: 1px solid var(--border); border-radius: 9px; padding: 8px 10px; font-size: 1rem; font-weight: 500; background: var(--surface); transition: background 0.2s, color 0.2s; }
+    .tok.focus { background: var(--navy) !important; color: #fff !important; border-color: var(--navy); }
+    .sense { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 3em; gap: 10px; align-items: center; font-size: 0.9rem; margin-top: 6px; }
+    .sense .t { height: 14px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+    .sense .t i { display: block; height: 100%; background: var(--good); transition: width 0.35s; }
+
+    /* ── Pipeline stepper ── */
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+    .step { text-align: left; border: 2px solid var(--border); background: var(--bg); border-radius: 16px; padding: 12px 14px; }
+    .step b { display: block; color: var(--navy); font-size: 0.98rem; }
+    .step span { font-size: 0.8rem; color: var(--muted); }
+    .step[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); }
+    .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+    .stage dl { font-size: 0.93rem; }
+    .stage dt { font-weight: 700; color: var(--navy); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 10px; }
+    .stage dt:first-child { margin-top: 0; }
+    .chat { background: var(--bg); border-radius: 14px; padding: 14px; font-size: 0.92rem; }
+    .chat .q { background: var(--navy); color: #fff; border-radius: 12px 12px 4px 12px; padding: 8px 12px; margin-left: auto; width: fit-content; max-width: 90%; margin-bottom: 10px; }
+    .chat .a { background: var(--surface); border: 1px solid var(--border); border-radius: 12px 12px 12px 4px; padding: 10px 12px; white-space: pre-line; }
+    .chat .who { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+    .loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 14px; counter-reset: lp; }
+    .loop div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px; font-size: 0.82rem; position: relative; }
+    .loop div::before { counter-increment: lp; content: counter(lp); display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 700; font-size: 0.75rem; margin-bottom: 6px; }
+
+    /* ── Prompt builder ── */
+    .pb { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 20px; }
+    .pb label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; font-size: 0.92rem; cursor: pointer; background: var(--surface); }
+    .pb label:has(input:checked) { background: var(--blue-soft); border-color: var(--blue-2); }
+    .pb input { margin-top: 5px; accent-color: var(--blue); }
+    .pb label b { color: var(--navy); }
+    .pb pre { white-space: pre-wrap; font: 0.9rem/1.65 'Inter', sans-serif; background: var(--navy); color: #eaf2ff; border-radius: 14px; padding: 16px; min-height: 180px; }
+    .pb pre mark { background: rgba(142,197,255,0.22); color: #fff; border-radius: 4px; padding: 0 2px; }
+    .meter { margin-top: 12px; font-size: 0.86rem; color: var(--muted); }
+    .meter .t { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; margin-top: 6px; }
+    .meter .t i { display: block; height: 100%; background: linear-gradient(90deg, var(--good), var(--blue-2)); transition: width 0.3s; }
+
+    /* ── Sorting exercises (paste? / risk) ── */
+    .sorts { display: grid; gap: 12px; }
+    .sort { border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; background: var(--surface); }
+    .sort p { font-size: 0.97rem; margin-bottom: 10px; }
+    .sort .seg button.right { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+    .sort .seg button.wrong { background: var(--bad-soft); border-color: var(--bad); color: var(--bad); }
+    .sort .fb { font-size: 0.9rem; margin-top: 10px; display: none; }
+    .sort .fb.show { display: block; }
+    .sort .hz { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); margin-right: 6px; }
+    .score { font-weight: 700; color: var(--navy); }
+
+    /* ── RAG walkthrough ── */
+    .rag-q { display: grid; gap: 8px; margin-bottom: 16px; }
+    .rag-q button { text-align: left; border: 1px solid var(--border); background: var(--bg); border-radius: 12px; padding: 10px 14px; font-size: 0.95rem; }
+    .rag-q button[aria-pressed="true"] { background: var(--blue-soft); border-color: var(--blue-2); color: var(--navy); font-weight: 600; }
+    .rag-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+    .rag-flow div { border-radius: 12px; padding: 10px; font-size: 0.8rem; background: var(--bg); color: var(--muted); border: 2px solid transparent; transition: all 0.25s; }
+    .rag-flow div b { display: block; color: var(--navy); font-size: 0.86rem; }
+    .rag-flow div.on { border-color: var(--blue-2); background: var(--blue-soft); color: var(--text); }
+    .rag-stage { background: var(--bg); border-radius: 14px; padding: 16px; min-height: 150px; font-size: 0.94rem; }
+    .vec { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; color: var(--blue); word-break: break-all; }
+    .chunk { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin-top: 8px; font-size: 0.88rem; }
+    .chunk .meta { font-size: 0.74rem; font-weight: 700; color: var(--blue); letter-spacing: 0.04em; margin-bottom: 4px; display: flex; justify-content: space-between; gap: 10px; }
+    .chunk.miss { opacity: 0.5; }
+    .cite { font-size: 0.72rem; font-weight: 700; vertical-align: super; color: var(--blue); }
+
+    /* ── Chain (chip to council) ── */
+    .chain { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; position: relative; }
+    .link { text-align: center; border: 2px solid var(--border); background: var(--bg); border-radius: 14px; padding: 12px 6px; font-size: 0.8rem; font-weight: 600; color: var(--navy); position: relative; }
+    .link .ic { display: flex; justify-content: center; margin-bottom: 4px; line-height: 1; }
+    .link.sc { border-style: dashed; border-color: #9cc3f2; }
+    .link[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); border-style: solid; }
+    .chain-key { font-size: 0.8rem; color: var(--muted); margin: 10px 0 0; }
+    .chain-key i { display: inline-block; width: 22px; height: 12px; border: 2px dashed #9cc3f2; border-radius: 4px; vertical-align: -1px; margin-right: 6px; }
+    .chain-panel { margin-top: 14px; background: var(--bg); border-radius: 14px; padding: 16px 18px; font-size: 0.96rem; min-height: 120px; }
+    .chain-panel h5 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
+
+    /* ── Power calculator ── */
+    .pc-out { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 16px 0 6px; }
+    .pc-out div { background: var(--bg); border-radius: 14px; padding: 12px 14px; font-size: 0.84rem; color: var(--muted); }
+    .pc-out .readout { display: block; font-size: clamp(1.3rem, 3vw, 1.8rem); line-height: 1.2; }
+    .scale { position: relative; height: 34px; margin-top: 8px; }
+    .scale .tick { position: absolute; top: 0; transform: translateX(-50%); font-size: 0.72rem; color: var(--muted); white-space: nowrap; text-align: center; }
+    .scale .tick::before { content: ''; display: block; width: 2px; height: 10px; background: var(--warn); margin: 0 auto 2px; }
+    .pc-note { font-size: 0.92rem; min-height: 2.6em; }
+
+    /* ── Policy ladder ── */
+    .ladder { display: grid; gap: 8px; }
+    .rung { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); overflow: hidden; }
+    .rung > button { width: 100%; text-align: left; border: 0; background: transparent; padding: 13px 16px; display: flex; gap: 12px; align-items: center; font-weight: 700; color: var(--navy); }
+    .rung > button .lvl { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); min-width: 7.6em; }
+    .rung > button .chev { margin-left: auto; transition: transform 0.2s; color: var(--muted); }
+    .rung > button[aria-expanded="true"] .chev { transform: rotate(90deg); }
+    .rung .body { display: none; padding: 0 16px 14px; font-size: 0.94rem; }
+    .rung .body.open { display: block; }
+    .rung.sc { border-color: #9cc3f2; background: #f3f8ff; }
+
+    /* ── Players stack ── */
+    .stack { display: grid; gap: 6px; }
+    .layer { text-align: left; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 11px 16px; font-weight: 600; color: var(--navy); display: flex; justify-content: space-between; gap: 10px; font-size: 0.95rem; }
+    .layer span { font-weight: 500; color: var(--muted); font-size: 0.84rem; text-align: right; }
+    .layer[aria-pressed="true"] { background: var(--navy); color: #fff; }
+    .layer[aria-pressed="true"] span { color: #b9d6ff; }
+    .layer.sc { border-style: dashed; border-color: #9cc3f2; }
+    .layer-panel { margin-top: 12px; background: var(--bg); border-radius: 14px; padding: 16px 18px; font-size: 0.95rem; min-height: 100px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chips span { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 3px 11px; font-size: 0.84rem; }
+
+    /* ── Quiz ── */
+    .quiz { display: grid; gap: 16px; }
+    .qz { border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; background: var(--surface); }
+    .qz p.qq { font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .qz .opts { display: grid; gap: 6px; }
+    .qz .opts button { text-align: left; border: 1px solid var(--border); background: var(--bg); border-radius: 10px; padding: 8px 12px; font-size: 0.94rem; }
+    .qz .opts button.right { background: var(--good-soft); border-color: var(--good); }
+    .qz .opts button.wrong { background: var(--bad-soft); border-color: var(--bad); }
+    .qz .why { font-size: 0.9rem; margin-top: 10px; display: none; }
+    .qz .why.show { display: block; }
+
+    /* ── Reading path ── */
+    .path { display: grid; gap: 8px; }
+    .path a { display: flex; justify-content: space-between; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; text-decoration: none; color: var(--text); font-size: 0.95rem; }
+    .path a:hover { border-color: var(--blue-2); }
+    .path a span { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+    .path a b { color: var(--navy); font-weight: 600; }
+
+    /* ── Footer ── */
+    .about { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 0; font-size: 0.9rem; color: var(--muted); }
+    .about p { margin-bottom: 10px; }
+    .footer-mini { padding: 30px 0; background: var(--bg); border-top: 1px solid var(--border); font-size: 0.92rem; color: var(--muted); }
+    .footer-mini .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-mini a { font-weight: 600; text-decoration: none; }
+
+    /* ── Mobile ── */
+    @media (max-width: 860px) {
+      .toc-panel ol { grid-template-columns: 1fr 1fr; }
+      .levels, .branches { grid-template-columns: 1fr 1fr; }
+      .gd, .stage, .pb { grid-template-columns: 1fr; }
+      .chain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .rag-flow, .loop { grid-template-columns: 1fr 1fr; }
+      .pc-out { grid-template-columns: 1fr 1fr; }
+      .pc-out div:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 60px 0 52px; }
+      .chapter { padding-top: 54px; }
+      .toolbar .label { display: none; }
+      .lens button { padding: 6px 10px; font-size: 0.8rem; }
+      .toc-btn { padding: 6px 11px; font-size: 0.8rem; }
+      .toc-panel ol { grid-template-columns: 1fr; }
+      .levels { grid-template-columns: 1fr; }
+      .branches { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .chain { grid-template-columns: 1fr 1fr; }
+      .fig { padding: 20px 16px 16px; border-radius: 18px; }
+      .bar { grid-template-columns: 6.2em minmax(0, 1fr) 3.2em; font-size: 0.86rem; }
+      .layer span { display: none; }
+      .audio { padding: 16px; gap: 4px 14px; }
+      .audio .play { width: 48px; height: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body class="lens-curious">
+
+  <div class="site-bar">
+    <div class="container">
+      <a class="brand" href="../index.html">SCAIO</a>
+      <div class="crumbs">
+        <a href="../index.html">Home</a><span class="sep">·</span><a href="index.html">Learn</a><span class="sep">·</span><span class="current">Field Guide</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="kicker">SCAIO Learn · Interactive report</div>
+      <h1>How AI works, and where South Carolina fits.</h1>
+      <p class="dek">A field guide to the whole subject in one sitting: the math in plain words, the tools and how they get built, the chips and power lines behind them, and the rules taking shape around them.</p>
+      <div class="hero-stats">
+        <span><b>~30 min</b> read</span>
+        <span><b>4</b> narrated explainers</span>
+        <span><b>10</b> working models</span>
+        <span><b>No</b> math or code needed</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar" id="toolbar">
+    <div class="container">
+      <span class="label" id="lensLabel">Depth</span>
+      <div class="lens" role="group" aria-labelledby="lensLabel">
+        <button type="button" data-lens="curious" aria-pressed="true">Curious</button>
+        <button type="button" data-lens="practitioner" aria-pressed="false">Practitioner</button>
+        <button type="button" data-lens="builder" aria-pressed="false">Builder</button>
+      </div>
+      <button type="button" class="toc-btn" id="tocBtn" aria-expanded="false" aria-controls="tocPanel">Contents</button>
+    </div>
+    <nav class="toc-panel" id="tocPanel" aria-label="Chapters">
+      <div class="container">
+        <ol>
+          <li><a href="#terrain"><span>1</span>The terrain</a></li>
+          <li><a href="#learning"><span>2</span>How machines learn</a></li>
+          <li><a href="#llms"><span>3</span>How an LLM works</a></li>
+          <li><a href="#using"><span>4</span>Using AI well</a></li>
+          <li><a href="#building"><span>5</span>Building with AI</a></li>
+          <li><a href="#infrastructure"><span>6</span>Chips, data centers, power</a></li>
+          <li><a href="#governance"><span>7</span>Risk and governance</a></li>
+          <li><a href="#players"><span>8</span>Who's who</a></li>
+          <li><a href="#check"><span>9</span>Check yourself, keep going</a></li>
+        </ol>
+      </div>
+    </nav>
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <main>
+
+    <!-- ═══════════ 1. TERRAIN ═══════════ -->
+    <section class="chapter" id="terrain">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 1</div>
+        <h2>The terrain: three depths, nine branches</h2>
+        <p class="lede">AI moves fast and is talked about loosely. This guide gives you a map of it, with South Carolina's part of it marked.</p>
+        <p>The field breaks into nine branches. Some are about how the technology works, some about how people use and build it, and some about the physical and political world around it. You can come at any of them from one of three depths. Pick yours below. You can change it any time from the bar at the top, and the guide will show more or less detail to match.</p>
+
+        <div class="audio" data-src="audio/field-guide/01-overview.mp3">
+          <button class="play" type="button" aria-label="Play: this guide in one minute"></button>
+          <div class="a-title"><small>Listen · 1 min</small>This guide in one minute</div>
+          <div class="a-bar"><span class="cur">0:00</span><div class="track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div><span class="dur">0:57</span><button class="speed" type="button" aria-label="Playback speed">1×</button></div>
+          <details><summary>Read the transcript</summary><p>This is the SCAIO Field Guide to AI. It covers four things. First, how the technology actually works: how a machine learns from examples, and how a large language model turns your question into an answer one word at a time. Second, how to use these tools well, and how they get built into real systems. Third, the physical side: chips, data centers, and power lines, which is where South Carolina comes in most directly. And fourth, who governs all this, and how to tell one kind of AI risk from another. You don't need any math or code to follow along. At the top of the page you can choose a depth: Curious, Practitioner, or Builder. The page will show you more or less detail to match. Along the way, try the interactive models. They're simplified on purpose, and each one is labeled when its numbers are illustrations rather than measurements.</p></details>
+        </div>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Choose your depth</span><h4>Which of these sounds like you?</h4></div>
+        <div class="levels" role="group" aria-label="Depth">
+          <button type="button" class="level" data-lens="curious" aria-pressed="true"><b>Curious</b><span>You want to follow the conversation. No math, no code: plain language and short videos.</span></button>
+          <button type="button" class="level" data-lens="practitioner" aria-pressed="false"><b>Practitioner</b><span>You use AI at work or make decisions about it. You want to know how it fails and what to ask.</span></button>
+          <button type="button" class="level" data-lens="builder" aria-pressed="false"><b>Builder</b><span>You build, test, or govern AI systems. Show the mechanics, the papers, and the technical sources.</span></button>
+        </div>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · The map</span><h4>The nine branches of the field</h4></div>
+        <p class="how">Tap a branch to see what it covers and where it's treated in this guide.</p>
+        <div class="branches" id="branches"></div>
+        <div class="branch-panel" id="branchPanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 2. LEARNING ═══════════ -->
+    <section class="chapter" id="learning">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 2 · Foundations</div>
+        <h2>How machines learn from examples</h2>
+        <p class="lede">Traditional software follows rules a person wrote. Machine learning works the other way around: you show a program many examples and let it find the rule.</p>
+        <p><strong>Artificial intelligence</strong> is the broad goal of getting computers to do things that seem to need intelligence. <strong>Machine learning</strong> is the approach that has worked best: learning patterns from data instead of following hand-written rules. <strong>Deep learning</strong> is machine learning done with large neural networks, and <strong>generative AI</strong> is deep learning that produces new text, images, or sound.</p>
+        <p>"Learning," for a machine, means adjusting numbers. A model starts with numbers set at random and makes a guess. It measures how wrong the guess was, then nudges every number slightly in the direction that would have made it less wrong. Then it does that again, millions of times. That nudging process is called <strong>gradient descent</strong>. The name sounds technical, but the idea is something you already do.</p>
+      </div>
+
+      <div class="prose">
+        <h3>You already know how this works</h3>
+        <p>Think about getting into a shower with an unfamiliar knob. You turn it on, and the water is too hot. You don't do any math. You just do three things:</p>
+        <ol class="steps3">
+          <li><strong>Notice how wrong it is.</strong> Scalding means way off. Slightly warm means almost there.</li>
+          <li><strong>Notice which way to go.</strong> Too hot means turn toward cold.</li>
+          <li><strong>Turn the knob by an amount that fits.</strong> A big turn when you're way off, a small one when you're close.</li>
+        </ol>
+        <p>Then you feel the water again and repeat until it's right. That loop is gradient descent. A model does the same thing: it measures how wrong it was, works out which direction would be less wrong, and adjusts its settings a little. The only difference is that it has billions of knobs instead of one.</p>
+        <p>Try it below. The curve is a "discomfort valley": the farther the water is from comfortable, the higher up the slope you are. The goal is to get to the bottom.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Gradient descent, one knob</span><h4>Get the shower to the right temperature</h4></div>
+        <p class="how">The water starts at 128°F, and 100°F is comfortable. Press <b>Take one step</b> and read what happens on each turn. Once you get to the bottom, press <b>Start over</b> and try <b>Impatient</b>.</p>
+        <div class="gd">
+          <svg id="shSvg" viewBox="0 0 400 270" role="img" aria-label="A U-shaped curve of discomfort against water temperature, with a ball showing the current temperature"></svg>
+          <div class="stats">
+            <div class="stat">Water temperature<span class="readout" id="shTemp">128°F</span></div>
+            <div>
+              <div style="font-size:.84rem;color:var(--muted);margin-bottom:6px">How big are your turns?</div>
+              <div class="seg" id="shLr">
+                <button type="button" data-lr="0.3" aria-pressed="false">Cautious</button>
+                <button type="button" data-lr="0.6" aria-pressed="true">Sensible</button>
+                <button type="button" data-lr="2.15" aria-pressed="false">Impatient</button>
+              </div>
+            </div>
+            <div class="row">
+              <button type="button" class="btn" id="shStep">Take one step</button>
+              <button type="button" class="btn ghost" id="shReset">Start over</button>
+            </div>
+            <div class="coach" id="shMsg" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="caption">The size of the turn is called the <strong>learning rate</strong>. Too small and training takes forever. Too big and the model overshoots and never settles. Picking it well is one of the first things AI engineers tune.</p>
+      </div>
+
+      <div class="prose">
+        <h3>From one knob to billions</h3>
+        <p>A real model has a huge number of knobs, called <strong>parameters</strong>, and no single "temperature" to feel. It checks its guesses against thousands of examples at once. "Error" means how far off those guesses were, on average. "Downhill" means the combination of tiny knob turns that would shrink that error fastest. Training a large language model repeats this measure, turn, repeat loop trillions of times on enormous amounts of text.</p>
+      </div>
+
+      <div class="prose" data-min="practitioner">
+        <p><strong>One step closer to a real model.</strong> The next demo learns from data instead of from a feeling. Each dot is a summer day: how hot it got, and how much electricity a utility needed. The model is a straight line, and it has two knobs: how steep the line is, and how high it starts. The pink lines show how far the line misses each day. The error is the average size of those misses. Every step turns both knobs a little so the misses shrink.</p>
+      </div>
+      <div class="wide fig" data-min="practitioner">
+        <div class="fig-head"><span class="kicker">Interactive · Gradient descent, two knobs</span><span class="pill" style="background:var(--blue-soft);color:var(--blue)">Practitioner</span><span class="pill">Illustrative data</span><h4>Teach a line to fit hot days and power demand</h4></div>
+        <p class="how">Press <b>Take one step</b> a few times and watch the pink misses get shorter, then press <b>Train</b> to run many steps. Then pick <b>Too big</b> and see what overshooting looks like with real data.</p>
+        <div class="gd">
+          <svg id="gdSvg" viewBox="0 0 400 280" role="img" aria-label="Scatter plot of temperature against electricity demand, with a line the model is fitting"></svg>
+          <div class="stats">
+            <div class="stat">Error (average squared miss)<span class="readout" id="gdLoss">–</span></div>
+            <div class="stat">Steps taken<span class="readout" id="gdSteps">0</span></div>
+            <div>
+              <div style="font-size:.84rem;color:var(--muted);margin-bottom:6px">Step size (learning rate)</div>
+              <div class="seg" id="gdLr">
+                <button type="button" data-lr="0.08" aria-pressed="false">Small</button>
+                <button type="button" data-lr="0.5" aria-pressed="true">Just right</button>
+                <button type="button" data-lr="0.9" aria-pressed="false">Too big</button>
+              </div>
+            </div>
+            <div class="row">
+              <button type="button" class="btn" id="gdStep">Take one step</button>
+              <button type="button" class="btn ghost" id="gdRun">Train</button>
+              <button type="button" class="btn ghost" id="gdReset">Reset</button>
+            </div>
+            <div class="msg" id="gdMsg" aria-live="polite">The line starts in the wrong place, on purpose.</div>
+          </div>
+        </div>
+        <p class="caption">A neural network does the same thing with billions of numbers instead of two. The error then becomes a "landscape" in billions of dimensions, but each step is the same move: go a little way downhill.</p>
+      </div>
+
+      <div class="prose">
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Three kinds of learning cover most systems. <strong>Supervised</strong> learning trains on labeled examples, such as past transactions marked "fraud" or "not fraud." <strong>Unsupervised</strong> learning finds structure in unlabeled data, such as clusters of similar customers. <strong>Reinforcement</strong> learning trains an agent by trial and error against rewards. That's how AlphaGo learned Go.</p>
+          <p>The failure to watch for is <strong>overfitting</strong>: a model that memorizes its training examples instead of learning the pattern, so it looks great in testing on data it has seen and does badly in the real world. That's why serious evaluations always use a held-out test set the model never trained on. Ask any vendor what theirs was.</p>
+        </div>
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>The demo above minimizes mean squared error, <em>L(w,b) = mean((w·x + b − y)²)</em>, by moving <em>(w, b)</em> against the gradient: <em>w ← w − η·∂L/∂w</em>. "Too big" diverges because the step overshoots along the loss surface's steepest direction (step size above 2/λ<sub>max</sub> of the Hessian). In a deep network, <strong>backpropagation</strong> is the chain-rule bookkeeping that gets this gradient for every weight in one backward pass. Optimizers like Adam add momentum and per-parameter step sizes on top.</p>
+          <p>Go deeper: <a href="https://d2l.ai/">Dive into Deep Learning</a> (free, with code), <a href="https://mml-book.github.io/">Mathematics for Machine Learning</a>, and <a href="https://course.fast.ai/">fast.ai</a>.</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <div class="video" data-yt="aircAruvnKk">
+          <button type="button" class="poster" aria-label="Play video: But what is a neural network? by 3Blue1Brown">
+            <div><div class="pbtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div><b>But what is a neural network?</b><span>3Blue1Brown · Deep learning, chapter 1 · ~18 min</span></div>
+          </button>
+          <div class="vnote">Video by 3Blue1Brown, hosted on YouTube. Nothing loads from YouTube until you press play.</div>
+        </div>
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Next in the same series: <a href="https://www.youtube.com/watch?v=IHZwWFHWa-w">Gradient descent, how neural networks learn</a> (3Blue1Brown, chapter 2). For a structured course, the free <a href="https://developers.google.com/machine-learning/crash-course">Google Machine Learning Crash Course</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3. LLMs ═══════════ -->
+    <section class="chapter" id="llms">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 3 · How LLMs work</div>
+        <h2>How a large language model turns a question into an answer</h2>
+        <p class="lede">ChatGPT, Claude, Gemini, and Copilot all run on large language models, or LLMs. Under the conversation is one repeated act: predicting the next piece of text.</p>
+
+        <div class="audio" data-src="audio/field-guide/02-llm.mp3">
+          <button class="play" type="button" aria-label="Play: how an LLM is built, in 90 seconds"></button>
+          <div class="a-title"><small>Listen · 1½ min</small>How an LLM is built, in 90 seconds</div>
+          <div class="a-bar"><span class="cur">0:00</span><div class="track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div><span class="dur">1:26</span><button class="speed" type="button" aria-label="Playback speed">1×</button></div>
+          <details><summary>Read the transcript</summary><p>Here's how a large language model is built, in about ninety seconds. Start with the core trick. The model reads some text and predicts the next small piece of it, called a token. That's it. Do that billions of times across a huge amount of text, and the model ends up absorbing grammar, facts, and patterns of reasoning, because all of those help it predict better. Inside, every word is turned into a list of numbers, so that words with similar meanings end up close together. A mechanism called attention lets each word look at the other words around it. That's how the model can tell a river bank from a savings bank. This first stage is called pretraining, and it produces a model that's good at continuing text but not at being helpful. Next comes fine-tuning, where the model learns from examples of good questions and good answers. Then a third stage uses human feedback. People compare answers, a separate reward model learns their preferences, and the main model is adjusted toward answers people rate as better. Some labs also train against a written set of principles, called a constitution. One honest caveat: none of this gives the model perfect memory or guaranteed truth. Its context window is finite, and it can still state wrong things confidently.</p></details>
+        </div>
+
+        <h3>Step 1: Predict the next token</h3>
+        <p>An LLM reads text as <strong>tokens</strong>, which are whole words or pieces of words. For each position, it produces a score for every token it knows and turns those scores into probabilities. Then one token gets picked, added to the text, and the whole process runs again. A full answer is that loop, repeated a few hundred times.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Next-token prediction</span><span class="pill">Illustrative numbers</span><h4>Finish the sentence, one token at a time</h4></div>
+        <p class="how">These are the model's guesses for the next word. Press <b>Pick next word</b> to draw one by its probability. Then move the <b>temperature</b> slider: low makes the model play it safe, high makes it take chances.</p>
+        <div class="prompt-line" id="ntLine" aria-live="polite"></div>
+        <div class="bars" id="ntBars"></div>
+        <div class="row" style="margin-bottom:6px">
+          <div style="flex:1;min-width:200px">
+            <label for="ntTemp" style="font-size:.86rem;color:var(--muted)">Temperature: <span class="readout" id="ntTempOut">1.0</span></label>
+            <input type="range" id="ntTemp" min="0.1" max="2" step="0.1" value="1" />
+          </div>
+          <button type="button" class="btn" id="ntPick">Pick next word</button>
+          <button type="button" class="btn ghost" id="ntReset">Start over</button>
+        </div>
+        <p class="caption">Real models choose from vocabularies of tens of thousands of tokens, and the probabilities come from billions of learned numbers. The probabilities above are made up to show the mechanism.</p>
+      </div>
+
+      <div class="prose">
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>The bars are a softmax over logits <em>z</em> scaled by temperature <em>T</em>: <em>p<sub>i</sub> = e<sup>z<sub>i</sub>/T</sup> / Σ e<sup>z<sub>j</sub>/T</sup></em>. As <em>T</em> → 0 this approaches greedy decoding. Production samplers usually add top-p or top-k truncation. Tokenizers are typically byte-pair encodings, so "windowsill" may be one token or two ("window" + "sill") depending on the vocabulary.</p>
+        </div>
+
+        <h3>Step 2: Meaning as numbers</h3>
+        <p>To predict well, the model needs some sense of what words mean. It gets that by turning each token into a long list of numbers called an <strong>embedding</strong>. During training, tokens used in similar ways drift toward similar numbers. So "puppy" ends up near "dog," and "loan" near "deposit." Think of it as a map where distance stands for difference in meaning.</p>
+      </div>
+
+      <div class="wide fig emb">
+        <div class="fig-head"><span class="kicker">Interactive · Embeddings</span><span class="pill">Simplified to 2 dimensions</span><h4>A map where nearby words mean similar things</h4></div>
+        <p class="how">Tap any word to see its three nearest neighbors. Look for the word that sits between two groups.</p>
+        <svg id="embSvg" viewBox="0 0 640 360" role="img" aria-label="Words plotted so that similar meanings sit close together"></svg>
+        <div class="emb-out" id="embOut" aria-live="polite">Tap a word.</div>
+        <p class="caption">Real embeddings have hundreds to thousands of dimensions, not two. These positions are hand-placed to show the idea, not taken from a real model.</p>
+      </div>
+
+      <div class="prose">
+        <h3>Step 3: Attention, or reading words in context</h3>
+        <p>"Bank" sits between two clusters on that map because, on its own, it's ambiguous. What settles it is the rest of the sentence. The breakthrough behind today's models, the <strong>transformer</strong>, introduced in the 2017 paper <a href="https://arxiv.org/abs/1706.03762"><em>Attention Is All You Need</em></a>, lets every token look at every other token in the text and pull in meaning from the ones that matter. That mechanism is called <strong>self-attention</strong>.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Attention</span><span class="pill">Illustrative weights</span><h4>How "bank" decides what it means</h4></div>
+        <p class="how">Switch sentences, then tap any word to see which other words it pays most attention to. Darker means more attention.</p>
+        <div class="seg" id="attSwitch" style="margin-bottom:10px">
+          <button type="button" data-s="0" aria-pressed="true">Sentence A</button>
+          <button type="button" data-s="1" aria-pressed="false">Sentence B</button>
+        </div>
+        <div class="att-sent" id="attSent"></div>
+        <div id="attSense" aria-live="polite"></div>
+        <p class="caption">A real model runs many attention "heads" in parallel across dozens of layers, each picking up different relationships. The weights shown are invented to illustrate one plausible pattern.</p>
+      </div>
+
+      <div class="prose">
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Before transformers, the leading language models were <strong>recurrent networks</strong>, which read one word at a time and carried a running summary forward. That made them slow to train and prone to losing track of earlier text. Attention looks at the whole input at once, which suits parallel chips (GPUs) and is a big part of why models could grow so large. The cost is that attention's work grows with the square of the input length. That's one reason every model has a fixed <strong>context window</strong>.</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <div class="video" data-yt="wjZofJX0v4M">
+          <button type="button" class="poster" aria-label="Play video: Transformers, the tech behind LLMs, by 3Blue1Brown">
+            <div><div class="pbtn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div><b>Transformers, the tech behind LLMs</b><span>3Blue1Brown · Deep learning, chapter 5 · ~27 min</span></div>
+          </button>
+          <div class="vnote">Video by 3Blue1Brown, hosted on YouTube. Its next chapter, <a href="https://www.youtube.com/watch?v=eMlx5fFNoYc">Attention in transformers, step by step</a>, goes deeper on the mechanism above.</div>
+        </div>
+
+        <h3>Step 4: Three stages of training</h3>
+        <p>Next-token prediction on its own produces a model that's good at <em>continuing</em> text, not at <em>answering</em> you. Getting from one to the other takes three stages. Step through them below and watch how the same question gets handled differently at each one.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · The training pipeline</span><span class="pill">Illustrative outputs</span><h4>From text predictor to assistant</h4></div>
+        <div class="steps" role="group" aria-label="Training stage">
+          <button type="button" class="step" data-st="0" aria-pressed="true"><b>1. Pretraining</b><span>Read a huge library, predict the next token</span></button>
+          <button type="button" class="step" data-st="1" aria-pressed="false"><b>2. Fine-tuning</b><span>Learn from examples of good answers</span></button>
+          <button type="button" class="step" data-st="2" aria-pressed="false"><b>3. Feedback</b><span>Adjust toward answers people prefer</span></button>
+        </div>
+        <div class="stage" id="stage" aria-live="polite"></div>
+      </div>
+
+      <div class="prose">
+        <div class="callout">
+          <h5>Common misreadings</h5>
+          <ul>
+            <li><strong>"Attention gives the model perfect memory."</strong> No. The context window is finite, and models can still overlook or mix up details inside it.</li>
+            <li><strong>"Transformers scale forever."</strong> Bigger models have reliably done better so far, but that's an observed trend, not a guarantee.</li>
+            <li><strong>"Scaling laws are proven math."</strong> They're empirical: curves fitted to experiments, which researchers revise as new results come in.</li>
+            <li><strong>"Feedback training makes the model truthful."</strong> It makes answers people <em>prefer</em> more likely. Fluent and wrong is still possible, which is why checking matters (Chapter 4).</li>
+          </ul>
+        </div>
+
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>Primary sources: <a href="https://arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a> (2020); <a href="https://arxiv.org/abs/2203.15556">Training Compute-Optimal LLMs</a> ("Chinchilla," 2022), which revised how to split compute between parameters and data; <a href="https://arxiv.org/abs/2203.02155">InstructGPT</a> (2022) for the supervised fine-tuning plus RLHF recipe; and <a href="https://arxiv.org/abs/2212.08073">Constitutional AI</a> (2022) for AI feedback against written principles. To build one yourself, see <a href="https://karpathy.ai/zero-to-hero.html">Neural Networks: Zero to Hero</a>. For what's going on inside, see <a href="https://transformer-circuits.pub/">Transformer Circuits</a>.</p>
+        </div>
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>The best hour-long overview is Andrej Karpathy's <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a>. To read it with pictures instead, try <a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>.</p>
+        </div>
+
+        <div class="from">
+          <a href="primer-01-llm.html"><small>SCAIO primer</small><b>What is an LLM?</b></a>
+          <a href="primer-alignment-research.html"><small>SCAIO primer</small><b>What alignment research actually is</b></a>
+          <a href="primer-09-legislator-glossary.html"><small>SCAIO primer</small><b>A legislator's AI glossary</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4. USING ═══════════ -->
+    <section class="chapter" id="using">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 4 · Using AI</div>
+        <h2>Using AI well: say what you need, and check what you get</h2>
+        <p class="lede">For most people, this is the branch that pays off first. Two habits make most of the difference: tell the tool what you actually need, and verify what comes back.</p>
+        <p>A prompt isn't a magic phrase. It's a work order. The model can't see your situation, your audience, or what "good" looks like to you, so it guesses. Every useful thing you add to the prompt means one less guess. Build one below.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Prompt builder</span><h4>Turn a vague request into a work order</h4></div>
+        <p class="how">Start with the bare request, then check off ingredients and watch the prompt take shape.</p>
+        <div class="pb">
+          <div id="pbOpts"></div>
+          <div>
+            <pre id="pbOut" aria-live="polite"></pre>
+            <div class="meter">How much the model has to guess<div class="t"><i id="pbMeter"></i></div></div>
+            <p id="pbNote" style="font-size:.9rem;margin-top:10px;min-height:2.8em"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>Judging what comes back</h3>
+        <p>LLMs <strong>hallucinate</strong>: they produce fluent, confident text that's wrong. That includes citations to court cases, studies, and statutes that don't exist. It follows from how they work: the model predicts likely text, and a likely-looking citation isn't necessarily a real one. The more the stakes depend on a fact, a number, or a source, the more it needs checking against the original.</p>
+        <p>The other habit is knowing what not to paste in. Whether something is safe to share depends on the tool and on your organization's rules. A business account with a data agreement is different from a free consumer app. Try sorting these.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Should I paste this?</span><h4>Six things someone might paste into a chatbot</h4></div>
+        <p class="how">For each one, choose what you'd do. <span class="score" id="pasteScore"></span></p>
+        <div class="sorts" id="pasteSorts"></div>
+      </div>
+
+      <div class="prose">
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>If your organization doesn't have an AI-use policy yet, it needs three things: which tools are approved, which kinds of data are off-limits, and when AI involvement must be disclosed. SCAIO's procurement and local-government primers include starter questions. For practical, skeptical, current coverage of the tools, read <a href="https://simonwillison.net/">Simon Willison's weblog</a> and Ethan Mollick's <a href="https://www.oneusefulthing.org/">One Useful Thing</a>.</p>
+        </div>
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>Vendor guides are the most precise references for prompt structure: <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview">Claude's prompt engineering guide</a> and <a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI's</a>. For anything repeated, move from ad-hoc prompts to versioned system prompts with test cases (see evals in Chapter 5).</p>
+        </div>
+        <div class="from">
+          <a href="primer-05-small-business.html"><small>SCAIO primer</small><b>AI for SC small businesses</b></a>
+          <a href="primer-04-synthetic-media.html"><small>SCAIO primer</small><b>Spotting synthetic media</b></a>
+          <a href="primer-08-local-gov.html"><small>SCAIO primer</small><b>AI for SC local government</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 5. BUILDING ═══════════ -->
+    <section class="chapter" id="building">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 5 · Building with AI</div>
+        <h2>Building with AI: give the model a library and tools</h2>
+        <p class="lede">A model alone only knows what it absorbed in training, up to a cutoff date. Most real AI applications get around this by handing the model fresh information, and sometimes tools, at the moment it answers.</p>
+        <p>The most common pattern is <strong>retrieval-augmented generation</strong>, or RAG. You split your documents into short passages and store each one with its embedding (Chapter 3's "meaning as numbers"). When a question comes in, the system finds the passages closest in meaning, hands them to the model, and asks it to answer <em>from those</em>, with citations. SCAIO's own <strong>SC AI Policy Navigator</strong> works this way over South Carolina policy documents. Here's what happens inside it.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Retrieval, step by step</span><span class="pill">Simplified</span><h4>Inside a question to the SC AI Policy Navigator</h4></div>
+        <p class="how">Pick a question, then press <b>Next step</b> to follow it through the system.</p>
+        <div class="rag-q" id="ragQ" role="group" aria-label="Question"></div>
+        <div class="rag-flow" id="ragFlow">
+          <div><b>1. Encode</b>Question → numbers</div>
+          <div><b>2. Search</b>Find the closest passages</div>
+          <div><b>3. Ground</b>Model reads only those</div>
+          <div><b>4. Answer</b>With sources cited</div>
+        </div>
+        <div class="rag-stage" id="ragStage" aria-live="polite"></div>
+        <div class="row" style="margin-top:12px">
+          <button type="button" class="btn" id="ragNext">Next step</button>
+          <button type="button" class="btn ghost" id="ragReset">Start over</button>
+        </div>
+        <p class="caption">The passages are condensed from the bill summaries in the <a href="../policy/">SCAIO Policy Tracker</a> and the Journal. The number lists and similarity scores are illustrative. The real Navigator is the chat button at the bottom right of this page. Try asking it one of these questions.</p>
+      </div>
+
+      <div class="prose">
+        <h3>Agents: models that take actions</h3>
+        <p>An <strong>agent</strong> is a model in a loop with tools. It reads a goal, decides on a step (search this, run that, open a file), sees the result, and decides the next step, until the job is done or it stops to ask. Coding assistants that edit and test software work this way. The loop multiplies what a model can do, and it multiplies what can go wrong. That's why the security questions in Chapter 7 now apply to agents in particular.</p>
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Before buying or building, decide which of three tools you need. <strong>Prompting</strong> changes behavior. <strong>Retrieval</strong> adds knowledge. <strong>Fine-tuning</strong> changes style or specializes a smaller model. Most organizations need retrieval far more often than fine-tuning. Then ask how the system is <strong>evaluated</strong>: a fixed set of real questions with known good answers, run on every change, is the minimum.</p>
+          <p>Short courses: <a href="https://www.deeplearning.ai/courses">DeepLearning.AI</a> (RAG, agents, evals) and the <a href="https://huggingface.co/learn/agents-course">Hugging Face Agents Course</a>. For a plain overview of patterns, see Anthropic's <a href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a>.</p>
+        </div>
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>The Navigator's stack, for reference: about 180 chunks from about 50 SC sources, embedded with Voyage (1,024 dimensions) in a Pinecone serverless index, retrieved with a cap of 3 chunks per source so one long document can't crowd out the rest, then answered by Claude with citations. Each bill is indexed as its own record for the same reason. Tool access across apps is increasingly standardized through the <a href="https://modelcontextprotocol.io/">Model Context Protocol</a>. Further reading: the original <a href="https://arxiv.org/abs/2005.11401">RAG paper</a> (Lewis et al., 2020), Chip Huyen's <a href="https://huyenchip.com/">AI Engineering</a>, and <a href="https://hamel.dev/">Hamel Husain on evals</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 6. INFRASTRUCTURE ═══════════ -->
+    <section class="chapter" id="infrastructure">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 6 · Infrastructure</div>
+        <h2>Chips, data centers, and power lines</h2>
+        <p class="lede">Every chatbot answer runs on hardware in a building somewhere, drawing electricity from a grid. This is the branch where South Carolina is most directly involved.</p>
+        <p>AI computing runs mostly on <strong>GPUs</strong> and similar specialized chips, packed by the thousands into <strong>data centers</strong>. The supply chain behind those chips is concentrated in very few places. The demand for power is landing on utilities and county governments, including South Carolina's. Follow the chain below from a chip design to a county council agenda.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · The chain</span><h4>From a chip design to a South Carolina county council</h4></div>
+        <p class="how">Tap each link. The dashed links are where South Carolina is directly involved.</p>
+        <div class="chain" id="chain" role="group" aria-label="Supply chain"></div>
+        <p class="chain-key"><i></i>Where South Carolina is directly involved</p>
+        <div class="chain-panel" id="chainPanel" aria-live="polite"></div>
+      </div>
+
+      <div class="prose">
+        <h3>How much power is "a lot"?</h3>
+        <p>Data-center power is quoted in <strong>megawatts</strong> (MW), and the numbers are hard to picture. A rough translation is how many average American homes the same electricity would supply over a year. Slide to compare.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Power calculator</span><h4>A data center's power, in households</h4></div>
+        <label for="pcMw" style="font-size:.9rem;color:var(--muted)">Data center drawing <span class="readout" id="pcMwOut">50 MW</span> around the clock</label>
+        <input type="range" id="pcMw" min="0" max="100" step="any" value="50" aria-describedby="pcNote" />
+        <div class="scale" id="pcScale" aria-hidden="true"></div>
+        <div class="pc-out">
+          <div>Same electricity as about<span class="readout" id="pcHomes">–</span>average U.S. homes</div>
+          <div>Per year<span class="readout" id="pcGwh">–</span>gigawatt-hours</div>
+          <div>Santee Cooper's large-load pilot<span class="readout" id="pcRate">–</span></div>
+        </div>
+        <p class="pc-note" id="pcNote" aria-live="polite"></p>
+        <p class="caption">Assumes the facility runs at the stated draw all year (MW × 8,760 hours). Real facilities often run below their peak. Average home: 10,791 kWh per year (U.S. Energy Information Administration, 2022 residential average, <a href="https://www.eia.gov/tools/faqs/faq.php?id=97&amp;t=3">source</a>). Rate threshold from <a href="../scaio-article-data-center-decade.html">SCAIO Journal</a>.</p>
+      </div>
+
+      <div class="prose">
+        <div class="audio" data-src="audio/field-guide/03-power.mp3">
+          <button class="play" type="button" aria-label="Play: who pays for the power?"></button>
+          <div class="a-title"><small>Listen · 1 min</small>Who pays for the power?</div>
+          <div class="a-bar"><span class="cur">0:00</span><div class="track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div><span class="dur">1:06</span><button class="speed" type="button" aria-label="Playback speed">1×</button></div>
+          <details><summary>Read the transcript</summary><p>Who pays for the power? A large AI data center can draw as much electricity as a small city. When a utility has to build new generation and new transmission lines to serve that kind of customer, someone has to pay for them. Without a deliberate choice, those costs tend to spread across everyone's bill, including households. In April 2025, Santee Cooper, South Carolina's state-owned utility, voted on a different approach: an experimental four-year rate structure for customers that draw fifty megawatts or more. The idea is to line up the cost of new infrastructure with the customers driving the demand for it. Other states have gone the opposite way, offering discounts to attract investment. Reasonable people disagree about which approach is better, and the answer depends on local conditions. What's distinctive about South Carolina is that it has asked the question out loud. That question increasingly lands in front of county councils, which decide on siting and incentive packages.</p></details>
+        </div>
+
+        <p class="pull">The most distinctive thing about how South Carolina is hosting the AI build-out is not that it is hosting it. It is that the state has chosen to ask out loud who is paying for it.</p>
+
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Water is the other local question. Many data centers cool with water, and some use far more than others depending on design. Ask for site-specific figures rather than national averages. For the national picture, see the IEA's <a href="https://www.iea.org/reports/energy-and-ai">Energy and AI</a> report and Lawrence Berkeley National Laboratory's <a href="https://eta.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report">2024 U.S. Data Center Energy Usage Report</a>. <a href="https://epoch.ai/">Epoch AI</a> tracks compute trends.</p>
+        </div>
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>Training and inference stress hardware differently. Training is one enormous, tightly networked job that runs for weeks. Inference is many small jobs where memory bandwidth and latency dominate. Inference is a growing share of total demand as usage grows. That's why "how big is the model" no longer predicts "how much power" on its own. Industry depth: <a href="https://semianalysis.com/">SemiAnalysis</a> (partly paywalled). History: Chris Miller, <em>Chip War</em> (2022).</p>
+        </div>
+
+        <div class="from">
+          <a href="../scaio-article-data-center-decade.html"><small>SCAIO Journal</small><b>South Carolina's Data-Center Decade</b></a>
+          <a href="primer-county-council.html"><small>SCAIO primer</small><b>AI for SC county council members</b></a>
+          <a href="../report/chapter-05-the-infrastructure.html"><small>Flagship report</small><b>Chapter 5: The Infrastructure</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 7. GOVERNANCE ═══════════ -->
+    <section class="chapter" id="governance">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 7 · Safety and governance</div>
+        <h2>Risk and governance: the right tool for the right problem</h2>
+        <p class="lede">"Is AI dangerous?" has no useful answer, because AI risk isn't one thing. SCAIO's working map sorts any risk by asking where the harm comes from and how far off it is.</p>
+        <ul>
+          <li><strong>Misuse:</strong> people deliberately using AI to do harm. The response is mostly law enforcement and access controls.</li>
+          <li><strong>Malfunction:</strong> the system does something nobody intended. The response is testing, evaluation, and human oversight.</li>
+          <li><strong>Systemic:</strong> harms that emerge from widespread adoption itself. The response is policy and institutional design.</li>
+        </ul>
+        <p>Each can be <strong>here now</strong>, <strong>emerging</strong>, or <strong>over the horizon</strong>. Try placing these.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Sort the risk</span><h4>Where does each harm come from?</h4></div>
+        <p class="how">Choose a source for each scenario. Some have more than one fair answer, and the explanation says why. <span class="score" id="riskScore"></span></p>
+        <div class="sorts" id="riskSorts"></div>
+      </div>
+
+      <div class="prose">
+        <div class="audio" data-src="audio/field-guide/04-risk.mp3">
+          <button class="play" type="button" aria-label="Play: matching the response to the risk"></button>
+          <div class="a-title"><small>Listen · 1 min</small>Matching the response to the risk</div>
+          <div class="a-bar"><span class="cur">0:00</span><div class="track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div><span class="dur">1:08</span><button class="speed" type="button" aria-label="Playback speed">1×</button></div>
+          <details><summary>Read the transcript</summary><p>Is AI dangerous? That question has no useful answer, because AI risk isn't one thing. SCAIO's map sorts any risk with two questions. First, where does the harm come from? Misuse is people deliberately using AI to do harm, like a scammer cloning someone's voice. Malfunction is a system doing something nobody intended, like a hiring tool that quietly screens out qualified people. Systemic risk comes from widespread adoption itself, like disruption to jobs. Second, how far off is it: here now, emerging, or over the horizon? The answers point to different responses. Misuse is mostly a job for law enforcement. Malfunction calls for testing and human oversight. Systemic risk is a question for policy. South Carolina has already acted on misuse. In 2025 it made AI-generated child sexual abuse material a crime, along with distributing intimate images, real or AI-made, without consent. Matching the response to the source is most of the work.</p></details>
+        </div>
+
+        <h3>Who makes the rules</h3>
+        <p>AI governance happens at four levels at once, and they don't always line up. Open each level to see what's in place.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · Levels of governance</span><h4>From Brussels to a county procurement office</h4></div>
+        <div class="ladder" id="ladder"></div>
+      </div>
+
+      <div class="prose">
+        <div class="depth" data-min="practitioner">
+          <span class="tag">Practitioner</span>
+          <p>Four words get mixed up constantly. <strong>Safety</strong> is the goal of avoiding harm. <strong>Alignment</strong> is the technical work of getting a system to do what its makers intend. <strong>Governance</strong> covers all the ways institutions steer AI, including voluntary ones. <strong>Regulation</strong> is the subset with legal force. SCAIO's vocabulary primer untangles them. To track incidents, see the <a href="https://incidentdatabase.ai/">AI Incident Database</a> and the <a href="https://airisk.mit.edu/">MIT AI Risk Repository</a>.</p>
+        </div>
+        <div class="depth" data-min="builder">
+          <span class="tag">Builder</span>
+          <p>For application security, the <a href="https://genai.owasp.org/">OWASP Top 10 for LLM applications</a> (prompt injection is #1) and <a href="https://atlas.mitre.org/">MITRE ATLAS</a>. For policy research, <a href="https://cset.georgetown.edu/">CSET</a>, <a href="https://www.governance.ai/">GovAI</a>, the <a href="https://artificialintelligenceact.eu/">EU AI Act explorer</a>, and the <a href="https://internationalaisafetyreport.org/">International AI Safety Report</a>.</p>
+        </div>
+        <div class="from">
+          <a href="../scaio-article-map-of-ai-risk.html"><small>SCAIO Journal</small><b>A Plain-Language Map of AI Risk</b></a>
+          <a href="primer-safety-vocabulary.html"><small>SCAIO primer</small><b>Safety, alignment, governance, regulation</b></a>
+          <a href="../policy/"><small>SCAIO tracker</small><b>South Carolina AI Policy Database</b></a>
+          <a href="../scaio-article-everywhere-at-once.html"><small>SCAIO Journal</small><b>Everywhere at Once</b></a>
+          <a href="../briefs/intentional-by-design.html"><small>SCAIO brief</small><b>Intentional by Design</b></a>
+          <a href="primer-03-procurement.html"><small>SCAIO primer</small><b>AI procurement for SC government</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 8. PLAYERS ═══════════ -->
+    <section class="chapter" id="players">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 8 · The players</div>
+        <h2>Who's who, layer by layer</h2>
+        <p class="lede">A few hundred organizations shape most of AI. The easiest way to keep them straight is by where they sit in the stack, from the chips at the bottom to the apps at the top.</p>
+        <p>The layers depend on each other. Applications run on models, models are trained in clouds, and clouds run on chips. Researchers and governments work across all of them. South Carolina has its own layer of institutions that connect the state to the rest.</p>
+      </div>
+
+      <div class="wide fig">
+        <div class="fig-head"><span class="kicker">Interactive · The stack</span><h4>Tap a layer to see who's in it</h4></div>
+        <div class="stack" id="stack" role="group" aria-label="Layers"></div>
+        <div class="layer-panel" id="layerPanel" aria-live="polite"></div>
+        <p class="caption">Listed alphabetically or by role, not ranked. Inclusion is not endorsement. A full SCAIO Who's Who directory is in progress.</p>
+      </div>
+
+      <div class="prose">
+        <div class="from">
+          <a href="primer-10-sc-landscape.html"><small>SCAIO primer</small><b>The South Carolina AI landscape</b></a>
+          <a href="../report/chapter-02-the-ecosystem.html"><small>Flagship report</small><b>Chapter 2: The Ecosystem</b></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 9. CHECK ═══════════ -->
+    <section class="chapter" id="check">
+      <div class="prose chapter-head">
+        <div class="kicker">Chapter 9 · Check yourself</div>
+        <h2>Six questions, then where to go next</h2>
+        <p class="lede">Nothing is saved or scored anywhere. These are just for you.</p>
+      </div>
+      <div class="wide">
+        <div class="quiz" id="quiz"></div>
+      </div>
+
+      <div class="prose">
+        <h3>Key takeaways</h3>
+        <ul>
+          <li>A language model predicts the next token. Embeddings and attention are how it gets meaning and context, and three training stages turn it into an assistant.</li>
+          <li>Fluent isn't the same as correct. Tell the tool what you need, check what it gives you, and keep sensitive data out of tools that aren't approved for it.</li>
+          <li>Most useful AI systems hand the model sources (retrieval) or tools (agents). Evaluate them on real questions.</li>
+          <li>AI is physical. Chips, data centers, power, and water are where South Carolina's biggest AI decisions are being made right now.</li>
+          <li>Sort a risk before arguing about it. Misuse, malfunction, and systemic harms need different responses.</li>
+        </ul>
+
+        <h3>Your next reads</h3>
+        <p>Picked for your depth: <b id="pathLevel">Curious</b>. Change it in the bar at the top.</p>
+        <div class="path" id="path"></div>
+
+        <h3>Staying current</h3>
+        <p>For South Carolina: the <a href="../index.html#journal">SCAIO Journal</a>, the <a href="../policy/">Policy Tracker</a>, and the flagship report, <a href="../report/index.html">The Artificial Intelligence Landscape of South Carolina</a>. Nationally: <a href="https://www.deeplearning.ai/the-batch/">The Batch</a> (weekly, general), <a href="https://jack-clark.net/">Import AI</a> (research and policy), and <a href="https://www.oneusefulthing.org/">One Useful Thing</a> (practical use).</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="about">
+    <div class="prose">
+      <p><strong>About this guide.</strong> Written by SCAIO. The structure follows the SCAIO AI Learning Map. Interactive models are simplified on purpose, and any numbers that are illustrations, not measurements, are labeled. South Carolina facts link to their SCAIO sources, which cite the original reporting.</p>
+      <p><strong>Audio and video.</strong> Narration is an AI-generated voice (ElevenLabs) reading scripts written and checked by SCAIO. Videos are by their named creators, hosted on YouTube, and load only when you press play.</p>
+      <p>Corrections and suggestions are welcome at <a href="../index.html#contact">scaio.org/#contact</a>.</p>
+    </div>
+  </section>
+
+  <footer class="footer-mini">
+    <div class="container">
+      <span>SCAIO · South Carolina Artificial Intelligence Observatory</span>
+      <a href="index.html">← All Learn primers</a>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function el(tag, attrs, html) {
+    var n = document.createElement(tag);
+    if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function press(group, btn) { $$('[aria-pressed]', group).forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); }); }
+
+  /* ── Lens (depth) ── */
+  var LENSES = ['curious', 'practitioner', 'builder'];
+  function setLens(l, scroll) {
+    if (LENSES.indexOf(l) < 0) l = 'curious';
+    document.body.className = document.body.className.replace(/\blens-\w+/, '') + ' lens-' + l;
+    $$('[data-lens]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lens') === l ? 'true' : 'false'); });
+    try { localStorage.setItem('scaio-fg-lens', l); } catch (e) {}
+    renderPath(l);
+  }
+  $$('[data-lens]').forEach(function (b) { b.addEventListener('click', function () { setLens(b.getAttribute('data-lens')); }); });
+
+  /* ── Contents + progress ── */
+  var tocBtn = $('#tocBtn'), toc = $('#tocPanel');
+  tocBtn.addEventListener('click', function () {
+    var open = !toc.classList.contains('open');
+    toc.classList.toggle('open', open); tocBtn.setAttribute('aria-expanded', open);
+  });
+  $$('a', toc).forEach(function (a) { a.addEventListener('click', function () { toc.classList.remove('open'); tocBtn.setAttribute('aria-expanded', 'false'); }); });
+  var chapters = $$('main .chapter'), prog = $('#progress');
+  function onScroll() {
+    var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    var cur = null;
+    chapters.forEach(function (c) { if (c.getBoundingClientRect().top < 140) cur = c.id; });
+    $$('a', toc).forEach(function (a) { a.classList.toggle('here', a.getAttribute('href') === '#' + cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── Audio players ── */
+  var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+  var players = [];
+  function fmt(s) { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  $$('.audio').forEach(function (card) {
+    var a = new Audio(); a.preload = 'none'; a.src = card.getAttribute('data-src');
+    var btn = $('.play', card), bar = $('.track i', card), track = $('.track', card), cur = $('.cur', card), dur = $('.dur', card), sp = $('.speed', card);
+    var speeds = [1, 1.25, 1.5, 0.85], si = 0;
+    btn.innerHTML = PLAY; players.push(a);
+    btn.addEventListener('click', function () {
+      if (a.paused) { players.forEach(function (p) { if (p !== a) p.pause(); }); a.play(); } else a.pause();
+    });
+    a.addEventListener('play', function () { btn.innerHTML = PAUSE; btn.setAttribute('aria-label', 'Pause'); });
+    a.addEventListener('pause', function () { btn.innerHTML = PLAY; btn.setAttribute('aria-label', 'Play'); });
+    a.addEventListener('loadedmetadata', function () { dur.textContent = fmt(a.duration); });
+    a.addEventListener('timeupdate', function () {
+      var p = a.duration ? a.currentTime / a.duration * 100 : 0;
+      bar.style.width = p + '%'; cur.textContent = fmt(a.currentTime); track.setAttribute('aria-valuenow', Math.round(p));
+    });
+    a.addEventListener('ended', function () { a.currentTime = 0; });
+    function seekTo(frac) { if (!a.duration) { a.play().then(function () { a.currentTime = frac * a.duration; }); return; } a.currentTime = frac * a.duration; }
+    track.addEventListener('click', function (e) { var r = track.getBoundingClientRect(); seekTo((e.clientX - r.left) / r.width); });
+    track.addEventListener('keydown', function (e) {
+      if (!a.duration) return;
+      if (e.key === 'ArrowRight') { a.currentTime = Math.min(a.duration, a.currentTime + 5); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { a.currentTime = Math.max(0, a.currentTime - 5); e.preventDefault(); }
+    });
+    sp.addEventListener('click', function () { si = (si + 1) % speeds.length; a.playbackRate = speeds[si]; sp.textContent = speeds[si] + '×'; });
+  });
+
+  /* ── Click-to-load videos ── */
+  $$('.video').forEach(function (v) {
+    var poster = $('.poster', v);
+    poster.addEventListener('click', function () {
+      players.forEach(function (p) { p.pause(); });
+      var f = el('iframe', {
+        src: 'https://www.youtube-nocookie.com/embed/' + v.getAttribute('data-yt') + '?autoplay=1&rel=0',
+        title: poster.getAttribute('aria-label').replace(/^Play video: /, ''),
+        allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen',
+        allowfullscreen: ''
+      });
+      poster.replaceWith(f);
+    });
+  });
+
+  /* ── 1. Branches ── */
+  var BRANCHES = [
+    ['Foundations', 'What machine learning is, and the ideas everything else builds on: training data, neural networks, and gradient descent.', '#learning', 'Chapter 2'],
+    ['How LLMs work', 'Tokens, embeddings, attention, and the three stages of training behind today\'s chatbots.', '#llms', 'Chapter 3'],
+    ['Using AI', 'Getting real value from the tools, checking their output, and knowing what not to paste in.', '#using', 'Chapter 4'],
+    ['Building with AI', 'APIs, retrieval (RAG), agents, and evaluation: how working AI applications are put together.', '#building', 'Chapter 5'],
+    ['Infrastructure', 'Chips, data centers, power, and water. This is where South Carolina is most directly involved.', '#infrastructure', 'Chapter 6'],
+    ['Policy & governance', 'How governments and institutions respond, from the EU AI Act down to a county procurement contract.', '#governance', 'Chapter 7'],
+    ['Safety & security', 'What can go wrong, sorted by source (misuse, malfunction, systemic), and the work to prevent it.', '#governance', 'Chapter 7'],
+    ['AI & society', 'Work, schools, health care, manufacturing, media, and fairness. Most SCAIO primers live here.', 'index.html', 'SCAIO\'s audience primers'],
+    ['The players', 'Who builds and shapes AI, layer by layer, plus South Carolina\'s own institutions.', '#players', 'Chapter 8']
+  ];
+  var bWrap = $('#branches'), bPanel = $('#branchPanel');
+  BRANCHES.forEach(function (b, i) {
+    var btn = el('button', { type: 'button', class: 'branch', 'aria-pressed': 'false' }, '<em>' + (i + 1) + '</em>' + b[0]);
+    btn.addEventListener('click', function () {
+      press(bWrap, btn);
+      bPanel.innerHTML = '<b>' + b[0] + '.</b> ' + b[1] + ' <a href="' + b[2] + '">' + b[3] + ' →</a>';
+    });
+    bWrap.appendChild(btn);
+  });
+  bPanel.innerHTML = '<span style="color:var(--muted)">Plus a South Carolina layer that runs through every branch, and a short list for staying current at the end.</span>';
+
+  /* ── 2. Gradient descent ── */
+  (function () {
+    var svg = $('#gdSvg'), NS = 'http://www.w3.org/2000/svg';
+    // x: daily high °F (80–100) normalized 0–1; y: demand normalized 0–1 (illustrative)
+    var pts = [[0.05,0.22],[0.12,0.30],[0.2,0.28],[0.28,0.40],[0.35,0.38],[0.42,0.50],[0.5,0.52],[0.58,0.60],[0.64,0.58],[0.72,0.70],[0.8,0.74],[0.88,0.80],[0.95,0.88]];
+    var w, b, steps, lr = 0.5, timer = null, hist = [];
+    var X0 = 44, Y0 = 240, W = 336, H = 210;
+    function sx(x) { return X0 + x * W; } function sy(y) { return Y0 - y * H; }
+    function loss() { var s = 0; pts.forEach(function (p) { var e = w * p[0] + b - p[1]; s += e * e; }); return s / pts.length; }
+    function draw() {
+      var L = loss(), s = '';
+      s += '<line x1="' + X0 + '" y1="' + Y0 + '" x2="' + (X0 + W) + '" y2="' + Y0 + '" stroke="#9fb3cc"/><line x1="' + X0 + '" y1="' + Y0 + '" x2="' + X0 + '" y2="' + (Y0 - H) + '" stroke="#9fb3cc"/>';
+      s += '<text x="' + (X0 + W / 2) + '" y="270" text-anchor="middle" font-size="12" fill="#4b5a6b" font-family="Inter">Daily high temperature →</text>';
+      s += '<text transform="translate(16 ' + (Y0 - H / 2) + ') rotate(-90)" text-anchor="middle" font-size="12" fill="#4b5a6b" font-family="Inter">Power demand →</text>';
+      s += '<text x="' + X0 + '" y="' + (Y0 + 14) + '" font-size="10" fill="#4b5a6b" font-family="Inter" text-anchor="middle">80°</text><text x="' + (X0 + W) + '" y="' + (Y0 + 14) + '" font-size="10" fill="#4b5a6b" font-family="Inter" text-anchor="middle">100°</text>';
+      s += '<defs><clipPath id="gdClip"><rect x="' + X0 + '" y="' + (Y0 - H - 10) + '" width="' + W + '" height="' + (H + 10) + '"/></clipPath></defs>';
+      pts.forEach(function (p) {
+        var yh = w * p[0] + b;
+        s += '<line x1="' + sx(p[0]) + '" y1="' + sy(p[1]) + '" x2="' + sx(p[0]) + '" y2="' + sy(Math.max(-0.05, Math.min(1.05, yh))) + '" stroke="#f0b4b4" stroke-width="2" clip-path="url(#gdClip)"/>';
+      });
+      pts.forEach(function (p) { s += '<circle cx="' + sx(p[0]) + '" cy="' + sy(p[1]) + '" r="5.5" fill="#0b4ea2"/>'; });
+      s += '<line x1="' + sx(0) + '" y1="' + sy(b) + '" x2="' + sx(1) + '" y2="' + sy(w + b) + '" stroke="#081a36" stroke-width="3.5" stroke-linecap="round" clip-path="url(#gdClip)"/>';
+      // loss sparkline
+      if (hist.length > 1) {
+        var mx = Math.max.apply(null, hist.slice(0, 60)), d = '';
+        hist.slice(-60).forEach(function (v, i, arr) { d += (i ? 'L' : 'M') + (X0 + 8 + i * (110 / 59)) + ' ' + (28 + 34 - Math.min(1, v / mx) * 34); });
+        s += '<rect x="' + (X0 + 2) + '" y="18" width="124" height="52" rx="8" fill="#fff" stroke="#d9e4f2"/><path d="' + d + '" fill="none" stroke="#2f7ae5" stroke-width="2"/><text x="' + (X0 + 10) + '" y="30" font-size="9" fill="#4b5a6b" font-family="Inter">error over time</text>';
+      }
+      svg.innerHTML = s;
+      $('#gdLoss').textContent = isFinite(L) ? (L < 10 ? L.toFixed(4) : L.toExponential(1)) : '∞';
+      $('#gdSteps').textContent = steps;
+      return L;
+    }
+    function step() {
+      var gw = 0, gb = 0, n = pts.length;
+      pts.forEach(function (p) { var e = w * p[0] + b - p[1]; gw += 2 * e * p[0] / n; gb += 2 * e / n; });
+      w -= lr * gw; b -= lr * gb; steps++;
+      var L = draw(); hist.push(L);
+      var msg = $('#gdMsg');
+      if (!isFinite(L) || L > 5) { msg.textContent = 'The error is blowing up. Each step overshoots the bottom and lands farther up the other side.'; stop(); }
+      else if (L > hist[0] * 1.5 && steps > 2) msg.textContent = 'Error is going up, not down: the steps are too big and keep overshooting.';
+      else if (L < 0.0016) { msg.textContent = 'Close to the best line. Further steps barely change anything. That\'s "converged."'; }
+      else msg.textContent = 'Each step moves the line a little in whichever direction shrinks the red gaps.';
+      return L;
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } $('#gdRun').textContent = 'Train'; }
+    function reset() { stop(); w = -0.6; b = 0.95; steps = 0; hist = []; hist.push(draw()); $('#gdMsg').textContent = 'The line starts in the wrong place, on purpose.'; }
+    $('#gdStep').addEventListener('click', function () { stop(); step(); });
+    $('#gdRun').addEventListener('click', function () {
+      if (timer) return stop();
+      $('#gdRun').textContent = 'Pause';
+      var n = 0; timer = setInterval(function () { var L = step(); n++; if (n >= 120 || !isFinite(L) || L > 5) stop(); }, 60);
+    });
+    $('#gdReset').addEventListener('click', reset);
+    $$('#gdLr button').forEach(function (bt) { bt.addEventListener('click', function () { press($('#gdLr'), bt); lr = parseFloat(bt.getAttribute('data-lr')); reset(); }); });
+    reset();
+  })();
+
+  /* ── 2a. Shower (one-knob gradient descent) ── */
+  (function () {
+    var svg = $('#shSvg'), msg = $('#shMsg');
+    var GOAL = 100, START = 128, LO = 50, HI = 150;
+    var t, lr = 0.6, hist, done;
+    var X0 = 30, X1 = 380, YB = 220, YT = 34;
+    function sx(v) { return X0 + (v - LO) / (HI - LO) * (X1 - X0); }
+    function sy(v) { var d = (v - GOAL) * (v - GOAL) / 2500; return YB - Math.min(d, 1.05) * (YB - YT); }
+    function word(e) {
+      var a = Math.abs(e);
+      if (a < 0.5) return 'just right';
+      if (a < 6) return e > 0 ? 'a little warm' : 'a little cool';
+      if (a < 20) return e > 0 ? 'too hot' : 'too cold';
+      return e > 0 ? 'scalding' : 'freezing';
+    }
+    function draw() {
+      var s = '', d = '';
+      for (var v = LO; v <= HI; v += 1) d += (v === LO ? 'M' : 'L') + sx(v).toFixed(1) + ' ' + sy(v).toFixed(1);
+      s += '<rect x="' + sx(LO) + '" y="' + YT + '" width="' + (sx(GOAL) - sx(LO)) + '" height="' + (YB - YT) + '" fill="#2f7ae5" opacity="0.06"/>';
+      s += '<rect x="' + sx(GOAL) + '" y="' + YT + '" width="' + (sx(HI) - sx(GOAL)) + '" height="' + (YB - YT) + '" fill="#d9534f" opacity="0.06"/>';
+      s += '<path d="' + d + '" fill="none" stroke="#9fb3cc" stroke-width="3"/>';
+      s += '<line x1="' + X0 + '" y1="' + YB + '" x2="' + X1 + '" y2="' + YB + '" stroke="#9fb3cc"/>';
+      [60, 80, 120, 140].forEach(function (v) { s += '<text x="' + sx(v) + '" y="' + (YB + 16) + '" text-anchor="middle" font-size="11" fill="#4b5a6b" font-family="Inter">' + v + '°</text>'; });
+      s += '<text x="' + ((X0 + X1) / 2) + '" y="' + (YB + 36) + '" text-anchor="middle" font-size="12" fill="#4b5a6b" font-family="Inter">Water temperature →</text>';
+      s += '<text x="' + (sx(LO) + 8) + '" y="' + (YT + 14) + '" font-size="11" fill="#0b4ea2" font-family="Inter" font-weight="600">too cold</text>';
+      s += '<text x="' + (sx(HI) - 8) + '" y="' + (YT + 14) + '" text-anchor="end" font-size="11" fill="#a32b2b" font-family="Inter" font-weight="600">too hot</text>';
+      s += '<text x="' + sx(GOAL) + '" y="' + (YB + 16) + '" text-anchor="middle" font-size="11" fill="#12715b" font-family="Inter" font-weight="700">100° ✓</text>';
+      // past positions and hops
+      for (var i = 0; i < hist.length - 1; i++) {
+        var a = hist[i], b = hist[i + 1], ax = sx(a), bx = sx(b), ay = sy(a), by = sy(b), my = Math.max(4, Math.min(ay, by) - 26);
+        s += '<path d="M' + ax + ' ' + ay + ' Q' + ((ax + bx) / 2) + ' ' + my + ' ' + bx + ' ' + by + '" fill="none" stroke="#2f7ae5" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.7"/>';
+        s += '<circle cx="' + ax + '" cy="' + ay + '" r="5" fill="#c9d8ee"/>';
+      }
+      // slope hint at the ball
+      var x = sx(t), y = sy(t), e = t - GOAL;
+      if (Math.abs(e) >= 0.5 && t > LO && t < HI) {
+        var k = (sy(t + 0.5) - sy(t - 0.5)) / (sx(t + 0.5) - sx(t - 0.5)), dx = 26 / Math.sqrt(1 + k * k);
+        s += '<line x1="' + (x - dx) + '" y1="' + (y - k * dx) + '" x2="' + (x + dx) + '" y2="' + (y + k * dx) + '" stroke="#081a36" stroke-width="2" opacity="0.45"/>';
+        var dir = e > 0 ? -1 : 1;
+        s += '<path d="M' + (x + dir * 14) + ' ' + (y - 20) + ' l' + (dir * 18) + ' 0 m' + (-dir * 6) + ' -5 l' + (dir * 6) + ' 5 l' + (-dir * 6) + ' 5" fill="none" stroke="#12715b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
+      }
+      s += '<circle cx="' + x + '" cy="' + y + '" r="9" fill="' + (Math.abs(e) < 0.5 ? '#12715b' : '#0b4ea2') + '" stroke="#fff" stroke-width="2.5"/>';
+      svg.innerHTML = s;
+      $('#shTemp').textContent = Math.round(t) + '°F · ' + word(e);
+    }
+    function say(html, cls) { msg.className = 'coach' + (cls ? ' ' + cls : ''); msg.innerHTML = html; }
+    function reset() {
+      t = START; hist = [t]; done = false; $('#shStep').disabled = false; draw();
+      say('<b>Start:</b> the water is 128°F, which is 28° too hot. The ball sits high on the right side of the valley. The little green arrow points downhill: toward colder. Press <b>Take one step</b>.');
+    }
+    function step() {
+      if (done) return;
+      var e = t - GOAL, turn = -lr * e, n = hist.length;
+      t = t + turn; hist.push(t); var e2 = t - GOAL;
+      var r = function (v) { return Math.abs(v) < 10 && Math.abs(v - Math.round(v)) > 0.05 ? v.toFixed(1) : String(Math.round(v)); }, dirWord = turn < 0 ? 'colder' : 'hotter';
+      var head = '<b>Step ' + n + ':</b> ';
+      var how = 'It was ' + r(Math.abs(e)) + '° ' + (e > 0 ? 'too hot' : 'too cold') + ', so you turned ' + dirWord + ' by ' + r(Math.abs(turn)) + '°. ';
+      if (t < LO || t > HI) {
+        done = true; $('#shStep').disabled = true;
+        t = Math.max(LO, Math.min(HI, t)); draw();
+        say(head + how + 'Now it\'s ' + (e2 > 0 ? 'scalding' : 'ice cold') + ', and worse than where you started. <b>Each turn overshoots by more than the last.</b> A model trained with steps this big never settles, and its error grows until training fails. Press <b>Start over</b> and pick <b>Sensible</b>.', 'bad');
+        return;
+      }
+      draw();
+      if (Math.abs(e2) < 0.5) {
+        done = true; $('#shStep').disabled = true;
+        say(head + how + '<b>Comfortable, in ' + n + ' step' + (n > 1 ? 's' : '') + '.</b> Notice that the turns got smaller as you got closer, even though the turn size setting never changed. That happens on its own, because the valley gets flatter near the bottom. Engineers call this point "converged." ' + (lr < 0.5 ? 'Cautious works, but slowly. Try <b>Sensible</b> to compare.' : 'Now press <b>Start over</b> and try <b>Impatient</b>.'), 'done');
+      } else if (Math.abs(e2) > Math.abs(e)) {
+        say(head + how + 'That overshot: the water is now ' + r(t) + '°F, ' + word(e2) + ', and <b>farther from comfortable than before</b>. The ball jumped clear across the valley. Keep stepping and watch what happens.', 'bad');
+      } else if ((e2 > 0) !== (e > 0)) {
+        say(head + how + 'You overshot a little, to ' + r(t) + '°F, but you\'re closer than before. The next turn will go back the other way.');
+      } else {
+        say(head + how + 'Now it\'s ' + r(t) + '°F, ' + word(e2) + '. The ball moved downhill. ' + (n === 1 ? 'Notice that the size of the turn depended on how far off you were. The next turn will be smaller, because you\'re closer.' : 'Still ' + r(Math.abs(e2)) + '° to go. Keep going.'));
+      }
+    }
+    $('#shStep').addEventListener('click', step);
+    $('#shReset').addEventListener('click', reset);
+    $$('#shLr button').forEach(function (bt) { bt.addEventListener('click', function () { press($('#shLr'), bt); lr = parseFloat(bt.getAttribute('data-lr')); reset(); }); });
+    reset();
+  })();
+
+  /* ── 3a. Next token ── */
+  (function () {
+    var BASE = 'The cat sat on the';
+    var TREE = {
+      '': [['mat', 3.0], ['floor', 2.4], ['couch', 2.1], ['windowsill', 1.6], ['porch', 1.4], ['roof', 0.9], ['keyboard', 0.6], ['moon', -1.2]],
+      'next': [['and', 2.6], ['.', 2.4], [',', 1.8], ['while', 1.2], ['purring', 1.0], ['all', 0.7], ['for', 0.5], ['because', 0.1]]
+    };
+    var added = [], temp = 1, last = null;
+    function dist() {
+      var opts = TREE[added.length ? 'next' : ''], m = -Infinity;
+      opts.forEach(function (o) { m = Math.max(m, o[1] / temp); });
+      var ex = opts.map(function (o) { return Math.exp(o[1] / temp - m); }), z = ex.reduce(function (a, c) { return a + c; }, 0);
+      return opts.map(function (o, i) { return [o[0], ex[i] / z]; });
+    }
+    function render() {
+      var line = BASE; added.forEach(function (t) { line += (/^[.,]$/.test(t) ? '' : ' ') + '<span class="added">' + t + '</span>'; });
+      $('#ntLine').innerHTML = line + '<span class="caret"></span>';
+      var d = dist(), h = '';
+      if (added.length >= 2) { $('#ntBars').innerHTML = '<p style="font-size:.92rem;color:var(--muted)">And so on: one token at a time, a few hundred times, makes a full answer. Press <b>Start over</b> and try a different temperature.</p>'; $('#ntPick').disabled = true; return; }
+      $('#ntPick').disabled = false;
+      d.forEach(function (o) {
+        h += '<div class="bar' + (last === o[0] ? ' picked' : '') + '"><span class="w">' + (o[0] === '.' ? '. (end)' : o[0] === ',' ? ', (comma)' : o[0]) + '</span><span class="t"><i style="width:' + (o[1] * 100).toFixed(1) + '%"></i></span><span class="p">' + (o[1] < 0.001 ? '<0.1' : (o[1] * 100).toFixed(1)) + '%</span></div>';
+      });
+      $('#ntBars').innerHTML = h;
+    }
+    $('#ntTemp').addEventListener('input', function (e) { temp = parseFloat(e.target.value); $('#ntTempOut').textContent = temp.toFixed(1); render(); });
+    $('#ntPick').addEventListener('click', function () {
+      var d = dist(), r = Math.random(), acc = 0, pick = d[d.length - 1][0];
+      for (var i = 0; i < d.length; i++) { acc += d[i][1]; if (r <= acc) { pick = d[i][0]; break; } }
+      last = pick; added.push(pick); render();
+    });
+    $('#ntReset').addEventListener('click', function () { added = []; last = null; render(); });
+    render();
+  })();
+
+  /* ── 3b. Embeddings ── */
+  (function () {
+    var W = [
+      ['cat', 92, 70, 'a'], ['dog', 140, 92, 'a'], ['puppy', 160, 60, 'a'], ['kitten', 70, 108, 'a'], ['horse', 190, 124, 'a'],
+      ['peach', 120, 270, 'f'], ['grits', 70, 230, 'f'], ['biscuit', 160, 300, 'f'], ['shrimp', 60, 300, 'f'], ['sweet tea', 190, 250, 'f'],
+      ['river', 330, 60, 'n'], ['stream', 380, 40, 'n'], ['shore', 300, 118, 'n'], ['marsh', 410, 96, 'n'], ['water', 360, 140, 'n'],
+      ['bank', 420, 200, 'x'],
+      ['money', 520, 240, 'm'], ['loan', 560, 290, 'm'], ['deposit', 480, 296, 'm'], ['savings', 565, 214, 'm'], ['credit', 530, 330, 'm'],
+      ['chip', 560, 70, 't'], ['GPU', 590, 110, 't'], ['server', 520, 120, 't']
+    ];
+    var COL = { a: '#2f7ae5', f: '#b7791f', n: '#12715b', m: '#7c3aed', t: '#0b4ea2', x: '#a32b2b' };
+    var LAB = [['animals', 120, 30], ['food', 120, 345], ['water & land', 360, 18], ['money', 550, 352], ['computing', 560, 34]];
+    var svg = $('#embSvg'), W0 = W, L0 = LAB, sel = null, mq = window.matchMedia('(max-width: 560px)');
+    function build() {
+      var tall = mq.matches, s = '';
+      // On phones, turn the map on its side: swapping x and y keeps every distance the same.
+      W = W0.map(function (w) { return tall ? [w[0], Math.round(14 + w[2] * 0.86), Math.round(30 + w[1] * 0.86), w[3]] : w; });
+      var LABS = L0;
+      if (tall) {
+        // Put each group's label just above its highest word.
+        var CAT = { animals: 'a', food: 'f', 'water & land': 'n', money: 'm', computing: 't' };
+        LABS = L0.map(function (l) {
+          var ws = W.filter(function (w) { return w[3] === CAT[l[0]]; });
+          return [l[0], Math.min.apply(null, ws.map(function (w) { return w[1]; })) - 6, Math.min.apply(null, ws.map(function (w) { return w[2]; })) - 18];
+        });
+      }
+      svg.setAttribute('viewBox', tall ? '0 0 380 600' : '0 0 640 360');
+      LABS.forEach(function (l) { s += '<text x="' + l[1] + '" y="' + l[2] + '" text-anchor="' + (tall ? 'start' : 'middle') + '" font-size="11" font-family="Inter" font-weight="700" letter-spacing="1.5" fill="#9fb3cc">' + l[0].toUpperCase() + '</text>'; });
+      s += '<g id="embLines"></g>';
+      W.forEach(function (w, i) {
+        s += '<g class="word" data-i="' + i + '" tabindex="0" role="button" aria-label="' + w[0] + '"><rect class="hit" x="' + (w[1] - 12) + '" y="' + (w[2] - 13) + '" width="' + (w[0].length * 8 + 28) + '" height="26" rx="8"/><circle cx="' + w[1] + '" cy="' + w[2] + '" r="' + (w[3] === 'x' ? 8 : 6) + '" fill="' + COL[w[3]] + '"/><text x="' + (w[1] + 11) + '" y="' + (w[2] + 4) + '">' + w[0] + '</text></g>';
+      });
+      svg.innerHTML = s;
+      $$('.word', svg).forEach(function (g) {
+        g.addEventListener('click', function () { choose(+g.getAttribute('data-i')); });
+        g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(+g.getAttribute('data-i')); } });
+      });
+      if (sel != null) choose(sel);
+    }
+    function choose(i) {
+      sel = i;
+      var me = W[i], d = W.map(function (w, j) { return [j, Math.hypot(w[1] - me[1], w[2] - me[2])]; }).filter(function (x) { return x[0] !== i; }).sort(function (a, b) { return a[1] - b[1]; }).slice(0, 3);
+      var near = d.map(function (x) { return x[0]; }), lines = '';
+      near.forEach(function (j) { lines += '<line x1="' + me[1] + '" y1="' + me[2] + '" x2="' + W[j][1] + '" y2="' + W[j][2] + '" stroke="#081a36" stroke-width="1.5" stroke-dasharray="4 3"/>'; });
+      $('#embLines').innerHTML = lines;
+      $$('.word', svg).forEach(function (g) { var k = +g.getAttribute('data-i'); g.classList.toggle('sel', k === i); g.classList.toggle('dim', k !== i && near.indexOf(k) < 0); });
+      var msg = '<b>' + me[0] + '</b>: nearest are ' + near.map(function (j) { return '<b>' + W[j][0] + '</b>'; }).join(', ') + '.';
+      if (me[3] === 'x') msg += ' "Bank" is pulled toward both water and money, because it\'s used both ways. On its own, its numbers can\'t settle which. Context has to, and that\'s what attention does next.';
+      $('#embOut').innerHTML = msg;
+    }
+    build();
+    if (mq.addEventListener) mq.addEventListener('change', build);
+  })();
+
+  /* ── 3c. Attention ── */
+  (function () {
+    var S = [
+      { t: ['She', 'sat', 'on', 'the', 'bank', 'of', 'the', 'Congaree', 'and', 'watched', 'the', 'river', '.'],
+        att: { 4: { 7: 0.9, 11: 0.85, 1: 0.35, 9: 0.3, 2: 0.2 }, 11: { 7: 0.8, 4: 0.6, 9: 0.45 }, 9: { 0: 0.8, 11: 0.6 }, 0: { 1: 0.6, 9: 0.6 }, 7: { 4: 0.6, 11: 0.8 } },
+        sense: [0.92, 0.08] },
+      { t: ['She', 'walked', 'into', 'the', 'bank', 'to', 'deposit', 'her', 'paycheck', '.'],
+        att: { 4: { 6: 0.95, 8: 0.8, 1: 0.25, 2: 0.3 }, 6: { 8: 0.9, 4: 0.7, 0: 0.3 }, 8: { 6: 0.8, 7: 0.6, 0: 0.4 }, 0: { 1: 0.6, 6: 0.5 }, 7: { 0: 0.9, 8: 0.6 } },
+        sense: [0.06, 0.94] }
+    ];
+    var cur = 0, focus = 4;
+    function weights(s, i) {
+      var a = S[s].att[i], n = S[s].t.length, out = [];
+      for (var j = 0; j < n; j++) out.push(a && a[j] != null ? a[j] : (Math.abs(i - j) === 1 ? 0.3 : 0.06));
+      return out;
+    }
+    function render() {
+      var s = S[cur], w = weights(cur, focus), wrap = $('#attSent');
+      wrap.innerHTML = '';
+      s.t.forEach(function (tk, j) {
+        var b = el('button', { type: 'button', class: 'tok' + (j === focus ? ' focus' : '') }, tk);
+        if (j !== focus) { var a = w[j]; b.style.background = 'rgba(11,78,162,' + (a * 0.85).toFixed(2) + ')'; b.style.color = a > 0.5 ? '#fff' : '#142133'; b.setAttribute('aria-label', tk + ', attention ' + Math.round(a * 100) + ' percent'); }
+        b.addEventListener('click', function () { focus = j; render(); });
+        wrap.appendChild(b);
+      });
+      var out = '';
+      if (s.t[focus] === 'bank') {
+        out = '<div style="font-size:.9rem;margin-bottom:4px">After reading its context, <b>bank</b> leans toward:</div>' +
+          '<div class="sense"><span>a riverbank</span><span class="t"><i style="width:' + s.sense[0] * 100 + '%"></i></span><span>' + Math.round(s.sense[0] * 100) + '%</span></div>' +
+          '<div class="sense"><span>a money bank</span><span class="t"><i style="width:' + s.sense[1] * 100 + '%"></i></span><span>' + Math.round(s.sense[1] * 100) + '%</span></div>';
+      } else {
+        var top = w.map(function (v, j) { return [j, v]; }).filter(function (x) { return x[0] !== focus; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 2);
+        out = '<div style="font-size:.9rem"><b>' + s.t[focus] + '</b> draws most on ' + top.map(function (x) { return '<b>' + s.t[x[0]] + '</b>'; }).join(' and ') + '. Tap <b>bank</b> to see how its meaning settles.</div>';
+      }
+      $('#attSense').innerHTML = out;
+    }
+    $$('#attSwitch button').forEach(function (b) { b.addEventListener('click', function () { press($('#attSwitch'), b); cur = +b.getAttribute('data-s'); focus = 4; render(); }); });
+    render();
+  })();
+
+  /* ── 3d. Pipeline ── */
+  (function () {
+    var Q = 'How do I make sweet tea?';
+    var ST = [
+      { data: 'A huge library of public text: web pages, books, code. Trillions of tokens.', learns: 'Language, facts, and patterns of reasoning, all as a side effect of predicting the next token.', result: 'A <b>base model</b>. It\'s good at continuing text, but it doesn\'t know it\'s supposed to answer you.',
+        who: 'Base model', a: 'How do I make sweet tea? How do I keep it from going cloudy? What\'s the best tea brand for it?\n\n14 replies · Posted in Southern Cooking' },
+      { data: 'Tens of thousands of example conversations: a question, then a good answer, written or checked by people.', learns: 'The format and manners of an assistant: answer the question, follow instructions, stay on task.', result: 'An <b>instruction-tuned model</b>. It answers, but quality and judgment are uneven.',
+        who: 'Fine-tuned model', a: 'Boil water, steep tea bags for a few minutes, remove them, stir in sugar while hot, then add cold water and chill.' },
+      { data: 'People compare pairs of answers and pick the better one. Some labs add AI feedback against a written set of principles (a "constitution").', learns: 'What people find more helpful, honest, and careful, through a reward signal rather than single examples.', result: 'The <b>assistant</b> you talk to. More helpful and careful, though still not guaranteed correct.',
+        who: 'Assistant', a: 'Here\'s a classic gallon:\n1. Bring 4 cups of water to a boil, then take it off the heat.\n2. Steep 6–8 regular tea bags for about 5 minutes.\n3. Remove the bags and stir in ½–1 cup of sugar while it\'s hot, so it dissolves.\n4. Add about 12 cups of cold water and refrigerate.\nWant it less sweet, or a version with lemon?',
+        loop: true }
+    ];
+    function render(i) {
+      var s = ST[i], h = '<dl><dt>Trained on</dt><dd>' + s.data + '</dd><dt>What it learns</dt><dd>' + s.learns + '</dd><dt>What you get</dt><dd>' + s.result + '</dd></dl>';
+      h += '<div class="chat"><div class="who">You ask</div><div class="q">' + Q + '</div><div class="who">' + s.who + '</div><div class="a">' + s.a.replace(/</g, '&lt;') + '</div></div>';
+      if (s.loop) h += '<div style="grid-column:1/-1"><div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-top:4px">The feedback loop has four steps</div><div class="loop"><div>The model writes several answers to the same prompt.</div><div>People (or an AI judging against principles) rank them.</div><div>A separate <b>reward model</b> learns to predict those rankings.</div><div>The main model is adjusted toward answers the reward model scores higher.</div></div></div>';
+      $('#stage').innerHTML = h;
+    }
+    $$('.step').forEach(function (b) { b.addEventListener('click', function () { press(b.parentNode, b); render(+b.getAttribute('data-st')); }); });
+    render(0);
+  })();
+
+  /* ── 4a. Prompt builder ── */
+  (function () {
+    var BASE = 'Summarize our county\'s new AI-use policy.';
+    var ING = [
+      ['role', 'Audience', 'who it\'s for', 'Write for county employees who don\'t work in IT.', 'Now it knows the reading level and what to skip.'],
+      ['ctx', 'Context', 'the source material', 'The policy text is pasted below. Use only what it says.', 'Now it summarizes <em>your</em> policy instead of guessing what one usually says. This is the biggest single fix.'],
+      ['goal', 'Purpose', 'what it\'s for', 'This goes in the all-staff newsletter, so people know what they can and can\'t do starting Monday.', 'Now it knows to lead with rules that change behavior, not background.'],
+      ['cons', 'Constraints', 'limits and must-haves', 'Under 200 words. Include the list of approved tools and the one rule about personal data. Don\'t add anything the policy doesn\'t say.', 'Now it knows the length, the must-include items, and not to make things up.'],
+      ['fmt', 'Format', 'shape of the answer', 'Format: a one-sentence opener, then up to five bullets, then who to contact with questions.', 'Now the output drops straight into the newsletter.']
+    ];
+    var wrap = $('#pbOpts'), on = {};
+    ING.forEach(function (g) {
+      var lab = el('label', null, '<input type="checkbox" data-k="' + g[0] + '"><span><b>' + g[1] + '</b> · ' + g[2] + '</span>');
+      $('input', lab).addEventListener('change', function (e) { on[g[0]] = e.target.checked; render(e.target.checked ? g[4] : ''); });
+      wrap.appendChild(lab);
+    });
+    function render(note) {
+      var lines = [BASE], n = 0;
+      ING.forEach(function (g) { if (on[g[0]]) { lines.push('<mark>' + g[3] + '</mark>'); n++; } });
+      if (on.ctx) lines.push('\n[policy text]');
+      $('#pbOut').innerHTML = lines.join('\n');
+      $('#pbMeter').style.width = (100 - n * 18) + '%';
+      $('#pbNote').innerHTML = note || (n === 0 ? 'With just the bare request, the model has to guess the audience, the length, the purpose, and even what your policy says.' : n === ING.length ? 'Nothing important left to guess. This is a work order.' : '');
+    }
+    render();
+  })();
+
+  /* ── Generic sorter ── */
+  function sorter(root, scoreEl, opts, items) {
+    var answered = 0, right = 0;
+    items.forEach(function (it) {
+      var card = el('div', { class: 'sort' }, '<p>' + it.q + '</p>');
+      var seg = el('div', { class: 'seg', role: 'group', 'aria-label': 'Your answer' });
+      var fb = el('div', { class: 'fb', 'aria-live': 'polite' });
+      opts.forEach(function (o, oi) {
+        var b = el('button', { type: 'button', 'aria-pressed': 'false' }, o);
+        b.addEventListener('click', function () {
+          if (card.getAttribute('data-done')) return;
+          card.setAttribute('data-done', '1'); answered++;
+          var ok = it.ok.indexOf(oi) >= 0; if (ok) right++;
+          $$('button', seg).forEach(function (x, xi) { if (it.ok.indexOf(xi) >= 0) x.classList.add('right'); });
+          if (!ok) b.classList.add('wrong');
+          b.setAttribute('aria-pressed', 'true');
+          fb.innerHTML = (it.hz ? '<span class="hz">' + it.hz + '</span>' : '') + '<b>' + (ok ? (it.ok.length > 1 ? 'Fair answer.' : 'Right.') : 'Not quite.') + '</b> ' + it.why;
+          fb.classList.add('show');
+          scoreEl.textContent = right + ' of ' + answered + ' so far' + (answered === items.length ? ' · done' : '');
+        });
+        seg.appendChild(b);
+      });
+      card.appendChild(seg); card.appendChild(fb); root.appendChild(card);
+    });
+  }
+
+  /* ── 4b. Paste? ── */
+  sorter($('#pasteSorts'), $('#pasteScore'), ['Fine to paste', 'Check your policy first', 'Keep it out'], [
+    { q: 'The text of a South Carolina bill you want explained in plain English.', ok: [0], why: 'It\'s public already. The only caution is to check the explanation against the bill itself.' },
+    { q: 'A draft of your shop\'s weekly email newsletter.', ok: [0], why: 'Low risk, and a good use. You\'re still the editor of what goes out.' },
+    { q: 'A spreadsheet of customer names and phone numbers, to "clean it up."', ok: [1, 2], why: 'That\'s personal data. Some business tools are approved for it under a data agreement. A free consumer chatbot usually isn\'t. If you don\'t know which you\'re using, keep it out.' },
+    { q: 'An employee\'s doctor\'s note explaining their medical leave.', ok: [2], why: 'Health information about a specific person. Keep it out unless a tool is specifically approved for it, which is rare.' },
+    { q: 'The login and password for the county\'s payroll system, so the AI can "help with the report."', ok: [2], why: 'Never. Credentials don\'t go into prompts. If a tool needs access, that\'s set up through IT with proper controls.' },
+    { q: 'Meeting notes marked "confidential – not for distribution."', ok: [1], why: 'It depends on the tool and on who marked it confidential. Your organization\'s AI-use policy should answer this. If there isn\'t one, ask before pasting.' }
+  ]);
+
+  /* ── 5. RAG ── */
+  (function () {
+    var QS = [
+      { q: 'Did South Carolina pass a law about AI-generated intimate images?',
+        vec: '[0.021, −0.334, 0.118, 0.702, −0.045, … 1,019 more]',
+        chunks: [
+          ['H.3058 · Unauthorized Disclosure of Intimate Images Act', 0.89, 'Now SC law. Creates a felony offense for distributing real or AI-generated intimate images of another person without consent. Explicitly defines "digitally forged intimate images" to include machine-learning-generated content. Signed May 12, 2025.'],
+          ['S.28 · AI Child Abuse Act', 0.81, 'Now SC law (Act No. 57). Criminalizes the creation, possession, and distribution of AI-generated and computer-morphed child sexual abuse material. Signed May 22, 2025.'],
+          ['Developer Liability for AI-Generated Intimate Images', 0.78, 'Would have amended H.3058 to extend liability to developers and providers of AI tools. Died in committee.']
+        ],
+        a: 'Yes. <b>H.3058</b>, the Unauthorized Disclosure of Intimate Images Act, was signed on May 12, 2025. It makes distributing real or AI-generated intimate images of someone without consent a felony, and it explicitly covers "digitally forged" images.<span class="cite">[1]</span> A separate 2025 law, <b>S.28</b>, criminalizes AI-generated child sexual abuse material.<span class="cite">[2]</span> A follow-up bill that would have extended liability to AI developers died in committee.<span class="cite">[3]</span>' },
+      { q: 'What would H.5253 have required of schools?',
+        vec: '[−0.187, 0.402, 0.066, −0.051, 0.530, … 1,019 more]',
+        chunks: [
+          ['H.5253 · AI in Education', 0.92, 'Would have required opt-in written parental consent before AI tools could be used in instruction, annual disclosure of every AI tool, vendor, and data category in use, and teacher review of AI-generated instructional content. Died in House Education and Public Works Committee.'],
+          ['SCAIO primer · AI in SC schools', 0.80, 'A school-board primer on H.5253, classroom AI realities, equity across SC\'s 79 districts, and eight procurement questions.'],
+          ['Protecting Children from Chatbots Act', 0.71, 'Would have focused on chatbot use by minors. Died in committee.']
+        ],
+        a: '<b>H.5253</b> would have required written parental opt-in before AI tools were used in instruction, an annual disclosure of every AI tool, vendor, and data category in use, and teacher review of AI-generated instructional material. It would also have barred AI from replacing licensed teachers in core instruction or final grading.<span class="cite">[1]</span> It died in the House Education and Public Works Committee.<span class="cite">[1]</span> SCAIO\'s school-board primer covers it in more depth.<span class="cite">[2]</span>' },
+      { q: 'Is there a special electricity rate for data centers in South Carolina?',
+        vec: '[0.311, 0.009, −0.420, 0.157, −0.288, … 1,019 more]',
+        chunks: [
+          ['SCAIO Journal · South Carolina\'s Data-Center Decade', 0.90, 'Santee Cooper voted to enact a new experimental electricity rate structure for customers drawing 50 megawatts or more, as a four-year pilot, so large new loads contribute to the cost of new generation capacity.'],
+          ['SCAIO primer · AI for SC county council members', 0.79, 'Data-center siting and incentive packages, who pays for the power, and six questions to ask before the vote.'],
+          ['SCAIO Journal · South Carolina\'s Data-Center Decade', 0.74, 'Spartanburg County is offering Moc-1 a reduced 4 percent property tax rate for 40 years (versus the standard 6 percent).']
+        ],
+        a: 'Santee Cooper, the state-owned utility, voted in April 2025 to create an <b>experimental rate structure for customers drawing 50 megawatts or more</b>. It\'s a four-year pilot meant to make large new loads, like data centers, contribute to the cost of the new generation they require.<span class="cite">[1]</span> Separately, counties negotiate incentives such as property-tax reductions when data centers are sited.<span class="cite">[3]</span>' }
+    ];
+    var qi = 0, st = 0, qWrap = $('#ragQ');
+    QS.forEach(function (q, i) {
+      var b = el('button', { type: 'button', 'aria-pressed': i === 0 ? 'true' : 'false' }, q.q);
+      b.addEventListener('click', function () { press(qWrap, b); qi = i; st = 0; render(); });
+      qWrap.appendChild(b);
+    });
+    function render() {
+      var q = QS[qi], h = '';
+      $$('#ragFlow div').forEach(function (d, i) { d.classList.toggle('on', i < st); });
+      if (st === 0) h = '<span style="color:var(--muted)">Press <b>Next step</b> to send the question.</span>';
+      if (st === 1) h = '<b>Encode.</b> The question becomes an embedding: a list of 1,024 numbers that stands for its meaning.<div class="vec" style="margin-top:8px">' + q.vec + '</div>';
+      if (st >= 2) {
+        h = '<b>Search.</b> The index holds about 180 passages. These three are closest in meaning to the question:';
+        q.chunks.forEach(function (c, i) { h += '<div class="chunk"><div class="meta"><span>[' + (i + 1) + '] ' + c[0] + '</span><span>similarity ' + c[1].toFixed(2) + '</span></div>' + c[2] + '</div>'; });
+      }
+      if (st === 3) h = '<b>Ground.</b> The model receives the question <em>plus only these three passages</em>, with an instruction: answer from these sources, cite them, and say so if they don\'t contain the answer.' + '<div class="chunk miss"><div class="meta"><span>Not sent</span></div>The other ~177 passages, and anything the model half-remembers from training.</div>';
+      if (st === 4) h = '<b>Answer.</b><div class="chunk" style="font-size:.95rem">' + q.a + '</div><p style="font-size:.86rem;color:var(--muted);margin-top:10px">Without the retrieval step, the model would answer from training memory, which may be out of date for a 2025–26 bill, or simply invented.</p>';
+      $('#ragStage').innerHTML = h;
+      $('#ragNext').disabled = st >= 4;
+    }
+    $('#ragNext').addEventListener('click', function () { if (st < 4) { st++; render(); } });
+    $('#ragReset').addEventListener('click', function () { st = 0; render(); });
+    render();
+  })();
+
+  /* ── 6a. Chain ── */
+  (function () {
+    var C = [
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>', 'Design', 0, 'Chip design', 'Companies such as Nvidia, AMD, and Broadcom design the chips used for AI. Most of them don\'t manufacture chips themselves. They send the designs to a foundry.'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4"/><path d="M8 7h8l-2 5h-4z"/><path d="M12 12l-5 9M12 12l5 9M12 12v9"/></svg>', 'Lithography', 0, 'Lithography machines', 'The most advanced chips are patterned with extreme-ultraviolet (EUV) lithography machines. ASML, in the Netherlands, is the only company that makes them. That chokepoint is why export controls focus on these machines.'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l6 4v-4l6 4V4h4v17z"/><path d="M3 21h18"/></svg>', 'Fabrication', 0, 'Fabrication', 'Leading-edge AI chips are manufactured mostly by TSMC in Taiwan. The U.S. is funding new domestic fabs, but the most advanced production is still concentrated there.'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8 7h8M8 11h8M8 15h8"/><circle cx="16" cy="18.2" r=".6"/></svg>', 'Data center', 1, 'Data centers in South Carolina', 'Thousands of chips are installed in data centers. In 2025, Meta announced an <b>$800 million AI data center in Orangeburg County</b>, and a <b>$2.8 billion</b> computing center codenamed "Moc-1" was proposed in Spartanburg County. <a href="../scaio-article-data-center-decade.html">SCAIO Journal →</a>'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></svg>', 'Power', 1, 'Generation', 'The Orangeburg facility is paired with a new <b>100 MW solar farm</b> built by Silicon Ranch, with power arranged through Santee Cooper and the electric co-ops. Moc-1 would generate its own power on site. Santee Cooper is also seeking partners to possibly finish the two abandoned <b>V.C. Summer</b> nuclear reactors, explicitly citing AI-driven demand.'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l-5 20M12 2l5 20M8.5 16h7M9.6 11h4.8M5 7h14"/></svg>', 'Grid & rates', 1, 'Who pays for the grid', 'In April 2025, Santee Cooper voted on an experimental four-year rate structure for customers drawing <b>50 MW or more</b>, so that large new loads pay toward the new generation they require instead of passing it to households.'],
+      ['<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5z"/><path d="M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/></svg>', 'County council', 1, 'The county council agenda', 'Siting, zoning, and incentive packages land in front of county councils. Spartanburg County offered Moc-1 a <b>4% property-tax rate for 40 years</b> (versus the standard 6%) and about $1.5 million a year in credits for 20 years, for an expected 27 jobs. <a href="primer-county-council.html">County council primer →</a>']
+    ];
+    var wrap = $('#chain'), panel = $('#chainPanel');
+    C.forEach(function (c, i) {
+      var b = el('button', { type: 'button', class: 'link' + (c[2] ? ' sc' : ''), 'aria-pressed': 'false' }, '<span class="ic" aria-hidden="true">' + c[0] + '</span>' + c[1]);
+      b.addEventListener('click', function () { press(wrap, b); panel.innerHTML = '<h5>' + (i + 1) + '. ' + c[3] + '</h5>' + c[4]; });
+      wrap.appendChild(b);
+    });
+    $$('button', wrap)[0].click();
+  })();
+
+  /* ── 6b. Power calculator ── */
+  (function () {
+    var HOME = 10791, inp = $('#pcMw');
+    // slider 0–100 → 5–1000 MW, log scale
+    function mw(v) { return Math.round(5 * Math.pow(200, v / 100)); }
+    function pos(m) { return Math.log(m / 5) / Math.log(200) * 100; }
+    var marks = [[50, '50 MW: rate-pilot threshold'], [100, '100 MW: Orangeburg solar farm']];
+    $('#pcScale').innerHTML = marks.map(function (m) { return '<span class="tick" style="left:' + pos(m[0]) + '%">' + m[1].replace(': ', '<br>') + '</span>'; }).join('');
+    function render() {
+      var m = mw(+inp.value), kwh = m * 1000 * 8760, homes = kwh / HOME;
+      $('#pcMwOut').textContent = m.toLocaleString() + ' MW';
+      $('#pcHomes').textContent = (homes >= 1e6 ? (homes / 1e6).toFixed(2) + ' million' : Math.round(homes / 100) * 100 >= 1000 ? (Math.round(homes / 100) * 100).toLocaleString() : Math.round(homes).toLocaleString());
+      $('#pcGwh').textContent = Math.round(kwh / 1e6).toLocaleString();
+      $('#pcRate').textContent = m >= 50 ? 'In range' : 'Below 50 MW';
+      var note = m < 20 ? 'A smaller facility: an enterprise or colocation data center rather than an AI campus.'
+        : m < 50 ? 'Getting large, but below the 50 MW line where Santee Cooper\'s pilot rate class begins.'
+        : m <= 150 ? 'This is the range of a single large AI facility, and it\'s inside the pilot rate class.'
+        : m < 500 ? 'A large campus. At this size, new generation and transmission usually have to be planned for it specifically.'
+        : 'Hyperscale. That\'s comparable to the yearly usage of a large metro area\'s homes, which is why siting decisions now reach statewide energy planning.';
+      $('#pcNote').textContent = note;
+    }
+    inp.addEventListener('input', render);
+    inp.value = pos(50); render();
+  })();
+
+  /* ── 7a. Risk sorter ── */
+  sorter($('#riskSorts'), $('#riskScore'), ['Misuse', 'Malfunction', 'Systemic'], [
+    { q: 'A scammer clones a county administrator\'s voice and calls the finance office asking for an urgent wire transfer.', ok: [0], hz: 'Here now', why: 'The tool works as designed; a person is pointing it at harm. The response is verification procedures and law enforcement, not changing the model.' },
+    { q: 'A résumé-screening tool quietly rates applicants from certain ZIP codes lower, and nobody intended it.', ok: [1], hz: 'Here now', why: 'No bad actor. The system learned a bad pattern. The response is testing, auditing, and human review before and after deployment.' },
+    { q: 'A chatbot gives a lawyer citations to court cases that don\'t exist.', ok: [1], hz: 'Here now', why: 'A hallucination is a classic malfunction. The response is verification, and tools that ground answers in real sources (Chapter 5).' },
+    { q: 'A hidden instruction on a web page tricks an AI assistant into emailing a user\'s files to a stranger.', ok: [0, 1], hz: 'Here now', why: 'This is prompt injection. An attacker (misuse) exploits the fact that the model can\'t reliably tell instructions from content (malfunction). Defenses work on both sides: limiting what agents can do, and hardening the models.' },
+    { q: 'A deepfake video of a candidate appears days before an election.', ok: [0], hz: 'Here now', why: 'Deliberate misuse. SC considered a bill requiring disclosure labels on election deepfakes. It died in committee. <a href="primer-04-synthetic-media.html">Synthetic media primer →</a>' },
+    { q: 'Across thousands of offices, routine paperwork jobs shrink as AI tools spread, with no single decision to cut them.', ok: [2], hz: 'Emerging', why: 'No one system or actor is at fault. The effect comes from adoption at scale. The response is workforce and economic policy. <a href="../scaio-article-workforce-what-we-know.html">What we know about SC workers →</a>' },
+    { q: 'A handful of companies end up controlling most of the computing power that advanced AI requires.', ok: [2], hz: 'Emerging', why: 'Concentration of power is a systemic risk. It comes from market structure, not from any one model misbehaving.' },
+    { q: 'Future systems become capable enough that people can\'t reliably correct them or switch them off.', ok: [1, 2], hz: 'Over the horizon', why: 'SCAIO\'s map treats this as malfunction-and-systemic, over the horizon: plausible but unproven. The response is research and keeping options open, held at its proper size, not dismissed and not treated as certain.' }
+  ]);
+
+  /* ── 7b. Governance ladder ── */
+  (function () {
+    var R = [
+      ['International', 'EU AI Act and global coordination', 0, 'The <b>EU AI Act</b> sorts AI uses into risk tiers, from banned practices to minimal-risk uses, with obligations rising with the risk. It applies to companies serving EU users, so it shapes products sold in the U.S. too. The OECD AI Principles and international safety reports are the main coordination efforts. <a href="https://artificialintelligenceact.eu/">EU AI Act explorer →</a>'],
+      ['Federal', 'Executive action and voluntary standards', 0, 'The U.S. has no comprehensive federal AI law. Policy runs mainly through executive actions and agency guidance. NIST\'s <b>AI Risk Management Framework</b> is a widely used <em>voluntary</em> standard, and many state and agency policies point to it. Whether federal law should preempt state AI laws is an open, active debate. <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF →</a>'],
+      ['State · SC', 'South Carolina', 1, 'SC acted on misuse in 2025: <b>S.28</b> criminalized AI-generated child sexual abuse material, and <b>H.3058</b> made distributing non-consensual intimate images, real or AI-made, a felony. Most other 2025–26 AI bills died in committee. South Carolina has no legal definition of AI yet, while 33 states have adopted one. A new <b>Senate Special Committee on AI</b> first met on September 16, 2026, and aims to deliver recommendations by September 2028. <a href="../policy/">Policy Tracker →</a> · <a href="../scaio-article-everywhere-at-once.html">Everywhere at Once →</a>'],
+      ['Local · SC', 'Counties, cities, school districts', 1, 'Much of the practical governance happens here, through <b>procurement</b> (what agencies buy and on what terms), <b>use policies</b> for staff, and <b>siting decisions</b> for data centers. A contract clause can do what a statute would, faster. <a href="primer-03-procurement.html">Procurement primer →</a> · <a href="../briefs/intentional-by-design.html">Intentional by Design →</a>']
+    ];
+    var wrap = $('#ladder');
+    R.forEach(function (r, i) {
+      var d = el('div', { class: 'rung' + (r[2] ? ' sc' : '') });
+      var b = el('button', { type: 'button', 'aria-expanded': 'false', 'aria-controls': 'rung' + i }, '<span class="lvl">' + r[0] + '</span>' + r[1] + '<span class="chev" aria-hidden="true">›</span>');
+      var body = el('div', { class: 'body', id: 'rung' + i }, r[3]);
+      b.addEventListener('click', function () { var o = !body.classList.contains('open'); body.classList.toggle('open', o); b.setAttribute('aria-expanded', o); });
+      d.appendChild(b); d.appendChild(body); wrap.appendChild(d);
+    });
+    $$('.rung > button', wrap)[2].click();
+  })();
+
+  /* ── 8. Players ── */
+  (function () {
+    var L = [
+      ['Applications', 'what you use', 0, 'Products built on models: assistants, AI search, coding tools, and AI features inside software people already use.', ['ChatGPT', 'Claude', 'Gemini', 'Microsoft Copilot', 'Perplexity', 'Cursor', 'GitHub Copilot']],
+      ['Frontier labs', 'build the largest models', 0, 'Organizations that train the most capable general-purpose models. Some release open weights; others offer access only through apps and APIs.', ['Anthropic', 'Google DeepMind', 'Meta', 'OpenAI', 'xAI', 'Mistral (France)', 'DeepSeek (China)', 'Alibaba Qwen (China)']],
+      ['Platforms & open source', 'share and run models', 0, 'Where models, datasets, and code are published and shared, and tools for running open models on your own hardware.', ['Hugging Face', 'GitHub', 'Ollama', 'Open-weight model communities']],
+      ['Cloud & compute', 'rent the computers', 0, 'Companies that operate the data centers and rent computing to labs and businesses.', ['Amazon Web Services', 'Microsoft Azure', 'Google Cloud', 'Oracle', 'CoreWeave']],
+      ['Chips & hardware', 'make the chips', 0, 'Design, manufacturing, and the machines that make manufacturing possible. See Chapter 6.', ['Nvidia', 'AMD', 'Intel', 'Broadcom', 'TSMC (fabrication)', 'ASML (lithography)']],
+      ['Research & nonprofits', 'study and publish', 0, 'Independent and academic research, open models, and public-interest work.', ['Allen Institute for AI (Ai2)', 'EleutherAI', 'Stanford HAI']],
+      ['Government bodies', 'set standards and rules', 0, 'Public agencies that write standards, test models, or enforce rules.', ['NIST & its Center for AI Standards and Innovation (U.S.)', 'UK AI Security Institute', 'EU AI Office']],
+      ['South Carolina', 'the state\'s own layer', 1, 'Institutions that carry most of South Carolina\'s AI research, convening, and public-sector capacity. <a href="primer-10-sc-landscape.html">SC landscape primer →</a>', ['USC AI Institute', 'Clemson School of Computing', 'MUSC & the Clemson–MUSC AI Hub', 'SCRA', 'ADAPT in SC', 'SC State Government AI Center of Excellence', 'Charleston Digital Corridor']]
+    ];
+    var wrap = $('#stack'), panel = $('#layerPanel');
+    L.forEach(function (l) {
+      var b = el('button', { type: 'button', class: 'layer' + (l[2] ? ' sc' : ''), 'aria-pressed': 'false' }, l[0] + '<span>' + l[1] + '</span>');
+      b.addEventListener('click', function () { press(wrap, b); panel.innerHTML = '<b>' + l[0] + '.</b> ' + l[3] + '<div class="chips">' + l[4].map(function (x) { return '<span>' + x + '</span>'; }).join('') + '</div>'; });
+      wrap.appendChild(b);
+    });
+    $$('button', wrap)[1].click();
+  })();
+
+  /* ── 9a. Quiz ── */
+  (function () {
+    var QZ = [
+      ['At its core, what does a large language model do?', ['Looks up answers in a database', 'Predicts the next token, over and over', 'Searches the web for every question', 'Follows rules a programmer wrote for each topic'], 1, 'Everything else (embeddings, attention, training stages) serves next-token prediction. Search and databases get added on top, as in Chapter 5.'],
+      ['What does "attention" let a model do?', ['Remember everything it has ever read', 'Weigh other words in the text to work out what each word means in context', 'Pay attention to the user\'s emotions', 'Run without a context window'], 1, 'It\'s how "bank" ends up meaning a riverbank in one sentence and a savings bank in another. It doesn\'t give unlimited memory.'],
+      ['In the feedback stage of training, what does the reward model learn?', ['Facts about the world', 'To predict which answers people prefer', 'How to write code', 'The next token'], 1, 'People rank answers, the reward model learns to predict those rankings, and the main model is adjusted toward higher-scoring answers.'],
+      ['What does retrieval (RAG) add to a model?', ['More parameters', 'Fresh source passages to answer from, with citations', 'A faster chip', 'A new training run'], 1, 'Retrieval adds knowledge at answer time without retraining. That\'s how the SC AI Policy Navigator answers questions about bills from this session.'],
+      ['Santee Cooper\'s experimental large-load rate applies to customers drawing at least…', ['5 MW', '50 MW', '500 MW', 'Any data center'], 1, 'Fifty megawatts and up: a four-year pilot so large new loads pay toward the generation they require. <a href="../scaio-article-data-center-decade.html">Read more →</a>'],
+      ['A scammer uses a cloned voice to impersonate a county official. On SCAIO\'s risk map, that is…', ['Misuse', 'Malfunction', 'Systemic', 'Over the horizon'], 0, 'The tool worked as designed, and a person aimed it at harm. That\'s misuse, here now. The response is procedures and law enforcement.']
+    ];
+    var wrap = $('#quiz');
+    QZ.forEach(function (q, qi) {
+      var d = el('div', { class: 'qz' }, '<p class="qq">' + (qi + 1) + '. ' + q[0] + '</p>');
+      var opts = el('div', { class: 'opts', role: 'group', 'aria-label': 'Answers' }), why = el('div', { class: 'why', 'aria-live': 'polite' });
+      q[1].forEach(function (o, oi) {
+        var b = el('button', { type: 'button' }, o);
+        b.addEventListener('click', function () {
+          if (d.getAttribute('data-done')) return; d.setAttribute('data-done', '1');
+          $$('button', opts)[q[2]].classList.add('right'); if (oi !== q[2]) b.classList.add('wrong');
+          why.innerHTML = '<b>' + (oi === q[2] ? 'Right.' : 'Not quite.') + '</b> ' + q[3]; why.classList.add('show');
+        });
+        opts.appendChild(b);
+      });
+      d.appendChild(opts); d.appendChild(why); wrap.appendChild(d);
+    });
+  })();
+
+  /* ── 9b. Reading path by lens ── */
+  var PATH = {
+    curious: [
+      ['primer-01-llm.html', 'What is an LLM?', 'SCAIO primer · 10 min'],
+      ['primer-10-sc-landscape.html', 'The South Carolina AI landscape', 'SCAIO primer · 10 min'],
+      ['../scaio-article-map-of-ai-risk.html', 'A Plain-Language Map of AI Risk', 'SCAIO Journal'],
+      ['https://www.elementsofai.com/', 'Elements of AI (University of Helsinki)', 'Free course'],
+      ['https://www.youtube.com/watch?v=LPZh9BOjkQs', 'Large Language Models explained briefly (3Blue1Brown)', 'Video · 8 min']
+    ],
+    practitioner: [
+      ['https://www.youtube.com/watch?v=zjkBMFhNj_g', 'Intro to Large Language Models (Andrej Karpathy)', 'Video · 1 hr'],
+      ['primer-03-procurement.html', 'AI procurement for SC government', 'SCAIO primer'],
+      ['https://www.nist.gov/itl/ai-risk-management-framework', 'NIST AI Risk Management Framework', 'Framework'],
+      ['https://academy.claude.com/', 'Anthropic Academy (AI Fluency course)', 'Free course'],
+      ['../policy/', 'SCAIO Policy Tracker', 'Database']
+    ],
+    builder: [
+      ['https://karpathy.ai/zero-to-hero.html', 'Neural Networks: Zero to Hero (build a GPT)', 'Course · free'],
+      ['https://arxiv.org/abs/1706.03762', 'Attention Is All You Need (2017)', 'Paper'],
+      ['https://www.anthropic.com/engineering/building-effective-agents', 'Building Effective Agents', 'Guide'],
+      ['https://genai.owasp.org/', 'OWASP Top 10 for LLM applications', 'Security'],
+      ['https://web.stanford.edu/class/cs224n/', 'Stanford CS224N: NLP with Deep Learning', 'Course']
+    ]
+  };
+  function renderPath(l) {
+    var p = $('#path'); if (!p) return;
+    $('#pathLevel').textContent = l.charAt(0).toUpperCase() + l.slice(1);
+    p.innerHTML = PATH[l].map(function (r) { return '<a href="' + r[0] + '"><b>' + r[1] + '</b><span>' + r[2] + '</span></a>'; }).join('');
+  }
+
+  var saved = 'curious';
+  try { saved = localStorage.getItem('scaio-fg-lens') || 'curious'; } catch (e) {}
+  setLens(saved);
+  onScroll();
+})();
+</script>
+<script src="/assets/navigator.js" defer></script>
+</body>
+</html>
